@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { corsResponse, jsonResponse } from '../../lib/api/cors';
+import { checkRateLimit, getClientIp } from '../../lib/api/rate-limit';
 import { getNeonClient } from '../../lib/api/neon';
 
 const VALID_COMMANDS = [
@@ -38,6 +39,10 @@ function validateCommandData(data: { command?: string }) {
 
 export const POST: APIRoute = async ({ request }) => {
   try {
+    const rateLimitKey = `track-command:${getClientIp(request)}`;
+    if (!checkRateLimit(rateLimitKey).allowed) {
+      return jsonResponse({ error: 'Rate limit exceeded. Try again in a minute.' }, 429);
+    }
     const {
       command,
       cliVersion,
