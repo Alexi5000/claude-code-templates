@@ -129,24 +129,44 @@ function createEmbed(component: Component, type = 'info') {
   };
 }
 
+const MAX_OPTION_LENGTH = 200;
+
+function getOptionString(
+  options: Array<{ name: string; value?: unknown }>,
+  name: string,
+): string | null {
+  const value = options.find((o) => o.name === name)?.value;
+  if (typeof value !== 'string') return null;
+  const trimmed = value.trim();
+  if (trimmed.length === 0 || trimmed.length > MAX_OPTION_LENGTH) return null;
+  return trimmed;
+}
+
 export const POST: APIRoute = async ({ request }) => {
   const rawBody = await request.text();
-  const body = JSON.parse(rawBody);
 
   const signature = request.headers.get('x-signature-ed25519');
   const timestamp = request.headers.get('x-signature-timestamp');
 
-  const publicKey = import.meta.env.DISCORD_PUBLIC_KEY;
+  const publicKey = import.meta.env.DISCORD_PUBLIC_KEY || process.env.DISCORD_PUBLIC_KEY;
   if (!publicKey) {
     return jsonResponse({ error: 'Server configuration error' }, 500);
   }
+  if (!signature || !timestamp) {
+    return jsonResponse({ error: 'Missing signature headers' }, 401);
+  }
 
-  const isValidRequest = verifyKey(rawBody, signature as string, timestamp as string, publicKey);
+  const isValidRequest = await verifyKey(rawBody, signature, timestamp, publicKey);
   if (!isValidRequest) {
     return jsonResponse({ error: 'Invalid request signature' }, 401);
   }
 
-  const interaction = body;
+  let interaction: { type: number; data: { name: string; options?: Array<{ name: string; value?: unknown }> } };
+  try {
+    interaction = JSON.parse(rawBody);
+  } catch {
+    return jsonResponse({ error: 'Malformed JSON body' }, 400);
+  }
 
   if (interaction.type === InteractionType.PING) {
     return jsonResponse({ type: InteractionResponseType.PONG });
@@ -160,8 +180,14 @@ export const POST: APIRoute = async ({ request }) => {
       let response: Record<string, unknown> | undefined;
 
       if (commandName === 'search') {
-        const query = options.find((o: { name: string }) => o.name === 'query')?.value;
-        const type = options.find((o: { name: string }) => o.name === 'type')?.value;
+        const query = getOptionString(options, 'query');
+        const type = getOptionString(options, 'type');
+        if (!query) {
+          return jsonResponse({
+            type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+            data: { content: 'Provide a search query up to 200 characters.', flags: 64 },
+          });
+        }
         const results = searchComponents(components, query, type);
         response = {
           type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
@@ -198,8 +224,14 @@ export const POST: APIRoute = async ({ request }) => {
           },
         };
       } else if (commandName === 'info' || commandName === 'install') {
-        const name = options.find((o: { name: string }) => o.name === 'name')?.value;
-        const type = options.find((o: { name: string }) => o.name === 'type')?.value;
+        const name = getOptionString(options, 'name');
+        const type = getOptionString(options, 'type');
+        if (!name) {
+          return jsonResponse({
+            type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+            data: { content: 'Provide a component name up to 200 characters.', flags: 64 },
+          });
+        }
         let component: Component | null = null;
         const types = type ? [type] : Object.keys(componentTypes);
         for (const t of types) {
