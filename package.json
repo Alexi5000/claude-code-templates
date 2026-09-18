@@ -18,7 +18,8 @@
     "agent:security-auditor": "security-auditor 'Security audit covering codebase, dependencies, and deployment configuration'",
     "deploy": "./scripts/deploy.sh",
     "deploy:dashboard": "./scripts/deploy.sh",
-    "discord:register": "node api/discord/register-commands.cjs"
+    "discord:register": "node api/discord/register-commands.cjs",
+    "version:check": "./scripts/check-versions.sh"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.39.0",
