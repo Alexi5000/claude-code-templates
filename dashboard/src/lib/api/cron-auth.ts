@@ -20,3 +20,7 @@ export function isCronAuthorized(request: Request, url?: URL): boolean {
   if (querySecret && querySecret === secret) return true;
   return false;
 }
+
+export function maskWebhookUrl(_url: string | undefined): string {
+  return 'redacted';
+}

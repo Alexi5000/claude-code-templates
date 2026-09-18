@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { getNeonClient } from '../../lib/api/neon';
 import { corsResponse, jsonResponse } from '../../lib/api/cors';
 import { parseVersionChangelog, formatForDiscord, generateSummary } from '../../lib/api/changelog-parser';
+import { isCronAuthorized, maskWebhookUrl } from '../../lib/api/cron-auth';
 
 const NPM_PACKAGE = '@anthropic-ai/claude-code';
 const CHANGELOG_URL = 'https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md';
@@ -197,7 +198,7 @@ async function handleCheck() {
         response_body
       ) VALUES (
         ${versionId},
-        ${import.meta.env.DISCORD_WEBHOOK_URL_CHANGELOG || process.env.DISCORD_WEBHOOK_URL_CHANGELOG || import.meta.env.DISCORD_WEBHOOK_URL || process.env.DISCORD_WEBHOOK_URL},
+        ${maskWebhookUrl(import.meta.env.DISCORD_WEBHOOK_URL_CHANGELOG || process.env.DISCORD_WEBHOOK_URL_CHANGELOG || import.meta.env.DISCORD_WEBHOOK_URL || process.env.DISCORD_WEBHOOK_URL)},
         ${JSON.stringify(discordResult.payload)},
         ${discordResult.status},
         ${'Success'}
@@ -266,10 +267,16 @@ export const OPTIONS: APIRoute = async () => {
   return corsResponse();
 };
 
-export const GET: APIRoute = async () => {
+export const GET: APIRoute = async ({ request, url }) => {
+  if (!isCronAuthorized(request, url)) {
+    return jsonResponse({ error: 'Unauthorized' }, 401);
+  }
   return handleCheck();
 };
 
-export const POST: APIRoute = async () => {
+export const POST: APIRoute = async ({ request, url }) => {
+  if (!isCronAuthorized(request, url)) {
+    return jsonResponse({ error: 'Unauthorized' }, 401);
+  }
   return handleCheck();
 };

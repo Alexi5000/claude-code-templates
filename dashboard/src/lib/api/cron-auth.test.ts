@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { getCronSecret, isCronAuthorized } from './cron-auth';
+import { getCronSecret, isCronAuthorized, maskWebhookUrl } from './cron-auth';
 
 function req(headers: Record<string, string> = {}): Request {
   return new Request('https://www.aitmpl.com/api/claude-code-check', { headers });
@@ -53,5 +53,15 @@ describe('isCronAuthorized', () => {
   it('allows everything when no secret is configured (local dev)', () => {
     delete process.env.CRON_SECRET;
     expect(isCronAuthorized(req())).toBe(true);
+  });
+});
+
+describe('maskWebhookUrl', () => {
+  it('redacts a discord webhook URL to a constant', () => {
+    expect(maskWebhookUrl('https://discord.com/api/webhooks/123/abc-token')).toBe('redacted');
+  });
+
+  it('handles undefined', () => {
+    expect(maskWebhookUrl(undefined)).toBe('redacted');
   });
 });
