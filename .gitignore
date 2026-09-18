@@ -84,3 +84,9 @@ credentials.json
 service-account*.json
 *-credentials.json
 .npmrc.local
+
+# generated / local artifacts (never commit)
+*.log
+security-report.json
+coverage/
+.dev.vars
