@@ -1,9 +1,9 @@
 import type { APIRoute } from 'astro';
-import { corsResponse, jsonResponse } from '../../../lib/api/cors';
+import { authCorsResponse, authJsonResponse, jsonResponse } from '../../../lib/api/cors';
 import { authenticateRequest } from '../../../lib/api/auth';
 import { getNeonClient } from '../../../lib/api/neon';
 
-export const OPTIONS: APIRoute = async () => corsResponse();
+export const OPTIONS: APIRoute = async ({ request }) => authCorsResponse(request);
 
 function generateSlug(): string {
   const chars = 'abcdefghijkmnpqrstuvwxyz23456789';
@@ -43,7 +43,7 @@ export const POST: APIRoute = async ({ request }) => {
         SET share_slug = NULL, is_public = false, updated_at = NOW()
         WHERE id = ${collectionId} AND clerk_user_id = ${userId}
       `;
-      return jsonResponse({ share_slug: null, is_public: false });
+      return authJsonResponse(request, { share_slug: null, is_public: false });
     }
 
     // Enable sharing — reuse existing slug or generate new one
@@ -66,7 +66,7 @@ export const POST: APIRoute = async ({ request }) => {
       RETURNING share_slug, is_public
     `;
 
-    return jsonResponse({ share_slug: rows[0].share_slug, is_public: true });
+    return authJsonResponse(request, { share_slug: rows[0].share_slug, is_public: true });
   } catch (error) {
     console.error('Share toggle error:', error);
     return jsonResponse({ error: 'Internal server error' }, 500);

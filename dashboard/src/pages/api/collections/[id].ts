@@ -1,9 +1,9 @@
 import type { APIRoute } from 'astro';
-import { corsResponse, jsonResponse } from '../../../lib/api/cors';
+import { authCorsResponse, authJsonResponse, jsonResponse } from '../../../lib/api/cors';
 import { authenticateRequest } from '../../../lib/api/auth';
 import { getNeonClient } from '../../../lib/api/neon';
 
-export const OPTIONS: APIRoute = async () => corsResponse();
+export const OPTIONS: APIRoute = async ({ request }) => authCorsResponse(request);
 
 export const PATCH: APIRoute = async ({ request, params }) => {
   const userId = await authenticateRequest(request);
@@ -46,7 +46,7 @@ export const PATCH: APIRoute = async ({ request, params }) => {
     `;
 
     const collection = { ...rows[0], collection_items: items };
-    return jsonResponse({ collection });
+    return authJsonResponse(request, { collection });
   } catch (error) {
     console.error('Collection [id] error:', error);
     return jsonResponse({ error: 'Internal server error' }, 500);
@@ -74,7 +74,7 @@ export const DELETE: APIRoute = async ({ request, params }) => {
     await sql`DELETE FROM collection_items WHERE collection_id = ${id}`;
     await sql`DELETE FROM user_collections WHERE id = ${id} AND clerk_user_id = ${userId}`;
 
-    return jsonResponse({ success: true });
+    return authJsonResponse(request, { success: true });
   } catch (error) {
     console.error('Collection [id] error:', error);
     return jsonResponse({ error: 'Internal server error' }, 500);

@@ -1,9 +1,9 @@
 import type { APIRoute } from 'astro';
-import { corsResponse, jsonResponse } from '../../../lib/api/cors';
+import { authCorsResponse, authJsonResponse, jsonResponse } from '../../../lib/api/cors';
 import { authenticateRequest } from '../../../lib/api/auth';
 import { getNeonClient } from '../../../lib/api/neon';
 
-export const OPTIONS: APIRoute = async () => corsResponse();
+export const OPTIONS: APIRoute = async ({ request }) => authCorsResponse(request);
 
 export const GET: APIRoute = async ({ request }) => {
   const userId = await authenticateRequest(request);
@@ -39,7 +39,7 @@ export const GET: APIRoute = async ({ request }) => {
       collection_items: itemsByCollection[c.id] || [],
     }));
 
-    return jsonResponse({ collections: result });
+    return authJsonResponse(request, { collections: result });
   } catch (error) {
     console.error('Collections error:', error);
     return jsonResponse({ error: 'Internal server error' }, 500);
@@ -77,7 +77,7 @@ export const POST: APIRoute = async ({ request }) => {
     `;
 
     const collection = { ...rows[0], collection_items: [] };
-    return jsonResponse({ collection }, 201);
+    return authJsonResponse(request, { collection }, 201);
   } catch (error) {
     console.error('Collections error:', error);
     return jsonResponse({ error: 'Internal server error' }, 500);

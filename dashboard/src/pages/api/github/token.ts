@@ -1,12 +1,18 @@
 import type { APIRoute } from 'astro';
+import { corsHeadersFor } from '../../../lib/api/cors';
+
+export const OPTIONS: APIRoute = async ({ request }) => {
+  return new Response(null, { status: 204, headers: corsHeadersFor(request) });
+};
 
 export const POST: APIRoute = async ({ request }) => {
+  const headers = { 'Content-Type': 'application/json', ...corsHeadersFor(request) };
   const { code } = await request.json();
 
   if (!code) {
     return new Response(JSON.stringify({ error: 'Missing code' }), {
       status: 400,
-      headers: { 'Content-Type': 'application/json' },
+      headers,
     });
   }
 
@@ -16,7 +22,7 @@ export const POST: APIRoute = async ({ request }) => {
   if (!clientId || !clientSecret) {
     return new Response(JSON.stringify({ error: 'GitHub OAuth not configured' }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' },
+      headers,
     });
   }
 
@@ -39,18 +45,18 @@ export const POST: APIRoute = async ({ request }) => {
     if (data.error) {
       return new Response(JSON.stringify({ error: data.error_description || data.error }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json' },
+        headers,
       });
     }
 
     return new Response(JSON.stringify({ access_token: data.access_token }), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' },
+      headers,
     });
   } catch (err) {
     return new Response(JSON.stringify({ error: 'Token exchange failed' }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' },
+      headers,
     });
   }
 };

@@ -1,9 +1,9 @@
 import type { APIRoute } from 'astro';
-import { corsResponse, jsonResponse } from '../../../lib/api/cors';
+import { authCorsResponse, authJsonResponse, jsonResponse } from '../../../lib/api/cors';
 import { authenticateRequest } from '../../../lib/api/auth';
 import { getNeonClient } from '../../../lib/api/neon';
 
-export const OPTIONS: APIRoute = async () => corsResponse();
+export const OPTIONS: APIRoute = async ({ request }) => authCorsResponse(request);
 
 export const POST: APIRoute = async ({ request }) => {
   const userId = await authenticateRequest(request);
@@ -40,7 +40,7 @@ export const POST: APIRoute = async ({ request }) => {
       RETURNING *
     `;
 
-    return jsonResponse({ item: rows[0] }, 201);
+    return authJsonResponse(request, { item: rows[0] }, 201);
   } catch (error) {
     console.error('Collection items error:', error);
     return jsonResponse({ error: 'Internal server error' }, 500);
@@ -73,7 +73,7 @@ export const DELETE: APIRoute = async ({ request }) => {
       WHERE id = ${itemId} AND collection_id = ${collectionId}
     `;
 
-    return jsonResponse({ success: true });
+    return authJsonResponse(request, { success: true });
   } catch (error) {
     console.error('Collection items error:', error);
     return jsonResponse({ error: 'Internal server error' }, 500);
@@ -112,7 +112,7 @@ export const PATCH: APIRoute = async ({ request }) => {
       return jsonResponse({ error: 'Item not found in source collection' }, 404);
     }
 
-    return jsonResponse({ item: rows[0] });
+    return authJsonResponse(request, { item: rows[0] });
   } catch (error) {
     console.error('Collection items error:', error);
     return jsonResponse({ error: 'Internal server error' }, 500);
