@@ -10,12 +10,16 @@
 const axios = require('axios');
 
 // Configuration
-const BASE_URL = process.env.API_BASE_URL || 'https://aitmpl.com';
+// Writes (POSTs that create rows) only run with ALLOW_LIVE_WRITES=true.
+// Default target is local Astro dev so an unset env can never hit production.
+const BASE_URL = process.env.API_BASE_URL || 'http://localhost:4321';
+const LIVE = process.env.ALLOW_LIVE_WRITES === 'true' ? describe : describe.skip;
+const LTEST = process.env.ALLOW_LIVE_WRITES === 'true' ? test : test.skip;
 const TIMEOUT = 30000; // 30 seconds
 
 describe('API Endpoints - Critical Tests', () => {
 
-  describe('🔴 CRITICAL: Component Download Tracking', () => {
+  LIVE('🔴 CRITICAL: Component Download Tracking (writes — needs ALLOW_LIVE_WRITES=true)', () => {
 
     test('POST /api/track-download-supabase should be available', async () => {
       const response = await axios.post(
@@ -91,7 +95,7 @@ describe('API Endpoints - Critical Tests', () => {
 
   });
 
-  describe('🟢 Claude Code Changelog Monitor', () => {
+  LIVE('🟢 Claude Code Changelog Monitor (triggers check — needs ALLOW_LIVE_WRITES=true)', () => {
 
     test('GET /api/claude-code-check should be available', async () => {
       const response = await axios.get(
@@ -110,7 +114,7 @@ describe('API Endpoints - Critical Tests', () => {
 
   describe('🔵 Command Usage Tracking', () => {
 
-    test('POST /api/track-command-usage should be available', async () => {
+    LTEST('POST /api/track-command-usage should be available', async () => {
       const response = await axios.post(
         `${BASE_URL}/api/track-command-usage`,
         {
@@ -172,7 +176,7 @@ describe('API Endpoints - Critical Tests', () => {
 
   });
 
-  describe('📊 API Health Check', () => {
+  LIVE('📊 API Health Check (hits claude-code-check — needs ALLOW_LIVE_WRITES=true)', () => {
 
     test('All critical endpoints should respond within 30s', async () => {
       const startTime = Date.now();
@@ -220,7 +224,7 @@ describe('API Endpoints - Functional Tests', () => {
 
     const validTypes = ['agent', 'command', 'setting', 'hook', 'mcp', 'skill', 'template'];
 
-    test('should accept all valid component types', async () => {
+    LTEST('should accept all valid component types', async () => {
       for (const type of validTypes) {
         const response = await axios.post(
           `${BASE_URL}/api/track-download-supabase`,
@@ -261,7 +265,7 @@ describe('API Endpoints - Functional Tests', () => {
 
   });
 
-  describe('Claude Code Monitor - Parser Tests', () => {
+  LIVE('Claude Code Monitor - Parser Tests (triggers check — needs ALLOW_LIVE_WRITES=true)', () => {
 
     test('GET /api/claude-code-check should return valid structure', async () => {
       const response = await axios.get(
@@ -302,7 +306,7 @@ describe('API Endpoints - Functional Tests', () => {
       'mcp-stats'
     ];
 
-    test('should accept all valid commands', async () => {
+    LTEST('should accept all valid commands', async () => {
       for (const command of validCommands) {
         const response = await axios.post(
           `${BASE_URL}/api/track-command-usage`,
@@ -326,7 +330,7 @@ describe('API Endpoints - Functional Tests', () => {
       }
     }, TIMEOUT * validCommands.length);
 
-    test('should handle metadata correctly', async () => {
+    LTEST('should handle metadata correctly', async () => {
       const response = await axios.post(
         `${BASE_URL}/api/track-command-usage`,
         {
@@ -370,7 +374,7 @@ describe('API Endpoints - Functional Tests', () => {
       expect(response.status).toBe(400);
     }, TIMEOUT);
 
-    test('should handle missing optional fields', async () => {
+    LTEST('should handle missing optional fields', async () => {
       const response = await axios.post(
         `${BASE_URL}/api/track-command-usage`,
         {
