@@ -30,6 +30,10 @@
 4. TODO (maintainer): decide npm publishing for the hardened line (fork is
    1.28.16; npm latest is upstream 1.29.6). Do NOT publish over the
    upstream name without a scope/name decision.
+5. TODO (maintainer, Cloudflare account access): add `CLOUDFLARE_API_TOKEN`
+   + `CLOUDFLARE_ACCOUNT_ID` repo secrets. First post-reenable Deploy run
+   (2026-09-18) passed Test + Build and failed only on the missing token —
+   the pipeline itself is proven working.
 
 ## Decision
 Targets confirmed for this week: dashboard + APIs (live, green), CI
