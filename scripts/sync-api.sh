@@ -1,50 +1,33 @@
 #!/bin/bash
+# check-api-parity.sh (kept at scripts/sync-api.sh so existing references hold)
+#
+# Legacy api/ is FROZEN. Fails when a NEW *.js endpoint appears under api/
+# without a manifest row in api/PARITY.md.
+#
+# Usage: ./scripts/sync-api.sh   (exit 0 = frozen, exit 1 = drift)
 
-# sync-api.sh - Sync API files from /api to /docs/api
-# This ensures serverless functions are deployed correctly with Vercel
+set -euo pipefail
 
-set -e
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+manifest="$repo_root/api/PARITY.md"
 
-echo "🔄 Syncing API files from /api to /docs/api..."
-echo ""
+# Backticked api/ paths listed in the manifest table + support-files list.
+allowed=$(sed -n 's/^[-*] `\(api\/[^`]*\)`.*/\1/p; s/^| `\(api\/[^`]*\)` |.*/\1/p' "$manifest" | sort -u)
 
-# Colors for output
-GREEN='\033[0;32m'
-BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+fail=0
+while IFS= read -r file; do
+  rel="${file#$repo_root/}"
+  if ! printf '%s\n' "$allowed" | grep -qxF "$rel"; then
+    echo "DRIFT: $rel is a legacy api/ file with no api/PARITY.md row."
+    fail=1
+  fi
+done < <(cd "$repo_root" && ls api/*.js api/discord/*.js api/collections/*.js 2>/dev/null | sort -u)
 
-# Check if source files exist
-if [ ! -f "api/track-download-supabase.js" ]; then
-    echo "❌ Error: api/track-download-supabase.js not found"
-    exit 1
+if [ "$fail" -ne 0 ]; then
+  echo ""
+  echo "Legacy api/ grew without manifest approval. Implement the endpoint in"
+  echo "dashboard/src/pages/api/ instead, or add a PARITY.md row with reviewer sign-off."
+  exit 1
 fi
 
-if [ ! -f "api/package.json" ]; then
-    echo "❌ Error: api/package.json not found"
-    exit 1
-fi
-
-# Create docs/api directory if it doesn't exist
-mkdir -p docs/api
-
-# Copy files
-echo "${BLUE}📄 Copying track-download-supabase.js...${NC}"
-cp api/track-download-supabase.js docs/api/
-echo "${GREEN}✓ Copied track-download-supabase.js${NC}"
-
-echo "${BLUE}📦 Copying package.json...${NC}"
-cp api/package.json docs/api/
-echo "${GREEN}✓ Copied package.json${NC}"
-
-echo ""
-echo "${GREEN}✅ Sync completed successfully!${NC}"
-echo ""
-echo "📁 Files synced to docs/api/:"
-ls -lh docs/api/ | grep -E "(track-download-supabase.js|package.json)"
-
-echo ""
-echo "📝 Next steps:"
-echo "  1. Review changes: git diff docs/api/"
-echo "  2. Commit changes: git add docs/api/ && git commit -m 'Sync API files'"
-echo "  3. Deploy to Vercel: vercel --prod"
-echo ""
+echo "api/ parity OK: no unmanifested legacy files."

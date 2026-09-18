@@ -1,0 +1,23 @@
+name: Legacy API Parity
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'api/**'
+      - 'scripts/sync-api.sh'
+  pull_request:
+    paths:
+      - 'api/**'
+      - 'scripts/sync-api.sh'
+
+permissions:
+  contents: read
+
+jobs:
+  parity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enforce legacy api/ freeze
+        run: bash scripts/sync-api.sh
