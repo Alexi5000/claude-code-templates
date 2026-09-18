@@ -1,0 +1,61 @@
+name: Dependency Security Audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'package.json'
+      - 'package-lock.json'
+      - 'cli-tool/package.json'
+      - 'dashboard/package.json'
+      - 'api/package.json'
+  pull_request:
+    paths:
+      - 'package.json'
+      - 'package-lock.json'
+      - 'cli-tool/package.json'
+      - 'dashboard/package.json'
+      - 'api/package.json'
+  schedule:
+    - cron: '0 6 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Blocking legs: clean at --audit-level=high as of 2026-09-18.
+          - unit: cli-tool
+            dir: cli-tool
+            blocking: true
+          - unit: api
+            dir: api
+            blocking: true
+          # Report-only legs (see comments): residual findings have no
+          # compatible fix; they fail open until the noted upstream ships.
+          - unit: root
+            dir: .
+            blocking: false
+          - unit: dashboard
+            dir: dashboard
+            blocking: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - name: Audit ${{ matrix.unit }}
+        run: npm audit --audit-level=high
+        working-directory: ${{ matrix.dir }}
+        continue-on-error: ${{ matrix.blocking == false }}
+      # Root residuals (2026-09-18): @vercel/node chain (@mapbox/node-pre-gyp,
+      # @vercel/nft, tar, undici) + path-to-regexp. No compatible fix short of
+      # a @vercel/node major — revisit when the Vercel deploy path is decided.
+      # Dashboard residuals (2026-09-18): astro critical + miniflare/sharp/
+      # undici/ws highs, all transitive under astro@5.18.2 / wrangler@4.59.2
+      # (latest resolvable). Revisit on the next astro minor bump.
