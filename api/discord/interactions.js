@@ -101,7 +101,7 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Server configuration error' });
   }
 
-  const isValidRequest = verifyKey(rawBody, signature, timestamp, publicKey);
+  const isValidRequest = await verifyKey(rawBody, signature, timestamp, publicKey);
   if (!isValidRequest) {
     return res.status(401).json({ error: 'Invalid request signature' });
   }
