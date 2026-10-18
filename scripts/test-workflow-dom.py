@@ -1,9 +1,11 @@
+import os
 from pathlib import Path
+from shutil import which
 from playwright.sync_api import sync_playwright
 
 source = Path(__file__).resolve().parents[1] / 'docs/js/workflows-events.js'
 with sync_playwright() as playwright:
-    browser = playwright.chromium.launch(executable_path='/usr/bin/chromium', headless=True, args=['--no-sandbox'])
+    browser = playwright.chromium.launch(executable_path=os.environ.get('CHROMIUM_EXECUTABLE') or which('chromium'), headless=True, args=['--no-sandbox'])
     page = browser.new_page()
     errors = []
     page.on('pageerror', lambda error: errors.append(str(error)))
