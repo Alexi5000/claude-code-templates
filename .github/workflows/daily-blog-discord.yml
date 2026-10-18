@@ -10,11 +10,21 @@ permissions:
 
 jobs:
   share-blog:
+    if: ${{ vars.DISCORD_NOTIFICATIONS_ENABLED == 'true' }}
     name: Share Random Blog Article on Discord
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
     steps:
+      - name: Validate Discord configuration
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL_BLOG }}
+        run: |
+          if [ -z "$DISCORD_WEBHOOK_URL" ]; then
+            echo "::error::Discord notifications are enabled but DISCORD_WEBHOOK_URL_BLOG is missing."
+            exit 1
+          fi
+
       - uses: actions/checkout@v6
 
       - name: Pick random blog article and send to Discord

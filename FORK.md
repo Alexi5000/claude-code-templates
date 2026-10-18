@@ -31,3 +31,7 @@ catalog, stricter security posture, owned deployment story.
   (added under Plans 1–2).
 - Re-audit divergence quarterly with the Day-1 Step-1 commands; if `behind`
   grows past ~500 with catalog-only changes, schedule a dedicated sync week.
+
+## Optional Discord publishing
+
+Discord publishing is opt-in via the repository variable `DISCORD_NOTIFICATIONS_ENABLED=true`. Leave it unset for forks without an approved Discord destination. When enabled, every notification workflow validates its own webhook secret before preparing or sending a message; missing configuration fails explicitly. This setting does not affect catalog builds or security checks.
