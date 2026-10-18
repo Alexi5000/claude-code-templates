@@ -1,7 +1,7 @@
 {
   "name": "pulse-weekly-report",
   "version": "1.0.0",
-  "description": "Cloudflare Worker — Weekly KPI report sent via Telegram",
+  "description": "Cloudflare Worker \u2014 Weekly KPI report sent via Telegram",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -30,6 +30,6 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "wrangler": "^3.91.0"
+    "wrangler": "^4.151.1"
   }
 }
