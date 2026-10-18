@@ -109,7 +109,7 @@ class WorkflowManager {
             if (!acc[category]) acc[category] = [];
             acc[category].push(component);
             return acc;
-        }, {});
+        }, Object.create(null));
         
         Object.entries(groupedComponents).forEach(([category, categoryComponents]) => {
             const folderElement = this.createTreeFolder(category, categoryComponents, type);
@@ -117,52 +117,58 @@ class WorkflowManager {
         });
     }
 
+    createElement(tag, className, text) {
+        const element = document.createElement(tag);
+        element.className = className;
+        if (text !== undefined) element.textContent = text;
+        return element;
+    }
+
+    createAction(className, title, text, handler) {
+        const button = this.createElement('button', className, text);
+        button.type = 'button';
+        button.title = title;
+        button.addEventListener('click', handler);
+        return button;
+    }
+
     createTreeFolder(category, components, type) {
-        const folderElement = document.createElement('div');
-        folderElement.className = 'tree-node';
+        const folder = this.createElement('div', 'tree-node');
         const folderId = `${type}-${category.replace(/[^a-z0-9]/gi, '_').toLowerCase()}`;
-        
-        folderElement.innerHTML = `
-            <div class="tree-node-header" data-folder="${folderId}">
-                <span class="tree-icon folder-icon">📁</span>
-                <span class="tree-label">${category}</span>
-                <span class="tree-count">${components.length}</span>
-                <span class="tree-arrow">▶</span>
-            </div>
-            <div class="tree-children" id="${folderId}"></div>
-        `;
-        
-        const childrenContainer = folderElement.querySelector('.tree-children');
-        components.forEach(component => {
-            const fileElement = this.createTreeFile(component);
-            childrenContainer.appendChild(fileElement);
-        });
-        
-        return folderElement;
+        const header = this.createElement('div', 'tree-node-header');
+        header.dataset.folder = folderId;
+        header.append(
+            this.createElement('span', 'tree-icon folder-icon', '📁'),
+            this.createElement('span', 'tree-label', category),
+            this.createElement('span', 'tree-count', components.length),
+            this.createElement('span', 'tree-arrow', '▶')
+        );
+        const children = this.createElement('div', 'tree-children');
+        children.id = folderId;
+        components.forEach(component => children.appendChild(this.createTreeFile(component)));
+        folder.append(header, children);
+        return folder;
     }
 
     createTreeFile(component) {
-        const element = document.createElement('div');
-        element.className = 'tree-file';
+        const element = this.createElement('div', 'tree-file');
         element.draggable = true;
         element.dataset.componentType = component.type;
         element.dataset.componentName = component.name;
         element.dataset.componentPath = component.path;
         element.dataset.componentCategory = component.category;
-        
-        const fileIcon = this.getFileIcon(component.type);
-        
-        element.innerHTML = `
-            <div class="tree-file-header">
-                <span class="tree-icon file-icon">${fileIcon}</span>
-                <span class="tree-file-name">${component.name}</span>
-                <div class="tree-file-actions">
-                    <button class="tree-action-btn" title="View Details" onclick="showWorkflowComponentDetails('${component.type}', '${component.name}', '${component.path}', '${component.category}')">ℹ️</button>
-                    <button class="tree-action-btn" title="Add to Workflow" onclick="addComponentFromButton(event)">➕</button>
-                </div>
-            </div>
-        `;
-        
+        const header = this.createElement('div', 'tree-file-header');
+        const actions = this.createElement('div', 'tree-file-actions');
+        actions.append(
+            this.createAction('tree-action-btn', 'View Details', 'ℹ️', () =>
+                showWorkflowComponentDetails(component.type, component.name, component.path, component.category)),
+            this.createAction('tree-action-btn', 'Add to Workflow', '➕', addComponentFromButton)
+        );
+        header.append(
+            this.createElement('span', 'tree-icon file-icon', this.getFileIcon(component.type)),
+            this.createElement('span', 'tree-file-name', component.name), actions
+        );
+        element.appendChild(header);
         return element;
     }
 
@@ -332,66 +338,36 @@ class WorkflowManager {
                 agentElement.dataset.agentId = agentData.agent.id;
                 agentElement.dataset.stepNumber = mainStepNumber;
                 
-                // Check if this is a command/MCP in main flow (no sub-items)
-                if (agentData.subItems === null) {
-                    // Simple command/MCP item (no sub-items allowed)
-                    agentElement.innerHTML = `
-                        <div class="step-number">${mainStepNumber}</div>
-                        <div class="agent-header">
-                            <div class="step-icon">${agentData.agent.icon}</div>
-                            <div class="step-content">
-                                <div class="step-name">${agentData.agent.name}</div>
-                                <div class="step-type">${agentData.agent.type}</div>
-                            </div>
-                            <div class="agent-actions">
-                                <button class="agent-action" onclick="showWorkflowComponentDetails('${agentData.agent.type}', '${agentData.agent.name.replace(/'/g, "\\'")}')" title="Details">ℹ️</button>
-                                <button class="agent-action" onclick="removeAgent('${agentData.agent.id}')" title="Remove">🗑️</button>
-                            </div>
-                        </div>
-                    `;
-                } else {
-                    // Agent with potential sub-items
-                    const subItemsHtml = agentData.subItems.map((subItem, subIndex) => `
-                        <div class="sub-item" data-sub-item-id="${subItem.id}">
-                            <div class="step-number">${mainStepNumber}.${subIndex + 1}</div>
-                            <div class="step-icon">${subItem.icon}</div>
-                            <div class="step-content">
-                                <div class="step-name">${subItem.name}</div>
-                                <div class="step-type">${subItem.type}</div>
-                            </div>
-                            <div class="agent-actions">
-                                <button class="sub-item-action" onclick="showWorkflowComponentDetails('${subItem.type}', '${subItem.name.replace(/'/g, "\\'")}')" title="Details">ℹ️</button>
-                                <button class="sub-item-action" onclick="removeSubItem('${agentData.agent.id}', '${subItem.id}')" title="Remove">🗑️</button>
-                            </div>
-                        </div>
-                    `).join('');
-                    
-                    agentElement.innerHTML = `
-                        <div class="step-number">${mainStepNumber}</div>
-                        <div class="agent-header">
-                            <div class="step-icon">${agentData.agent.icon}</div>
-                            <div class="step-content">
-                                <div class="step-name">${agentData.agent.name}</div>
-                                <div class="step-type">${agentData.agent.type}</div>
-                            </div>
-                            <div class="agent-actions">
-                                <button class="agent-action" onclick="showWorkflowComponentDetails('${agentData.agent.type}', '${agentData.agent.name.replace(/'/g, "\\'")}')" title="Details">ℹ️</button>
-                                <button class="agent-action" onclick="removeAgent('${agentData.agent.id}')" title="Remove">🗑️</button>
-                            </div>
-                        </div>
-                        <div class="agent-content">
-                            <div class="agent-sub-items">
-                                ${subItemsHtml}
-                                <div class="sub-item-drop-zone" data-agent-id="${agentData.agent.id}" 
-                                     ondrop="dropOnAgent(event, '${agentData.agent.id}')" 
-                                     ondragover="allowDrop(event)"
-                                     ondragenter="event.preventDefault(); event.target.classList.add('drag-over')"
-                                     ondragleave="if (!event.target.contains(event.relatedTarget)) event.target.classList.remove('drag-over')">
-                                    Drop commands or MCPs here
-                                </div>
-                            </div>
-                        </div>
-                    `;
+                const agent = agentData.agent;
+                const header = this.createElement('div', 'agent-header');
+                header.append(...this.createStepContent(agent, 'agent-action', () => removeAgent(agent.id)));
+                agentElement.append(this.createElement('div', 'step-number', mainStepNumber), header);
+                if (agentData.subItems !== null) {
+                    const content = this.createElement('div', 'agent-content');
+                    const subItems = this.createElement('div', 'agent-sub-items');
+                    agentData.subItems.forEach((subItem, subIndex) => {
+                        const item = this.createElement('div', 'sub-item');
+                        item.dataset.subItemId = subItem.id;
+                        item.append(
+                            this.createElement('div', 'step-number', `${mainStepNumber}.${subIndex + 1}`),
+                            ...this.createStepContent(subItem, 'sub-item-action', () => removeSubItem(agent.id, subItem.id))
+                        );
+                        subItems.appendChild(item);
+                    });
+                    const drop = this.createElement('div', 'sub-item-drop-zone', 'Drop commands or MCPs here');
+                    drop.dataset.agentId = agent.id;
+                    drop.addEventListener('drop', event => dropOnAgent(event, agent.id));
+                    drop.addEventListener('dragover', allowDrop);
+                    drop.addEventListener('dragenter', event => {
+                        event.preventDefault();
+                        drop.classList.add('drag-over');
+                    });
+                    drop.addEventListener('dragleave', event => {
+                        if (!drop.contains(event.relatedTarget)) drop.classList.remove('drag-over');
+                    });
+                    subItems.appendChild(drop);
+                    content.appendChild(subItems);
+                    agentElement.appendChild(content);
                 }
                 container.appendChild(agentElement);
             });
@@ -414,6 +390,20 @@ class WorkflowManager {
         } else {
             if (dropZone) dropZone.style.display = 'flex';
         }
+    }
+
+    createStepContent(step, actionClass, remove) {
+        const content = this.createElement('div', 'step-content');
+        content.append(
+            this.createElement('div', 'step-name', step.name),
+            this.createElement('div', 'step-type', step.type)
+        );
+        const actions = this.createElement('div', 'agent-actions');
+        actions.append(
+            this.createAction(actionClass, 'Details', 'ℹ️', () => showWorkflowComponentDetails(step.type, step.name)),
+            this.createAction(actionClass, 'Remove', '🗑️', remove)
+        );
+        return [this.createElement('div', 'step-icon', step.icon), content, actions];
     }
 
     updateWorkflowStats() {
