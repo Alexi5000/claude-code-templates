@@ -50,9 +50,9 @@ describe('isCronAuthorized', () => {
     expect(isCronAuthorized(req())).toBe(false);
   });
 
-  it('allows everything when no secret is configured (local dev)', () => {
+  it('rejects requests when no secret is configured', () => {
     delete process.env.CRON_SECRET;
-    expect(isCronAuthorized(req())).toBe(true);
+    expect(isCronAuthorized(req())).toBe(false);
   });
 });
 

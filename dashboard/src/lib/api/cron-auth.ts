@@ -14,7 +14,7 @@ export function getCronSecret(): string | null {
 
 export function isCronAuthorized(request: Request, url?: URL): boolean {
   const secret = getCronSecret();
-  if (!secret) return true;
+  if (!secret) return false;
   if (request.headers.get('authorization') === `Bearer ${secret}`) return true;
   const querySecret = url?.searchParams.get('secret');
   if (querySecret && querySecret === secret) return true;

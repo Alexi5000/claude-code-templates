@@ -48,7 +48,7 @@ jobs:
             blocking: true
           - unit: dashboard
             dir: dashboard
-            blocking: false
+            blocking: true
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v6
@@ -58,4 +58,21 @@ jobs:
         run: npm audit --audit-level=low
         working-directory: ${{ matrix.dir }}
         continue-on-error: ${{ matrix.blocking == false }}
-      # Dashboard remains report-only pending the required Pages-to-Workers migration.
+
+  dashboard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22.22.2'
+          cache: npm
+          cache-dependency-path: dashboard/package-lock.json
+      - run: npm ci
+        working-directory: dashboard
+      - run: npm test
+        working-directory: dashboard
+      - run: npm run build
+        working-directory: dashboard
+      - run: npx wrangler deploy --dry-run
+        working-directory: dashboard

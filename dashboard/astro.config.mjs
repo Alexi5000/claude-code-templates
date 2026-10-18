@@ -6,31 +6,17 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://www.aitmpl.com',
   output: 'server',
-  adapter: cloudflare({ mode: 'directory' }),
+  adapter: cloudflare({ imageService: 'compile', prerenderEnvironment: 'node' }),
   integrations: [react()],
   vite: {
     plugins: [
       tailwindcss(),
-      {
-        name: 'cloudflare-react-dom-server',
-        config(_config, { command }) {
-          if (command === 'build') {
-            return {
-              resolve: {
-                alias: [
-                  { find: /^react-dom\/server$/, replacement: 'react-dom/server.node' },
-                ],
-              },
-              ssr: { noExternal: ['react-dom'] },
-            };
-          }
-        },
-      },
     ],
     resolve: {
       dedupe: ['react', 'react-dom'],
     },
     ssr: {
+      target: 'webworker',
       external: ['node:fs', 'node:path', 'node:url', 'node:stream'],
     },
   },
