@@ -100,5 +100,8 @@
   "devDependencies": {
     "jest": "^30.0.4",
     "jest-watch-typeahead": "^3.0.1"
+  },
+  "overrides": {
+    "js-yaml": "^4.3.2"
   }
 }

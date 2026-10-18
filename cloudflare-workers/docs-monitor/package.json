@@ -9,7 +9,7 @@
     "deploy": "wrangler deploy",
     "tail": "wrangler tail",
     "test": "wrangler dev --test-scheduled",
-    "kv:create": "wrangler kv:namespace create DOCS_MONITOR_KV",
+    "kv:create": "wrangler kv namespace create DOCS_MONITOR_KV",
     "secret:telegram-bot": "wrangler secret put TELEGRAM_BOT_TOKEN",
     "secret:telegram-chat": "wrangler secret put TELEGRAM_CHAT_ID",
     "secret:trigger": "wrangler secret put TRIGGER_SECRET"
@@ -24,6 +24,6 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "wrangler": "^3.91.0"
+    "wrangler": "^4.151.1"
   }
 }

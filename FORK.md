@@ -35,3 +35,9 @@ catalog, stricter security posture, owned deployment story.
 ## Optional Discord publishing
 
 Discord publishing is opt-in via the repository variable `DISCORD_NOTIFICATIONS_ENABLED=true`. Leave it unset for forks without an approved Discord destination. When enabled, every notification workflow validates its own webhook secret before preparing or sending a message; missing configuration fails explicitly. This setting does not affect catalog builds or security checks.
+
+## Dependency maintenance (2026-10-18)
+
+Root, CLI, API, both Cloudflare workers, and the generated todo example pass npm audit with zero findings. The unused root `@vercel/node` builder was removed; deployment remains handled by the existing platform configuration. Workers use Wrangler 4, including its `kv namespace` command. SQLite example dependencies use their maintained major versions.
+
+The dashboard still needs an Astro and Cloudflare adapter migration. Current patched adapters require Cloudflare Workers instead of the configured Pages hosting; its alerts remain open. The CLI test baseline also has 68 failures (132 passes, one skip) on both unchanged main and this dependency update. Coverage thresholds remain enforced. API integration tests require the local Astro server and its backing services; they do not silently target production.
