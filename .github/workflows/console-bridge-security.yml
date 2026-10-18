@@ -1,0 +1,29 @@
+name: Console bridge security
+on:
+  pull_request:
+    paths:
+      - 'cli-tool/src/console-bridge.js'
+      - 'cli-tool/tests/security/console-bridge.test.cjs'
+      - '.github/workflows/console-bridge-security.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'cli-tool/src/console-bridge.js'
+      - 'cli-tool/tests/security/console-bridge.test.cjs'
+      - '.github/workflows/console-bridge-security.yml'
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: cli-tool/package-lock.json
+      - run: npm ci
+        working-directory: cli-tool
+      - run: node --test tests/security/console-bridge.test.cjs
+        working-directory: cli-tool

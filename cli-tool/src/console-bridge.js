@@ -1,8 +1,10 @@
 const chalk = require('chalk');
-const { spawn, exec } = require('child_process');
+const { spawn, exec, execFile } = require('child_process');
 const WebSocket = require('ws');
 const EventEmitter = require('events');
 const fs = require('fs');
+const isTerminalDevice = device => typeof device === 'string' &&
+  device.trim() === device && /^\/dev\/(?:tty[A-Za-z0-9]*|pts\/[0-9]+)$/.test(device);
 
 /**
  * ConsoleBridge - Bridges Claude Code console interactions with WebSocket
@@ -212,7 +214,7 @@ class ConsoleBridge extends EventEmitter {
         const parts = stdout.trim().split(/\s+/);
         const ttyPath = parts[parts.length - 1]; // Last part is the device path
         
-        if (ttyPath.startsWith('/dev/')) {
+        if (isTerminalDevice(ttyPath)) {
           resolve({
             tty: ttyPath,
             pid: pid
@@ -488,8 +490,8 @@ Do you want to proceed?
    * @param {string} text - Text to write
    */
   writeToTerminal(text) {
-    if (!this.terminalDevice) {
-      console.warn(chalk.yellow('⚠️ No terminal device available'));
+    if (!isTerminalDevice(this.terminalDevice)) {
+      console.warn(chalk.yellow('⚠️ No valid terminal device available'));
       return;
     }
     
@@ -498,12 +500,19 @@ Do you want to proceed?
       
       // Method 1: Use expect script to send input
       const expectScript = `
-        spawn -open [open ${this.terminalDevice} w]
-        send "${text.replace(/"/g, '\\"')}"
+        spawn -open [open $env(CLAUDE_BRIDGE_DEVICE) w]
+        send -- $env(CLAUDE_BRIDGE_INPUT)
         close
       `;
-      
-      exec(`expect -c '${expectScript}'`, (error, stdout, stderr) => {
+
+      execFile('expect', ['-c', expectScript], {
+        shell: false,
+        env: {
+          ...process.env,
+          CLAUDE_BRIDGE_DEVICE: this.terminalDevice,
+          CLAUDE_BRIDGE_INPUT: text
+        }
+      }, (error) => {
         if (error) {
           console.log(chalk.yellow('⚠️ Expect method failed, trying alternative...'));
           this.tryAlternativeInput(text);
@@ -523,15 +532,31 @@ Do you want to proceed?
    * @param {string} text - Text to send
    */
   tryAlternativeInput(text) {
+    if (!isTerminalDevice(this.terminalDevice)) {
+      console.warn(chalk.yellow('⚠️ No valid terminal device available'));
+      return;
+    }
     // Method 2: Try using osascript (AppleScript on macOS) to send keystrokes
     if (process.platform === 'darwin') {
       const script = `
-        tell application "Terminal"
-          do script "${text.replace(/"/g, '\\"').replace(/\n/g, '\\n')}" in front window
-        end tell
+        on run argv
+          set inputText to item 1 of argv
+          set devicePath to item 2 of argv
+          tell application "Terminal"
+            repeat with terminalWindow in windows
+              repeat with terminalTab in tabs of terminalWindow
+                if tty of terminalTab is devicePath then
+                  do script inputText in terminalTab
+                  return
+                end if
+              end repeat
+            end repeat
+          end tell
+          error "Attached terminal tab not found"
+        end run
       `;
-      
-      exec(`osascript -e '${script}'`, (error) => {
+
+      execFile('osascript', ['-e', script, '--', text, this.terminalDevice], { shell: false }, (error) => {
         if (error) {
           console.log(chalk.yellow('⚠️ AppleScript method failed, falling back to simulation'));
           this.simulateResponse({ type: 'choice', value: parseInt(text) - 1, text: text.trim() });
