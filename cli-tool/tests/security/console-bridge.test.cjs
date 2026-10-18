@@ -60,3 +60,23 @@ test('unattached terminals do not launch a subprocess', () => {
   instance.writeToTerminal(payload);
   assert.equal(execFile.mock.callCount(), 0);
 });
+
+
+test('rejects pipes, traversal, non-terminal files, and terminal control characters', () => {
+  for (const device of ['|id', '/tmp/device', '/dev/null', '/dev/pts/../mem', '/dev/ttys001;id', '/dev/ttys001\n']) {
+    const instance = bridge();
+    instance.terminalDevice = device;
+    instance.writeToTerminal(payload);
+    instance.tryAlternativeInput(payload);
+    assert.equal(execFile.mock.callCount(), 0, device);
+  }
+});
+
+test('retains Linux and macOS terminal device formats', () => {
+  for (const device of ['/dev/tty', '/dev/tty1', '/dev/ttys001', '/dev/pts/3']) {
+    const instance = bridge();
+    instance.terminalDevice = device;
+    instance.writeToTerminal('1\n');
+    assert.equal(execFile.mock.calls[0].arguments[2].env.CLAUDE_BRIDGE_DEVICE, device);
+  }
+});

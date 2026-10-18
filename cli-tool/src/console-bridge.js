@@ -3,6 +3,8 @@ const { spawn, exec, execFile } = require('child_process');
 const WebSocket = require('ws');
 const EventEmitter = require('events');
 const fs = require('fs');
+const isTerminalDevice = device => typeof device === 'string' &&
+  device.trim() === device && /^\/dev\/(?:tty[A-Za-z0-9]*|pts\/[0-9]+)$/.test(device);
 
 /**
  * ConsoleBridge - Bridges Claude Code console interactions with WebSocket
@@ -212,7 +214,7 @@ class ConsoleBridge extends EventEmitter {
         const parts = stdout.trim().split(/\s+/);
         const ttyPath = parts[parts.length - 1]; // Last part is the device path
         
-        if (ttyPath.startsWith('/dev/')) {
+        if (isTerminalDevice(ttyPath)) {
           resolve({
             tty: ttyPath,
             pid: pid
@@ -488,8 +490,8 @@ Do you want to proceed?
    * @param {string} text - Text to write
    */
   writeToTerminal(text) {
-    if (!this.terminalDevice) {
-      console.warn(chalk.yellow('⚠️ No terminal device available'));
+    if (!isTerminalDevice(this.terminalDevice)) {
+      console.warn(chalk.yellow('⚠️ No valid terminal device available'));
       return;
     }
     
@@ -530,6 +532,10 @@ Do you want to proceed?
    * @param {string} text - Text to send
    */
   tryAlternativeInput(text) {
+    if (!isTerminalDevice(this.terminalDevice)) {
+      console.warn(chalk.yellow('⚠️ No valid terminal device available'));
+      return;
+    }
     // Method 2: Try using osascript (AppleScript on macOS) to send keystrokes
     if (process.platform === 'darwin') {
       const script = `
