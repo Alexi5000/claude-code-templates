@@ -1,8 +1,11 @@
 name = "aitmpl-dashboard"
-compatibility_date = "2024-09-23"
+main = "@astrojs/cloudflare/entrypoints/server"
+compatibility_date = "2026-10-18"
 compatibility_flags = ["nodejs_compat"]
 
-pages_build_output_dir = "./dist"
+[assets]
+directory = "./dist/client"
+binding = "ASSETS"
 
 # Plain-text build-time vars (PUBLIC_* must be here, not as secrets)
 [vars]
@@ -23,4 +26,4 @@ PUBLIC_GITHUB_CLIENT_ID = "Ov23li3KjfA4cuLi5c0k"
 # (PUBLIC_GITHUB_CLIENT_ID moved to [vars] above)
 #
 # Cron jobs (claude-code-check, health-check) are handled by the separate
-# cloudflare-workers/crons Worker, not by this Pages project.
+# cloudflare-workers/crons Worker, not by this dashboard Worker.

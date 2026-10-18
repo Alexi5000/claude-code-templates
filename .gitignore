@@ -90,3 +90,5 @@ service-account*.json
 security-report.json
 coverage/
 .dev.vars
+.wrangler/
+.astro/

@@ -12,8 +12,8 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.5.4",
-    "@astrojs/react": "^4.4.2",
+    "@astrojs/cloudflare": "^14.4.0",
+    "@astrojs/react": "^7.1.0",
     "@clerk/backend": "^3.0.1",
     "@clerk/clerk-react": "^5.60.1",
     "@neondatabase/serverless": "^1.0.2",
@@ -21,7 +21,7 @@
     "@tailwindcss/vite": "^4.2.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "astro": "^5.17.2",
+    "astro": "^7.4.0",
     "discord-interactions": "^4.4.0",
     "gpt-tokenizer": "^3.4.0",
     "marked": "^17.0.4",
@@ -30,6 +30,7 @@
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
-    "vitest": "^3.2.7"
+    "vitest": "^5.0.5",
+    "wrangler": "^4.151.1"
   }
 }
