@@ -9,10 +9,20 @@ permissions:
 
 jobs:
   notify-discord:
+    if: ${{ vars.DISCORD_NOTIFICATIONS_ENABLED == 'true' }}
     name: Send Discord Notification
     runs-on: ubuntu-latest
 
     steps:
+      - name: Validate Discord configuration
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          if [ -z "$DISCORD_WEBHOOK_URL" ]; then
+            echo "::error::Discord notifications are enabled but DISCORD_WEBHOOK_URL is missing."
+            exit 1
+          fi
+
       - name: Send Discord Webhook
         env:
           RELEASE_NAME: ${{ github.event.release.name }}
