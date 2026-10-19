@@ -14,6 +14,7 @@ PUBLIC_COMPONENTS_JSON_URL = "/components.json"
 PUBLIC_GITHUB_CLIENT_ID = "Ov23li3KjfA4cuLi5c0k"
 
 # Secrets are set via Cloudflare Dashboard or `wrangler secret put`:
+# CRON_SECRET (same value as the cron Worker TRIGGER_SECRET)
 # CLERK_SECRET_KEY
 # SUPABASE_URL
 # SUPABASE_SERVICE_ROLE_KEY
