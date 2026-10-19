@@ -52,3 +52,14 @@ test('only raster data image destinations receive the image exception', async ()
   const large = await validator.validate({ path: 'image.md', content: `![large](data:image/png;base64,${'A'.repeat(15000)})` });
   assert.ok(large.warnings.some(warning => warning.code === 'REF_W006'));
 });
+
+
+test('scheme-like suffixes in ordinary prose are not interpreted as references', async () => {
+  const validator = new ReferenceValidator();
+  const content = 'metadata:value myfile:label configured-data:value custom_javascript:setting';
+  assert.deepEqual(validator.extractUrls(content), []);
+  assert.equal((await validator.validate({ path: 'notes.md', content })).valid, true);
+  const blocked = await validator.validate({ path: 'notes.md', content: 'Use (data:text/html,test) or javascript:alert(1)' });
+  assert.equal(blocked.valid, false);
+  assert.equal(blocked.errors.filter(error => error.code === 'REF_E002').length, 2);
+});

@@ -114,7 +114,7 @@ class ReferenceValidator extends BaseValidator {
     }
 
     // Match plain URLs: http(s)://...
-    const plainUrlPattern = /(?:https?:\/\/|(?:file|ftp|data|javascript|vbscript):)[^\s<>"{}|\\^`\[\]]+/gi;
+    const plainUrlPattern = /(?<![\w+.-])(?:https?:\/\/|(?:file|ftp|data|javascript|vbscript):)[^\s<>"{}|\\^`\[\]]+/gi;
     const seen = new Set(urls.map(info => info.url));
     let destinationIndex = 0;
     while ((match = plainUrlPattern.exec(content)) !== null) {
