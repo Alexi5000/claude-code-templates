@@ -1,50 +1,52 @@
-/**
- * aitmpl-crons — Cloudflare Worker
- *
- * Replaces Vercel cron jobs by calling the dashboard API endpoints
- * on a schedule. Cron: */30 * * * * (claude-code-check) and 0 * * * * (health-check).
- *
- * Secrets (wrangler secret put):
- *   DASHBOARD_URL    — e.g. https://www.aitmpl.com
- *   TRIGGER_SECRET   — shared secret sent as Authorization header
- */
+const endpoints = new Map([
+  ['*/30 * * * *', '/api/claude-code-check'],
+  ['0 * * * *', '/api/health-check'],
+]);
+
+async function runScheduled(cron, env) {
+  const endpoint = endpoints.get(cron);
+  if (!endpoint) throw new Error('Unsupported cron schedule');
+  if (!env.DASHBOARD_URL || !env.TRIGGER_SECRET?.trim()) {
+    throw new Error('Dashboard URL and trigger secret must be configured');
+  }
+  const base = new URL(env.DASHBOARD_URL);
+  if (base.protocol !== 'https:' || base.username || base.password ||
+      base.search || base.hash || base.pathname !== '/') {
+    throw new Error('Dashboard URL must be an HTTPS origin without credentials');
+  }
+  const response = await fetch(new URL(endpoint, base), {
+    headers: {
+      Authorization: `Bearer ${env.TRIGGER_SECRET}`,
+      'User-Agent': 'aitmpl-crons/1.0',
+    },
+    redirect: 'error',
+    signal: AbortSignal.timeout(30000),
+  });
+  if (!response.ok) throw new Error(`Dashboard cron failed with status ${response.status}`);
+  console.log(`${endpoint}: ${response.status}`);
+}
 
 export default {
-  async scheduled(event, env, ctx) {
-    const base = env.DASHBOARD_URL || 'https://www.aitmpl.com';
-    const headers = {
-      'Authorization': `Bearer ${env.TRIGGER_SECRET || ''}`,
-      'User-Agent': 'aitmpl-crons/1.0',
-    };
-
-    const cron = event.cron;
-
-    if (cron === '*/30 * * * *') {
-      // Every 30 minutes: check for new Claude Code releases
-      const res = await fetch(`${base}/api/claude-code-check`, { headers });
-      console.log(`claude-code-check: ${res.status}`);
-    } else if (cron === '0 * * * *') {
-      // Every hour: health check (was every 15 min on Vercel)
-      const res = await fetch(`${base}/api/health-check`, { headers });
-      console.log(`health-check: ${res.status}`);
-    }
+  async scheduled(event, env) {
+    await runScheduled(event.cron, env);
   },
 
-  // Manual trigger for testing: GET /trigger?cron=*/30+*+*+*+*
   async fetch(request, env) {
     const url = new URL(request.url);
-
     if (url.pathname !== '/trigger') {
       return new Response('aitmpl-crons worker', { status: 200 });
     }
-
     const auth = request.headers.get('Authorization');
-    if (!env.TRIGGER_SECRET || auth !== `Bearer ${env.TRIGGER_SECRET}`) {
+    if (!env.TRIGGER_SECRET?.trim() || auth !== `Bearer ${env.TRIGGER_SECRET}`) {
       return new Response('Unauthorized', { status: 401 });
     }
-
     const cron = url.searchParams.get('cron') || '*/30 * * * *';
-    await this.scheduled({ cron }, env, {});
-    return new Response(`Triggered: ${cron}`, { status: 200 });
+    if (!endpoints.has(cron)) return new Response('Unsupported cron schedule', { status: 400 });
+    try {
+      await runScheduled(cron, env);
+      return new Response(`Triggered: ${cron}`, { status: 200 });
+    } catch {
+      return new Response('Dashboard cron failed', { status: 502 });
+    }
   },
 };

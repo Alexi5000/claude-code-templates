@@ -1,0 +1,22 @@
+name: Cron Worker Regression
+on:
+  pull_request:
+    paths:
+      - 'cloudflare-workers/crons/**'
+      - '.github/workflows/cron-worker-security.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'cloudflare-workers/crons/**'
+      - '.github/workflows/cron-worker-security.yml'
+permissions:
+  contents: read
+jobs:
+  cron-worker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+      - run: node --test cloudflare-workers/crons/index.test.mjs
