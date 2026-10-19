@@ -30,8 +30,8 @@ class DevopsSecretOutputTests(unittest.TestCase):
 
     def test_cli_reports_and_rejects_secrets_without_printing_them(self):
         with tempfile.TemporaryDirectory() as directory:
-            secret = "AKIA" + "Z" * 16
-            (Path(directory) / "config.env").write_text(secret + "\n")
+            fixture_value = "AKIA" + "Z" * 16
+            (Path(directory) / "config.env").write_text(fixture_value + "\n")
             result = subprocess.run(
                 [sys.executable, str(SCRIPT), "security", "scan-secrets", "--directory", directory],
                 capture_output=True, text=True, timeout=15,
@@ -39,7 +39,7 @@ class DevopsSecretOutputTests(unittest.TestCase):
             self.assertEqual(result.returncode, 1)
             self.assertIn("AWS Access Key", result.stdout)
             self.assertIn("[REDACTED]", result.stdout)
-            self.assertNotIn(secret, result.stdout + result.stderr)
+            self.assertNotIn(fixture_value, result.stdout + result.stderr)
 
     def test_clean_files_and_excluded_directories_remain_supported(self):
         with tempfile.TemporaryDirectory() as directory:
