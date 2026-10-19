@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - 'cli-tool/components/skills/scientific/perplexity-search/scripts/setup_env.py'
+      - 'cli-tool/components/skills/scientific/citation-management/scripts/extract_metadata.py'
+      - 'cli-tool/components/skills/scientific/biorxiv-database/scripts/biorxiv_search.py'
       - 'cli-tool/components/skills/scientific/biomni/scripts/setup_environment.py'
       - 'cli-tool/components/hooks/security/secret-scanner.py'
       - 'cli-tool/tests/security/**'
@@ -12,6 +14,8 @@ on:
   pull_request:
     paths:
       - 'cli-tool/components/skills/scientific/perplexity-search/scripts/setup_env.py'
+      - 'cli-tool/components/skills/scientific/citation-management/scripts/extract_metadata.py'
+      - 'cli-tool/components/skills/scientific/biorxiv-database/scripts/biorxiv_search.py'
       - 'cli-tool/components/skills/scientific/biomni/scripts/setup_environment.py'
       - 'cli-tool/components/hooks/security/secret-scanner.py'
       - 'cli-tool/tests/security/**'
@@ -28,4 +32,5 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - run: python -m pip install requests==2.34.2
       - run: python -m unittest discover -s cli-tool/tests/security -p 'test_*.py'
