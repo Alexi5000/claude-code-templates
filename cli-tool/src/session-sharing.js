@@ -2,9 +2,9 @@ const chalk = require('chalk');
 const fs = require('fs-extra');
 const path = require('path');
 const os = require('os');
-const { exec } = require('child_process');
+const { execFile } = require('child_process');
 const { promisify } = require('util');
-const execAsync = promisify(exec);
+const execFileAsync = promisify(execFile);
 const QRCode = require('qrcode');
 
 /**
@@ -213,14 +213,12 @@ class SessionSharing {
    * @returns {Promise<string>} Upload URL
    */
   async uploadToX0(sessionData, conversationId) {
-    const tmpDir = path.join(os.tmpdir(), 'claude-code-sessions');
-    await fs.ensureDir(tmpDir);
-
-    const tmpFile = path.join(tmpDir, `session-${conversationId}.json`);
+    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), 'claude-code-session-'));
+    const tmpFile = path.join(tmpDir, 'session.json');
 
     try {
       // Write session data to temp file
-      await fs.writeFile(tmpFile, JSON.stringify(sessionData, null, 2), 'utf8');
+      await fs.writeFile(tmpFile, JSON.stringify(sessionData, null, 2), { encoding: 'utf8', mode: 0o600, flag: 'wx' });
 
       console.log(chalk.gray(`📁 Created temp file: ${tmpFile}`));
       console.log(chalk.gray(`📤 Uploading to x0.at...`));
@@ -228,9 +226,9 @@ class SessionSharing {
       // Upload to x0.at using curl with form data
       // x0.at API: curl -F'file=@yourfile.png' https://x0.at
       // Response: Direct URL in plain text
-      const { stdout, stderr } = await execAsync(
-        `curl -s -F "file=@${tmpFile}" ${this.uploadUrl}`,
-        { maxBuffer: 10 * 1024 * 1024 } // 10MB buffer
+      const { stdout, stderr } = await execFileAsync(
+        'curl', ['--fail', '--silent', '--show-error', '--max-time', '120', '--proto', '=https', '-F', `file=@${tmpFile}`, '--', 'https://x0.at'],
+        { maxBuffer: 10 * 1024 * 1024, timeout: 125000, killSignal: 'SIGKILL' } // 10MB buffer
       );
 
       // x0.at returns URL directly in plain text
@@ -246,12 +244,12 @@ class SessionSharing {
       console.log(chalk.gray(`🔓 Note: Files are not encrypted by default`));
 
       // Clean up temp file
-      await fs.remove(tmpFile);
+      await fs.remove(tmpDir);
 
       return uploadUrl;
     } catch (error) {
       // Clean up temp file on error
-      await fs.remove(tmpFile).catch(() => {});
+      await fs.remove(tmpDir).catch(() => {});
       throw error;
     }
   }
@@ -305,9 +303,15 @@ class SessionSharing {
   async downloadSession(url) {
     try {
       // Use curl to download (works with x0.at and other services)
-      const { stdout, stderr } = await execAsync(`curl -L "${url}"`, {
-        maxBuffer: 50 * 1024 * 1024 // 50MB buffer for large sessions
-      });
+      const parsed = new URL(url);
+      if (!['http:', 'https:'].includes(parsed.protocol) || parsed.username || parsed.password) {
+        throw new Error('Session URL must use HTTP or HTTPS without credentials');
+      }
+      const { stdout, stderr } = await execFileAsync('curl', [
+        '--fail', '--silent', '--show-error', '--location', '--max-redirs', '5',
+        '--max-time', '120', '--proto', '=http,https', '--proto-redir', '=http,https',
+        '--', url
+      ], { maxBuffer: 50 * 1024 * 1024, timeout: 125000, killSignal: 'SIGKILL' });
 
       if (stderr && !stdout) {
         throw new Error(`Download failed: ${stderr}`);
@@ -354,6 +358,9 @@ class SessionSharing {
    * @returns {Promise<Object>} Installation result
    */
   async installSession(sessionData, options = {}) {
+    if (typeof sessionData.conversation?.id !== 'string' || !/^[a-zA-Z0-9][a-zA-Z0-9_-]{0,199}$/.test(sessionData.conversation.id)) {
+      throw new Error('Invalid session conversation ID');
+    }
     const homeDir = os.homedir();
     const claudeDir = path.join(homeDir, '.claude');
 
