@@ -250,7 +250,12 @@ class ClaudeAPIProxy {
 
   async validateConversationPath(filePath) {
     const root = await fs.realpath(path.join(this.claudeDir, 'projects'));
-    const resolved = await fs.realpath(filePath);
+    const absolute = path.resolve(filePath);
+    const configuredRoot = path.resolve(this.claudeDir, 'projects');
+    if (!absolute.startsWith(root + path.sep) && !absolute.startsWith(configuredRoot + path.sep)) {
+      throw invalidConversation();
+    }
+    const resolved = await fs.realpath(absolute);
     const relative = path.relative(root, resolved);
     if (!relative || relative === '..' || relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative)) {
       throw invalidConversation();
