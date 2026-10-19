@@ -16,6 +16,7 @@ from patchright.sync_api import BrowserContext, Page
 sys.path.insert(0, str(Path(__file__).parent))
 
 from browser_utils import StealthUtils
+from url_validation import is_notebooklm_url
 
 
 class BrowserSession:
@@ -36,6 +37,8 @@ class BrowserSession:
             context: Browser context (shared or dedicated)
             notebook_url: Target NotebookLM URL for this session
         """
+        if not is_notebooklm_url(notebook_url):
+            raise ValueError("Expected an HTTPS NotebookLM URL")
         self.id = session_id
         self.created_at = time.time()
         self.last_activity = time.time()
@@ -61,7 +64,7 @@ class BrowserSession:
             self.page.goto(self.notebook_url, wait_until="domcontentloaded", timeout=30000)
 
             # Check if login is needed
-            if "accounts.google.com" in self.page.url:
+            if not is_notebooklm_url(self.page.url):
                 raise RuntimeError("Authentication required. Please run auth_manager.py setup first.")
 
             # Wait for page to be ready
@@ -99,6 +102,8 @@ class BrowserSession:
             Dict with status, question, answer, session_id
         """
         try:
+            if not is_notebooklm_url(self.page.url):
+                raise RuntimeError("Session is no longer on NotebookLM")
             self.last_activity = time.time()
             self.message_count += 1
 

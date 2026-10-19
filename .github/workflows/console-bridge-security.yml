@@ -12,6 +12,8 @@ on:
       - 'cli-tool/src/sandbox-server.js'
       - 'cli-tool/tests/security/sandbox-execution.test.cjs'
       - 'cli-tool/tests/security/console-bridge.test.cjs'
+      - 'cli-tool/components/skills/productivity/notebooklm/scripts/**'
+      - 'cli-tool/tests/security/notebooklm_urls_test.py'
       - 'scripts/dev-server.js'
       - 'scripts/dev-server.test.cjs'
       - '.github/workflows/console-bridge-security.yml'
@@ -28,6 +30,8 @@ on:
       - 'cli-tool/src/sandbox-server.js'
       - 'cli-tool/tests/security/sandbox-execution.test.cjs'
       - 'cli-tool/tests/security/console-bridge.test.cjs'
+      - 'cli-tool/components/skills/productivity/notebooklm/scripts/**'
+      - 'cli-tool/tests/security/notebooklm_urls_test.py'
       - 'scripts/dev-server.js'
       - 'scripts/dev-server.test.cjs'
       - '.github/workflows/console-bridge-security.yml'
@@ -57,3 +61,8 @@ jobs:
           cache: npm
       - run: npm ci --ignore-scripts
       - run: node --test scripts/dev-server.test.cjs
+  notebooklm-urls:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -m unittest discover -s cli-tool/tests/security -p notebooklm_urls_test.py
