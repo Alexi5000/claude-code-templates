@@ -318,8 +318,9 @@ class SecurityHelper:
                         for secret_type, pattern in secret_patterns.items():
                             matches = re.finditer(pattern, content)
                             for match in matches:
+                                line = content.count("\n", 0, match.start()) + 1
                                 findings.append(
-                                    f"{file_path}:{secret_type} - {match.group()[:20]}..."
+                                    f"{file_path}:{line}: {secret_type} - [REDACTED]"
                                 )
                 except Exception as e:
                     continue
