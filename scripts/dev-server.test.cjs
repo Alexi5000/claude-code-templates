@@ -18,6 +18,7 @@ test('catalog navigation works while traversal, symlinks, and foreign callers ar
     await fs.writeFile(path.join(docs, 'blog', 'article', 'index.html'), 'ARTICLE');
     await fs.writeFile(path.join(docs, 'blog', 'article', 'style.css'), 'body{}');
     await fs.symlink(path.join(temp, 'private'), path.join(docs, 'blog', 'escape'));
+    await fs.symlink(path.join(temp, 'private'), path.join(docs, 'escape'));
     const server = createApp(docs).listen(0, '127.0.0.1');
     await new Promise(resolve => server.once('listening', resolve));
     t.after(() => new Promise(resolve => server.close(resolve)));
@@ -36,7 +37,7 @@ test('catalog navigation works while traversal, symlinks, and foreign callers ar
     assert.deepEqual(await request('/blog/article'), { status: 200, body: 'ARTICLE' });
     assert.deepEqual(await request('/blog/article/'), { status: 200, body: 'ARTICLE' });
     assert.deepEqual(await request('/blog/article/style.css'), { status: 200, body: 'body{}' });
-    for (const url of ['/blog/../../private', '/blog/%2e%2e/%2e%2e/private', '/blog/%2e%2e%2f%2e%2e%2fprivate', '/blog/escape', '/blog/missing']) {
+    for (const url of ['/blog/../../private', '/blog/%2e%2e/%2e%2e/private', '/blog/%2e%2e%2f%2e%2e%2fprivate', '/blog/escape', '/blog/missing', '/%62log/escape/index.html', '/escape/index.html', '/%65scape/index.html']) {
         const result = await request(url);
         assert.equal(result.status, 404, url);
         assert.ok(!result.body.includes('PRIVATE'), url);
