@@ -14,7 +14,7 @@ from datetime import datetime, timedelta
 from typing import List, Dict, Optional, Any
 import time
 import sys
-from urllib.parse import quote
+from urllib.parse import quote, urlparse
 
 
 class BioRxivSearcher:
@@ -116,6 +116,20 @@ class BioRxivSearcher:
         endpoint = f"pubs/biorxiv/{interval}/{cursor}/{format}"
         return self._make_request(endpoint)
 
+    @staticmethod
+    def _normalize_doi(doi: str) -> str:
+        doi = doi.strip()
+        parsed = urlparse(doi)
+        if parsed.scheme or parsed.netloc:
+            if (parsed.scheme not in {'http', 'https'}
+                    or parsed.hostname not in {'doi.org', 'dx.doi.org'}
+                    or parsed.username is not None or parsed.password is not None):
+                raise ValueError("Expected a DOI or a doi.org URL")
+            doi = parsed.path.lstrip('/')
+        if not doi.startswith('10.') or '/' not in doi or not doi.split('/', 1)[1]:
+            raise ValueError("Expected a nonempty DOI")
+        return doi
+
     def get_paper_details(self, doi: str) -> Dict:
         """
         Get detailed information about a specific paper by DOI.
@@ -127,8 +141,7 @@ class BioRxivSearcher:
             Dictionary with paper details
         """
         # Clean DOI if full URL was provided
-        if 'doi.org' in doi:
-            doi = doi.split('doi.org/')[-1]
+        doi = self._normalize_doi(doi)
 
         self._log(f"Fetching details for DOI: {doi}")
         endpoint = f"details/biorxiv/{doi}"
@@ -240,8 +253,7 @@ class BioRxivSearcher:
             True if download successful, False otherwise
         """
         # Clean DOI
-        if 'doi.org' in doi:
-            doi = doi.split('doi.org/')[-1]
+        doi = self._normalize_doi(doi)
 
         # Construct PDF URL
         pdf_url = f"https://www.biorxiv.org/content/{doi}v1.full.pdf"
@@ -348,6 +360,11 @@ def main():
                             help="Limit number of results")
 
     args = parser.parse_args()
+    if args.doi:
+        try:
+            args.doi = BioRxivSearcher._normalize_doi(args.doi)
+        except ValueError as error:
+            parser.error(str(error))
 
     # Initialize searcher
     searcher = BioRxivSearcher(verbose=args.verbose)
