@@ -562,13 +562,6 @@ function generateComponentCard(component, category) {
     
     const config = typeConfig[component.type];
     
-    // Escape quotes and special characters for onclick attributes
-    const escapedType = component.type.replace(/'/g, "\\'");
-    const escapedName = (component.name || '').replace(/'/g, "\\'");
-    const escapedPath = (component.path || component.name || '').replace(/'/g, "\\'");
-    const escapedCategory = (component.category || 'general').replace(/'/g, "\\'");
-    const escapedCommand = installCommand.replace(/'/g, "\\'");
-    
     // Create category label (use "General" if no category)
     const categoryName = escapeHTML(component.category || 'general');
     const categoryLabel = `<div class="category-label">${categoryName.charAt(0).toUpperCase() + categoryName.slice(1)}</div>`;
@@ -583,7 +576,7 @@ function generateComponentCard(component, category) {
     const truncatedDescription = escapeHTML(description.length > 80 ? description.substring(0, 80) + '...' : description);
     
     return `
-        <div class="template-card" data-type="${component.type}">
+        <div class="template-card" data-type="${escapeHTML(component.type)}">
             <div class="card-inner">
                 <div class="card-front">
                     ${categoryLabel}
@@ -598,7 +591,7 @@ function generateComponentCard(component, category) {
                         <h3>Installation Command</h3>
                         <div class="command-code-container">
                             <div class="command-code">${escapeHTML(installCommand)}</div>
-                            <button class="copy-overlay-btn" onclick="copyToClipboard('${escapedCommand}'); event.stopPropagation();" title="Copy command">
+                            <button class="copy-overlay-btn" data-command="${escapeHTML(installCommand)}" onclick="copyToClipboard(this.dataset.command); event.stopPropagation();" title="Copy command">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
                                 </svg>
@@ -606,13 +599,13 @@ function generateComponentCard(component, category) {
                             </button>
                         </div>
                         <div class="card-actions">
-                            <button class="view-files-btn" onclick="showComponentDetails('${escapedType}', '${escapedName}', '${escapedPath}', '${escapedCategory}')">
+                            <button class="view-files-btn" data-type="${escapeHTML(component.type)}" data-name="${escapeHTML(component.name || '')}" data-path="${escapeHTML(component.path || component.name || '')}" data-category="${escapeHTML(component.category || 'general')}" onclick="showComponentDetails(this.dataset.type, this.dataset.name, this.dataset.path, this.dataset.category)">
                                 📁 View Details
                             </button>
                             <button class="add-to-cart-btn" 
-                                    data-type="${component.type}s" 
-                                    data-path="${componentPath}"
-                                    onclick="handleAddToCart('${escapedName}', '${componentPath}', '${component.type}s', '${escapedCategory}', this)">
+                                    data-type="${escapeHTML(component.type)}s"
+                                    data-path="${escapeHTML(componentPath)}"
+                                    data-name="${escapeHTML(component.name || '')}" data-category="${escapeHTML(component.category || 'general')}" onclick="handleAddToCart(this.dataset.name, this.dataset.path, this.dataset.type, this.dataset.category, this)">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M19,7H18V6A2,2 0 0,0 16,4H8A2,2 0 0,0 6,6V7H5A1,1 0 0,0 4,8A1,1 0 0,0 5,9H6V19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V9H19A1,1 0 0,0 20,8A1,1 0 0,0 19,7M8,6H16V7H8V6M16,19H8V9H16V19Z"/>
                                 </svg>

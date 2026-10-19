@@ -6,6 +6,9 @@ on:
     paths:
       - 'docs/js/workflows-events.js'
       - 'docs/js/plugin-page.js'
+      - 'docs/js/search-functionality.js'
+      - 'docs/js/index-events.js'
+      - 'scripts/test-component-card-dom.py'
       - 'scripts/test-plugin-dom.py'
       - 'docs/jobs.html'
       - 'cli-tool/src/analytics-web/chats_mobile.html'
@@ -16,6 +19,9 @@ on:
     paths:
       - 'docs/js/workflows-events.js'
       - 'docs/js/plugin-page.js'
+      - 'docs/js/search-functionality.js'
+      - 'docs/js/index-events.js'
+      - 'scripts/test-component-card-dom.py'
       - 'scripts/test-plugin-dom.py'
       - 'docs/jobs.html'
       - 'cli-tool/src/analytics-web/chats_mobile.html'
@@ -39,3 +45,4 @@ jobs:
       - run: python scripts/test-workflow-dom.py
       - run: python scripts/test-search-dom.py
       - run: python scripts/test-plugin-dom.py
+      - run: python scripts/test-component-card-dom.py
