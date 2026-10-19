@@ -2,6 +2,8 @@ name: Console bridge security
 on:
   pull_request:
     paths:
+      - 'cli-tool/src/skill-dashboard.js'
+      - 'cli-tool/tests/security/skill-file-containment.test.cjs'
       - 'cli-tool/src/console-bridge.js'
       - 'cli-tool/src/validation/validators/ReferenceValidator.js'
       - 'cli-tool/tests/security/reference-url-accounting.test.cjs'
@@ -25,6 +27,8 @@ on:
   push:
     branches: [main]
     paths:
+      - 'cli-tool/src/skill-dashboard.js'
+      - 'cli-tool/tests/security/skill-file-containment.test.cjs'
       - 'cli-tool/src/console-bridge.js'
       - 'cli-tool/src/validation/validators/ReferenceValidator.js'
       - 'cli-tool/tests/security/reference-url-accounting.test.cjs'

@@ -5,6 +5,8 @@ const express = require('express');
 const open = require('open');
 const os = require('os');
 const yaml = require('js-yaml');
+const nativeFs = require('node:fs');
+const { requestBudget } = require('./sandbox-limits');
 
 class SkillDashboard {
   constructor(options = {}) {
@@ -334,7 +336,34 @@ class SkillDashboard {
     return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
   }
 
+  async readSkillFile(rootPath, filePath) {
+    const denied = () => Object.assign(new Error('Access denied'), { status: 403 });
+    const inside = (root, target) => {
+      const relative = path.relative(root, target);
+      return relative && relative !== '..' && !relative.startsWith(`..${path.sep}`) && !path.isAbsolute(relative);
+    };
+    if (typeof filePath !== 'string' || filePath.includes('\0') || path.isAbsolute(filePath)) throw denied();
+    const root = await fs.realpath(rootPath);
+    const target = path.resolve(root, filePath);
+    if (!target.startsWith(root + path.sep)) throw denied();
+    const resolved = await fs.realpath(target);
+    if (!inside(root, resolved)) throw denied();
+    const handle = await nativeFs.promises.open(resolved, nativeFs.constants.O_RDONLY | nativeFs.constants.O_NOFOLLOW | nativeFs.constants.O_NONBLOCK);
+    try {
+      const stats = await handle.stat();
+      if (!stats.isFile()) throw denied();
+      const openedPath = await fs.realpath(process.platform === 'linux' ? `/proc/self/fd/${handle.fd}` : resolved);
+      if (!inside(root, openedPath)) throw denied();
+      const current = await fs.lstat(openedPath);
+      if (!current.isFile() || current.dev !== stats.dev || current.ino !== stats.ino) throw denied();
+      return { content: await handle.readFile('utf8'), stats };
+    } finally {
+      await handle.close();
+    }
+  }
+
   setupWebServer() {
+    this.app.use('/api', requestBudget(600));
     // Add CORS middleware
     this.app.use((req, res, next) => {
       res.header('Access-Control-Allow-Origin', '*');
@@ -408,20 +437,7 @@ class SkillDashboard {
           return res.status(404).json({ error: 'Skill not found' });
         }
 
-        const fullPath = path.join(skill.path, filePath);
-
-        // Security check: ensure the file is within the skill directory
-        const normalizedPath = path.normalize(fullPath);
-        if (!normalizedPath.startsWith(skill.path)) {
-          return res.status(403).json({ error: 'Access denied' });
-        }
-
-        if (!(await fs.pathExists(fullPath))) {
-          return res.status(404).json({ error: 'File not found' });
-        }
-
-        const content = await fs.readFile(fullPath, 'utf8');
-        const stats = await fs.stat(fullPath);
+        const { content, stats } = await this.readSkillFile(skill.path, filePath);
 
         res.json({
           content,
@@ -431,8 +447,8 @@ class SkillDashboard {
           timestamp: new Date().toISOString()
         });
       } catch (error) {
-        console.error('Error loading file:', error);
-        res.status(500).json({ error: 'Failed to load file' });
+        const status = error.status === 403 || ['ELOOP', 'ENOTDIR'].includes(error.code) ? 403 : error.code === 'ENOENT' ? 404 : 500;
+        res.status(status).json({ error: status === 403 ? 'Access denied' : status === 404 ? 'File not found' : 'Failed to load file' });
       }
     });
 
