@@ -225,8 +225,6 @@ def scan_file(file_path):
                         'line': line_num,
                         'description': description,
                         'severity': severity,
-                        'match': match.group(0)[:50] + '...' if len(match.group(0)) > 50 else match.group(0),
-                        'full_line': line.strip()[:100]
                     })
     except Exception as e:
         # Skip files that can't be read
@@ -273,7 +271,7 @@ def print_findings(findings):
 
         print(f'{severity_emoji} {finding["description"]}', file=sys.stderr)
         print(f'   File: {finding["file"]}:{finding["line"]}', file=sys.stderr)
-        print(f'   Match: {finding["match"]}', file=sys.stderr)
+        print('   Match: [REDACTED]', file=sys.stderr)
         print('', file=sys.stderr)
 
     print('❌ COMMIT BLOCKED: Remove secrets before committing', file=sys.stderr)
