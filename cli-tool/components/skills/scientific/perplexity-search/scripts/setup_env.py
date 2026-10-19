@@ -161,6 +161,8 @@ Get your OpenRouter API key from:
             print("3. Test the setup:")
             print("   python perplexity_search.py --check-setup")
             print()
+        else:
+            return 1
 
     # Validate setup
     if args.validate:

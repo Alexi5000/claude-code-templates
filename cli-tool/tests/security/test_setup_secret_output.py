@@ -47,6 +47,12 @@ class SetupSecretOutputTests(unittest.TestCase):
         self.assertNotIn(self.secret[:8], output.getvalue())
         self.assertNotIn(self.secret[-4:], output.getvalue())
 
+    def test_perplexity_cli_reports_failed_save(self):
+        with patch.object(sys, "argv", ["setup_env.py", "--api-key", self.secret]):
+            with patch.object(self.perplexity, "create_env_file", return_value=False):
+                with contextlib.redirect_stdout(io.StringIO()):
+                    self.assertEqual(self.perplexity.main(), 1)
+
     def test_biomni_export_instructions_do_not_print_secrets(self):
         output = io.StringIO()
         with contextlib.redirect_stdout(output):
