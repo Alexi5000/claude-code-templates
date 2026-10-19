@@ -14,7 +14,6 @@ import json
 import time
 import argparse
 import shutil
-import re
 import sys
 from pathlib import Path
 from typing import Optional, Dict, Any
@@ -26,6 +25,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from config import BROWSER_STATE_DIR, STATE_FILE, AUTH_INFO_FILE, DATA_DIR
 from browser_utils import BrowserFactory
+from url_validation import is_notebooklm_url
 
 
 class AuthManager:
@@ -114,7 +114,7 @@ class AuthManager:
             page.goto("https://notebooklm.google.com", wait_until="domcontentloaded")
 
             # Check if already authenticated
-            if "notebooklm.google.com" in page.url and "accounts.google.com" not in page.url:
+            if is_notebooklm_url(page.url):
                 print("  ✅ Already authenticated!")
                 self._save_browser_state(context)
                 return True
@@ -124,9 +124,10 @@ class AuthManager:
             print(f"  ⏱️  Waiting up to {timeout_minutes} minutes for login...")
 
             try:
-                # Wait for URL to change to NotebookLM (regex ensures it's the actual domain, not a parameter)
                 timeout_ms = int(timeout_minutes * 60 * 1000)
-                page.wait_for_url(re.compile(r"^https://notebooklm\.google\.com/"), timeout=timeout_ms)
+                page.wait_for_url(is_notebooklm_url, timeout=timeout_ms)
+                if not is_notebooklm_url(page.url):
+                    raise RuntimeError("Unexpected authentication destination")
 
                 print(f"  ✅ Login successful!")
 
@@ -260,7 +261,7 @@ class AuthManager:
             page.goto("https://notebooklm.google.com", wait_until="domcontentloaded", timeout=30000)
 
             # Check if we can access NotebookLM
-            if "notebooklm.google.com" in page.url and "accounts.google.com" not in page.url:
+            if is_notebooklm_url(page.url):
                 print("  ✅ Authentication is valid")
                 return True
             else:
