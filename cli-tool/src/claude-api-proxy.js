@@ -4,6 +4,13 @@ const path = require('path');
 const os = require('os');
 const { v4: uuidv4 } = require('uuid');
 const chalk = require('chalk');
+const nativeFs = require('node:fs');
+
+function invalidConversation() {
+  const error = new Error('Invalid conversation path');
+  error.status = 400;
+  return error;
+}
 
 class ClaudeAPIProxy {
   constructor() {
@@ -41,7 +48,7 @@ class ClaudeAPIProxy {
         res.json({ sessions });
       } catch (error) {
         console.error('Error getting sessions:', error);
-        res.status(500).json({ error: error.message });
+        res.status(error.status || 500).json({ error: error.status === 400 ? error.message : 'Unable to read sessions' });
       }
     });
     
@@ -59,7 +66,7 @@ class ClaudeAPIProxy {
         
       } catch (error) {
         console.error('Error sending message:', error);
-        res.status(500).json({ error: error.message });
+        res.status(error.status || 500).json({ error: error.status === 400 ? error.message : 'Unable to send message' });
       }
     });
     
@@ -71,7 +78,7 @@ class ClaudeAPIProxy {
         res.json({ conversation });
       } catch (error) {
         console.error('Error getting conversation:', error);
-        res.status(500).json({ error: error.message });
+        res.status(error.status || 500).json({ error: error.status === 400 ? error.message : 'Unable to read conversation' });
       }
     });
   }
@@ -84,17 +91,20 @@ class ClaudeAPIProxy {
     }
     
     const sessions = [];
-    const projectDirs = await fs.readdir(projectsDir);
+    const projectDirs = await fs.readdir(projectsDir, { withFileTypes: true });
     
-    for (const projectDir of projectDirs) {
+    for (const projectEntry of projectDirs) {
+      if (!projectEntry.isDirectory()) continue;
+      const projectDir = projectEntry.name;
       const projectPath = path.join(projectsDir, projectDir);
-      const files = await fs.readdir(projectPath);
+      const files = await fs.readdir(projectPath, { withFileTypes: true });
       
-      for (const file of files) {
-        if (file.endsWith('.jsonl')) {
+      for (const entry of files) {
+        const file = entry.name;
+        if (entry.isFile() && file.endsWith('.jsonl')) {
           const sessionId = path.basename(file, '.jsonl');
           const filePath = path.join(projectPath, file);
-          const stats = await fs.stat(filePath);
+          const stats = await this.withConversationFile(filePath, nativeFs.constants.O_RDONLY, handle => handle.stat());
           
           // Get basic info about the session
           const lastMessage = await this.getLastMessage(filePath);
@@ -121,7 +131,7 @@ class ClaudeAPIProxy {
   
   async getLastMessage(filePath) {
     try {
-      const content = await fs.readFile(filePath, 'utf8');
+      const content = await this.withConversationFile(filePath, nativeFs.constants.O_RDONLY, handle => handle.readFile('utf8'));
       const lines = content.trim().split('\n').filter(line => line.trim());
       
       if (lines.length === 0) return null;
@@ -142,7 +152,7 @@ class ClaudeAPIProxy {
   
   async getMessageCount(filePath) {
     try {
-      const content = await fs.readFile(filePath, 'utf8');
+      const content = await this.withConversationFile(filePath, nativeFs.constants.O_RDONLY, handle => handle.readFile('utf8'));
       const lines = content.trim().split('\n').filter(line => line.trim());
       return lines.length;
     } catch (error) {
@@ -201,6 +211,12 @@ class ClaudeAPIProxy {
   }
   
   async findConversationFile(sessionId, projectPath) {
+    if (typeof sessionId !== 'string' || !/^[a-zA-Z0-9_-]{1,128}$/.test(sessionId)) {
+      throw invalidConversation();
+    }
+    if (projectPath != null && (typeof projectPath !== 'string' || projectPath.includes('\0'))) {
+      throw invalidConversation();
+    }
     const projectsDir = path.join(this.claudeDir, 'projects');
     
     // If projectPath provided, look there first
@@ -210,7 +226,7 @@ class ClaudeAPIProxy {
       const conversationFile = path.join(targetDir, `${sessionId}.jsonl`);
       
       if (await fs.pathExists(conversationFile)) {
-        return conversationFile;
+        return this.validateConversationPath(conversationFile);
       }
     }
     
@@ -221,7 +237,7 @@ class ClaudeAPIProxy {
       const conversationFile = path.join(projectsDir, projectDir, `${sessionId}.jsonl`);
       
       if (await fs.pathExists(conversationFile)) {
-        return conversationFile;
+        return this.validateConversationPath(conversationFile);
       }
     }
     
@@ -229,12 +245,34 @@ class ClaudeAPIProxy {
   }
   
   encodeProjectPath(projectPath) {
-    return projectPath.replace(/\\//g, '-').replace(/^-/, '');
+    return projectPath.replace(/[\\/]/g, '-').replace(/^-/, '');
+  }
+
+  async validateConversationPath(filePath) {
+    const root = await fs.realpath(path.join(this.claudeDir, 'projects'));
+    const resolved = await fs.realpath(filePath);
+    const relative = path.relative(root, resolved);
+    if (!relative || relative === '..' || relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative)) {
+      throw invalidConversation();
+    }
+    if (!resolved.endsWith('.jsonl')) throw invalidConversation();
+    return resolved;
+  }
+
+  async withConversationFile(filePath, flags, operation) {
+    const resolved = await this.validateConversationPath(filePath);
+    const handle = await nativeFs.promises.open(resolved, flags | nativeFs.constants.O_NOFOLLOW | nativeFs.constants.O_NONBLOCK);
+    try {
+      if (!(await handle.stat()).isFile()) throw invalidConversation();
+      return await operation(handle);
+    } finally {
+      await handle.close();
+    }
   }
   
   async getConversationContext(conversationFile) {
     try {
-      const content = await fs.readFile(conversationFile, 'utf8');
+      const content = await this.withConversationFile(conversationFile, nativeFs.constants.O_RDONLY, handle => handle.readFile('utf8'));
       const lines = content.trim().split('\n').filter(line => line.trim());
       
       if (lines.length === 0) {
@@ -295,11 +333,11 @@ class ClaudeAPIProxy {
   
   async appendToConversation(conversationFile, messageObj) {
     const messageJson = JSON.stringify(messageObj);
-    await fs.appendFile(conversationFile, messageJson + '\n');
-    
-    // Force file system change notification by touching the file
-    const now = new Date();
-    await fs.utimes(conversationFile, now, now);
+    await this.withConversationFile(conversationFile, nativeFs.constants.O_WRONLY | nativeFs.constants.O_APPEND, async handle => {
+      await handle.writeFile(messageJson + '\n');
+      const now = new Date();
+      await handle.utimes(now, now);
+    });
     
     console.log(chalk.green(`📝 Message appended to ${path.basename(conversationFile)}`));
   }
@@ -311,7 +349,7 @@ class ClaudeAPIProxy {
       throw new Error(`Conversation not found for session ${sessionId}`);
     }
     
-    const content = await fs.readFile(conversationFile, 'utf8');
+    const content = await this.withConversationFile(conversationFile, nativeFs.constants.O_RDONLY, handle => handle.readFile('utf8'));
     const lines = content.trim().split('\n').filter(line => line.trim());
     
     const messages = lines

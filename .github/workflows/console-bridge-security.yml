@@ -3,12 +3,16 @@ on:
   pull_request:
     paths:
       - 'cli-tool/src/console-bridge.js'
+      - 'cli-tool/src/claude-api-proxy.js'
+      - 'cli-tool/tests/security/conversation-paths.test.cjs'
       - 'cli-tool/tests/security/console-bridge.test.cjs'
       - '.github/workflows/console-bridge-security.yml'
   push:
     branches: [main]
     paths:
       - 'cli-tool/src/console-bridge.js'
+      - 'cli-tool/src/claude-api-proxy.js'
+      - 'cli-tool/tests/security/conversation-paths.test.cjs'
       - 'cli-tool/tests/security/console-bridge.test.cjs'
       - '.github/workflows/console-bridge-security.yml'
 permissions:
@@ -25,5 +29,5 @@ jobs:
           cache-dependency-path: cli-tool/package-lock.json
       - run: npm ci
         working-directory: cli-tool
-      - run: node --test tests/security/console-bridge.test.cjs
+      - run: node --test tests/security/*.test.cjs
         working-directory: cli-tool
