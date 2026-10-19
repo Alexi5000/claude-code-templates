@@ -345,15 +345,13 @@ class SkillDashboard {
     if (typeof filePath !== 'string' || filePath.includes('\0') || path.isAbsolute(filePath)) throw denied();
     const root = await fs.realpath(rootPath);
     const target = path.resolve(root, filePath);
-    if (!inside(root, target)) throw denied();
+    if (!target.startsWith(root + path.sep)) throw denied();
     const resolved = await fs.realpath(target);
     if (!inside(root, resolved)) throw denied();
-    const before = await fs.lstat(resolved);
-    if (!before.isFile()) throw denied();
     const handle = await nativeFs.promises.open(resolved, nativeFs.constants.O_RDONLY | nativeFs.constants.O_NOFOLLOW | nativeFs.constants.O_NONBLOCK);
     try {
       const stats = await handle.stat();
-      if (!stats.isFile() || stats.dev !== before.dev || stats.ino !== before.ino) throw denied();
+      if (!stats.isFile()) throw denied();
       const openedPath = await fs.realpath(process.platform === 'linux' ? `/proc/self/fd/${handle.fd}` : resolved);
       if (!inside(root, openedPath)) throw denied();
       const current = await fs.lstat(openedPath);

@@ -94,17 +94,18 @@ test('a parent swapped after canonicalization cannot expose an outside file', as
   await fs.mkdir(nested);
   await fs.writeFile(path.join(nested, 'secret.md'), 'inside');
   const extra = require('fs-extra');
-  const original = extra.lstat;
+  const original = extra.realpath;
   let swapped = false;
-  extra.lstat = async (...args) => {
+  extra.realpath = async (...args) => {
+    const result = await original(...args);
     if (!swapped && args[0] === path.join(nested, 'secret.md')) {
       swapped = true;
       await fs.rename(nested, nested + '-original');
       await fs.symlink(sibling, nested);
     }
-    return original(...args);
+    return result;
   };
-  t.after(() => { extra.lstat = original; });
+  t.after(() => { extra.realpath = original; });
   const result = await request('/api/skills/test/file/nested/secret.md');
   assert.equal(result.status, 403);
   assert.ok(!result.body.includes('private secret'));
