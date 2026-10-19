@@ -164,8 +164,15 @@ def save_api_keys(api_keys: Dict[str, str], method: str = 'env_file'):
         shell_file = Path.home() / '.bashrc'  # or .zshrc for zsh users
 
         print("\n📋 Add these lines to your shell configuration:")
-        for key in api_keys:
-            print(f"   export {key}='<your-key>'")
+        instructions = {
+            'ANTHROPIC_API_KEY': "   export ANTHROPIC_API_KEY='<your-key>'",
+            'OPENAI_API_KEY': "   export OPENAI_API_KEY='<your-key>'",
+            'GOOGLE_API_KEY': "   export GOOGLE_API_KEY='<your-key>'",
+            'GROQ_API_KEY': "   export GROQ_API_KEY='<your-key>'",
+        }
+        for name, instruction in instructions.items():
+            if name in api_keys:
+                print(instruction)
 
         print(f"\nThen run: source {shell_file}")
 

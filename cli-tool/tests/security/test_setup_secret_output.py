@@ -60,6 +60,12 @@ class SetupSecretOutputTests(unittest.TestCase):
         self.assertNotIn(self.secret, output.getvalue())
         self.assertIn("export OPENAI_API_KEY='<your-key>'", output.getvalue())
 
+    def test_biomni_export_does_not_echo_unknown_key_names(self):
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
+            self.biomni.save_api_keys({self.secret: self.secret}, "shell_export")
+        self.assertNotIn(self.secret, output.getvalue())
+
     def test_biomni_uses_hidden_input_for_all_providers(self):
         with patch.object(self.biomni, "getpass", return_value=self.secret, create=True) as hidden:
             with patch("builtins.input", side_effect=AssertionError("key entry must not echo")):
