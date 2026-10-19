@@ -15,6 +15,7 @@ Usage:
 import os
 import sys
 import subprocess
+from getpass import getpass
 from pathlib import Path
 from typing import Dict, Optional
 
@@ -90,28 +91,28 @@ def setup_api_keys() -> Dict[str, str]:
     # Anthropic (recommended)
     print("\n1. Anthropic Claude (Recommended)")
     print("   Get your API key from: https://console.anthropic.com/")
-    anthropic_key = input("   Enter ANTHROPIC_API_KEY (or press Enter to skip): ").strip()
+    anthropic_key = getpass("   Enter ANTHROPIC_API_KEY (or press Enter to skip): ").strip()
     if anthropic_key:
         api_keys['ANTHROPIC_API_KEY'] = anthropic_key
 
     # OpenAI
     print("\n2. OpenAI")
     print("   Get your API key from: https://platform.openai.com/api-keys")
-    openai_key = input("   Enter OPENAI_API_KEY (or press Enter to skip): ").strip()
+    openai_key = getpass("   Enter OPENAI_API_KEY (or press Enter to skip): ").strip()
     if openai_key:
         api_keys['OPENAI_API_KEY'] = openai_key
 
     # Google Gemini
     print("\n3. Google Gemini")
     print("   Get your API key from: https://makersuite.google.com/app/apikey")
-    google_key = input("   Enter GOOGLE_API_KEY (or press Enter to skip): ").strip()
+    google_key = getpass("   Enter GOOGLE_API_KEY (or press Enter to skip): ").strip()
     if google_key:
         api_keys['GOOGLE_API_KEY'] = google_key
 
     # Groq
     print("\n4. Groq")
     print("   Get your API key from: https://console.groq.com/keys")
-    groq_key = input("   Enter GROQ_API_KEY (or press Enter to skip): ").strip()
+    groq_key = getpass("   Enter GROQ_API_KEY (or press Enter to skip): ").strip()
     if groq_key:
         api_keys['GROQ_API_KEY'] = groq_key
 
@@ -155,8 +156,8 @@ def save_api_keys(api_keys: Dict[str, str], method: str = 'env_file'):
         shell_file = Path.home() / '.bashrc'  # or .zshrc for zsh users
 
         print("\n📋 Add these lines to your shell configuration:")
-        for key, value in api_keys.items():
-            print(f"   export {key}=\"{value}\"")
+        for key in api_keys:
+            print(f"   export {key}='<your-key>'")
 
         print(f"\nThen run: source {shell_file}")
 

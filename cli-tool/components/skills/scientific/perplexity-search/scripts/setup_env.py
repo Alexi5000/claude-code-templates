@@ -80,9 +80,7 @@ def validate_setup() -> bool:
         print()
         return False
     else:
-        # Mask the key for display
-        masked_key = api_key[:8] + "..." + api_key[-4:] if len(api_key) > 12 else "***"
-        print(f"✓ OPENROUTER_API_KEY is set ({masked_key})")
+        print("✓ OPENROUTER_API_KEY is set")
 
     # Check for LiteLLM
     try:
@@ -154,7 +152,7 @@ Get your OpenRouter API key from:
             print(f"1. Load the environment variables:")
             print(f"   source {args.env_file}")
             print("2. Or export directly:")
-            print(f"   export OPENROUTER_API_KEY={args.api_key}")
+            print("   export OPENROUTER_API_KEY='<your-key>'")
             print("3. Test the setup:")
             print("   python perplexity_search.py --check-setup")
             print()
