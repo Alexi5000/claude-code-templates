@@ -1,4 +1,12 @@
-const chalk = require('chalk');
+function usableMessages(messages) {
+  if (!Array.isArray(messages)) return [];
+  return messages.filter(message => {
+    if (!message || typeof message !== 'object' || typeof message.role !== 'string') return false;
+    const timestamp = message.timestamp;
+    if (!(timestamp instanceof Date) && typeof timestamp !== 'string' && typeof timestamp !== 'number') return false;
+    return Number.isFinite(new Date(timestamp).getTime());
+  });
+}
 
 /**
  * StateCalculator - Handles all conversation state determination logic
@@ -18,6 +26,7 @@ class StateCalculator {
    * @returns {string} Conversation state
    */
   determineConversationState(messages, lastModified, runningProcess = null) {
+    messages = usableMessages(messages);
     const now = new Date();
     const fileTimeDiff = now - lastModified;
     const fileMinutesAgo = fileTimeDiff / (1000 * 60);
@@ -111,13 +120,16 @@ class StateCalculator {
    * @returns {string|null} Conversation state or null if not active
    */
   quickStateCalculation(conversation, runningProcesses) {
-    // Check if there's an active process for this conversation
-    const hasActiveProcess = runningProcesses.some(process => 
-      process.workingDir.includes(conversation.project) ||
-      process.command.includes(conversation.project) ||
-      conversation.runningProcess // Already matched
-    );
-    
+    if (!conversation || typeof conversation !== 'object' || !Array.isArray(runningProcesses)) return null;
+    const project = conversation.project;
+    const hasActiveProcess = runningProcesses.some(process => {
+      if (!process || typeof process !== 'object') return false;
+      if (conversation.runningProcess) return true;
+      if (typeof project !== 'string' || !project) return false;
+      return (typeof process.workingDir === 'string' && process.workingDir.includes(project)) ||
+        (typeof process.command === 'string' && process.command.includes(project));
+    });
+
     if (!hasActiveProcess) {
       return null; // Not active, skip
     }
@@ -143,6 +155,7 @@ class StateCalculator {
    * @returns {string} Conversation status
    */
   determineConversationStatus(messages, lastModified) {
+    messages = usableMessages(messages);
     const now = new Date();
     const timeDiff = now - lastModified;
     const minutesAgo = timeDiff / (1000 * 60);
@@ -177,6 +190,7 @@ class StateCalculator {
    * @returns {Object} Activity detection result
    */
   detectRealClaudeActivity(messages, lastModified) {
+    messages = usableMessages(messages);
     const now = new Date();
     const fileMinutesAgo = (now - lastModified) / (1000 * 60);
     
@@ -210,7 +224,7 @@ class StateCalculator {
     // 4. Look for tool activity patterns (tools often indicate active sessions)
     const recentMessages = sortedMessages.slice(-3);
     const hasRecentTools = recentMessages.some(msg => 
-      (Array.isArray(msg.content) && msg.content.some(block => block.type === 'tool_use')) ||
+      (Array.isArray(msg.content) && msg.content.some(block => block && block.type === 'tool_use')) ||
       (msg.toolResults && msg.toolResults.length > 0)
     );
     
@@ -239,6 +253,7 @@ class StateCalculator {
    * @returns {string} CSS class name
    */
   getStateClass(conversationState) {
+    if (typeof conversationState !== 'string') return '';
     if (conversationState.includes('working') || conversationState.includes('Working')) {
       return 'working';
     }
