@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - 'docs/js/workflows-events.js'
+      - 'docs/js/plugin-page.js'
+      - 'scripts/test-plugin-dom.py'
       - 'docs/jobs.html'
       - 'cli-tool/src/analytics-web/chats_mobile.html'
       - 'scripts/test-search-dom.py'
@@ -13,6 +15,8 @@ on:
   pull_request:
     paths:
       - 'docs/js/workflows-events.js'
+      - 'docs/js/plugin-page.js'
+      - 'scripts/test-plugin-dom.py'
       - 'docs/jobs.html'
       - 'cli-tool/src/analytics-web/chats_mobile.html'
       - 'scripts/test-search-dom.py'
@@ -34,3 +38,4 @@ jobs:
       - run: python -m playwright install --with-deps chromium
       - run: python scripts/test-workflow-dom.py
       - run: python scripts/test-search-dom.py
+      - run: python scripts/test-plugin-dom.py

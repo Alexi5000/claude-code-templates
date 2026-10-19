@@ -161,11 +161,11 @@ class PluginPageManager {
             document.getElementById('commandsCount').textContent = plugin.commands;
 
             const commandsList = document.getElementById('commandsList');
-            commandsList.innerHTML = this.generateComponentItems(
+            commandsList.replaceChildren(this.generateComponentItems(
                 plugin.commandsList || [],
                 'command',
                 'commands'
-            );
+            ));
         }
 
         // Agents
@@ -174,11 +174,11 @@ class PluginPageManager {
             document.getElementById('agentsCount').textContent = plugin.agents;
 
             const agentsList = document.getElementById('agentsList');
-            agentsList.innerHTML = this.generateComponentItems(
+            agentsList.replaceChildren(this.generateComponentItems(
                 plugin.agentsList || [],
                 'agent',
                 'agents'
-            );
+            ));
         }
 
         // MCPs
@@ -187,11 +187,11 @@ class PluginPageManager {
             document.getElementById('mcpsCount').textContent = plugin.mcpServers;
 
             const mcpsList = document.getElementById('mcpsList');
-            mcpsList.innerHTML = this.generateComponentItems(
+            mcpsList.replaceChildren(this.generateComponentItems(
                 plugin.mcpServersList || [],
                 'mcp',
                 'mcps'
-            );
+            ));
         }
     }
 
@@ -199,26 +199,38 @@ class PluginPageManager {
      * Generate component items with install commands
      */
     generateComponentItems(componentNames, componentType, pluralType) {
+        const items = document.createDocumentFragment();
         if (!componentNames || componentNames.length === 0) {
-            return '<li>No components available</li>';
+            const empty = document.createElement('li');
+            empty.textContent = 'No components available';
+            items.append(empty);
+            return items;
         }
 
-        return componentNames.map((name, index) => {
-            const formattedName = this.formatComponentName(name);
+        componentNames.forEach((name, index) => {
+            const item = document.createElement('li');
+            item.className = 'component-item';
+            item.dataset.index = String(index);
+            const label = document.createElement('span');
+            label.className = 'component-name';
+            label.textContent = this.formatComponentName(name);
+            const button = document.createElement('button');
+            button.className = 'component-install-btn';
+            button.type = 'button';
             const installCommand = `npx claude-code-templates@latest --${componentType} ${name}`;
-
-            return `
-                <li class="component-item" data-index="${index}">
-                    <span class="component-name">${formattedName}</span>
-                    <button class="component-install-btn" onclick="window.pluginPageManager.showInstallCommand('${installCommand.replace(/'/g, "\\'")}', event)">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
-                        </svg>
-                        Install
-                    </button>
-                </li>
-            `;
-        }).join('');
+            button.addEventListener('click', event => this.showInstallCommand(installCommand, event));
+            const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            for (const [key, value] of Object.entries({ width: '14', height: '14', viewBox: '0 0 24 24', fill: 'currentColor' })) {
+                icon.setAttribute(key, value);
+            }
+            const shape = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            shape.setAttribute('d', 'M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z');
+            icon.append(shape);
+            button.append(icon, ' Install');
+            item.append(label, button);
+            items.append(item);
+        });
+        return items;
     }
 
     /**
