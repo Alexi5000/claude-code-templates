@@ -4,6 +4,7 @@ on:
     paths:
       - 'cli-tool/src/command-stats.js'
       - 'cli-tool/src/file-operations.js'
+      - 'cli-tool/tests/security/write-permission-probe.test.cjs'
       - 'cli-tool/tests/security/cli-prompt-arguments.test.cjs'
       - 'cli-tool/src/skill-dashboard.js'
       - 'cli-tool/tests/security/skill-file-containment.test.cjs'
@@ -32,6 +33,7 @@ on:
     paths:
       - 'cli-tool/src/command-stats.js'
       - 'cli-tool/src/file-operations.js'
+      - 'cli-tool/tests/security/write-permission-probe.test.cjs'
       - 'cli-tool/tests/security/cli-prompt-arguments.test.cjs'
       - 'cli-tool/src/skill-dashboard.js'
       - 'cli-tool/tests/security/skill-file-containment.test.cjs'

@@ -727,13 +727,18 @@ async function ensureDirectoryExists(dirPath) {
 }
 
 async function checkWritePermissions(targetDir) {
+  let probeDirectory;
   try {
-    const testFile = path.join(targetDir, '.claude-test-write');
-    await fs.writeFile(testFile, 'test');
-    await fs.remove(testFile);
+    probeDirectory = await fs.mkdtemp(path.join(targetDir, '.claude-test-'));
+    const testFile = path.join(probeDirectory, 'write');
+    await fs.writeFile(testFile, 'test', { flag: 'wx', mode: 0o600 });
+    await fs.remove(probeDirectory);
+    probeDirectory = undefined;
     return true;
   } catch (error) {
     return false;
+  } finally {
+    if (probeDirectory) await fs.remove(probeDirectory).catch(() => {});
   }
 }
 
