@@ -95,7 +95,8 @@ export default {
     if (url.pathname === '/trigger' && request.method === 'POST') {
       // Verify secret token
       const authHeader = request.headers.get('Authorization');
-      if (authHeader !== `Bearer ${env.TRIGGER_SECRET}`) {
+      if (typeof env.TRIGGER_SECRET !== 'string' || !env.TRIGGER_SECRET.trim() ||
+          authHeader !== `Bearer ${env.TRIGGER_SECRET}`) {
         return new Response('Unauthorized', { status: 401 });
       }
 

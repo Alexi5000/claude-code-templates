@@ -3,11 +3,13 @@ on:
   pull_request:
     paths:
       - 'cloudflare-workers/crons/**'
+      - 'cloudflare-workers/docs-monitor/**'
       - '.github/workflows/cron-worker-security.yml'
   push:
     branches: [main]
     paths:
       - 'cloudflare-workers/crons/**'
+      - 'cloudflare-workers/docs-monitor/**'
       - '.github/workflows/cron-worker-security.yml'
 permissions:
   contents: read
@@ -20,3 +22,4 @@ jobs:
         with:
           node-version: '24'
       - run: node --test cloudflare-workers/crons/index.test.mjs
+      - run: node --test cloudflare-workers/docs-monitor/index.test.mjs
