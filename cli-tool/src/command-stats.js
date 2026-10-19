@@ -263,9 +263,7 @@ async function promptCommandOptimization(analysis, targetDir) {
     const optimizationPrompt = createOptimizationPrompt(analysis, targetDir);
     
     // Execute Claude Code with optimization prompt
-    const claudeCommand = `claude "${optimizationPrompt.replace(/"/g, '\\"')}"`;
-    
-    const claudeProcess = spawn('sh', ['-c', claudeCommand], {
+    const claudeProcess = spawn('claude', [optimizationPrompt], {
       cwd: targetDir,
       stdio: 'inherit'
     });
