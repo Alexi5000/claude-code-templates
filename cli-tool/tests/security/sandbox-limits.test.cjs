@@ -113,3 +113,34 @@ test('deadline force-kills stuck child and keeps its slot until close', t => {
   child.emit('close', null);
   t.mock.timers.reset();
 });
+
+test('spawned-child errors cannot release admission before close', t => {
+  const originalSpawn = childProcess.spawn;
+  const originalKill = process.kill;
+  const children = [];
+  const signals = [];
+  childProcess.spawn = (command, args, options) => {
+    assert.equal(options.detached, process.platform !== 'win32');
+    const child = new EventEmitter();
+    child.pid = 900000 + children.length;
+    child.kill = signal => signals.push([child.pid, signal]);
+    children.push(child);
+    return child;
+  };
+  process.kill = (pid, signal) => { signals.push([pid, signal]); return true; };
+  delete require.cache[require.resolve('../../src/sandbox-limits')];
+  const limits = require('../../src/sandbox-limits');
+  childProcess.spawn = originalSpawn;
+  t.after(() => { process.kill = originalKill; });
+  for (let i = 0; i < 4; i++) limits.spawnBounded('fake-child', [], {});
+  children[0].emit('error', new Error('post-spawn operation failed'));
+  assert.equal(limits.isBusy(), true);
+  for (const child of children) {
+    child.emit('exit', 1);
+    child.emit('close', 1);
+  }
+  assert.equal(limits.isBusy(), false);
+  if (process.platform !== 'win32') {
+    assert.deepEqual(signals, children.map(child => [-child.pid, 'SIGKILL']));
+  }
+});

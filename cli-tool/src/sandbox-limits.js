@@ -8,16 +8,41 @@ function spawnBounded(command, args, options) {
     if (children.size >= MAX_PROCESSES) {
         throw new Error('Sandbox is busy; retry when another operation finishes');
     }
-    const child = spawn(command, args, { ...options, timeout: undefined });
+    const useProcessGroup = process.platform !== 'win32';
+    const child = spawn(command, args, { ...options, timeout: undefined, detached: useProcessGroup });
     children.add(child);
-    const timer = setTimeout(() => child.kill('SIGKILL'), 300000);
+    let groupTerminated = false;
+    const terminate = () => {
+        if (groupTerminated) return true;
+        if (!useProcessGroup || !child.pid) return child.kill('SIGKILL');
+        try {
+            process.kill(-child.pid, 'SIGKILL');
+            groupTerminated = true;
+            return true;
+        } catch (error) {
+            if (error.code === 'ESRCH') {
+                groupTerminated = true;
+                return true;
+            }
+            child.emit('error', error);
+            return false;
+        }
+    };
+    const requestedTimeout = options?.timeout;
+    const timeout = Number.isFinite(requestedTimeout) && requestedTimeout > 0
+        ? Math.min(requestedTimeout, 300000) : 300000;
+    const timer = setTimeout(terminate, timeout);
     timer.unref();
     const release = () => {
+        if (useProcessGroup && child.pid && !terminate()) return;
         clearTimeout(timer);
         children.delete(child);
     };
+    if (useProcessGroup) child.once('exit', terminate);
     child.once('close', release);
-    child.once('error', release);
+    child.once('error', () => {
+        if (!child.pid) release();
+    });
     return child;
 }
 
