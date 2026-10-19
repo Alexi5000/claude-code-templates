@@ -96,25 +96,35 @@ class ReferenceValidator extends BaseValidator {
    */
   extractUrls(content) {
     const urls = [];
+    const destinations = [];
 
     // Match markdown links: [text](url)
     const markdownLinkPattern = /\[([^\]]+)\]\(([^)]+)\)/g;
     let match;
 
     while ((match = markdownLinkPattern.exec(content)) !== null) {
+      const start = match.index + match[0].indexOf("](") + 2;
+      destinations.push({ start, end: start + match[2].length });
       urls.push({
         text: match[1],
         url: match[2],
-        type: 'markdown',
+        type: content[match.index - 1] === '!' ? 'image' : 'markdown',
         index: match.index
       });
     }
 
     // Match plain URLs: http(s)://...
-    const plainUrlPattern = /https?:\/\/[^\s<>"{}|\\^`\[\]]+/g;
+    const plainUrlPattern = /(?<![\w+.-])(?:https?:\/\/|(?:file|ftp|data|javascript|vbscript):)[^\s<>"{}|\\^`\[\]]+/gi;
+    const seen = new Set(urls.map(info => info.url));
+    let destinationIndex = 0;
     while ((match = plainUrlPattern.exec(content)) !== null) {
-      // Avoid duplicates from markdown links
-      if (!urls.some(u => u.url === match[0])) {
+      while (destinationIndex < destinations.length && destinations[destinationIndex].end <= match.index) {
+        destinationIndex++;
+      }
+      const destination = destinations[destinationIndex];
+      if (destination && match.index >= destination.start && match.index < destination.end) continue;
+      if (!seen.has(match[0])) {
+        seen.add(match[0]);
         urls.push({
           text: match[0],
           url: match[0],
@@ -135,6 +145,8 @@ class ReferenceValidator extends BaseValidator {
    */
   async validateUrl(urlInfo, path, strictHttps) {
     const { url: urlString, text, type } = urlInfo;
+
+    if (this.isSafeDataImage(urlInfo)) return;
 
     try {
       const parsedUrl = new url.URL(urlString);
@@ -256,6 +268,8 @@ class ReferenceValidator extends BaseValidator {
     const matches = content.matchAll(dangerousLinkPattern);
 
     for (const match of matches) {
+      const destination = match[0].slice(match[0].indexOf('](') + 2, -1);
+      if (content[match.index - 1] === '!' && this.isSafeDataImage({ type: 'image', url: destination })) continue;
       this.addError(
         'REF_E005',
         'Dangerous protocol in markdown link',
@@ -267,6 +281,10 @@ class ReferenceValidator extends BaseValidator {
         }
       );
     }
+  }
+
+  isSafeDataImage(urlInfo) {
+    return urlInfo.type === 'image' && /^data:image\/(?:png|jpeg|gif|webp|avif);base64,[A-Za-z0-9+/]+={0,2}$/i.test(urlInfo.url);
   }
 
   /**

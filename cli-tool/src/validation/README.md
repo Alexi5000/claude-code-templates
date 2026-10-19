@@ -142,7 +142,7 @@ Validates external URLs and prevents SSRF attacks.
 
 **Checks:**
 - ✅ Extract all URLs from markdown
-- ✅ Block dangerous protocols (file://, javascript:, data:)
+- ✅ Block dangerous protocols (file://, javascript:, data:) in links and plain text. Markdown images permit base64 PNG, JPEG, GIF, WebP and AVIF data URLs; HTML and SVG data URLs remain blocked, and images over 10,000 characters generate a size warning.
 - ✅ Detect private IP addresses (127.0.0.1, 10.x.x.x, 192.168.x.x)
 - ✅ Flag suspicious TLDs (.tk, .ml, .ga, .zip)
 - ✅ HTTPS enforcement (optional strict mode)

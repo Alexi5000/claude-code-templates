@@ -3,6 +3,8 @@ on:
   pull_request:
     paths:
       - 'cli-tool/src/console-bridge.js'
+      - 'cli-tool/src/validation/validators/ReferenceValidator.js'
+      - 'cli-tool/tests/security/reference-url-accounting.test.cjs'
       - 'cli-tool/src/claude-api-proxy.js'
       - 'cli-tool/tests/security/conversation-paths.test.cjs'
       - 'cli-tool/src/sandbox-server.js'
@@ -15,6 +17,8 @@ on:
     branches: [main]
     paths:
       - 'cli-tool/src/console-bridge.js'
+      - 'cli-tool/src/validation/validators/ReferenceValidator.js'
+      - 'cli-tool/tests/security/reference-url-accounting.test.cjs'
       - 'cli-tool/src/claude-api-proxy.js'
       - 'cli-tool/tests/security/conversation-paths.test.cjs'
       - 'cli-tool/src/sandbox-server.js'
