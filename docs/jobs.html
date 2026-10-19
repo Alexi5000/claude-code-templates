@@ -927,68 +927,88 @@
             renderJobs();
         }
         
+        function jobElement(tag, className, text) {
+            const element = document.createElement(tag);
+            element.className = className;
+            if (text !== undefined) element.textContent = String(text ?? '');
+            return element;
+        }
+
+        function safeJobUrl(value) {
+            try {
+                const url = new URL(value);
+                return ['https:', 'http:'].includes(url.protocol) ? url.href : null;
+            } catch {
+                return null;
+            }
+        }
+
         function renderJobs() {
             const container = document.getElementById('jobs-grid');
-            
+            container.replaceChildren();
             if (filteredJobs.length === 0) {
                 const searchText = currentSearchTerm ? ` for "${currentSearchTerm}"` : '';
                 const companyText = currentCompanyFilter !== 'all' ? ` at ${currentCompanyFilter}` : '';
-                
-                container.innerHTML = `
-                    <div class="no-jobs">
-                        <h3>No jobs found</h3>
-                        <p>No positions found${searchText}${companyText}. Try adjusting your search or filters, or check back later for new opportunities.</p>
-                    </div>
-                `;
+                const empty = jobElement('div', 'no-jobs');
+                empty.append(jobElement('h3', '', 'No jobs found'), jobElement('p', '',
+                    `No positions found${searchText}${companyText}. Try adjusting your search or filters, or check back later for new opportunities.`));
+                container.append(empty);
                 return;
             }
-            
-            // Render jobs with staggered animation
-            const jobCards = filteredJobs.map((job, index) => `
-                <div class="job-card" style="animation-delay: ${index * 0.1}s;">
-                    <div class="job-header">
-                        <img src="${job.company_icon}" alt="${job.company}" class="company-icon" 
-                             onerror="this.src='https://www.aitmpl.com/static/img/logo.png'">
-                        <div class="job-info">
-                            <h3 class="job-title">${highlightSearchTerms(truncateText(job.job_title, 60))}</h3>
-                            <div class="company-name">${highlightSearchTerms(job.company)}</div>
-                            <div class="job-location">${job.location || 'Location not specified'}</div>
-                        </div>
-                    </div>
-                    
-                    <p class="job-description">${highlightSearchTerms(job.description)}</p>
-                    
-                    <div class="job-footer">
-                        <a href="${job.job_link}" target="_blank" rel="noopener noreferrer" class="apply-btn" 
-                           onclick="trackJobApplication('${job.company}', '${job.job_title}')">
-                            Apply Now
-                        </a>
-                    </div>
-                </div>
-            `).join('');
-            
-            container.innerHTML = jobCards;
-            
-            // Add fade-in animation
-            const cards = container.querySelectorAll('.job-card');
-            cards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    card.style.transition = 'all 0.4s ease';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, index * 100);
+            filteredJobs.forEach((job, index) => {
+                const card = jobElement('div', 'job-card');
+                card.style.animationDelay = `${index * 0.1}s`;
+                const header = jobElement('div', 'job-header');
+                const icon = jobElement('img', 'company-icon');
+                icon.alt = String(job.company ?? '');
+                icon.src = safeJobUrl(job.company_icon) || 'static/img/logo.png';
+                icon.addEventListener('error', () => { icon.src = 'static/img/logo.png'; }, { once: true });
+                const info = jobElement('div', 'job-info');
+                const title = jobElement('h3', 'job-title');
+                title.append(highlightSearchTerms(truncateText(job.job_title, 60)));
+                const company = jobElement('div', 'company-name');
+                company.append(highlightSearchTerms(job.company));
+                info.append(title, company, jobElement('div', 'job-location', job.location || 'Location not specified'));
+                header.append(icon, info);
+                const description = jobElement('p', 'job-description');
+                description.append(highlightSearchTerms(job.description));
+                const footer = jobElement('div', 'job-footer');
+                const link = safeJobUrl(job.job_link);
+                if (link) {
+                    const apply = jobElement('a', 'apply-btn', 'Apply Now');
+                    apply.href = link;
+                    apply.target = '_blank';
+                    apply.rel = 'noopener noreferrer';
+                    apply.addEventListener('click', () => trackJobApplication(job.company, job.job_title));
+                    footer.append(apply);
+                } else {
+                    footer.append(jobElement('span', '', 'Application link unavailable'));
+                }
+                card.append(header, description, footer);
+                container.append(card);
             });
         }
-        
-        function highlightSearchTerms(text) {
-            if (!currentSearchTerm || !text) return text;
-            
-            const regex = new RegExp(`(${escapeRegex(currentSearchTerm)})`, 'gi');
-            return text.replace(regex, '<mark style="background: rgba(217, 119, 6, 0.3); color: inherit; padding: 0 2px; border-radius: 2px;">$1</mark>');
+
+        function highlightSearchTerms(value) {
+            const text = String(value ?? '');
+            const fragment = document.createDocumentFragment();
+            if (!currentSearchTerm) {
+                fragment.append(document.createTextNode(text));
+                return fragment;
+            }
+            const regex = new RegExp(escapeRegex(currentSearchTerm), 'gi');
+            let offset = 0;
+            for (const match of text.matchAll(regex)) {
+                fragment.append(document.createTextNode(text.slice(offset, match.index)));
+                const mark = jobElement('mark', '', match[0]);
+                mark.style.cssText = 'background: rgba(217,119,6,0.3); color: inherit; padding: 0 2px; border-radius: 2px;';
+                fragment.append(mark);
+                offset = match.index + match[0].length;
+            }
+            fragment.append(document.createTextNode(text.slice(offset)));
+            return fragment;
         }
-        
+
         function escapeRegex(string) {
             return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         }
