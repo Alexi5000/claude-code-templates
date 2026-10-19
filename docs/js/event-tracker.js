@@ -36,8 +36,8 @@ class EventTracker {
     }
 
     generateId() {
-        return Math.random().toString(36).substring(2, 15) +
-               Math.random().toString(36).substring(2, 15);
+        return Array.from(crypto.getRandomValues(new Uint8Array(16)),
+            byte => byte.toString(16).padStart(2, '0')).join('');
     }
 
     track(eventType, eventData) {

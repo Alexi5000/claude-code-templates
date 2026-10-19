@@ -3,6 +3,8 @@
  * Records component installations for analytics without impacting user experience
  */
 
+const crypto = require('node:crypto');
+
 class TrackingService {
     constructor() {
         this.trackingEnabled = this.shouldEnableTracking();
@@ -167,7 +169,7 @@ class TrackingService {
      * Generate a session ID for grouping related downloads
      */
     generateSessionId() {
-        return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        return crypto.randomBytes(16).toString('hex');
     }
 
     /**
