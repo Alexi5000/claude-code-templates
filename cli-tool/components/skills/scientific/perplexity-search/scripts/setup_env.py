@@ -14,6 +14,7 @@ License: MIT
 import os
 import sys
 import argparse
+import tempfile
 from pathlib import Path
 
 
@@ -41,14 +42,18 @@ def create_env_file(api_key: str, env_file: str = ".env") -> bool:
                 ]
 
         # Write new content
-        with open(env_path, 'w') as f:
-            # Write existing content (excluding old OPENROUTER_API_KEY)
-            f.writelines(existing_content)
-
-            # Add new API key
-            if existing_content and not existing_content[-1].endswith('\n'):
-                f.write('\n')
-            f.write(f'OPENROUTER_API_KEY={api_key}\n')
+        temporary = None
+        try:
+            with tempfile.NamedTemporaryFile(mode='w', dir=env_path.parent, delete=False) as f:
+                temporary = Path(f.name)
+                f.writelines(existing_content)
+                if existing_content and not existing_content[-1].endswith('\n'):
+                    f.write('\n')
+                f.write(f'OPENROUTER_API_KEY={api_key}\n')
+            os.replace(temporary, env_path)
+        finally:
+            if temporary is not None:
+                temporary.unlink(missing_ok=True)
 
         print(f"✓ API key saved to {env_file}")
         return True

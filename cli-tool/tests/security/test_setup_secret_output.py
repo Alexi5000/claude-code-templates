@@ -63,6 +63,56 @@ class SetupSecretOutputTests(unittest.TestCase):
         self.assertEqual(len(keys), 4)
         self.assertTrue(all(value == self.secret for value in keys.values()))
 
+    def save_env(self, provider, directory):
+        with contextlib.redirect_stdout(io.StringIO()):
+            if provider == "perplexity":
+                return self.perplexity.create_env_file(self.secret, str(directory / ".env"))
+            with patch.object(self.biomni.Path, "cwd", return_value=directory):
+                self.biomni.save_api_keys({"OPENAI_API_KEY": self.secret})
+            return True
+
+    @unittest.skipIf(os.name == "nt", "POSIX mode assertions")
+    def test_env_files_are_private_and_preserve_other_settings(self):
+        for provider in ("perplexity", "biomni"):
+            with self.subTest(provider=provider), tempfile.TemporaryDirectory() as tmp:
+                directory = Path(tmp)
+                target = directory / ".env"
+                target.write_text("EXISTING=value\n")
+                target.chmod(0o644)
+                self.assertTrue(self.save_env(provider, directory))
+                self.assertEqual(target.stat().st_mode & 0o777, 0o600)
+                self.assertIn("EXISTING=value", target.read_text())
+                self.assertIn(self.secret, target.read_text())
+                self.assertEqual(list(directory.iterdir()), [target])
+
+    @unittest.skipIf(os.name == "nt", "POSIX symlink assertions")
+    def test_env_update_does_not_overwrite_symlink_target(self):
+        for provider in ("perplexity", "biomni"):
+            with self.subTest(provider=provider), tempfile.TemporaryDirectory() as tmp:
+                directory = Path(tmp)
+                original = directory / "original"
+                original.write_text("EXISTING=value\n")
+                (directory / ".env").symlink_to(original)
+                self.assertTrue(self.save_env(provider, directory))
+                self.assertEqual(original.read_text(), "EXISTING=value\n")
+                self.assertFalse((directory / ".env").is_symlink())
+
+    def test_failed_replace_preserves_original_and_removes_temporary(self):
+        for provider in ("perplexity", "biomni"):
+            with self.subTest(provider=provider), tempfile.TemporaryDirectory() as tmp:
+                directory = Path(tmp)
+                target = directory / ".env"
+                target.write_text("EXISTING=value\n")
+                with patch("os.replace", side_effect=OSError("replace unavailable")):
+                    with contextlib.redirect_stderr(io.StringIO()):
+                        if provider == "perplexity":
+                            self.assertFalse(self.save_env(provider, directory))
+                        else:
+                            with self.assertRaises(OSError):
+                                self.save_env(provider, directory)
+                self.assertEqual(target.read_text(), "EXISTING=value\n")
+                self.assertEqual(list(directory.iterdir()), [target])
+
 
 if __name__ == "__main__":
     unittest.main()
