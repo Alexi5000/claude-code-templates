@@ -14,6 +14,7 @@ License: MIT
 import os
 import sys
 import argparse
+import tempfile
 from pathlib import Path
 
 
@@ -41,14 +42,18 @@ def create_env_file(api_key: str, env_file: str = ".env") -> bool:
                 ]
 
         # Write new content
-        with open(env_path, 'w') as f:
-            # Write existing content (excluding old OPENROUTER_API_KEY)
-            f.writelines(existing_content)
-
-            # Add new API key
-            if existing_content and not existing_content[-1].endswith('\n'):
-                f.write('\n')
-            f.write(f'OPENROUTER_API_KEY={api_key}\n')
+        temporary = None
+        try:
+            with tempfile.NamedTemporaryFile(mode='w', dir=env_path.parent, delete=False) as f:
+                temporary = Path(f.name)
+                f.writelines(existing_content)
+                if existing_content and not existing_content[-1].endswith('\n'):
+                    f.write('\n')
+                f.write(f'OPENROUTER_API_KEY={api_key}\n')
+            os.replace(temporary, env_path)
+        finally:
+            if temporary is not None:
+                temporary.unlink(missing_ok=True)
 
         print(f"✓ API key saved to {env_file}")
         return True
@@ -80,9 +85,7 @@ def validate_setup() -> bool:
         print()
         return False
     else:
-        # Mask the key for display
-        masked_key = api_key[:8] + "..." + api_key[-4:] if len(api_key) > 12 else "***"
-        print(f"✓ OPENROUTER_API_KEY is set ({masked_key})")
+        print("✓ OPENROUTER_API_KEY is set")
 
     # Check for LiteLLM
     try:
@@ -154,10 +157,12 @@ Get your OpenRouter API key from:
             print(f"1. Load the environment variables:")
             print(f"   source {args.env_file}")
             print("2. Or export directly:")
-            print(f"   export OPENROUTER_API_KEY={args.api_key}")
+            print("   export OPENROUTER_API_KEY='<your-key>'")
             print("3. Test the setup:")
             print("   python perplexity_search.py --check-setup")
             print()
+        else:
+            return 1
 
     # Validate setup
     if args.validate:
