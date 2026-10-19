@@ -1,0 +1,28 @@
+name: Changelog Parser Security
+on:
+  pull_request:
+    paths:
+      - 'api/_parser-claude.js'
+      - 'api/claude-code-monitor/parser.js'
+      - 'dashboard/src/lib/api/changelog-parser.ts'
+      - 'scripts/changelog-parser.test.mjs'
+      - '.github/workflows/changelog-parser-security.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'api/_parser-claude.js'
+      - 'api/claude-code-monitor/parser.js'
+      - 'dashboard/src/lib/api/changelog-parser.ts'
+      - 'scripts/changelog-parser.test.mjs'
+      - '.github/workflows/changelog-parser-security.yml'
+permissions:
+  contents: read
+jobs:
+  parser-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+      - run: node --test scripts/changelog-parser.test.mjs

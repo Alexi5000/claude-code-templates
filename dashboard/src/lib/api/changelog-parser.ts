@@ -30,7 +30,8 @@ interface FormattedChanges {
 
 export function parseVersionChangelog(changelog: string, version: string): ParsedVersion {
   const cleanVersion = version.replace(/^v/, '');
-  const versionRegex = new RegExp(`^##\\s+(?:v)?${cleanVersion.replace(/\./g, '\\.')}`, 'm');
+  const literalVersion = cleanVersion.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const versionRegex = new RegExp(`^##\\s+(?:v)?${literalVersion}(?=\\s|$)`, 'm');
   const match = changelog.match(versionRegex);
 
   if (!match) {

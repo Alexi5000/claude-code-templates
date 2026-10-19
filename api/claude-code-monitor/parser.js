@@ -11,7 +11,8 @@ export function parseVersionChangelog(changelog, version) {
   const cleanVersion = version.replace(/^v/, '');
 
   // Buscar el inicio de esta versión
-  const versionRegex = new RegExp(`^##\\s+(?:v)?${cleanVersion.replace(/\./g, '\\.')}`, 'm');
+  const literalVersion = cleanVersion.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const versionRegex = new RegExp(`^##\\s+(?:v)?${literalVersion}(?=\\s|$)`, 'm');
   const match = changelog.match(versionRegex);
 
   if (!match) {
