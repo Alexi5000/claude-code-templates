@@ -2,7 +2,7 @@
 
 const express = require('express');
 const path = require('path');
-const { spawn } = require('child_process');
+const { spawnBounded: spawn, outputBuffer, requestBudget, isBusy } = require('./sandbox-limits');
 const chalk = require('chalk');
 const fs = require('fs');
 
@@ -71,8 +71,12 @@ app.use((req, res, next) => {
     }
 });
 
+const mutationBudget = requestBudget(60);
+
 // JSON parsing middleware
-app.use(express.json());
+app.use(requestBudget(600));
+app.use('/api', (req, res, next) => req.method === 'POST' ? mutationBudget(req, res, next) : next());
+app.use(express.json({ limit: '32kb' }));
 
 // Store active tasks
 const activeTasks = new Map();
@@ -123,18 +127,26 @@ app.get('/components.json', (req, res) => {
 
 // API endpoint to execute task (local or cloud)
 app.post('/api/execute', async (req, res) => {
-    const { prompt, mode = 'local', agent = 'development-team/frontend-developer' } = req.body;
+    const { prompt, mode = 'local', agent = 'development-team/frontend-developer' } = req.body || {};
     
-    if (typeof prompt !== 'string' || prompt.trim().length < 10) {
+    if (typeof prompt !== 'string' || prompt.trim().length < 10 || prompt.length > 16000) {
         return res.status(400).json({
             success: false,
-            error: 'Please provide a detailed prompt (at least 10 characters)'
+            error: 'Please provide a prompt between 10 and 16000 characters'
         });
     }
     if (!isAgentName(agent) || !['local', 'cloud'].includes(mode)) {
         return res.status(400).json({ success: false, error: 'Invalid agent or execution mode' });
     }
     
+    if (isBusy() || [...activeTasks.values()].filter(task => task.status === 'running').length >= 4) {
+        return res.status(429).json({ success: false, error: 'Sandbox is busy; retry shortly' });
+    }
+    for (const [id, previous] of activeTasks) {
+        if (activeTasks.size < 100) break;
+        if (previous.status !== 'running') activeTasks.delete(id);
+    }
+
     const taskId = `task-${Date.now()}-${Math.random().toString(36).substring(2, 8)}`;
     
     // Create task object
@@ -147,7 +159,7 @@ app.post('/api/execute', async (req, res) => {
         status: 'running',
         startTime: new Date(),
         progress: 0,
-        output: [],
+        output: outputBuffer(),
         sandboxId: null
     };
     
@@ -213,7 +225,7 @@ app.get('/api/tasks', (req, res) => {
 
 // API endpoint to install agent
 app.post('/api/install-agent', async (req, res) => {
-    const { agentName } = req.body;
+    const { agentName } = req.body || {};
     
     if (!isAgentName(agentName)) {
         return res.status(400).json({
@@ -222,6 +234,7 @@ app.post('/api/install-agent', async (req, res) => {
         });
     }
     
+    if (isBusy()) return res.status(429).json({ success: false, error: 'Sandbox is busy; retry shortly' });
     try {
         console.log(chalk.blue('🔧 Installing agent:'), chalk.cyan(agentName));
         
@@ -232,8 +245,8 @@ app.post('/api/install-agent', async (req, res) => {
             shell: process.platform === 'win32'
         });
         
-        let output = [];
-        let error = [];
+        let output = outputBuffer();
+        let error = outputBuffer();
         
         child.stdout.on('data', (data) => {
             const lines = data.toString().split('\n').filter(line => line.trim());
@@ -246,6 +259,7 @@ app.post('/api/install-agent', async (req, res) => {
         });
         
         child.on('close', (code) => {
+            if (res.headersSent || res.destroyed) return;
             if (code === 0) {
                 console.log(chalk.green('✅ Agent installed successfully:'), chalk.cyan(agentName));
                 res.json({
@@ -264,6 +278,7 @@ app.post('/api/install-agent', async (req, res) => {
         });
         
         child.on('error', (error) => {
+            if (res.headersSent || res.destroyed) return;
             console.error(chalk.red('❌ Agent installation error:'), error.message);
             res.status(500).json({
                 success: false,
@@ -397,8 +412,6 @@ async function executeE2BTask(task) {
                     task.progress = 95;
                 } else if (line.includes('Execution completed successfully')) {
                     task.progress = 100;
-                    task.status = 'completed';
-                    task.endTime = new Date();
                 }
             });
         });
