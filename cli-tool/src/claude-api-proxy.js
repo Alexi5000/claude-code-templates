@@ -219,25 +219,17 @@ class ClaudeAPIProxy {
     }
     const projectsDir = path.join(this.claudeDir, 'projects');
     
-    // If projectPath provided, look there first
-    if (projectPath) {
-      const encodedPath = this.encodeProjectPath(projectPath);
-      const targetDir = path.join(projectsDir, encodedPath);
-      const conversationFile = path.join(targetDir, `${sessionId}.jsonl`);
-      
-      if (await fs.pathExists(conversationFile)) {
-        return this.validateConversationPath(conversationFile);
-      }
-    }
-    
-    // Otherwise, search all projects
-    const projectDirs = await fs.readdir(projectsDir);
-    
+    const preferred = projectPath ? this.encodeProjectPath(projectPath) : null;
+    const projectDirs = (await fs.readdir(projectsDir, { withFileTypes: true }))
+      .filter(entry => entry.isDirectory())
+      .sort((a, b) => Number(b.name === preferred) - Number(a.name === preferred));
     for (const projectDir of projectDirs) {
-      const conversationFile = path.join(projectsDir, projectDir, `${sessionId}.jsonl`);
-      
-      if (await fs.pathExists(conversationFile)) {
-        return this.validateConversationPath(conversationFile);
+      const directory = path.join(projectsDir, projectDir.name);
+      const files = await fs.readdir(directory, { withFileTypes: true });
+      for (const entry of files) {
+        if (entry.name === `${sessionId}.jsonl`) {
+          return this.validateConversationPath(path.join(directory, entry.name));
+        }
       }
     }
     

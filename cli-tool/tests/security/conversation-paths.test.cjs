@@ -44,7 +44,7 @@ test('symlinked conversation and project cannot read or append outside the root'
   await fs.symlink(outside, path.join(project, 'escape.jsonl'));
   await fs.symlink(root, path.join(proxy.claudeDir, 'projects', 'external'));
   await assert.rejects(proxy.getConversationHistory('escape'), { status: 400 });
-  await assert.rejects(proxy.findConversationFile('private', '/external'), { status: 400 });
+  assert.equal(await proxy.findConversationFile('private', '/external'), null);
   await assert.rejects(proxy.appendToConversation(path.join(project, 'escape.jsonl'), { attack: true }), { status: 400 });
   assert.equal((await proxy.getActiveSessions()).length, 1);
   assert.equal(await fs.readFile(outside, 'utf8'), 'private-content\n');
