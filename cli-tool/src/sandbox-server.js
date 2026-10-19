@@ -299,7 +299,9 @@ async function checkAndInstallAgent(agentName, task) {
     if (!isAgentName(agentName)) throw new Error('Invalid agent name');
     // Check if agent exists in .claude directory
     const claudeDir = path.join(process.cwd(), '.claude');
-    const agentPath = path.join(claudeDir, 'agents', `${agentName}.md`);
+    const agentsDir = path.resolve(claudeDir, 'agents');
+    const agentPath = path.resolve(agentsDir, `${agentName}.md`);
+    if (!agentPath.startsWith(agentsDir + path.sep)) throw new Error('Agent path is outside the agents directory');
     
     if (fs.existsSync(agentPath)) {
         return true; // Agent already exists
