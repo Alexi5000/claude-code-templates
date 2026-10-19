@@ -9,6 +9,8 @@
 
 **CLI tool for configuring and monitoring Claude Code** - Quick setup for any project with framework-specific commands and real-time monitoring dashboard.
 
+The local sandbox execution server binds to IPv4 loopback and accepts browser requests only from its own origin. Open it through its localhost URL; reverse-proxy and cross-origin access are intentionally rejected. Local execution requires the native `claude` executable on PATH, including on Windows. Prompt text is passed as a literal argument, never through a shell. Agent installation accepts catalog-style identifiers only. This is a local operator tool, not an authenticated multi-user service; other processes running locally remain trusted.
+
 ## 🚀 Quick Start
 
 ```bash

@@ -47,9 +47,21 @@ function loadEnvFile() {
 // Load environment variables on startup
 const hasApiKeys = loadEnvFile();
 
-// Simple CORS middleware
+function isAgentName(value) {
+    return typeof value === 'string' && value.length <= 200 && /^[a-zA-Z0-9][a-zA-Z0-9_-]*(?:\/[a-zA-Z0-9][a-zA-Z0-9_-]*)*$/.test(value);
+}
+
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
+    const authority = req.headers.host;
+    if (typeof authority !== 'string' || !/^(localhost|127\.0\.0\.1)(:\d+)?$/i.test(authority)) {
+        return res.status(403).json({ error: 'Local requests only' });
+    }
+    const origin = req.headers.origin;
+    if (origin !== undefined && origin !== `http://${authority}`) {
+        return res.status(403).json({ error: 'Origin not allowed' });
+    }
+    if (origin) res.header('Access-Control-Allow-Origin', origin);
+    res.header('Vary', 'Origin');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     if (req.method === 'OPTIONS') {
@@ -113,11 +125,14 @@ app.get('/components.json', (req, res) => {
 app.post('/api/execute', async (req, res) => {
     const { prompt, mode = 'local', agent = 'development-team/frontend-developer' } = req.body;
     
-    if (!prompt || prompt.trim().length < 10) {
+    if (typeof prompt !== 'string' || prompt.trim().length < 10) {
         return res.status(400).json({
             success: false,
             error: 'Please provide a detailed prompt (at least 10 characters)'
         });
+    }
+    if (!isAgentName(agent) || !['local', 'cloud'].includes(mode)) {
+        return res.status(400).json({ success: false, error: 'Invalid agent or execution mode' });
     }
     
     const taskId = `task-${Date.now()}-${Math.random().toString(36).substring(2, 8)}`;
@@ -200,10 +215,10 @@ app.get('/api/tasks', (req, res) => {
 app.post('/api/install-agent', async (req, res) => {
     const { agentName } = req.body;
     
-    if (!agentName) {
+    if (!isAgentName(agentName)) {
         return res.status(400).json({
             success: false,
-            error: 'Agent name is required'
+            error: 'Invalid agent name'
         });
     }
     
@@ -214,7 +229,7 @@ app.post('/api/install-agent', async (req, res) => {
         const child = spawn('npx', ['claude-code-templates@latest', '--agent', agentName, '--yes'], {
             cwd: process.cwd(),
             stdio: ['pipe', 'pipe', 'pipe'],
-            shell: true
+            shell: process.platform === 'win32'
         });
         
         let output = [];
@@ -266,6 +281,7 @@ app.post('/api/install-agent', async (req, res) => {
 });
 
 async function checkAndInstallAgent(agentName, task) {
+    if (!isAgentName(agentName)) throw new Error('Invalid agent name');
     // Check if agent exists in .claude directory
     const claudeDir = path.join(process.cwd(), '.claude');
     const agentPath = path.join(claudeDir, 'agents', `${agentName}.md`);
@@ -280,7 +296,7 @@ async function checkAndInstallAgent(agentName, task) {
         const child = spawn('npx', ['claude-code-templates@latest', '--agent', agentName, '--yes'], {
             cwd: process.cwd(),
             stdio: ['pipe', 'pipe', 'pipe'],
-            shell: true
+            shell: process.platform === 'win32'
         });
         
         child.stdout.on('data', (data) => {
@@ -461,14 +477,14 @@ async function executeLocalTask(task) {
         }
         
         // Execute Claude Code locally with just the prompt
-        const child = spawn('claude', [finalPrompt], {
+        const child = spawn('claude', ['--', finalPrompt], {
             cwd: process.cwd(),
             stdio: ['ignore', 'pipe', 'pipe'], // Ignore stdin to prevent hanging
             env: {
                 ...process.env,
                 PATH: process.env.PATH
             },
-            shell: true, // Use shell to find claude command
+            shell: false,
             timeout: 300000 // 5 minute timeout
         });
         
@@ -559,7 +575,7 @@ async function executeLocalTask(task) {
 }
 
 // Start server
-app.listen(PORT, () => {
+if (require.main === module) app.listen(PORT, '127.0.0.1', () => {
     console.log(chalk.blue('\\n🎨 Claude Code Studio Server'));
     console.log(chalk.cyan('═══════════════════════════════════════'));
     console.log(chalk.green(`🚀 Server running on http://localhost:${PORT}`));

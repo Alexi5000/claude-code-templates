@@ -5,6 +5,8 @@ on:
       - 'cli-tool/src/console-bridge.js'
       - 'cli-tool/src/claude-api-proxy.js'
       - 'cli-tool/tests/security/conversation-paths.test.cjs'
+      - 'cli-tool/src/sandbox-server.js'
+      - 'cli-tool/tests/security/sandbox-execution.test.cjs'
       - 'cli-tool/tests/security/console-bridge.test.cjs'
       - '.github/workflows/console-bridge-security.yml'
   push:
@@ -13,6 +15,8 @@ on:
       - 'cli-tool/src/console-bridge.js'
       - 'cli-tool/src/claude-api-proxy.js'
       - 'cli-tool/tests/security/conversation-paths.test.cjs'
+      - 'cli-tool/src/sandbox-server.js'
+      - 'cli-tool/tests/security/sandbox-execution.test.cjs'
       - 'cli-tool/tests/security/console-bridge.test.cjs'
       - '.github/workflows/console-bridge-security.yml'
 permissions:
