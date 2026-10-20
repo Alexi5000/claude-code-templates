@@ -4,14 +4,16 @@
   "description": "Todo app backend with Express and SQLite",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && node -e \"require('node:fs').copyFileSync('src/db/schema.sql', 'dist/db/schema.sql')\"",
     "start": "node dist/index.js",
-    "dev": "ts-node src/index.ts"
+    "dev": "ts-node src/index.ts",
+    "test": "npm run build && node --test tests/*.test.cjs"
   },
   "dependencies": {
     "better-sqlite3": "^13.0.3",
     "cors": "^2.8.5",
     "express": "^4.18.2",
+    "express-rate-limit": "^8.7.1",
     "sqlite3": "^6.0.1"
   },
   "devDependencies": {
