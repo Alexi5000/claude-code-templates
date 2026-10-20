@@ -81,6 +81,50 @@ class HandoffPrivacyTests(unittest.TestCase):
         self.assertEqual(existing, ["docs/ready.md"])
         self.assertEqual(missing, ["docs/missing.md"])
 
+    def test_sensitive_file_references_keep_status_without_secret_values(self):
+        token = "ghp_" + "A" * 36
+        for exists in (False, True):
+            with self.subTest(exists=exists), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                (root / "private").mkdir()
+                sensitive = root / "private" / (token + ".md")
+                if exists:
+                    sensitive.write_text("fixture")
+                content = "Check `private/" + token + ".md`\n"
+                existing, missing = validator.check_file_references(content, directory)
+                self.assertEqual(len(existing), int(exists))
+                self.assertEqual(len(missing), int(not exists))
+                self.assertNotIn(token, json.dumps([existing, missing]))
+                self.assertIn("Line 1", json.dumps([existing, missing]))
+                handoffs = root / ".claude/handoffs"
+                handoffs.mkdir(parents=True)
+                handoff = handoffs / "review.md"
+                handoff.write_text(content + COMPLETE)
+                result = validator.validate_handoff(str(handoff))
+                process = subprocess.run(
+                    [sys.executable, str(VALIDATOR), str(handoff)],
+                    capture_output=True, text=True, check=False,
+                )
+                self.assertEqual(process.returncode, 1)
+                self.assertEqual(result["files_verified"], int(exists))
+                self.assertEqual(len(result["files_missing"]), int(not exists))
+                self.assertNotIn(token, json.dumps(result))
+                self.assertNotIn(token, process.stdout + process.stderr)
+
+    def test_password_assignment_file_reference_stays_redacted_when_repeated(self):
+        content = 'password="`private/' + SENTINEL + '.md`"\nAgain: `private/' + SENTINEL + '.md`'
+        existing, missing = validator.check_file_references(content, "/nonexistent")
+        self.assertEqual(existing, [])
+        self.assertEqual(len(missing), 1)
+        self.assertNotIn(SENTINEL, json.dumps(missing))
+        self.assertIn("Line 1", missing[0])
+
+    def test_redacted_reference_preserves_line_after_multiline_todo(self):
+        token = "ghp_" + "B" * 36
+        content = "[TODO: first\nsecond]\nCheck `private/" + token + ".md`"
+        _, missing = validator.check_file_references(content, "/nonexistent")
+        self.assertEqual(missing, ["Line 3: [REDACTED file reference]"])
+
 
 if __name__ == "__main__":
     unittest.main()
