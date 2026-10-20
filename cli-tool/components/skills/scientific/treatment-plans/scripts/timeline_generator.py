@@ -7,6 +7,9 @@ Generates visual treatment timelines from treatment plan files.
 import sys
 import re
 import argparse
+import os
+import tempfile
+from contextlib import contextmanager
 from pathlib import Path
 from datetime import datetime, timedelta
 from typing import List, Dict, Tuple
@@ -114,6 +117,19 @@ def parse_timeframe_to_days(timeframe: str) -> Tuple[int, int]:
     return (0, 7)
 
 
+@contextmanager
+def private_output(output_file: Path, binary: bool = False):
+    output_file = Path(output_file)
+    descriptor, temporary = tempfile.mkstemp(prefix='.timeline-', dir=output_file.parent)
+    try:
+        with os.fdopen(descriptor, 'wb' if binary else 'w') as stream:
+            yield stream
+        os.replace(temporary, output_file)
+    finally:
+        if os.path.exists(temporary):
+            os.unlink(temporary)
+
+
 def create_text_timeline(timeline_data: Dict, output_file: Path = None):
     """Create a text-based timeline representation."""
     
@@ -149,11 +165,9 @@ def create_text_timeline(timeline_data: Dict, output_file: Path = None):
     output_text = "\n".join(lines)
     
     if output_file:
-        with open(output_file, 'w') as f:
+        with private_output(output_file) as f:
             f.write(output_text)
-        print(f"\nText timeline saved to: {output_file}")
-    else:
-        print(output_text)
+        print("Text timeline saved to the requested file.")
     
     return output_text
 
@@ -257,11 +271,13 @@ def create_visual_timeline(timeline_data: Dict, output_file: Path, start_date: s
     plt.tight_layout()
     
     # Save
-    plt.savefig(output_file, dpi=300, bbox_inches='tight')
-    print(f"\nVisual timeline saved to: {output_file}")
-    
-    # Close plot
-    plt.close()
+    try:
+        with private_output(output_file, binary=True) as stream:
+            plt.savefig(stream, format=Path(output_file).suffix.lstrip('.') or 'png',
+                        dpi=300, bbox_inches='tight')
+        print('Visual timeline saved to the requested file.')
+    finally:
+        plt.close()
 
 
 def main():
