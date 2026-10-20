@@ -56,7 +56,10 @@ RECOMMENDED_SECTIONS = [
 
 def check_todos(content: str) -> tuple[bool, list[str]]:
     """Check for remaining TODO placeholders."""
-    todos = re.findall(r'\[TODO:[^\]]*\]', content)
+    todos = [
+        f"Line {content.count(chr(10), 0, match.start()) + 1}"
+        for match in re.finditer(r'\[TODO:[^\]]*\]', content)
+    ]
     return len(todos) == 0, todos
 
 
@@ -253,7 +256,7 @@ def print_report(result: dict):
     else:
         print(f"\n[FAIL] {result['todo_count']} TODO placeholders found:")
         for todo in result['remaining_todos']:
-            print(f"       - {todo[:50]}...")
+            print(f"       - {todo}")
 
     # Required sections
     if result['required_complete']:
