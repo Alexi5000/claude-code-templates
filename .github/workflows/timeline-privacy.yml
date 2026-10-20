@@ -1,0 +1,27 @@
+name: Treatment timeline privacy
+on:
+  pull_request:
+    paths:
+      - 'cli-tool/components/skills/scientific/treatment-plans/scripts/timeline_generator.py'
+      - 'cli-tool/tests/security/test_timeline_privacy.py'
+      - '.github/workflows/timeline-privacy.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'cli-tool/components/skills/scientific/treatment-plans/scripts/timeline_generator.py'
+      - 'cli-tool/tests/security/test_timeline_privacy.py'
+      - '.github/workflows/timeline-privacy.yml'
+permissions:
+  contents: read
+jobs:
+  timeline-privacy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: python -m pip install matplotlib==3.10.7
+      - run: python -m unittest discover -s cli-tool/tests/security -p test_timeline_privacy.py -v
+        env:
+          MPLBACKEND: Agg
