@@ -3,6 +3,10 @@ on:
   pull_request:
     paths:
       - 'cli-tool/src/command-stats.js'
+      - 'cli-tool/src/regular-file.js'
+      - 'cli-tool/src/analytics/data/DataCache.js'
+      - 'cli-tool/src/teams-dashboard.js'
+      - 'cli-tool/tests/security/descriptor-reads.test.cjs'
       - 'cli-tool/src/tracking-service.js'
       - 'docs/js/event-tracker.js'
       - 'cli-tool/tests/security/tracking-identifiers.test.cjs'
@@ -35,6 +39,10 @@ on:
     branches: [main]
     paths:
       - 'cli-tool/src/command-stats.js'
+      - 'cli-tool/src/regular-file.js'
+      - 'cli-tool/src/analytics/data/DataCache.js'
+      - 'cli-tool/src/teams-dashboard.js'
+      - 'cli-tool/tests/security/descriptor-reads.test.cjs'
       - 'cli-tool/src/tracking-service.js'
       - 'docs/js/event-tracker.js'
       - 'cli-tool/tests/security/tracking-identifiers.test.cjs'

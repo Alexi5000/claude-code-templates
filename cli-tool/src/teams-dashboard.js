@@ -5,6 +5,7 @@ const express = require('express');
 const open = require('open');
 const os = require('os');
 const readline = require('readline');
+const { withRegularFile } = require('./regular-file');
 
 class TeamsDashboard {
   constructor(options = {}) {
@@ -203,19 +204,14 @@ class TeamsDashboard {
 
   async readLastLine(filePath) {
     try {
-      const stats = await fs.stat(filePath);
-      const bufferSize = Math.min(8192, stats.size);
-      if (bufferSize === 0) return null;
-
-      const nativeFs = require('fs');
-      const fd = nativeFs.openSync(filePath, 'r');
-      const buffer = Buffer.alloc(bufferSize);
-      nativeFs.readSync(fd, buffer, 0, bufferSize, stats.size - bufferSize);
-      nativeFs.closeSync(fd);
-
-      const content = buffer.toString('utf8');
-      const lines = content.split('\n').filter(l => l.trim());
-      return lines.length > 0 ? lines[lines.length - 1].trim() : null;
+      return await withRegularFile(filePath, async (handle, stats) => {
+        const bufferSize = Math.min(8192, stats.size);
+        if (bufferSize === 0) return null;
+        const buffer = Buffer.alloc(bufferSize);
+        const { bytesRead } = await handle.read(buffer, 0, bufferSize, stats.size - bufferSize);
+        const lines = buffer.toString('utf8', 0, bytesRead).split('\n').filter(l => l.trim());
+        return lines.length > 0 ? lines[lines.length - 1].trim() : null;
+      });
     } catch (e) {
       return null;
     }
