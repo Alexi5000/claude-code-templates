@@ -56,7 +56,10 @@ RECOMMENDED_SECTIONS = [
 
 def check_todos(content: str) -> tuple[bool, list[str]]:
     """Check for remaining TODO placeholders."""
-    todos = re.findall(r'\[TODO:[^\]]*\]', content)
+    todos = [
+        f"Line {content.count(chr(10), 0, match.start()) + 1}"
+        for match in re.finditer(r'\[TODO:[^\]]*\]', content)
+    ]
     return len(todos) == 0, todos
 
 
@@ -105,6 +108,7 @@ def scan_for_secrets(content: str) -> list[tuple[str, str]]:
 
 def check_file_references(content: str, base_path: str) -> tuple[list[str], list[str]]:
     """Check if referenced files exist."""
+    content = re.sub(r'\[TODO:[^\]]*\]', '', content)
     # Extract file paths from content (look for common patterns)
     # Pattern 1: | path/to/file | in tables
     # Pattern 2: `path/to/file` in code
@@ -253,7 +257,7 @@ def print_report(result: dict):
     else:
         print(f"\n[FAIL] {result['todo_count']} TODO placeholders found:")
         for todo in result['remaining_todos']:
-            print(f"       - {todo[:50]}...")
+            print(f"       - {todo}")
 
     # Required sections
     if result['required_complete']:
