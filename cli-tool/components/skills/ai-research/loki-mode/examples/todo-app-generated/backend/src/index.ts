@@ -1,5 +1,6 @@
 import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
+import { rateLimit } from 'express-rate-limit';
 import { initializeDatabase, closeDatabase } from './db';
 import todosRouter from './routes/todos';
 
@@ -8,6 +9,13 @@ const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors());
+app.use('/api', rateLimit({
+  windowMs: 60_000,
+  limit: 100,
+  standardHeaders: 'draft-8',
+  legacyHeaders: false,
+  message: { success: false, error: 'Too many requests; retry shortly' },
+}));
 app.use(express.json());
 
 // Initialize database on startup
@@ -27,7 +35,7 @@ app.get('/health', (_req: Request, res: Response) => {
 });
 
 // Start server
-const server = app.listen(PORT, () => {
+export const server = app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 

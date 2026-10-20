@@ -1,0 +1,25 @@
+name: Todo example security
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'cli-tool/components/skills/ai-research/loki-mode/examples/todo-app-generated/backend/**'
+      - '.github/workflows/todo-example-security.yml'
+  pull_request:
+    paths:
+      - 'cli-tool/components/skills/ai-research/loki-mode/examples/todo-app-generated/backend/**'
+      - '.github/workflows/todo-example-security.yml'
+permissions:
+  contents: read
+jobs:
+  todo-security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '22'
+      - run: npm ci
+        working-directory: cli-tool/components/skills/ai-research/loki-mode/examples/todo-app-generated/backend
+      - run: npm test
+        working-directory: cli-tool/components/skills/ai-research/loki-mode/examples/todo-app-generated/backend
