@@ -125,6 +125,15 @@ class HandoffPrivacyTests(unittest.TestCase):
         _, missing = validator.check_file_references(content, "/nonexistent")
         self.assertEqual(missing, ["Line 3: [REDACTED file reference]"])
 
+    def test_private_key_assignment_reference_is_redacted(self):
+        for separator in ("", "\n"):
+            with self.subTest(separator=separator):
+                content = 'private_key=' + separator + '"`private/' + SENTINEL + '.md`"'
+                self.assertTrue(validator.scan_for_secrets(content))
+                _, missing = validator.check_file_references(content, "/nonexistent")
+                self.assertEqual(len(missing), 1)
+                self.assertNotIn(SENTINEL, json.dumps(missing))
+
 
 if __name__ == "__main__":
     unittest.main()

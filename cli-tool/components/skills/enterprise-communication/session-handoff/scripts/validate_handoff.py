@@ -120,11 +120,15 @@ def check_file_references(content: str, base_path: str) -> tuple[list[str], list
         r'(?:^|\s)([a-zA-Z0-9_\-./]+\.[a-zA-Z]+:\d+)',  # With line numbers
     ]
 
-    sensitive_spans = [
-        match.span()
-        for pattern, _ in SECRET_PATTERNS
-        for match in re.finditer(pattern, content, re.IGNORECASE)
-    ]
+    sensitive_spans = []
+    for pattern, description in SECRET_PATTERNS:
+        for match in re.finditer(pattern, content, re.IGNORECASE):
+            start, end = match.span()
+            if description == "Private key":
+                value = re.match(r"\s*(?:\"[^\"]*\"|'[^']*'|[^\s]+)", content[end:])
+                if value:
+                    end += value.end()
+            sensitive_spans.append((start, end))
     found_files = {}
     sensitive_files = set()
     for pattern in patterns:
