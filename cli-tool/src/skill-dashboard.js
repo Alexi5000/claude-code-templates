@@ -6,7 +6,7 @@ const open = require('open');
 const os = require('os');
 const yaml = require('js-yaml');
 const nativeFs = require('node:fs');
-const { requestBudget } = require('./sandbox-limits');
+const { dashboardRequestBudget } = require('./sandbox-limits');
 
 class SkillDashboard {
   constructor(options = {}) {
@@ -363,7 +363,7 @@ class SkillDashboard {
   }
 
   setupWebServer() {
-    this.app.use('/api', requestBudget(600));
+    this.app.use(dashboardRequestBudget(600));
     // Add CORS middleware
     this.app.use((req, res, next) => {
       res.header('Access-Control-Allow-Origin', '*');

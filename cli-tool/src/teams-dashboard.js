@@ -2,7 +2,7 @@ const chalk = require('chalk');
 const fs = require('fs-extra');
 const path = require('path');
 const express = require('express');
-const { requestBudget } = require('./sandbox-limits');
+const { dashboardRequestBudget } = require('./sandbox-limits');
 const open = require('open');
 const os = require('os');
 const readline = require('readline');
@@ -622,7 +622,7 @@ class TeamsDashboard {
   }
 
   setupWebServer() {
-    this.app.use('/api', requestBudget(600));
+    this.app.use(dashboardRequestBudget(600));
     this.app.use((req, res, next) => {
       res.header('Access-Control-Allow-Origin', '*');
       res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');

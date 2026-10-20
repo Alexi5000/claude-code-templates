@@ -78,4 +78,10 @@ function requestBudget(limit) {
     };
 }
 
-module.exports = { spawnBounded, outputBuffer, requestBudget, isBusy: () => children.size >= MAX_PROCESSES };
+function dashboardRequestBudget(limit) {
+    const api = requestBudget(limit);
+    const pages = requestBudget(limit);
+    return (req, res, next) => (/^\/api(?:\/|$)/i.test(req.path) ? api : pages)(req, res, next);
+}
+
+module.exports = { spawnBounded, outputBuffer, requestBudget, dashboardRequestBudget, isBusy: () => children.size >= MAX_PROCESSES };
