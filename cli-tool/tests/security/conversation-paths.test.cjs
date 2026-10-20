@@ -72,14 +72,15 @@ test('HTTP requests reject encoded traversal and preserve valid history', async 
   await new Promise(resolve => server.once('listening', resolve));
   t.after(() => new Promise(resolve => server.close(resolve)));
   const base = `http://127.0.0.1:${server.address().port}`;
-  const valid = await fetch(`${base}/api/conversation/session-1`);
+  const headers = { Authorization: `Bearer ${proxy.authToken}` };
+  const valid = await fetch(`${base}/api/conversation/session-1`, { headers });
   assert.equal(valid.status, 200);
   assert.equal((await valid.json()).conversation.length, 1);
-  const invalid = await fetch(`${base}/api/conversation/..%2Fprivate`);
+  const invalid = await fetch(`${base}/api/conversation/..%2Fprivate`, { headers });
   assert.equal(invalid.status, 400);
   assert.deepEqual(await invalid.json(), { error: 'Invalid conversation path' });
   const write = await fetch(`${base}/api/send-message`, {
-    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    method: 'POST', headers: { ...headers, 'Content-Type': 'application/json' },
     body: JSON.stringify({ sessionId: '../private', message: 'attack' }),
   });
   assert.equal(write.status, 400);
