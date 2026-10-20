@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - 'cli-tool/components/skills/scientific/pydicom/scripts/anonymize_dicom.py'
       - 'cli-tool/components/skills/scientific/perplexity-search/scripts/setup_env.py'
       - 'cli-tool/components/skills/scientific/citation-management/scripts/extract_metadata.py'
       - 'cli-tool/components/skills/scientific/biorxiv-database/scripts/biorxiv_search.py'
@@ -15,6 +16,7 @@ on:
       - '.github/workflows/security-hooks.yml'
   pull_request:
     paths:
+      - 'cli-tool/components/skills/scientific/pydicom/scripts/anonymize_dicom.py'
       - 'cli-tool/components/skills/scientific/perplexity-search/scripts/setup_env.py'
       - 'cli-tool/components/skills/scientific/citation-management/scripts/extract_metadata.py'
       - 'cli-tool/components/skills/scientific/biorxiv-database/scripts/biorxiv_search.py'
@@ -37,5 +39,5 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install requests==2.34.2
-      - run: python -m pip install PyYAML==6.0.3
+      - run: python -m pip install PyYAML==6.0.3 pydicom==3.0.2
       - run: python -m unittest discover -s cli-tool/tests/security -p 'test_*.py'

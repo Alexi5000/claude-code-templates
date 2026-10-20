@@ -59,10 +59,10 @@ def anonymize_dicom(input_path, output_path, patient_id='ANONYMOUS', patient_nam
             if hasattr(ds, tag):
                 if tag == 'PatientName':
                     ds.PatientName = patient_name
-                    anonymized.append(f"{tag}: replaced with '{patient_name}'")
+                    anonymized.append(f"{tag}: replaced")
                 elif tag == 'PatientID':
                     ds.PatientID = patient_id
-                    anonymized.append(f"{tag}: replaced with '{patient_id}'")
+                    anonymized.append(f"{tag}: replaced")
                 elif tag == 'PatientBirthDate':
                     ds.PatientBirthDate = '19000101'
                     anonymized.append(f"{tag}: replaced with '19000101'")
@@ -84,8 +84,8 @@ def anonymize_dicom(input_path, output_path, patient_id='ANONYMOUS', patient_nam
 
         return True, anonymized
 
-    except Exception as e:
-        return False, str(e)
+    except Exception:
+        return False, "Unable to process DICOM file; check its format and file access."
 
 
 def main():
@@ -114,16 +114,16 @@ Examples:
     # Validate input file exists
     input_path = Path(args.input)
     if not input_path.exists():
-        print(f"Error: Input file '{args.input}' not found")
+        print("Error: Input file not found")
         sys.exit(1)
 
     # Anonymize the file
-    print(f"Anonymizing: {args.input}")
+    print("Anonymizing input DICOM file")
     success, result = anonymize_dicom(args.input, args.output,
                                      args.patient_id, args.patient_name)
 
     if success:
-        print(f"✓ Successfully anonymized DICOM file: {args.output}")
+        print("✓ Successfully saved anonymized DICOM file")
         if args.verbose:
             print(f"\nAnonymized {len(result)} fields:")
             for item in result:
