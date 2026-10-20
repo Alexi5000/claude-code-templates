@@ -438,7 +438,7 @@ ClaudeAPIProxy.prototype.notifyClaudeProcess = async function() {
 // Try to use AppleScript to send input to Claude Code terminal
 ClaudeAPIProxy.prototype.tryAppleScriptNotification = function() {
   try {
-    const { exec } = require('child_process');
+    const { execFile } = require('child_process');
     
     // This AppleScript tries to find Terminal/iTerm with Claude Code and send a key
     const appleScript = `
@@ -484,7 +484,7 @@ ClaudeAPIProxy.prototype.tryAppleScriptNotification = function() {
       end tell
     `;
     
-    exec(`osascript -e '${appleScript.replace(/'/g, "\\'")}'`, (error) => {
+    execFile('osascript', ['-e', appleScript], { timeout: 5000, maxBuffer: 65536 }, (error) => {
       if (error) {
         console.log(chalk.gray('🔕 AppleScript notification failed'));
       } else {
