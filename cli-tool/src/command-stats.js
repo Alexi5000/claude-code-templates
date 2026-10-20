@@ -2,6 +2,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const chalk = require('chalk');
 const { spawn } = require('child_process');
+const { withRegularFile } = require('./regular-file');
 
 /**
  * Estimates token count for text content
@@ -60,8 +61,10 @@ async function analyzeCommands(targetDir = process.cwd()) {
     
     for (const file of markdownFiles) {
       const filePath = path.join(commandsDir, file);
-      const stats = await fs.stat(filePath);
-      const content = await fs.readFile(filePath, 'utf8');
+      const { stats, content } = await withRegularFile(filePath, async (handle, stats) => ({
+        stats,
+        content: await handle.readFile('utf8')
+      }));
       
       // Extract first line as title/description
       const lines = content.split('\n').filter(line => line.trim());

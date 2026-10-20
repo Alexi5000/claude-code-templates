@@ -1,5 +1,6 @@
 const fs = require('fs-extra');
 const chalk = require('chalk');
+const { withRegularFile } = require('../../regular-file');
 
 /**
  * DataCache - Multi-level caching system for analytics performance optimization
@@ -72,22 +73,24 @@ class DataCache {
     const cached = this.caches.fileContent.get(filepath);
     
     try {
-      const stats = await fs.stat(filepath);
+      return await withRegularFile(filepath, async (handle, stats) => {
       
-      // Check if cached content is still valid
-      if (cached && cached.timestamp >= stats.mtime.getTime()) {
-        this.metrics.hits++;
-        return cached.content;
-      }
+        // Check if cached content is still valid
+        if (cached && cached.stats.dev === stats.dev && cached.stats.ino === stats.ino &&
+            cached.stats.size === stats.size && cached.stats.mtimeMs === stats.mtimeMs &&
+            cached.stats.ctimeMs === stats.ctimeMs) {
+          this.metrics.hits++;
+          return cached.content;
+        }
       
-      // Cache miss - read file
-      this.metrics.misses++;
-      const content = await fs.readFile(filepath, 'utf8');
+        // Cache miss - read file
+        this.metrics.misses++;
+        const content = await handle.readFile('utf8');
       
-      this.caches.fileContent.set(filepath, {
-        content,
-        timestamp: stats.mtime.getTime(),
-        stats: stats
+        this.caches.fileContent.set(filepath, {
+          content,
+          timestamp: stats.mtime.getTime(),
+          stats: stats
       });
       
       // Also cache the file stats
@@ -97,6 +100,7 @@ class DataCache {
       });
       
       return content;
+      });
     } catch (error) {
       // File doesn't exist or can't be read
       this.invalidateFile(filepath);
