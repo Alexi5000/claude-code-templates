@@ -9,6 +9,7 @@ on:
       - 'docs/js/search-functionality.js'
       - 'docs/js/index-events.js'
       - 'scripts/test-component-card-dom.py'
+      - 'scripts/test-plugin-card-dom.py'
       - 'docs/js/modal-helpers.js'
       - 'scripts/test-component-modal-dom.py'
       - 'scripts/test-plugin-dom.py'
@@ -24,6 +25,7 @@ on:
       - 'docs/js/search-functionality.js'
       - 'docs/js/index-events.js'
       - 'scripts/test-component-card-dom.py'
+      - 'scripts/test-plugin-card-dom.py'
       - 'docs/js/modal-helpers.js'
       - 'scripts/test-component-modal-dom.py'
       - 'scripts/test-plugin-dom.py'
@@ -50,4 +52,5 @@ jobs:
       - run: python scripts/test-search-dom.py
       - run: python scripts/test-plugin-dom.py
       - run: python scripts/test-component-card-dom.py
+      - run: python scripts/test-plugin-card-dom.py
       - run: python scripts/test-component-modal-dom.py

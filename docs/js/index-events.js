@@ -593,26 +593,31 @@ class IndexPageManager {
         const card = document.createElement('div');
         card.className = 'template-card plugin-card';
 
-        // Count components
-        const totalComponents = (plugin.commands || 0) + (plugin.agents || 0) + (plugin.mcpServers || 0);
+        const count = value => Number.isSafeInteger(value) && value >= 0 ? value : 0;
+        const commands = count(plugin.commands);
+        const agents = count(plugin.agents);
+        const mcpServers = count(plugin.mcpServers);
+        const totalComponents = commands + agents + mcpServers;
+        const installCommand = String(plugin.installCommand ?? '');
+        const pluginName = String(plugin.name ?? '');
 
         card.innerHTML = `
             <div class="card-inner">
                 <div class="card-front">
                     <div class="plugin-content-wrapper">
-                        <div class="plugin-version">v${plugin.version}</div>
+                        <div class="plugin-version">v${escapeHTML(String(plugin.version ?? ''))}</div>
                         <div class="framework-logo" style="color: #a855f7">
                             <span class="component-icon">🧩</span>
                         </div>
-                        <h3 class="template-title">${escapeHTML(this.formatComponentName(plugin.name))}</h3>
+                        <h3 class="template-title">${escapeHTML(this.formatComponentName(pluginName))}</h3>
                         <p class="template-description">${escapeHTML(plugin.description)}</p>
                         <div class="plugin-stats">
-                            ${plugin.commands > 0 ? `<span class="plugin-stat"><span class="stat-icon">⚡</span>${plugin.commands}</span>` : ''}
-                            ${plugin.agents > 0 ? `<span class="plugin-stat"><span class="stat-icon">🤖</span>${plugin.agents}</span>` : ''}
-                            ${plugin.mcpServers > 0 ? `<span class="plugin-stat"><span class="stat-icon">🔌</span>${plugin.mcpServers}</span>` : ''}
+                            ${commands > 0 ? `<span class="plugin-stat"><span class="stat-icon">⚡</span>${commands}</span>` : ''}
+                            ${agents > 0 ? `<span class="plugin-stat"><span class="stat-icon">🤖</span>${agents}</span>` : ''}
+                            ${mcpServers > 0 ? `<span class="plugin-stat"><span class="stat-icon">🔌</span>${mcpServers}</span>` : ''}
                         </div>
                     </div>
-                    <button class="plugin-view-details-btn" onclick="window.location.href='/plugin/${plugin.name}'; event.stopPropagation();">
+                    <button class="plugin-view-details-btn">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
                         </svg>
@@ -623,8 +628,8 @@ class IndexPageManager {
                     <div class="command-display">
                         <h3>Installation Command</h3>
                         <div class="command-code-container">
-                            <div class="command-code">${plugin.installCommand}</div>
-                            <button class="copy-overlay-btn" onclick="copyToClipboard('${plugin.installCommand.replace(/'/g, "\\'")}'); event.stopPropagation();" title="Copy command">
+                            <div class="command-code">${escapeHTML(installCommand)}</div>
+                            <button class="copy-overlay-btn" title="Copy command">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
                                 </svg>
@@ -633,15 +638,23 @@ class IndexPageManager {
                         </div>
                         <div class="plugin-components-list">
                             <h4>Included Components (${totalComponents})</h4>
-                            ${plugin.commands > 0 ? `<div class="component-type-item">⚡ ${plugin.commands} Command${plugin.commands > 1 ? 's' : ''}</div>` : ''}
-                            ${plugin.agents > 0 ? `<div class="component-type-item">🤖 ${plugin.agents} Agent${plugin.agents > 1 ? 's' : ''}</div>` : ''}
-                            ${plugin.mcpServers > 0 ? `<div class="component-type-item">🔌 ${plugin.mcpServers} MCP${plugin.mcpServers > 1 ? 's' : ''}</div>` : ''}
+                            ${commands > 0 ? `<div class="component-type-item">⚡ ${commands} Command${commands > 1 ? 's' : ''}</div>` : ''}
+                            ${agents > 0 ? `<div class="component-type-item">🤖 ${agents} Agent${agents > 1 ? 's' : ''}</div>` : ''}
+                            ${mcpServers > 0 ? `<div class="component-type-item">🔌 ${mcpServers} MCP${mcpServers > 1 ? 's' : ''}</div>` : ''}
                         </div>
                     </div>
                 </div>
             </div>
         `;
 
+        card.querySelector('.copy-overlay-btn').addEventListener('click', event => {
+            event.stopPropagation();
+            copyToClipboard(installCommand);
+        });
+        card.querySelector('.plugin-view-details-btn').addEventListener('click', event => {
+            event.stopPropagation();
+            window.location.href = '/plugin/' + encodeURIComponent(pluginName);
+        });
         return card;
     }
 
