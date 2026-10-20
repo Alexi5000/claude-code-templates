@@ -5,6 +5,7 @@ const os = require('os');
 const { v4: uuidv4 } = require('uuid');
 const chalk = require('chalk');
 const nativeFs = require('node:fs');
+const { randomBytes, timingSafeEqual } = require('node:crypto');
 
 function invalidConversation() {
   const error = new Error('Invalid conversation path');
@@ -13,9 +14,11 @@ function invalidConversation() {
 }
 
 class ClaudeAPIProxy {
-  constructor() {
+  constructor(options = {}) {
     this.app = express();
-    this.port = 3335;
+    this.port = options.port ?? 3335;
+    this.authToken = options.authToken || process.env.CLAUDE_API_PROXY_TOKEN || randomBytes(32).toString('hex');
+    this.allowedOrigins = new Set(options.allowedOrigins || []);
     this.claudeDir = path.join(os.homedir(), '.claude');
     
     // Store active sessions and conversation contexts
@@ -27,17 +30,27 @@ class ClaudeAPIProxy {
   }
   
   setupMiddleware() {
-    this.app.use(express.json());
     this.app.use((req, res, next) => {
-      res.header('Access-Control-Allow-Origin', '*');
-      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-      if (req.method === 'OPTIONS') {
-        res.sendStatus(200);
-      } else {
-        next();
+      const port = req.socket.localPort;
+      const hosts = new Set([`127.0.0.1:${port}`, `localhost:${port}`, `[::1]:${port}`]);
+      if (!hosts.has(req.get('host'))) return res.status(403).json({ error: 'Untrusted host' });
+      const origin = req.get('origin');
+      if (origin && !this.allowedOrigins.has(origin)) return res.status(403).json({ error: 'Untrusted origin' });
+      if (origin) {
+        res.set('Access-Control-Allow-Origin', origin);
+        res.vary('Origin');
+        res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+        res.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
       }
+      if (req.method === 'OPTIONS') return res.sendStatus(204);
+      const supplied = Buffer.from(req.get('authorization') || '');
+      const expected = Buffer.from(`Bearer ${this.authToken}`);
+      if (supplied.length !== expected.length || !timingSafeEqual(supplied, expected)) {
+        return res.status(401).json({ error: 'Unauthorized' });
+      }
+      next();
     });
+    this.app.use(express.json({ limit: '64kb' }));
   }
   
   setupRoutes() {
@@ -363,12 +376,13 @@ class ClaudeAPIProxy {
   }
   
   start() {
-    return new Promise((resolve) => {
-      this.server = this.app.listen(this.port, () => {
+    return new Promise((resolve, reject) => {
+      this.server = this.app.listen(this.port, '127.0.0.1', () => {
         console.log(chalk.green(`🌉 Claude API Proxy running on http://localhost:${this.port}`));
         console.log(chalk.blue(`📡 Ready to intercept and send messages to Claude Code`));
         resolve();
       });
+      this.server.once('error', reject);
     });
   }
   
