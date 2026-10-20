@@ -64,6 +64,23 @@ class HandoffPrivacyTests(unittest.TestCase):
         self.assertEqual(result["remaining_todos"], [])
         self.assertIn("READY for handoff", process.stdout)
 
+    def test_path_shaped_private_todo_is_not_echoed_as_missing_file(self):
+        result, process = self.run_validator(f"[TODO: `private/{SENTINEL}.md`]\n" + COMPLETE)
+        self.assertTrue(SENTINEL not in process.stdout + process.stderr)
+        self.assertTrue(SENTINEL not in json.dumps(result))
+        self.assertEqual(result["files_missing"], [])
+
+    def test_ordinary_file_references_are_still_checked(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "docs").mkdir()
+            (root / "docs/ready.md").write_text("Ready")
+            existing, missing = validator.check_file_references(
+                "`docs/ready.md` and `docs/missing.md`", directory
+            )
+        self.assertEqual(existing, ["docs/ready.md"])
+        self.assertEqual(missing, ["docs/missing.md"])
+
 
 if __name__ == "__main__":
     unittest.main()

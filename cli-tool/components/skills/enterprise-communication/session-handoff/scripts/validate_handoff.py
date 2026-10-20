@@ -108,6 +108,7 @@ def scan_for_secrets(content: str) -> list[tuple[str, str]]:
 
 def check_file_references(content: str, base_path: str) -> tuple[list[str], list[str]]:
     """Check if referenced files exist."""
+    content = re.sub(r'\[TODO:[^\]]*\]', '', content)
     # Extract file paths from content (look for common patterns)
     # Pattern 1: | path/to/file | in tables
     # Pattern 2: `path/to/file` in code
