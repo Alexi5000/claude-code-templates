@@ -11,6 +11,8 @@
 
 The local sandbox execution server binds to IPv4 loopback and accepts browser requests only from its own origin. Open it through its localhost URL; reverse-proxy and cross-origin access are intentionally rejected. Local execution requires the native `claude` executable on PATH, including on Windows. Prompt text is passed as a literal argument, never through a shell. Agent installation accepts catalog-style identifiers only. This is a local operator tool, not an authenticated multi-user service; other processes running locally remain trusted.
 
+Analytics, mobile chats, teams, and plugin dashboards accept up to 600 API requests per minute per running server, shared across clients. Excess API requests return HTTP 429 with a `Retry-After` header before data loading or request-body parsing. Dashboard pages and static assets remain available. Mobile conversation-search logs contain aggregate match counts without copying search terms or conversation identifiers.
+
 ## 🚀 Quick Start
 
 ```bash
