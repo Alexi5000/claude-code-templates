@@ -109,8 +109,7 @@ MIT — see [LICENSE](LICENSE).
 
 - **🌐 Browse**: [aitmpl.com](https://www.aitmpl.com)
 - **📚 Documentation**: [docs.aitmpl.com](https://docs.aitmpl.com)
-- **💬 Community**: [GitHub Discussions](https://github.com/Alexi5000/claude-code-templates/discussions)
-- **🐛 Issues**: [GitHub Issues](https://github.com/Alexi5000/claude-code-templates/issues)
+- **🐛 Fork support and issues**: [GitHub Issues](https://github.com/Alexi5000/claude-code-templates/issues)
 
 ## Stargazers over time
 
