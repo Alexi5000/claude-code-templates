@@ -2,6 +2,7 @@ const chalk = require('chalk');
 const fs = require('fs-extra');
 const path = require('path');
 const express = require('express');
+const { requestBudget } = require('./sandbox-limits');
 const open = require('open');
 const os = require('os');
 
@@ -537,6 +538,7 @@ class PluginDashboard {
   }
 
   setupWebServer() {
+    this.app.use('/api', requestBudget(600));
     // Add CORS middleware
     this.app.use((req, res, next) => {
       res.header('Access-Control-Allow-Origin', '*');

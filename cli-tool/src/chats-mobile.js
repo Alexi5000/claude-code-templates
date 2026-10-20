@@ -2,6 +2,7 @@ const chalk = require('chalk');
 const fs = require('fs-extra');
 const path = require('path');
 const express = require('express');
+const { requestBudget } = require('./sandbox-limits');
 const open = require('open');
 const os = require('os');
 const { spawn } = require('child_process');
@@ -103,6 +104,7 @@ class ChatsMobile {
    * Setup Express middleware
    */
   setupMiddleware() {
+    this.app.use('/api', requestBudget(600));
     this.app.use(express.json());
     
     // Serve static files from analytics-web directory (for services, components, etc.)
@@ -398,8 +400,7 @@ class ChatsMobile {
           }
         });
 
-        console.log(`🔍 Search in conversation ${conversationId}:`, {
-          query: query,
+        console.log('Conversation search completed:', {
           messagesWithMatches: matches.length,
           totalOccurrences: matches.reduce((sum, m) => sum + m.matchCount, 0)
         });
