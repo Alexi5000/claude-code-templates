@@ -59,5 +59,13 @@ window.context = {formatComponentName: value => value};
     }''')
     assert page.locator('.plugin-components-list h4').text_content() == 'Included Components (0)'
     assert page.locator('main img, main [onerror]').count() == 0
+    for name in ['', '.', '..', '\ud800']:
+        page.evaluate('''name => {
+            document.querySelector('main').replaceChildren(createPluginCard.call({formatComponentName: s => s}, {
+                name, description: 'invalid name', installCommand: '/plugin install safe'
+            }));
+        }''', name)
+        assert page.locator('.plugin-view-details-btn').is_disabled()
+    assert not errors, errors
     browser.close()
 print('PASS: plugin card browser clicks preserve literal copy values, encoded local navigation, component counts and inert hostile fields')

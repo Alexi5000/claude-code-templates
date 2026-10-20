@@ -600,6 +600,12 @@ class IndexPageManager {
         const totalComponents = commands + agents + mcpServers;
         const installCommand = String(plugin.installCommand ?? '');
         const pluginName = String(plugin.name ?? '');
+        let pluginPath = null;
+        if (pluginName && pluginName !== '.' && pluginName !== '..') {
+            try {
+                pluginPath = '/plugin/' + encodeURIComponent(pluginName);
+            } catch {}
+        }
 
         card.innerHTML = `
             <div class="card-inner">
@@ -651,9 +657,11 @@ class IndexPageManager {
             event.stopPropagation();
             copyToClipboard(installCommand);
         });
-        card.querySelector('.plugin-view-details-btn').addEventListener('click', event => {
+        const detailsButton = card.querySelector('.plugin-view-details-btn');
+        detailsButton.disabled = pluginPath === null;
+        detailsButton.addEventListener('click', event => {
             event.stopPropagation();
-            window.location.href = '/plugin/' + encodeURIComponent(pluginName);
+            if (pluginPath !== null) window.location.href = pluginPath;
         });
         return card;
     }
