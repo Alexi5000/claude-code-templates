@@ -6,9 +6,10 @@ const { ClaudeAnalytics } = require('../../src/analytics');
 const { ChatsMobile } = require('../../src/chats-mobile');
 const { TeamsDashboard } = require('../../src/teams-dashboard');
 const { PluginDashboard } = require('../../src/plugin-dashboard');
+const { SkillDashboard } = require('../../src/skill-dashboard');
 
 function dashboard(kind, recordWork) {
-  const classes = { analytics: ClaudeAnalytics, mobile: ChatsMobile, teams: TeamsDashboard, plugins: PluginDashboard };
+  const classes = { analytics: ClaudeAnalytics, mobile: ChatsMobile, teams: TeamsDashboard, plugins: PluginDashboard, skills: SkillDashboard };
   const app = Object.create(classes[kind].prototype);
   app.app = express();
   app.data = { conversations: [{ id: 'test-session', filePath: 'fixture.jsonl' }] };
@@ -99,3 +100,43 @@ test('mobile search logs only aggregate metadata while preserving search results
   assert.equal(JSON.stringify(logs).includes(query), false);
   assert.equal(JSON.stringify(logs).includes(id), false);
 });
+
+for (const [kind, routes] of Object.entries({
+  analytics: ['/', '/2025'], mobile: ['/', '/other-page'],
+  teams: ['/'], plugins: ['/'], skills: ['/'],
+})) {
+  test(`${kind} bounds page handlers independently of API requests`, async t => {
+    let now = 100000;
+    t.mock.method(Date, 'now', () => now);
+    const instance = dashboard(kind, () => {});
+    let entered = 0;
+    for (const route of routes) {
+      const layer = instance.app._router.stack.find(layer => layer.route?.path === (route === '/other-page' ? '*' : route));
+      assert.ok(layer);
+      const handler = layer.route.stack[0];
+      const original = handler.handle;
+      handler.handle = (...args) => { entered++; return original(...args); };
+    }
+    const base = await serve(t, instance.app);
+    for (let i = 0; i < 600; i++) {
+      const response = await fetch(base + '/page-budget-miss', { redirect: 'manual' });
+      assert.ok(response.status !== 429);
+      await response.text();
+    }
+    const before = entered;
+    for (const route of routes) {
+      const response = await fetch(base + route, { headers: { 'X-Forwarded-For': '203.0.113.9' }, redirect: 'manual' });
+      assert.equal(response.status, 429);
+      assert.equal(response.headers.get('retry-after'), '60');
+      await response.json();
+    }
+    assert.equal(entered, before);
+    const api = await fetch(base + '/api/absent-budget-test');
+    assert.equal(api.status, 404);
+    await api.text();
+    now += 60000;
+    const recovered = await fetch(base + '/', { redirect: 'manual' });
+    assert.equal(recovered.status, 200);
+    await recovered.text();
+  });
+}
