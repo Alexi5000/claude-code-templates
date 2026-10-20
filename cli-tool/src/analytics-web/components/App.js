@@ -91,7 +91,7 @@ class App {
     }
     
     // Initialize pages
-    this.components.pages = {};
+    this.components.pages = Object.create(null);
     
     // Don't load any page yet - wait for routing to determine the correct page
   }
@@ -146,6 +146,10 @@ class App {
    * @param {string} page - Page to navigate to
    */
   async navigateToPage(page) {
+    if (page !== 'dashboard' && page !== 'agents') {
+      this.showError('Unknown page');
+      return;
+    }
     if (page === this.currentPage && this.currentPage !== null) return;
     
     try {
@@ -181,6 +185,7 @@ class App {
    * @param {string} page - Page to load
    */
   async loadPage(page) {
+    if (page !== 'dashboard' && page !== 'agents') throw new Error('Unknown page');
     const contentContainer = this.container.querySelector('#app-content');
     
     if (!contentContainer) {
@@ -214,6 +219,7 @@ class App {
    * @param {HTMLElement} container - Container element
    */
   async createPageComponent(page, container) {
+    if (page !== 'dashboard' && page !== 'agents') throw new Error('Unknown page');
     // Cleanup existing page component if it exists
     if (this.components.pages[page] && this.components.pages[page].destroy) {
       this.components.pages[page].destroy();
@@ -253,13 +259,14 @@ class App {
    * @param {string} page - Page to show
    */
   async showPage(page) {
+    if (page !== 'dashboard' && page !== 'agents') throw new Error('Unknown page');
     // This method is now mainly for compatibility
     // The actual work is done in loadPage
     if (this.components.pages[page] && this.components.pages[page].onActivate) {
       try {
         await this.components.pages[page].onActivate();
       } catch (error) {
-        console.warn(`Warning: onActivate failed for ${page}:`, error);
+        console.warn('Warning: onActivate failed for page:', page, error);
       }
     }
   }

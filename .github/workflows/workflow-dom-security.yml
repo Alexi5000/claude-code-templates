@@ -8,6 +8,8 @@ on:
       - 'docs/js/plugin-page.js'
       - 'docs/js/search-functionality.js'
       - 'docs/js/index-events.js'
+      - 'cli-tool/src/analytics-web/components/App.js'
+      - 'scripts/test-analytics-routing.py'
       - 'scripts/test-component-card-dom.py'
       - 'scripts/test-plugin-card-dom.py'
       - 'docs/js/modal-helpers.js'
@@ -24,6 +26,8 @@ on:
       - 'docs/js/plugin-page.js'
       - 'docs/js/search-functionality.js'
       - 'docs/js/index-events.js'
+      - 'cli-tool/src/analytics-web/components/App.js'
+      - 'scripts/test-analytics-routing.py'
       - 'scripts/test-component-card-dom.py'
       - 'scripts/test-plugin-card-dom.py'
       - 'docs/js/modal-helpers.js'
@@ -52,5 +56,6 @@ jobs:
       - run: python scripts/test-search-dom.py
       - run: python scripts/test-plugin-dom.py
       - run: python scripts/test-component-card-dom.py
+      - run: python scripts/test-analytics-routing.py
       - run: python scripts/test-plugin-card-dom.py
       - run: python scripts/test-component-modal-dom.py
