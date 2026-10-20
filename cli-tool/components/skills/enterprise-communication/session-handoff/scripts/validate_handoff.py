@@ -108,7 +108,7 @@ def scan_for_secrets(content: str) -> list[tuple[str, str]]:
 
 def check_file_references(content: str, base_path: str) -> tuple[list[str], list[str]]:
     """Check if referenced files exist."""
-    content = re.sub(r'\[TODO:[^\]]*\]', '', content)
+    content = re.sub(r'\[TODO:[^\]]*\]', lambda match: '\n' * match.group().count('\n'), content)
     # Extract file paths from content (look for common patterns)
     # Pattern 1: | path/to/file | in tables
     # Pattern 2: `path/to/file` in code
@@ -120,25 +120,37 @@ def check_file_references(content: str, base_path: str) -> tuple[list[str], list
         r'(?:^|\s)([a-zA-Z0-9_\-./]+\.[a-zA-Z]+:\d+)',  # With line numbers
     ]
 
-    found_files = set()
+    sensitive_spans = []
+    for pattern, description in SECRET_PATTERNS:
+        for match in re.finditer(pattern, content, re.IGNORECASE):
+            start, end = match.span()
+            if description == "Private key":
+                value = re.match(r"\s*(?:\"[^\"]*\"|'[^']*'|[^\s]+)", content[end:])
+                if value:
+                    end += value.end()
+            sensitive_spans.append((start, end))
+    found_files = {}
+    sensitive_files = set()
     for pattern in patterns:
-        matches = re.findall(pattern, content)
-        for match in matches:
-            # Remove line numbers
-            filepath = match.split(':')[0]
-            # Skip obvious non-files
+        for match in re.finditer(pattern, content):
+            filepath = match.group(1).split(':')[0]
             if filepath and not filepath.startswith('http') and '/' in filepath:
-                found_files.add(filepath)
+                line = content.count('\n', 0, match.start(1)) + 1
+                found_files.setdefault(filepath, line)
+                start, end = match.span(1)
+                if any(start < secret_end and end > secret_start for secret_start, secret_end in sensitive_spans):
+                    sensitive_files.add(filepath)
 
     existing = []
     missing = []
 
-    for filepath in found_files:
+    for filepath, line in found_files.items():
         full_path = Path(base_path) / filepath
+        label = f"Line {line}: [REDACTED file reference]" if filepath in sensitive_files else filepath
         if full_path.exists():
-            existing.append(filepath)
+            existing.append(label)
         else:
-            missing.append(filepath)
+            missing.append(label)
 
     return existing, missing
 
