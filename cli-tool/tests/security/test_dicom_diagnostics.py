@@ -1,4 +1,7 @@
 import importlib.util
+import io
+import logging
+import warnings
 from pathlib import Path
 import subprocess
 import sys
@@ -89,6 +92,35 @@ class DicomDiagnosticsTests(unittest.TestCase):
             self.assertEqual(result.returncode, 1)
             self.assert_private(result.stdout + result.stderr)
             self.assertFalse(destination.exists())
+
+    def test_library_warnings_do_not_echo_malformed_patient_metadata(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source, destination = Path(directory) / "in.dcm", Path(directory) / "out.dcm"
+            self.make_dicom(source)
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore")
+                dataset = pydicom.dcmread(source)
+                dataset.SpecificCharacterSet = SENTINEL
+                dataset.save_as(source)
+            result = self.run_cli(source, destination, "--verbose")
+            self.assertEqual(result.returncode, 0)
+            self.assert_private(result.stdout + result.stderr)
+            self.assertIn("DICOM processing warnings:", result.stdout)
+            logs = io.StringIO()
+            handler = logging.StreamHandler(logs)
+            pydicom.config.logger.addHandler(handler)
+            original_filters = list(pydicom.config.logger.filters)
+            try:
+                with warnings.catch_warnings(record=True) as leaked:
+                    warnings.simplefilter("always")
+                    success, details = MODULE.anonymize_dicom(source, destination)
+                self.assertTrue(success)
+                self.assertEqual(leaked, [])
+                self.assert_private(str(details) + logs.getvalue())
+                self.assertIn("details withheld", logs.getvalue())
+                self.assertEqual(pydicom.config.logger.filters, original_filters)
+            finally:
+                pydicom.config.logger.removeHandler(handler)
 
     def test_invalid_dicom_fails_with_safe_status(self):
         with tempfile.TemporaryDirectory() as directory:

@@ -8,6 +8,8 @@ Usage:
 """
 
 import argparse
+import logging
+import warnings
 import sys
 from pathlib import Path
 
@@ -37,7 +39,31 @@ PHI_TAGS = [
 ]
 
 
+class _PrivateDicomLogFilter(logging.Filter):
+    def filter(self, record):
+        record.msg = "DICOM library diagnostic; details withheld to protect patient data."
+        record.args = ()
+        record.exc_info = None
+        record.exc_text = None
+        record.stack_info = None
+        return True
+
+
 def anonymize_dicom(input_path, output_path, patient_id='ANONYMOUS', patient_name='ANONYMOUS'):
+    diagnostic_filter = _PrivateDicomLogFilter()
+    pydicom.config.logger.addFilter(diagnostic_filter)
+    try:
+        with warnings.catch_warnings(record=True) as captured:
+            warnings.simplefilter("always")
+            success, result = _anonymize_dicom(input_path, output_path, patient_id, patient_name)
+        if success and captured:
+            result.append(f"DICOM processing warnings: {len(captured)} (details withheld)")
+        return success, result
+    finally:
+        pydicom.config.logger.removeFilter(diagnostic_filter)
+
+
+def _anonymize_dicom(input_path, output_path, patient_id='ANONYMOUS', patient_name='ANONYMOUS'):
     """
     Anonymize a DICOM file by removing or replacing PHI.
 
