@@ -4,7 +4,7 @@
 This repo (`Alexi5000/claude-code-templates`) is a friendly fork of
 `davila7/claude-code-templates`. Upstream is the community catalog, moving
 fast on breadth (hundreds of contributors and bot-assisted catalog updates);
-this fork is TechTide's hardened, lead-generating distribution — same
+this fork is TechTide's hardened, lead-generating distribution: same
 catalog, stricter security posture, owned deployment story.
 
 ## Evidence of divergence (measured 2026-09-18)
@@ -13,13 +13,19 @@ catalog, stricter security posture, owned deployment story.
 - Our 36 ahead = 5 security-hardening commits (Sep 2026, Plan 1) + 31 daily
   catalog-sync bot commits
 - Upstream activity since our last sync (2026-06-22): ~400 commits from
-  50+ authors (Daniel Avila, community contributors, Claude, bots) — mostly
+  50+ authors (Daniel Avila, community contributors, Claude, bots), mostly
   catalog breadth (new skills, commands, plugins), not hardening
 - TechTide-only branches: `origin/techtide/build-out` (+ ~25 upstream
   `claude/*` experiment branches inherited at fork time)
 - Key differentiators: CRON-secret cron auth, per-IP telemetry throttling,
   first-party-scoped CORS, enforced Discord signatures, redacted webhook
   logs (commits `d30ab60b..164b138c`, pushed to `origin/main` 2026-09-18)
+
+## Evidence of divergence (re-measured 2026-10-21)
+- `gh api repos/Alexi5000/claude-code-templates/compare/davila7:main...Alexi5000:main`: 130 ahead, 654 behind, status diverged
+- The same compare response lists 177 changed files, 23,905 insertions, 16,631 deletions (the `--depth=200` clone has no merge base, so `git diff --stat upstream/main...origin/main` cannot be run locally)
+- The 130 fork-only commits: 58 `github-actions[bot]` catalog-sync commits (2026-05-22 to 2026-10-21), 28 security and documentation commits on 2026-09-17/18, and 44 merged pull requests #1 to #44 (2026-10-18 to 2026-10-20)
+- The `techtide/build-out` branch and inherited `claude/*` branches listed above no longer exist on `origin`; the only non-default branch on 2026-10-20 was `docs/verified-maintenance-20261020`, already merged as PR #44
 
 ## Upstream policy
 - `upstream` remote is fetch-only; CI never pushes there.

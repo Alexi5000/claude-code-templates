@@ -32,7 +32,7 @@
    upstream name without a scope/name decision.
 5. TODO (maintainer, Cloudflare account access): add `CLOUDFLARE_API_TOKEN`
    + `CLOUDFLARE_ACCOUNT_ID` repo secrets. First post-reenable Deploy run
-   (2026-09-18) passed Test + Build and failed only on the missing token —
+   (2026-09-18) passed Test + Build and failed only on the missing token;
    the pipeline itself is proven working.
 
 ## Decision
