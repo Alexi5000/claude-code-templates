@@ -299,3 +299,7 @@ For issues and questions:
 ---
 
 Built with ❤️ using Cloudflare Workers, Claude AI, and the Sandbox SDK
+
+## Downloaded output boundaries
+
+Worker-returned files must use relative forward-slash paths beneath the selected output directory. Parent traversal, absolute paths, symlink subdirectories/files, hardlinked files and special files are rejected before overwrite. Ordinary nested files and regular-file updates are supported. The selected output root is operator-controlled; this does not promise isolation from a hostile local process concurrently replacing ancestor directories.
