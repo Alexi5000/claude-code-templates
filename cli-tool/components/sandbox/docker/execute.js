@@ -36,12 +36,19 @@ async function installComponents() {
   console.log('📦 Installing components...');
   console.log(`   Components: ${componentsToInstall}\n`);
 
-  return new Promise((resolve) => {
-    const installCmd = `npx claude-code-templates@latest ${componentsToInstall} --yes`;
+  const componentArgs = componentsToInstall.trim().split(/\s+/);
+  const flags = new Set(['--agent', '--command', '--mcp', '--setting', '--hook']);
+  if (componentArgs.length % 2 !== 0) return false;
+  for (let i = 0; i < componentArgs.length; i += 2) {
+    if (!flags.has(componentArgs[i]) || !/^[a-zA-Z0-9][a-zA-Z0-9._/-]*$/.test(componentArgs[i + 1]) ||
+        componentArgs[i + 1].split('/').some(part => !part || part === '.' || part === '..')) return false;
+  }
 
-    const child = spawn('sh', ['-c', installCmd], {
+  return new Promise((resolve) => {
+    const child = spawn('npx', ['claude-code-templates@latest', ...componentArgs, '--yes'], {
       stdio: 'inherit',
-      env: process.env
+      env: process.env,
+      shell: false
     });
 
     child.on('close', (code) => {
