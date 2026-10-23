@@ -490,7 +490,7 @@ class ChatsMobile {
           return res.status(404).json({ error: 'Conversation not found' });
         }
 
-        console.log(chalk.cyan(`📥 Exporting conversation ${conversationId} as markdown...`));
+        console.log(chalk.cyan(require('node:util').format('%s', `📥 Exporting conversation ${conversationId} as markdown...`).replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/[\x00-\x1f\x7f\x85\u2028\u2029]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'))));
 
         // Export the session as markdown using SessionSharing module
         const exportResult = await this.sessionSharing.exportSessionAsMarkdown(conversationId, conversation);
@@ -524,7 +524,7 @@ class ChatsMobile {
           return res.status(404).json({ error: 'Conversation not found' });
         }
 
-        console.log(chalk.cyan(`📊 Fetching analytics for conversation ${conversationId}...`));
+        console.log(chalk.cyan(require('node:util').format('%s', `📊 Fetching analytics for conversation ${conversationId}...`).replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/[\x00-\x1f\x7f\x85\u2028\u2029]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'))));
 
         // Get parsed messages for this conversation
         const messages = await this.conversationAnalyzer.getParsedConversation(conversation.filePath);

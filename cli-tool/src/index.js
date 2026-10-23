@@ -2475,10 +2475,10 @@ async function handlePromptExecution(prompt, targetDir) {
     const open = require('open');
     
     // First try to execute claude command directly
-    const claudeProcess = spawn('claude', [prompt], {
+    const claudeProcess = spawn('claude', ['--', prompt], {
       cwd: targetDir,
       stdio: ['inherit', 'inherit', 'inherit'],
-      shell: true
+      shell: false
     });
     
     claudeProcess.on('error', async (error) => {

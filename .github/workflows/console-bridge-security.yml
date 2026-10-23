@@ -2,6 +2,10 @@ name: Console bridge security
 on:
   pull_request:
     paths:
+      - 'cli-tool/src/index.js'
+      - 'cli-tool/components/sandbox/docker/execute.js'
+      - 'cli-tool/tests/security/remaining-command-boundaries.test.cjs'
+      - 'cli-tool/tests/security/log-value-boundaries.test.cjs'
       - 'cli-tool/src/command-stats.js'
       - 'cli-tool/src/regular-file.js'
       - 'cli-tool/src/analytics/data/DataCache.js'
@@ -42,6 +46,10 @@ on:
   push:
     branches: [main]
     paths:
+      - 'cli-tool/src/index.js'
+      - 'cli-tool/components/sandbox/docker/execute.js'
+      - 'cli-tool/tests/security/remaining-command-boundaries.test.cjs'
+      - 'cli-tool/tests/security/log-value-boundaries.test.cjs'
       - 'cli-tool/src/command-stats.js'
       - 'cli-tool/src/regular-file.js'
       - 'cli-tool/src/analytics/data/DataCache.js'
