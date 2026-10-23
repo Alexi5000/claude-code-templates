@@ -18,6 +18,7 @@ test('console bridge escapes diagnostics while preserving authorized terminal in
     assert.deepEqual(writes, [hostile + '\n']);
     const record = records.find(x => x.includes('Text input'));
     assert.ok(record.includes('FORGED'));
+    assert.ok(JSON.parse(record).includes(hostile));
     assert.ok(record.includes('\\r\\n'));
     assert.doesNotMatch(record, /[\r\n\x00\x1b\u2028\u2029]/);
 });
@@ -32,5 +33,6 @@ test('session export keeps markdown content and escapes only diagnostic session 
     assert.equal(result.success, true);
     const record = records.find(x => x.includes('Preparing session'));
     assert.ok(record.includes('FORGED'));
+    assert.ok(JSON.parse(record).includes(hostile));
     assert.doesNotMatch(record, /[\r\n\x00\x1b\u2028\u2029]/);
 });

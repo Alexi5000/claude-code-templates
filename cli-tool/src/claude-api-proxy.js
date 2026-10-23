@@ -78,7 +78,7 @@ class ClaudeAPIProxy {
         res.json(result);
         
       } catch (error) {
-        console.error('Error sending message:', require('node:util').format('%s', error).replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/[\x00-\x1f\x7f\x85\u2028\u2029]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0')));
+        console.error('Error sending message:', JSON.stringify(require('node:util').format('%s', error)).replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/[\x00-\x1f\x7f\x85\u2028\u2029]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0')));
         res.status(error.status || 500).json({ error: error.status === 400 ? error.message : 'Unable to send message' });
       }
     });
@@ -90,7 +90,7 @@ class ClaudeAPIProxy {
         const conversation = await this.getConversationHistory(sessionId);
         res.json({ conversation });
       } catch (error) {
-        console.error('Error getting conversation:', require('node:util').format('%s', error).replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/[\x00-\x1f\x7f\x85\u2028\u2029]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0')));
+        console.error('Error getting conversation:', JSON.stringify(require('node:util').format('%s', error)).replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/[\x00-\x1f\x7f\x85\u2028\u2029]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0')));
         res.status(error.status || 500).json({ error: error.status === 400 ? error.message : 'Unable to read conversation' });
       }
     });
@@ -190,7 +190,7 @@ class ClaudeAPIProxy {
   }
   
   async sendMessageToClaude(sessionId, messageContent, projectPath) {
-    console.log(chalk.blue(require('node:util').format('%s', `📤 Sending message to session ${sessionId}`).replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/[\x00-\x1f\x7f\x85\u2028\u2029]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'))));
+    console.log(chalk.blue(JSON.stringify(require('node:util').format('%s', `📤 Sending message to session ${sessionId}`)).replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/[\x00-\x1f\x7f\x85\u2028\u2029]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'))));
     
     // Find the conversation file
     const conversationFile = await this.findConversationFile(sessionId, projectPath);
