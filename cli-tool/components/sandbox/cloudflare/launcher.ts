@@ -8,6 +8,7 @@ import { query, ClaudeAgentOptions } from '@anthropic-ai/claude-agent-sdk';
 import fetch from 'node-fetch';
 import * as fs from 'fs';
 import * as path from 'path';
+import { writeSandboxFile, validateComponentName } from './safe-output.cjs';
 
 interface ExecutionResult {
   success: boolean;
@@ -133,16 +134,7 @@ function saveFilesToDirectory(files: { path: string; content: string }[], baseDi
   }
 
   files.forEach(file => {
-    const fullPath = path.join(baseDir, file.path);
-    const dir = path.dirname(fullPath);
-
-    // Create directory if needed
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
-
-    // Write file
-    fs.writeFileSync(fullPath, file.content, 'utf-8');
+    writeSandboxFile(baseDir, file.path, file.content);
     log(`✓ ${file.path}`, 'success');
   });
 
@@ -324,6 +316,7 @@ async function installAgents(agents: string[]): Promise<void> {
       log(`Downloading agent: ${agent}...`);
 
       // Construct the GitHub URL for the agent
+      validateComponentName(agent);
       const agentUrl = `${GITHUB_RAW_BASE}/${agent}.md`;
 
       // Download the agent file
@@ -338,9 +331,7 @@ async function installAgents(agents: string[]): Promise<void> {
 
       // Save to .claude/agents/
       const agentFileName = agent.replace(/\//g, '-') + '.md';
-      const agentPath = path.join(agentsDir, agentFileName);
-
-      fs.writeFileSync(agentPath, agentContent, 'utf-8');
+      writeSandboxFile(agentsDir, agentFileName, agentContent);
       log(`Installed agent: ${agent}`, 'success');
     } catch (error) {
       log(`Error installing agent ${agent}: ${error instanceof Error ? error.message : String(error)}`, 'warning');
