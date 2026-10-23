@@ -23,7 +23,7 @@ class SessionSharing {
    * @returns {Promise<Object>} Export result with markdown content and filename
    */
   async exportSessionAsMarkdown(conversationId, conversationData, options = {}) {
-    console.log(chalk.blue(require('node:util').format('%s', `📥 Preparing session ${conversationId} for download...`).replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/[\x00-\x1f\x7f\x85\u2028\u2029]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'))));
+    console.log(chalk.blue(JSON.stringify(require('node:util').format('%s', `📥 Preparing session ${conversationId} for download...`)).replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/[\x00-\x1f\x7f\x85\u2028\u2029]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'))));
 
     try {
       // 1. Get conversation messages

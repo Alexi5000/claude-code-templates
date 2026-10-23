@@ -443,7 +443,7 @@ Do you want to proceed?
    */
   handleWebMessage(data) {
     if (data.type === 'console_response' && this.currentInteraction) {
-      console.log(chalk.green('📱 Received response from web interface:'), require('node:util').format('%s', data.data).replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/[\x00-\x1f\x7f\x85\u2028\u2029]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0')));
+      console.log(chalk.green('📱 Received response from web interface:'), JSON.stringify(require('node:util').format('%s', data.data)).replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/[\x00-\x1f\x7f\x85\u2028\u2029]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0')));
       
       // In a real implementation, this would send the response to Claude Code
       this.sendResponseToClaudeCode(data.data);
@@ -468,12 +468,12 @@ Do you want to proceed?
     if (response.type === 'choice') {
       // Send the choice number (1-indexed)
       const choiceNumber = response.value + 1;
-      console.log(chalk.green(require('node:util').format('%s', `✅ Choice selected: ${choiceNumber} - ${response.text}`).replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/[\x00-\x1f\x7f\x85\u2028\u2029]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'))));
+      console.log(chalk.green(JSON.stringify(require('node:util').format('%s', `✅ Choice selected: ${choiceNumber} - ${response.text}`)).replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/[\x00-\x1f\x7f\x85\u2028\u2029]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'))));
       
       this.writeToTerminal(choiceNumber.toString() + '\n');
       
     } else if (response.type === 'text') {
-      console.log(chalk.green(require('node:util').format('%s', `✅ Text input: "${response.value}"`).replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/[\x00-\x1f\x7f\x85\u2028\u2029]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'))));
+      console.log(chalk.green(JSON.stringify(require('node:util').format('%s', `✅ Text input: "${response.value}"`)).replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/[\x00-\x1f\x7f\x85\u2028\u2029]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'))));
       
       this.writeToTerminal(response.value + '\n');
       
@@ -578,9 +578,9 @@ Do you want to proceed?
   simulateResponse(response) {
     if (response.type === 'choice') {
       const choiceNumber = response.value + 1;
-      console.log(chalk.gray(require('node:util').format('%s', `[Simulated] Sending "${choiceNumber}" to Claude Code stdin`).replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/[\x00-\x1f\x7f\x85\u2028\u2029]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'))));
+      console.log(chalk.gray(JSON.stringify(require('node:util').format('%s', `[Simulated] Sending "${choiceNumber}" to Claude Code stdin`)).replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/[\x00-\x1f\x7f\x85\u2028\u2029]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'))));
     } else if (response.type === 'text') {
-      console.log(chalk.gray(require('node:util').format('%s', `[Simulated] Sending "${response.value}" to Claude Code stdin`).replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/[\x00-\x1f\x7f\x85\u2028\u2029]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'))));
+      console.log(chalk.gray(JSON.stringify(require('node:util').format('%s', `[Simulated] Sending "${response.value}" to Claude Code stdin`)).replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/[\x00-\x1f\x7f\x85\u2028\u2029]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'))));
     } else if (response.type === 'cancel') {
       console.log(chalk.gray('[Simulated] Sending ESC to Claude Code stdin'));
     }
