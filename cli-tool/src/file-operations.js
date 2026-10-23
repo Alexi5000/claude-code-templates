@@ -592,7 +592,6 @@ async function copyTemplateFiles(templateConfig, targetDir, options = {}) {
 
 async function runPostInstallationValidation(targetDir, templateConfig) {
   const inquirer = require('inquirer');
-const {writeSandboxFile} = require('../components/sandbox/cloudflare/safe-output.cjs');
   const { spawn } = require('child_process');
   
   console.log(chalk.cyan('\n🔍 Post-Installation Validation'));

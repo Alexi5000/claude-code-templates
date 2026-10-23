@@ -100,3 +100,19 @@ test('template regular file writes cannot follow an existing symlink', async t =
   await copyTemplateFiles({files: [{source: 'fixture-regular.md', destination: 'CLAUDE.md'}]}, project, {yes: true});
   assert.equal(fs.readFileSync(outside, 'utf8'), 'protected');
 });
+
+test('an explicitly selected root alias remains usable while descendant symlinks reject', t => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'installer-root-alias-'));
+  t.after(() => fs.removeSync(root));
+  const destination = path.join(root, 'actual');
+  fs.ensureDirSync(destination);
+  const alias = path.join(root, 'selected');
+  fs.symlinkSync(destination, alias, 'dir');
+  writeSandboxFile(alias, 'agent.md', 'normal');
+  assert.equal(fs.readFileSync(path.join(destination, 'agent.md'), 'utf8'), 'normal');
+  const outside = path.join(root, 'outside');
+  fs.ensureDirSync(outside);
+  fs.symlinkSync(outside, path.join(destination, 'child'), 'dir');
+  assert.throws(() => writeSandboxFile(alias, 'child/agent.md', 'escaped'));
+  assert.equal(fs.existsSync(path.join(outside, 'agent.md')), false);
+});
