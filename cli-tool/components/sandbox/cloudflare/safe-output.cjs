@@ -1,7 +1,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
-function writeSandboxFile(baseDir, relativePath, content) {
+function writeSandboxFile(baseDir, relativePath, content, mode) {
   if (typeof relativePath !== 'string' || !relativePath || relativePath.includes('\0') ||
       relativePath.includes('\\') || relativePath.includes(':') || path.posix.isAbsolute(relativePath) || path.win32.isAbsolute(relativePath)) {
     throw new Error('Invalid sandbox output path');
@@ -29,6 +29,7 @@ function writeSandboxFile(baseDir, relativePath, content) {
   try {
     const stat = fs.fstatSync(fd);
     if (!stat.isFile() || stat.nlink !== 1 || (previous && (previous.dev !== stat.dev || previous.ino !== stat.ino))) throw new Error('Sandbox output must be a private regular file');
+    if (mode !== undefined) fs.fchmodSync(fd, mode);
     fs.ftruncateSync(fd, 0);
     fs.writeFileSync(fd, content, 'utf8');
   } finally {

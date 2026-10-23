@@ -3,6 +3,7 @@ const path = require('path');
 const os = require('os');
 const chalk = require('chalk');
 const ora = require('ora');
+const {writeSandboxFile, validateComponentName} = require('../../components/sandbox/cloudflare/safe-output.cjs');
 
 // Global agents directory
 const GLOBAL_AGENTS_DIR = path.join(os.homedir(), '.claude-code-templates');
@@ -29,6 +30,7 @@ const BIN_DIR = isSystemWritable() ? SYSTEM_BIN_DIR : LOCAL_BIN_DIR;
  * Create a global agent that can be executed from anywhere
  */
 async function createGlobalAgent(agentName, options = {}) {
+  validateComponentName(agentName);
   console.log(chalk.blue(`🤖 Creating global agent: ${agentName}`));
   
   try {
@@ -78,7 +80,7 @@ async function createGlobalAgent(agentName, options = {}) {
     
     // Save agent content
     const agentFile = path.join(AGENTS_DIR, `${executableName}.md`);
-    await fs.writeFile(agentFile, agentContent, 'utf8');
+    writeSandboxFile(os.homedir(), `.claude-code-templates/agents/${executableName}.md`, agentContent);
     
     // Generate executable script
     await generateExecutableScript(executableName, agentFile);
@@ -439,12 +441,9 @@ try {
 `;
 
   const scriptPath = path.join(BIN_DIR, agentName);
-  await fs.writeFile(scriptPath, scriptContent, 'utf8');
-  
-  // Make executable (Unix/Linux/macOS)
-  if (process.platform !== 'win32') {
-    await fs.chmod(scriptPath, 0o755);
-  }
+  const root = BIN_DIR === SYSTEM_BIN_DIR ? SYSTEM_BIN_DIR : os.homedir();
+  const relative = BIN_DIR === SYSTEM_BIN_DIR ? agentName : `.claude-code-templates/bin/${agentName}`;
+  writeSandboxFile(root, relative, scriptContent, process.platform === 'win32' ? undefined : 0o755);
 }
 
 /**

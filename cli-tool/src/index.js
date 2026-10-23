@@ -3,6 +3,8 @@ const chalk = require('chalk');
 const fs = require('fs-extra');
 const path = require('path');
 const ora = require('ora');
+const {downloadE2BComponent} = require('./e2b-components');
+const {writeSandboxFile, validateComponentName} = require('../components/sandbox/cloudflare/safe-output.cjs');
 const { detectProject } = require('./utils');
 const { getTemplateConfig, TEMPLATES_CONFIG } = require('./templates');
 const { createPrompts, interactivePrompts } = require('./prompts');
@@ -511,6 +513,7 @@ async function createClaudeConfig(options = {}) {
 
 // Individual component installation functions
 async function installIndividualAgent(agentName, targetDir, options) {
+  validateComponentName(agentName);
   console.log(chalk.blue(`🤖 Installing agent: ${agentName}`));
   const startTime = Date.now();
 
@@ -554,7 +557,7 @@ async function installIndividualAgent(agentName, targetDir, options) {
     }
 
     const targetFile = path.join(agentsDir, `${fileName}.md`);
-    await fs.writeFile(targetFile, agentContent, 'utf8');
+    writeSandboxFile(targetDir, `.claude/agents/${fileName}.md`, agentContent);
 
     if (!options.silent) {
       console.log(chalk.green(`✅ Agent "${agentName}" installed successfully!`));
@@ -580,6 +583,7 @@ async function installIndividualAgent(agentName, targetDir, options) {
 }
 
 async function installIndividualCommand(commandName, targetDir, options) {
+  validateComponentName(commandName);
   console.log(chalk.blue(`⚡ Installing command: ${commandName}`));
   const startTime = Date.now();
 
@@ -624,7 +628,7 @@ async function installIndividualCommand(commandName, targetDir, options) {
     
     const targetFile = path.join(commandsDir, `${fileName}.md`);
     
-    await fs.writeFile(targetFile, commandContent, 'utf8');
+    writeSandboxFile(targetDir, `.claude/commands/${fileName}.md`, commandContent);
     
     if (!options.silent) {
       console.log(chalk.green(`✅ Command "${commandName}" installed successfully!`));
@@ -3208,48 +3212,28 @@ async function executeE2BSandbox(options, targetDir) {
         const envExamplePath = path.join(componentsDir, '.env.example');
         
         if (await fs.pathExists(launcherPath)) {
-          await fs.copyFile(launcherPath, path.join(sandboxDir, 'e2b-launcher.py'));
-          await fs.chmod(path.join(sandboxDir, 'e2b-launcher.py'), 0o755);
+          writeSandboxFile(targetDir, '.claude/sandbox/e2b-launcher.py', await fs.readFile(launcherPath), 0o755);
         } else {
           throw new Error('e2b-launcher.py not found in package');
         }
         
         if (await fs.pathExists(requirementsPath)) {
-          await fs.copyFile(requirementsPath, path.join(sandboxDir, 'requirements.txt'));
+          writeSandboxFile(targetDir, '.claude/sandbox/requirements.txt', await fs.readFile(requirementsPath));
         }
         
         if (await fs.pathExists(envExamplePath)) {
-          await fs.copyFile(envExamplePath, path.join(sandboxDir, '.env.example'));
+          writeSandboxFile(targetDir, '.claude/sandbox/.env.example', await fs.readFile(envExamplePath));
         }
       } else {
         // Fallback to downloading from GitHub if not found locally
         console.log(chalk.gray('📥 Downloading E2B component files from GitHub...'));
         
-        const baseUrl = 'https://raw.githubusercontent.com/davila7/claude-code-templates/main/cli-tool/components/sandbox/e2b';
-        
-        // Download launcher script
-        const launcherResponse = await fetch(`${baseUrl}/e2b-launcher.py`);
-        if (!launcherResponse.ok) {
-          throw new Error(`Failed to download e2b-launcher.py: ${launcherResponse.status} ${launcherResponse.statusText}`);
-        }
-        const launcherContent = await launcherResponse.text();
-        await fs.writeFile(path.join(sandboxDir, 'e2b-launcher.py'), launcherContent, { mode: 0o755 });
-        
-        // Download requirements.txt
-        const requirementsResponse = await fetch(`${baseUrl}/requirements.txt`);
-        if (!requirementsResponse.ok) {
-          throw new Error(`Failed to download requirements.txt: ${requirementsResponse.status} ${requirementsResponse.statusText}`);
-        }
-        const requirementsContent = await requirementsResponse.text();
-        await fs.writeFile(path.join(sandboxDir, 'requirements.txt'), requirementsContent);
-        
-        // Download .env.example
-        const envExampleResponse = await fetch(`${baseUrl}/.env.example`);
-        if (!envExampleResponse.ok) {
-          throw new Error(`Failed to download .env.example: ${envExampleResponse.status} ${envExampleResponse.statusText}`);
-        }
-        const envExampleContent = await envExampleResponse.text();
-        await fs.writeFile(path.join(sandboxDir, '.env.example'), envExampleContent);
+        const launcherContent = await downloadE2BComponent('e2b-launcher.py');
+        const requirementsContent = await downloadE2BComponent('requirements.txt');
+        const envExampleContent = await downloadE2BComponent('.env.example');
+        writeSandboxFile(targetDir, '.claude/sandbox/e2b-launcher.py', launcherContent, 0o755);
+        writeSandboxFile(targetDir, '.claude/sandbox/requirements.txt', requirementsContent);
+        writeSandboxFile(targetDir, '.claude/sandbox/.env.example', envExampleContent);
       }
     } catch (error) {
       spinner.fail(`Failed to install E2B component: ${error.message}`);

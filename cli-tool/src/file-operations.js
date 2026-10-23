@@ -2,6 +2,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const chalk = require('chalk');
 const inquirer = require('inquirer');
+const {writeSandboxFile} = require('../components/sandbox/cloudflare/safe-output.cjs');
 const { getHooksForLanguage, filterHooksBySelection, getMCPsForLanguage, filterMCPsBySelection } = require('./hook-scanner');
 
 // GitHub configuration for downloading templates
@@ -535,9 +536,7 @@ async function copyTemplateFiles(templateConfig, targetDir, options = {}) {
         
         try {
           const fileContent = await downloadFileFromGitHub(file.source);
-          const destDir = path.dirname(destPath);
-          await fs.ensureDir(destDir);
-          await fs.writeFile(destPath, fileContent, 'utf8');
+          writeSandboxFile(targetDir, file.destination, fileContent);
           console.log(chalk.green(`✓ Downloaded ${file.source} → ${file.destination}`));
           successfulFiles++;
         } catch (error) {
@@ -593,6 +592,7 @@ async function copyTemplateFiles(templateConfig, targetDir, options = {}) {
 
 async function runPostInstallationValidation(targetDir, templateConfig) {
   const inquirer = require('inquirer');
+const {writeSandboxFile} = require('../components/sandbox/cloudflare/safe-output.cjs');
   const { spawn } = require('child_process');
   
   console.log(chalk.cyan('\n🔍 Post-Installation Validation'));
