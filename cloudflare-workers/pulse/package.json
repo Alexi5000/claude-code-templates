@@ -31,5 +31,8 @@
   "license": "MIT",
   "devDependencies": {
     "wrangler": "^4.151.1"
+  },
+  "overrides": {
+    "undici": "7.30.1"
   }
 }
