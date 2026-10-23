@@ -14,9 +14,8 @@ const LOCAL_BIN_DIR = path.join(GLOBAL_AGENTS_DIR, 'bin');
 const SYSTEM_BIN_DIR = '/usr/local/bin';
 const isSystemWritable = () => {
   try {
-    const testFile = path.join(SYSTEM_BIN_DIR, '.test-write');
-    require('fs').writeFileSync(testFile, 'test', 'utf8');
-    require('fs').unlinkSync(testFile);
+    const probeDirectory = fs.mkdtempSync(path.join(SYSTEM_BIN_DIR, '.claude-write-probe-'));
+    fs.rmdirSync(probeDirectory);
     return true;
   } catch (error) {
     return false;
