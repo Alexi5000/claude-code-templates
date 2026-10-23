@@ -28,7 +28,7 @@ async function testConsoleBridge() {
     
     console.log('');
     console.log(chalk.green('✅ Console Bridge is running!'));
-    console.log(chalk.cyan('📡 WebSocket server: ws://localhost:3334'));
+    console.log(chalk.cyan(`📡 WebSocket server: ${bridge.getConnectionUrl()}`));
     console.log(chalk.cyan('🌐 Web interface should connect to this WebSocket'));
     console.log('');
     console.log(chalk.yellow('💡 Instructions:'));

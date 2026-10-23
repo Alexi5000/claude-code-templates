@@ -13,6 +13,8 @@ The local sandbox execution server binds to IPv4 loopback and accepts browser re
 
 Analytics, mobile chats, teams, and plugin dashboards accept up to 600 API requests per minute per running server, shared across clients. Excess API requests return HTTP 429 with a `Retry-After` header before data loading or request-body parsing. Dashboard pages and static assets remain available. Mobile conversation-search logs contain aggregate match counts without copying search terms or conversation identifiers.
 
+The analytics Console Bridge listener (`ws://127.0.0.1:3334`) binds to loopback only and requires a per-session token generated at startup. The full connection URL, including `?token=`, is printed to the operator's terminal; clients may instead send the token in an `x-console-bridge-token` header. Set `CLAUDE_CONSOLE_BRIDGE_TOKEN` to supply your own token for a trusted local client. Browser connections from non-loopback origins are rejected, and socket responses must carry the `interactionId` of the pending prompt.
+
 ## 🚀 Quick Start
 
 ```bash

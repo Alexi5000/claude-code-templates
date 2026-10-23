@@ -3,6 +3,29 @@ const { spawn, exec, execFile } = require('child_process');
 const WebSocket = require('ws');
 const EventEmitter = require('events');
 const fs = require('fs');
+const crypto = require('crypto');
+const LOOPBACK_HOSTS = new Set(['127.0.0.1', '::1', 'localhost']);
+const LOOPBACK_ORIGIN_HOSTS = new Set(['127.0.0.1', '[::1]', 'localhost']);
+
+// Compare secrets in constant time regardless of input length.
+const tokensMatch = (supplied, expected) => {
+  if (typeof supplied !== 'string' || typeof expected !== 'string' || !supplied || !expected) return false;
+  const a = crypto.createHash('sha256').update(supplied).digest();
+  const b = crypto.createHash('sha256').update(expected).digest();
+  return crypto.timingSafeEqual(a, b);
+};
+
+// Browsers always send Origin; non-browser local clients may omit it.
+const isLoopbackOrigin = origin => {
+  if (origin === undefined) return true;
+  try {
+    const url = new URL(origin);
+    return (url.protocol === 'http:' || url.protocol === 'https:') && LOOPBACK_ORIGIN_HOSTS.has(url.hostname);
+  } catch {
+    return false;
+  }
+};
+
 const isTerminalDevice = device => typeof device === 'string' &&
   device.trim() === device && /^\/dev\/(?:tty[A-Za-z0-9]*|pts\/[0-9]+)$/.test(device);
 
@@ -14,10 +37,19 @@ class ConsoleBridge extends EventEmitter {
   constructor(options = {}) {
     super();
     this.options = {
-      port: options.port || 3334,
-      debug: options.debug || false,
-      ...options
+      debug: false,
+      ...options,
+      port: options.port ?? 3334,
+      host: options.host || '127.0.0.1'
     };
+    if (!LOOPBACK_HOSTS.has(this.options.host)) {
+      throw new Error('ConsoleBridge only listens on a loopback host');
+    }
+
+    // Per-session secret required on the WebSocket listener. Share it with the
+    // legitimate client via getConnectionUrl() or CLAUDE_CONSOLE_BRIDGE_TOKEN.
+    this.authToken = options.authToken || process.env.CLAUDE_CONSOLE_BRIDGE_TOKEN ||
+      crypto.randomBytes(32).toString('hex');
     
     this.wss = null;
     this.clients = new Set();
@@ -53,7 +85,8 @@ class ConsoleBridge extends EventEmitter {
       this.setupProcessMonitoring();
       
       console.log(chalk.green('✅ Console Bridge initialized successfully'));
-      console.log(chalk.cyan(`🔌 WebSocket server running on port ${this.options.port}`));
+      console.log(chalk.cyan(`🔌 WebSocket server running on ${this.options.host}:${this.getPort()}`));
+      console.log(chalk.gray(`🔑 Connect with: ${this.getConnectionUrl()}`));
       
       return true;
     } catch (error) {
@@ -63,13 +96,52 @@ class ConsoleBridge extends EventEmitter {
   }
 
   /**
+   * Port actually bound by the listener (useful when port 0 is requested)
+   */
+  getPort() {
+    const address = this.wss && this.wss.address();
+    return address && typeof address === 'object' ? address.port : this.options.port;
+  }
+
+  /**
+   * URL (including the per-session token) for the legitimate web client
+   */
+  getConnectionUrl() {
+    const host = this.options.host === '::1' ? '[::1]' : this.options.host;
+    return `ws://${host}:${this.getPort()}/?token=${encodeURIComponent(this.authToken)}`;
+  }
+
+  /**
+   * Authenticate an incoming WebSocket upgrade request
+   */
+  verifyClient(info) {
+    const req = info.req;
+    if (!isLoopbackOrigin(req.headers.origin)) return false;
+    let supplied = req.headers['x-console-bridge-token'];
+    if (!supplied) {
+      try {
+        supplied = new URL(req.url, 'ws://localhost').searchParams.get('token');
+      } catch {
+        supplied = null;
+      }
+    }
+    return tokensMatch(supplied, this.authToken);
+  }
+
+  /**
    * Setup WebSocket server for web interface communication
    */
   async setupWebSocketServer() {
     return new Promise((resolve, reject) => {
       this.wss = new WebSocket.Server({ 
         port: this.options.port,
-        host: 'localhost'
+        host: this.options.host,
+        maxPayload: 64 * 1024,
+        verifyClient: (info, done) => {
+          const ok = this.verifyClient(info);
+          if (!ok) console.warn(chalk.yellow('⚠️ Rejected unauthenticated Console Bridge connection'));
+          done(ok, ok ? undefined : 401, ok ? undefined : 'Unauthorized');
+        }
       });
 
       this.wss.on('connection', (ws) => {
@@ -87,7 +159,7 @@ class ConsoleBridge extends EventEmitter {
         ws.on('message', (message) => {
           try {
             const data = JSON.parse(message);
-            this.handleWebMessage(data);
+            this.handleWebMessage(data, { fromSocket: true });
           } catch (error) {
             console.error(chalk.red('❌ Invalid message from web interface:'), error);
           }
@@ -441,15 +513,22 @@ Do you want to proceed?
   /**
    * Handle message from web interface
    */
-  handleWebMessage(data) {
-    if (data.type === 'console_response' && this.currentInteraction) {
-      console.log(chalk.green('📱 Received response from web interface:'), JSON.stringify(require('node:util').format('%s', data.data)).replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/[\x00-\x1f\x7f\x85\u2028\u2029]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0')));
-      
-      // In a real implementation, this would send the response to Claude Code
-      this.sendResponseToClaudeCode(data.data);
-      
-      this.currentInteraction = null;
+  handleWebMessage(data, { fromSocket = false } = {}) {
+    if (!data || data.type !== 'console_response' || !this.currentInteraction) return;
+    // Socket clients must answer the specific pending interaction; in-process
+    // callers (analytics dashboard bridge) may omit the id but never mismatch it.
+    const interactionId = data.interactionId ?? (data.data && data.data.interactionId);
+    if ((fromSocket || interactionId !== undefined) && interactionId !== this.currentInteraction.id) {
+      console.warn(chalk.yellow('⚠️ Ignoring console response for a different interaction'));
+      return;
     }
+
+    console.log(chalk.green('📱 Received response from web interface:'), JSON.stringify(require('node:util').format('%s', data.data)).replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/[\x00-\x1f\x7f\x85\u2028\u2029]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0')));
+    
+    // In a real implementation, this would send the response to Claude Code
+    this.sendResponseToClaudeCode(data.data);
+    
+    this.currentInteraction = null;
   }
 
   /**
