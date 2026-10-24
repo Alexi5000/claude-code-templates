@@ -162,7 +162,7 @@ def scan(component_type: str, component: dict, root: Path, files: list[Path]) ->
         target, offset = stage(component_type, component, root, files, Path(tmp))
         proc = subprocess.run(
             ["skillspector", "scan", str(target), "--no-llm", "--format", "json"],
-            capture_output=True,
+            timeout=180, capture_output=True,
             text=True,
             check=False,
         )

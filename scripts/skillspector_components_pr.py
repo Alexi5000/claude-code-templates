@@ -18,6 +18,7 @@ Usage:
 
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor
 import argparse
 import subprocess
 import sys
@@ -125,18 +126,22 @@ def main() -> int:
         print("::error::skillspector is not on PATH")
         return 1
     paths = changed_files(a.base_ref) if a.base_ref else Path(a.files).read_text().splitlines()
-    rows = []
-    for ctype, comp in to_components(paths):
+    def scan_one(item):
+        ctype, comp = item
         key = f"{ctype}/{comp['path']}"
         try:
             root, files = source_files(ctype, comp)
-            rows.append({"key": key, "result": scan(ctype, comp, root, files)})
-        except Exception as e:  # one broken component never aborts the report
-            rows.append({"key": key, "error": str(e)})
-        print(f"scanned {key}")
+            row = {"key": key, "result": scan(ctype, comp, root, files)}
+        except Exception as e:
+            row = {"key": key, "error": str(e)}
+        print(f"scanned {key}", flush=True)
+        return row
+
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        rows = list(pool.map(scan_one, to_components(paths)))
     Path(a.output_md).write_text(build_markdown(version, rows), encoding="utf-8")
     print(f"{len(rows)} component(s) scanned")
-    return 0
+    return 1 if any(row.get("error") for row in rows) else 0
 
 
 if __name__ == "__main__":

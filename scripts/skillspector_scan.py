@@ -26,6 +26,7 @@ skill never aborts the whole batch.
 
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor
 import argparse
 import json
 import os
@@ -87,6 +88,7 @@ def _changed_files(base_ref: str) -> list[Path]:
             capture_output=True,
             text=True,
             check=False,
+            timeout=180,
         ).stdout
     return [Path(line.strip()) for line in out.splitlines() if line.strip()]
 
@@ -135,13 +137,17 @@ def scan_skill(directory: Path) -> dict:
             text=True,
             check=False,
         )
+    except subprocess.TimeoutExpired:
+        result["status"] = "error"
+        result["error"] = "skillspector scan exceeded 180 seconds"
+        return result
     except FileNotFoundError:
         result["status"] = "error"
         result["error"] = "skillspector CLI not found on PATH"
         return result
 
     # Exit code 2 == real error. 0/1 are both valid (1 == high score).
-    if proc.returncode == 2:
+    if proc.returncode not in (0, 1):
         result["status"] = "error"
         result["error"] = (proc.stderr or proc.stdout or "scan failed").strip()[:500]
         return result
@@ -367,9 +373,10 @@ def main() -> int:
         return 0
 
     results: list[dict] = []
-    for idx, skill in enumerate(skills, 1):
-        print(f"[{idx}/{len(skills)}] scanning {skill}")
-        results.append(scan_skill(skill))
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        for idx, result in enumerate(pool.map(scan_skill, skills), 1):
+            print(f"[{idx}/{len(skills)}] scanned {result['path']}", flush=True)
+            results.append(result)
 
     scanned = [r for r in results if r.get("status") == "ok"]
     errors = [r for r in results if r.get("status") == "error"]
@@ -386,7 +393,7 @@ def main() -> int:
         f"(threshold={args.threshold})"
     )
 
-    failed = bool(flagged) and args.fail_on_risk
+    failed = bool(errors) or (bool(flagged) and args.fail_on_risk)
     _write_output("scanned", str(len(scanned)))
     _write_output("high_critical_count", str(len(flagged)))
     _write_output("errors", str(len(errors)))
