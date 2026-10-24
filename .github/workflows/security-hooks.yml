@@ -12,6 +12,7 @@ on:
       - 'cli-tool/components/skills/enterprise-communication/session-handoff/scripts/validate_handoff.py'
       - 'cli-tool/components/hooks/security/secret-scanner.py'
       - 'cli-tool/components/skills/development/devops-iac-engineer/scripts/devops_utils.py'
+      - 'cli-tool/components/skills/ai-research/post-training-grpo-rl-training/examples/reward_functions_library.py'
       - 'cli-tool/tests/security/**'
       - '.github/workflows/security-hooks.yml'
   pull_request:
@@ -24,6 +25,7 @@ on:
       - 'cli-tool/components/skills/enterprise-communication/session-handoff/scripts/validate_handoff.py'
       - 'cli-tool/components/hooks/security/secret-scanner.py'
       - 'cli-tool/components/skills/development/devops-iac-engineer/scripts/devops_utils.py'
+      - 'cli-tool/components/skills/ai-research/post-training-grpo-rl-training/examples/reward_functions_library.py'
       - 'cli-tool/tests/security/**'
       - '.github/workflows/security-hooks.yml'
 

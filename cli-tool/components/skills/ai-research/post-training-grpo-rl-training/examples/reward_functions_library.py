@@ -13,8 +13,9 @@ Categories:
 - Combined rewards (multi-objective)
 """
 
+import ast
 import re
-from typing import List, Any
+from typing import List, Any, Callable
 
 # ==================== CORRECTNESS REWARDS ====================
 
@@ -80,6 +81,9 @@ def code_execution_reward(prompts, completions, test_cases, **kwargs) -> List[fl
 
     Weight: 2.0
     """
+    sandbox_runner = kwargs.get("sandbox_runner")
+    if not callable(sandbox_runner):
+        raise ValueError("Code execution rewards require an operator-configured isolated sandbox_runner")
     responses = [comp[0]['content'] for comp in completions]
     extracted_code = [extract_code_block(r) for r in responses]
 
@@ -87,7 +91,7 @@ def code_execution_reward(prompts, completions, test_cases, **kwargs) -> List[fl
     for code in extracted_code:
         try:
             # Execute code (sandboxed!)
-            passed = run_test_cases(code, test_cases)
+            passed = run_test_cases(code, test_cases, sandbox_runner=sandbox_runner)
             rewards.append(2.0 if passed else 0.0)
         except:
             rewards.append(0.0)
@@ -313,7 +317,7 @@ def code_generation_reward(prompts, completions, test_cases, **kwargs) -> List[f
     Weight: 2.7 total
     """
     code_format_rewards = code_block_format_reward(completions)
-    execution_rewards = code_execution_reward(prompts, completions, test_cases)
+    execution_rewards = code_execution_reward(prompts, completions, test_cases, **kwargs)
     no_error_rewards = no_syntax_error_reward(completions)
 
     return [f + e + s for f, e, s in zip(code_format_rewards, execution_rewards, no_error_rewards)]
@@ -336,30 +340,42 @@ def extract_code_block(text: str) -> str:
     match = re.search(pattern, text, re.DOTALL)
     return match.group(1) if match else ""
 
-def run_test_cases(code: str, test_cases: List[tuple]) -> bool:
+def code_block_format_reward(completions, **kwargs) -> List[float]:
+    return [0.5 if extract_code_block(comp[0]['content']).strip() else 0.0 for comp in completions]
+
+
+def no_syntax_error_reward(completions, **kwargs) -> List[float]:
+    rewards = []
+    for comp in completions:
+        code = extract_code_block(comp[0]['content'])
+        if not code.strip() or len(code) > 100_000:
+            rewards.append(0.0)
+            continue
+        try:
+            ast.parse(code)
+            rewards.append(0.2)
+        except (SyntaxError, ValueError, RecursionError):
+            rewards.append(0.0)
+    return rewards
+
+
+def run_test_cases(
+    code: str,
+    test_cases: List[tuple],
+    *,
+    sandbox_runner: Callable[[str, List[tuple]], bool] | None = None,
+) -> bool:
+    """Delegate to a trusted isolated runner with no host credentials or network.
+
+    The operator must configure CPU, memory, process and wall-clock limits.
+    A subprocess or Python namespace alone is not a security boundary.
     """
-    Execute code with test cases (MUST be sandboxed in production!).
-
-    Args:
-        code: Python code string
-        test_cases: List of (input, expected_output) tuples
-
-    Returns:
-        True if all tests pass
-    """
-    # WARNING: This is a simplified example
-    # In production, use proper sandboxing (e.g., docker, pypy sandbox)
-    try:
-        exec_globals = {}
-        exec(code, exec_globals)
-
-        for input_val, expected in test_cases:
-            result = exec_globals['solution'](input_val)
-            if result != expected:
-                return False
-        return True
-    except:
-        return False
+    if not callable(sandbox_runner):
+        raise ValueError("Generated code requires an operator-configured isolated sandbox_runner")
+    result = sandbox_runner(code, test_cases)
+    if not isinstance(result, bool):
+        raise TypeError("Sandbox runner must return a boolean completion receipt")
+    return result
 
 # ==================== REWARD FUNCTION PRESETS ====================
 
