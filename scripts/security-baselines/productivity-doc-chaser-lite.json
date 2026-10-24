@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:59aa6380a3697de43d61c003f89fe3337644abb4d71e80ef3762d2630587c74c",
+      "rule_id": "P2",
+      "file": "PROMPT-ONLY.md",
+      "reason": "Comments mark synchronization of a visible liability guard and its prohibited-phrase list; no hidden commands. Guard explicitly limits legal/tax advice and masks identifiers."
+    },
+    {
+      "hash": "sha256:56940052c2629bab5c6b411aacf28f176849494932ae98475246587d3b9f8d1c",
+      "rule_id": "P2",
+      "file": "PROMPT-ONLY.md",
+      "reason": "Comments mark synchronization of a visible liability guard and its prohibited-phrase list; no hidden commands. Guard explicitly limits legal/tax advice and masks identifiers."
+    },
+    {
+      "hash": "sha256:caffa0db25f95caa19a9c01e3461ad062fb482178d8b8fb03e5605ad0d2f0f9f",
+      "rule_id": "P2",
+      "file": "guard.md",
+      "reason": "FLAGGED-PHRASES delimiter marks phrases the guard forbids; the comments are synchronization metadata, not hidden agent instructions."
+    }
+  ]
+}

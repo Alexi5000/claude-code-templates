@@ -118,5 +118,113 @@
     "source_tree_sha256": "078715b497f65b54169a6aff7c43812e1d59f9deb4185531b2c5c1d6d1272437",
     "reviewed_by": "claude_sync with independent root review",
     "reviewed_at": "2026-10-24"
+  },
+  "ai-research/claude-code-guide": {
+    "baseline": "ai-research-claude-code-guide.json",
+    "source_tree_sha256": "28e54de6fc4c70f51d99e19cf4437efdbe6cb47048001a358524365675cacd74",
+    "reviewed_by": "root source review",
+    "reviewed_at": "2026-10-24"
+  },
+  "creative-design/frontend-design": {
+    "baseline": "creative-design-frontend-design.json",
+    "source_tree_sha256": "d43ace63d22e3502ab5c53b63138dafd0431ed5fd2fa63320285c8167ab27de6",
+    "reviewed_by": "root source review",
+    "reviewed_at": "2026-10-24"
+  },
+  "curviate/curviate-profile": {
+    "baseline": "curviate-curviate-profile.json",
+    "source_tree_sha256": "2b78d2756bc2b6453dca9ce95e8248f8e57d0f8dc4ca68c078937b1449c9ba4b",
+    "reviewed_by": "root source review",
+    "reviewed_at": "2026-10-24"
+  },
+  "curviate/curviate-search": {
+    "baseline": "curviate-curviate-search.json",
+    "source_tree_sha256": "9fdb4c0d1858167d7b8255ed6941309eede6b539b14d38999a9a452d6fffdfe6",
+    "reviewed_by": "root source review",
+    "reviewed_at": "2026-10-24"
+  },
+  "git/worktree-cleaner": {
+    "baseline": "git-worktree-cleaner.json",
+    "source_tree_sha256": "0976afe326887365cd1ab0210b94eff04e44fef822ae1f0356a16c18705617d5",
+    "reviewed_by": "root source review",
+    "reviewed_at": "2026-10-24"
+  },
+  "productivity/devil": {
+    "baseline": "productivity-devil.json",
+    "source_tree_sha256": "158362d02906995fa005b18eb76ac3c8be063aa1f4f20ee7d7e7b6bcf4053453",
+    "reviewed_by": "root source review",
+    "reviewed_at": "2026-10-24"
+  },
+  "productivity/discernment-nudge": {
+    "baseline": "productivity-discernment-nudge.json",
+    "source_tree_sha256": "7766485802f50ee394b001a1080f952111b91651cddd4399cacafe6881c6798a",
+    "reviewed_by": "root source review",
+    "reviewed_at": "2026-10-24"
+  },
+  "productivity/doc-chaser-lite": {
+    "baseline": "productivity-doc-chaser-lite.json",
+    "source_tree_sha256": "db9fcba8b05939524a9e38b63f3f72abd56225d5c17add7e0b4e53c150d40fea",
+    "reviewed_by": "root source review",
+    "reviewed_at": "2026-10-24"
+  },
+  "web-data/pricewin-travel-search": {
+    "baseline": "web-data-pricewin-travel-search.json",
+    "source_tree_sha256": "6bc4ca067c3bd88330b6aa741b6eed181f58f3ebcedd152550f5c954fc4d5c6a",
+    "reviewed_by": "root source review",
+    "reviewed_at": "2026-10-24"
+  },
+  "development/context-architecture": {
+    "baseline": "development-context-architecture.json",
+    "source_tree_sha256": "23b14a9713b4cc627d29382da4b0da22b7c78dcaad5a1e312b7d69730c5cb793",
+    "reviewed_by": "root source review",
+    "reviewed_at": "2026-10-24"
+  },
+  "development/internet-court": {
+    "baseline": "development-internet-court.json",
+    "source_tree_sha256": "c876c7054f6c6a7e7f0d0a423696afc1094500f448da01384e2b341fa0ecfb77",
+    "reviewed_by": "root source review",
+    "reviewed_at": "2026-10-24"
+  },
+  "development/pudu-task-telemetry": {
+    "baseline": "development-pudu-task-telemetry.json",
+    "source_tree_sha256": "92b4d056c979d74a3375c04328b8a8ba3f91266279cba579a21abcffc8312d30",
+    "reviewed_by": "root source review",
+    "reviewed_at": "2026-10-24"
+  },
+  "workflow-automation/rote": {
+    "baseline": "workflow-automation-rote.json",
+    "source_tree_sha256": "87317ad852f82b858f04f75402a706bec64e1450064da317e61b1559af0d6dc3",
+    "reviewed_by": "root source review",
+    "reviewed_at": "2026-10-24"
+  },
+  "web-development/building-blog": {
+    "baseline": "web-development-building-blog.json",
+    "source_tree_sha256": "67dfc14ca135faba03aa6c7927239772bf8773254e48b6b6b62f4b9a25df9043",
+    "reviewed_by": "root source review",
+    "reviewed_at": "2026-10-24"
+  },
+  "curviate/curviate-engage": {
+    "baseline": "curviate-curviate-engage.json",
+    "source_tree_sha256": "4d43e7707f0e20ddb180cbbb982bf57125d7b8530c0b0e65253a11373ba6ebe8",
+    "reviewed_by": "root source review",
+    "reviewed_at": "2026-10-24"
+  },
+  "curviate/curviate-inbox": {
+    "baseline": "curviate-curviate-inbox.json",
+    "source_tree_sha256": "24ad1d1e3fa1861d7dfa17752aa05b2bc33636fa2c71660996eb809199ebaf29",
+    "reviewed_by": "root source review",
+    "reviewed_at": "2026-10-24"
+  },
+  "curviate/curviate-jobs": {
+    "baseline": "curviate-curviate-jobs.json",
+    "source_tree_sha256": "fa4c835c80cec4195d3b9deeed8114d09bc53f4e1da4eead2be8e08ded7ce3e2",
+    "reviewed_by": "root source review",
+    "reviewed_at": "2026-10-24"
+  },
+  "curviate/curviate-premium": {
+    "baseline": "curviate-curviate-premium.json",
+    "source_tree_sha256": "73c10a0c8995473440c63ce034e9962c7b8e58f4010e64a9f6144d6b2767f7b9",
+    "reviewed_by": "root source review",
+    "reviewed_at": "2026-10-24"
   }
 }

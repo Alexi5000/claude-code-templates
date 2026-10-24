@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:c1cacc4b5a5f50d60f281676ecd94e4c1fa7da82ca2b01edd3ffbe976696731d",
+      "rule_id": "MP3",
+      "file": "SKILL.md",
+      "reason": "Session restart guidance explicitly retains project instructions, permissions and safety. P1 instruction override was repaired before this review."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:e64251decea4ddf2dc356de0edd2cafadb6c5ae6fc393e59f3318bd1b5fafbc0",
+      "rule_id": "P6",
+      "file": "SKILL.md",
+      "reason": "Output rule is a document-review template requiring concrete failure scenarios. No request to reveal system prompts or hidden instructions."
+    }
+  ]
+}

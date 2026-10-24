@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:00406f8e27ff73cdc288ba19eababc53aa52c1c5bce56a6c0b1f134fe369ab90",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Reviewed referenced specification structure and security-relevant executable examples in sections7,9,20. Generator uses fixed Google endpoint, explicit Gemini/Sanity env credentials, user-authored TOPICS, parameterized Sanity queries and selected-document writes. No arbitrary generated-code execution. Coverage exception is not a claim of full scanner analysis or production hardening; external generation and CMS writes require operator configuration."
+    },
+    {
+      "hash": "sha256:04c079f5664434a743e7718dafe9ceb5bef3b7ea8ca320a6bb79441c95742053",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Reviewed referenced specification structure and security-relevant executable examples in sections7,9,20. Generator uses fixed Google endpoint, explicit Gemini/Sanity env credentials, user-authored TOPICS, parameterized Sanity queries and selected-document writes. No arbitrary generated-code execution. Coverage exception is not a claim of full scanner analysis or production hardening; external generation and CMS writes require operator configuration."
+    }
+  ]
+}

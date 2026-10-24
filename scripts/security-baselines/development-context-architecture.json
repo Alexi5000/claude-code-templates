@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:0fe390c39f3b781d5338435b0e94ef8ed49a5c57859d6a8554da9d53d8d45e8d",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Read complete referenced document. Missing references are example target-repository paths (AGENTS.md, package.json, rules), not absent bundled executables. No subprocess or remote-data execution; incremental changes preserve verification gates."
+    }
+  ]
+}

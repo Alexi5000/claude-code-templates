@@ -48,3 +48,28 @@ The scholar framework is a text-only evaluation rubric with no network, process 
 ## Canonical scanner validation
 
 Baseline fingerprints use the scanner report node's sanitized canonical findings before display deduplication. Display-expanded occurrence records do not reproduce the scanner's suppression input. The reviewed XML BOM and pList schema occurrences in both spreadsheet skills are byte-identical to the reviewed document schemas. All 20 manifest skills were rescanned against the unchanged threshold of 50; the remaining unsuppressed findings remain in the raw report. This does not certify live execution or third-party installer safety.
+
+## Upstream-sync follow-up review
+
+The following exact occurrences were reviewed against current source. The original instruction-override recommendation and direct generated-code execution were repaired, not suppressed. Coverage exceptions identify documentation/parser limits; they do not certify external services, packages, or runtime execution. The whole-tree hash and scanner-version binding remain mandatory. No rule-wide exception or severity threshold changed.
+
+| Skill | Exact fingerprints | Review evidence and limits |
+|---|---:|---|
+| `ai-research/claude-code-guide` | 1 | Session restart guidance explicitly retains project instructions, permissions and safety. P1 instruction override was repaired before this review. |
+| `creative-design/frontend-design` | 1 | Errors do not apologize describes UI error-copy style; adjacent instructions require concrete failure explanations and remedies, not omission of safety warnings. |
+| `curviate/curviate-profile` | 2 | Warns that invalid location filters are silently ignored and requires resolving identifiers; does not instruct omission of warnings. HTML comment labels the CLI0.33.0 generated command-surface section. It contains provenance metadata, not hidden behavioral instructions. |
+| `curviate/curviate-search` | 2 | Describes an upstream CLI silent-filter failure and prescribes identifier resolution; not suppression of agent warnings. HTML comment labels the CLI0.33.0 generated command-surface section. It contains provenance metadata, not hidden behavioral instructions. |
+| `git/worktree-cleaner` | 1 | Explicitly warns Git removes ignored local secrets without warning and requires showing them to the user; opposite of suppressing warnings. |
+| `productivity/devil` | 1 | Output rule is a document-review template requiring concrete failure scenarios. No request to reveal system prompts or hidden instructions. |
+| `productivity/discernment-nudge` | 1 | Answer-completely instruction concerns response ordering before optional follow-up prompts; no instruction to bypass restrictions or comply with unsafe requests. |
+| `productivity/doc-chaser-lite` | 3 | Comments mark synchronization of a visible liability guard and its prohibited-phrase list; no hidden commands. Guard explicitly limits legal/tax advice and masks identifiers. FLAGGED-PHRASES delimiter marks phrases the guard forbids; the comments are synchronization metadata, not hidden agent instructions. |
+| `web-data/pricewin-travel-search` | 1 | Safety and output rules constrain booking tools, require explicit cancellation consent and prohibit collecting payment credentials; not prompt disclosure. |
+| `development/context-architecture` | 1 | Read complete referenced document. Missing references are example target-repository paths (AGENTS.md, package.json, rules), not absent bundled executables. No subprocess or remote-data execution; incremental changes preserve verification gates. |
+| `development/internet-court` | 1 | Read complete router. SKILL.md refers to separately installed protocol packages, explicitly identified as external; no bundled executable claimed. Bounded spending/testnet guidance remains. This exception does not certify external package execution. |
+| `development/pudu-task-telemetry` | 1 | Read complete telemetry-contract.md: prose specifies bounded local storage, scoped metrics, privacy exclusions, timeouts, failure codes and lock recovery; no executable expression. Parser span coverage limitation, not concealment. |
+| `workflow-automation/rote` | 2 | Read complete router. Missing paths are caller-selected input skills and generated pipeline.yaml outputs, not absent bundled dependencies. Explicit path confirmation, cost disclosure, no remote shell installer, separate deployment and honest result requirements remain. |
+| `web-development/building-blog` | 2 | Reviewed referenced specification structure and security-relevant executable examples in sections7,9,20. Generator uses fixed Google endpoint, explicit Gemini/Sanity env credentials, user-authored TOPICS, parameterized Sanity queries and selected-document writes. No arbitrary generated-code execution. Coverage exception is not a claim of full scanner analysis or production hardening; external generation and CMS writes require operator configuration. |
+| `curviate/curviate-engage` | 1 | HTML comment labels the CLI0.33.0 generated command-surface section. It contains provenance metadata, not hidden behavioral instructions. |
+| `curviate/curviate-inbox` | 1 | HTML comment labels the CLI0.33.0 generated command-surface section. It contains provenance metadata, not hidden behavioral instructions. |
+| `curviate/curviate-jobs` | 1 | HTML comment labels the CLI0.33.0 generated command-surface section. It contains provenance metadata, not hidden behavioral instructions. |
+| `curviate/curviate-premium` | 1 | HTML comment labels the CLI0.33.0 generated command-surface section. It contains provenance metadata, not hidden behavioral instructions. |

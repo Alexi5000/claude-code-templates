@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:21a1b9f1b82c2216c5d59f0c95772e424e481d1ab0002cc66fccd64530670481",
+      "rule_id": "AR2",
+      "file": "SKILL.md",
+      "reason": "Warns that invalid location filters are silently ignored and requires resolving identifiers; does not instruct omission of warnings."
+    },
+    {
+      "hash": "sha256:9211388057252011d2a3423292fce59764f0f7dd4110100e4f47da6fb2c11473",
+      "rule_id": "P2",
+      "file": "SKILL.md",
+      "reason": "HTML comment labels the CLI0.33.0 generated command-surface section. It contains provenance metadata, not hidden behavioral instructions."
+    }
+  ]
+}

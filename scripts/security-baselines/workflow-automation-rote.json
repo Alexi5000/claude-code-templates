@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:a98b36c4b7f3cdbb5fe58b417affec1b24db481abb65b9f946bd91e0f19b872e",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Read complete router. Missing paths are caller-selected input skills and generated pipeline.yaml outputs, not absent bundled dependencies. Explicit path confirmation, cost disclosure, no remote shell installer, separate deployment and honest result requirements remain."
+    },
+    {
+      "hash": "sha256:57d2af8c7b169a4a7b450ed594e54d92a8ee2f45b83504d425da32d57546a736",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Read complete router. Missing paths are caller-selected input skills and generated pipeline.yaml outputs, not absent bundled dependencies. Explicit path confirmation, cost disclosure, no remote shell installer, separate deployment and honest result requirements remain."
+    }
+  ]
+}
