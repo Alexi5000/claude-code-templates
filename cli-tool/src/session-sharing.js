@@ -302,8 +302,16 @@ class SessionSharing {
    */
   async downloadSession(url) {
     try {
+      // The URL comes from the command line: accept only http(s) and pass it
+      // to curl as an argv entry after `--`, never through a shell.
+      let parsed;
+      try {
+        parsed = new URL(url);
+      } catch (_) {
+        throw new Error(`Invalid session URL: ${url}`);
+      }
+
       // Use curl to download (works with x0.at and other services)
-      const parsed = new URL(url);
       if (!['http:', 'https:'].includes(parsed.protocol) || parsed.username || parsed.password) {
         throw new Error('Session URL must use HTTP or HTTPS without credentials');
       }
@@ -375,6 +383,10 @@ class SessionSharing {
 
     // Generate conversation filename with original ID
     const conversationId = sessionData.conversation.id;
+    // The id comes from the downloaded file and becomes a filename.
+    if (typeof conversationId !== 'string' || !/^[A-Za-z0-9_-]{1,128}$/.test(conversationId)) {
+      throw new Error('Invalid conversation id in shared session');
+    }
     const conversationFile = path.join(projectDir, `${conversationId}.jsonl`);
 
     // Convert messages back to JSONL format (one JSON object per line)

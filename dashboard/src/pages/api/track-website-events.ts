@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { corsResponse, jsonResponse } from '../../lib/api/cors';
 import { checkRateLimit, getClientIp } from '../../lib/api/rate-limit';
 import { getNeonClient } from '../../lib/api/neon';
+import { getCountry } from '../../lib/api/geo';
 
 const VALID_EVENT_TYPES = [
   'search',
@@ -53,7 +54,7 @@ export const POST: APIRoute = async ({ request }) => {
       return jsonResponse({ error: validation.error }, 400);
     }
 
-    const country = request.headers.get('x-vercel-ip-country') || null;
+    const country = getCountry(request);
     const sql = getNeonClient();
 
     let inserted = 0;

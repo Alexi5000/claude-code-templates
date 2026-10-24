@@ -6,10 +6,12 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/generate-og-images.mjs && astro build",
+    "og": "node scripts/generate-og-images.mjs",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "vitest run"
+    "test": "vitest run src && node --experimental-strip-types --test tests/*.test.ts",
+    "check:agents": "node scripts/check-agent-endpoints.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.4.0",
@@ -30,12 +32,18 @@
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "geist": "^1.7.2",
+    "satori": "^0.47.1",
     "vitest": "^5.0.5",
     "wrangler": "^4.151.1"
   },
   "overrides": {
     "miniflare": {
       "undici": "7.30.1"
+    },
+    "satori": {
+      "fflate": "0.7.5"
     }
   }
 }

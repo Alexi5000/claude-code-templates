@@ -36,19 +36,17 @@ test('Expect failure preserves fallback input without reinterpretation', () => {
   assert.equal(fallback, payload);
 });
 
-test('AppleScript uses constant source and targets the attached terminal tab', () => {
+test('macOS fallback never executes response text as a shell script', () => {
   const original = Object.getOwnPropertyDescriptor(process, 'platform');
   Object.defineProperty(process, 'platform', { value: 'darwin' });
   try {
     const instance = bridge();
+    let simulated;
+    instance.simulateResponse = response => { simulated = response; };
     instance.tryAlternativeInput(payload);
-    const [program, args, options] = execFile.mock.calls[0].arguments;
-    assert.equal(program, 'osascript');
-    assert.equal(options.shell, false);
-    assert.deepEqual(args.slice(2), ['--', payload, '/dev/ttys001']);
-    assert.ok(!args[1].includes(payload));
-    assert.match(args[1], /tty of terminalTab is devicePath/);
-    assert.match(args[1], /do script inputText in terminalTab/);
+    assert.equal(execFile.mock.callCount(), 0);
+    assert.equal(exec.mock.callCount(), 0);
+    assert.equal(simulated.text, payload.trim());
   } finally {
     Object.defineProperty(process, 'platform', original);
   }

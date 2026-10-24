@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { corsResponse, jsonResponse } from '../../lib/api/cors';
 import { checkRateLimit, getClientIp } from '../../lib/api/rate-limit';
 import { getNeonClient } from '../../lib/api/neon';
+import { captureApiError } from '../../lib/api/error-tracking';
 
 const VALID_COMMANDS = [
   'chats',
@@ -87,6 +88,7 @@ export const POST: APIRoute = async ({ request }) => {
     });
   } catch (error) {
     console.error('Command tracking error:', error);
+    await captureApiError(error, { route: '/api/track-command-usage' });
     return jsonResponse(
       {
         error: 'Internal server error',

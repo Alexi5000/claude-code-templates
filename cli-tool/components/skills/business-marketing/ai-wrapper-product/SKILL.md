@@ -1,7 +1,8 @@
 ---
 name: ai-wrapper-product
 description: "Expert in building products that wrap AI APIs (OpenAI, Anthropic, etc.) into focused tools people will pay for. Not just 'ChatGPT but different' - products that solve specific problems with AI. Covers prompt engineering for products, cost management, rate limiting, and building defensible AI businesses. Use when: AI wrapper, GPT product, AI tool, wrap AI, AI SaaS."
-source: vibeship-spawner-skills (Apache 2.0)
+metadata:
+  source: vibeship-spawner-skills (Apache 2.0)
 ---
 
 # AI Wrapper Product
@@ -69,7 +70,7 @@ async function generateContent(userInput, context) {
 
   // 3. Call API
   const response = await anthropic.messages.create({
-    model: 'claude-3-haiku-20240307',
+    model: 'claude-haiku-4-5-20251001',
     max_tokens: 1000,
     system: systemPrompt,
     messages: [{

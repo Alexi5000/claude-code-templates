@@ -2,6 +2,7 @@ const chalk = require('chalk');
 const fs = require('fs-extra');
 const path = require('path');
 const express = require('express');
+const DashboardAuth = require('./dashboard-auth');
 const { dashboardRequestBudget } = require('./sandbox-limits');
 const open = require('open');
 const os = require('os');
@@ -28,6 +29,7 @@ class ClaudeAnalytics {
     this.options = options;
     this.verbose = options.verbose || false;
     this.app = express();
+    this.dashboardAuth = new DashboardAuth();
     this.port = 3333;
     this.stateCalculator = new StateCalculator();
     this.processDetector = new ProcessDetector();
@@ -619,21 +621,7 @@ class ClaudeAnalytics {
 
   setupWebServer() {
     this.app.use(dashboardRequestBudget(600));
-    // Add CORS middleware
-    this.app.use((req, res, next) => {
-      res.header('Access-Control-Allow-Origin', '*');
-      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-      
-      // Handle preflight requests
-      if (req.method === 'OPTIONS') {
-        res.sendStatus(200);
-        return;
-      }
-      
-      next();
-    });
-    
+    this.app.use(this.dashboardAuth.middleware());
     // Add performance monitoring middleware
     this.app.use(this.performanceMonitor.createExpressMiddleware());
     
@@ -646,16 +634,17 @@ class ClaudeAnalytics {
         // Calculate detailed token usage
         const detailedTokenUsage = this.calculateDetailedTokenUsage();
         
-        // Memory cleanup: limit conversation history to prevent memory buildup
-        if (this.data.conversations && this.data.conversations.length > 150) {
-            this.data.conversations = this.data.conversations
-            .sort((a, b) => new Date(b.lastModified) - new Date(a.lastModified))
-            .slice(0, 150);
-        }
-        
-        // Add timestamp to verify data freshness
+        // Slice for response only — do not mutate this.data.conversations
+        const responseConversations = this.data.conversations
+          ? this.data.conversations
+              .slice()
+              .sort((a, b) => new Date(b.lastModified) - new Date(a.lastModified))
+              .slice(0, 150)
+          : [];
+
         const dataWithTimestamp = {
           ...this.data,
+          conversations: responseConversations,
           detailedTokenUsage,
           timestamp: new Date().toISOString(),
           lastUpdate: new Date().toLocaleString(),
@@ -1049,20 +1038,21 @@ class ClaudeAnalytics {
           
         }
         
-        // Memory cleanup: limit conversation history to prevent memory buildup
-        if (this.data.conversations.length > 100) {
-          this.data.conversations = this.data.conversations
-            .sort((a, b) => new Date(b.lastModified) - new Date(a.lastModified))
-            .slice(0, 100);
-        }
-        
         // Force garbage collection hint
         if (global.gc) {
           global.gc();
         }
-        
+
+        // Slice for response only — do not mutate this.data.conversations
+        const responseConversations = this.data.conversations
+          ? this.data.conversations
+              .slice()
+              .sort((a, b) => new Date(b.lastModified) - new Date(a.lastModified))
+              .slice(0, 150)
+          : [];
+
         const dataWithTimestamp = {
-          conversations: this.data.conversations,
+          conversations: responseConversations,
           summary: this.data.summary,
           timestamp: new Date().toISOString(),
           lastUpdate: new Date().toLocaleString(),
@@ -1184,17 +1174,6 @@ class ClaudeAnalytics {
       }
     });
 
-    // Agents API endpoint
-    this.app.get('/api/agents', async (req, res) => {
-      try {
-        const agents = await this.loadAgents();
-        res.json({ agents });
-      } catch (error) {
-        console.error('Error loading agents:', error);
-        res.status(500).json({ error: 'Failed to load agents data' });
-      }
-    });
-
     // Clear cache endpoint
     this.app.post('/api/clear-cache', async (req, res) => {
       try {
@@ -1228,17 +1207,12 @@ class ClaudeAnalytics {
       }
     });
 
-    // Activity heatmap data endpoint - needs full conversation history
+    // Activity heatmap data endpoint — uses in-memory cached conversations
     this.app.get('/api/activity', async (req, res) => {
       try {
-        console.log(`🔥 /api/activity called - loading all conversations...`);
-        const allConversations = await this.conversationAnalyzer.loadConversations(this.stateCalculator);
-        console.log(`🔥 Loaded ${allConversations.length} conversations from server`);
-
-        // Generate activity data using complete dataset
-        const activityData = this.generateActivityDataFromConversations(allConversations);
+        const conversations = this.data.conversations ?? [];
+        const activityData = this.generateActivityDataFromConversations(conversations);
         res.json({
-          conversations: allConversations, // Also include conversations for the heatmap component
           ...activityData,
           timestamp: new Date().toISOString()
         });
@@ -1287,8 +1261,9 @@ class ClaudeAnalytics {
 
   async startServer() {
     return new Promise(async (resolve) => {
-      this.httpServer = this.app.listen(this.port, async () => {
-        console.log(chalk.green(`🚀 Analytics dashboard started at http://localhost:${this.port}`));
+      this.httpServer = this.app.listen(this.port, '127.0.0.1', async () => {
+        this.port = this.httpServer.address().port;
+        console.log(chalk.green(`🚀 Analytics dashboard access: ${this.dashboardAuth.accessUrl(`http://localhost:${this.port}`)}`));
         
         // Initialize WebSocket server
         await this.initializeWebSocket();
@@ -1316,10 +1291,10 @@ class ClaudeAnalytics {
     }
 
     try {
-      await open(fullUrl);
+      await open(this.dashboardAuth.accessUrl(fullUrl));
     } catch (error) {
       console.log(chalk.yellow('Could not open browser automatically. Please visit:'));
-      console.log(chalk.cyan(fullUrl));
+      console.log(chalk.cyan(this.dashboardAuth.accessUrl(fullUrl)));
     }
   }
 
@@ -1332,12 +1307,12 @@ class ClaudeAnalytics {
     console.log('');
     console.log(chalk.cyan('🔒 About Cloudflare Tunnel:'));
     console.log(chalk.gray('• Creates a secure connection between your localhost and the web'));
-    console.log(chalk.gray('• Only you will have access to the generated URL (not public)'));
-    console.log(chalk.gray('• The connection is end-to-end encrypted'));
+    console.log(chalk.gray('• Anyone with the generated access link can read your conversations'));
+    console.log(chalk.gray('• The remote connection uses HTTPS'));
     console.log(chalk.gray('• Automatically closes when you end the session'));
     console.log(chalk.gray('• No firewall or port configuration required'));
     console.log('');
-    console.log(chalk.green('✅ It is completely secure - only you can access the dashboard'));
+    console.log(chalk.green('🔒 Keep the access link private; access expires when this process stops'));
     console.log('');
     
     const { useCloudflare } = await inquirer.prompt([{
@@ -1415,7 +1390,7 @@ class ClaudeAnalytics {
           
           if (urlMatch && !tunnelEstablished) {
             tunnelEstablished = true;
-            this.publicUrl = urlMatch[0];
+            this.publicUrl = this.dashboardAuth.accessUrl(urlMatch[0]);
             
             // Create a prominent, boxed display for the tunnel URL
             const tunnelMessage = chalk.green.bold('🌍 CLOUDFLARE TUNNEL ACTIVE') + '\n\n' +
@@ -1443,7 +1418,7 @@ class ClaudeAnalytics {
           
           if (urlMatch && !tunnelEstablished) {
             tunnelEstablished = true;
-            this.publicUrl = urlMatch[0];
+            this.publicUrl = this.dashboardAuth.accessUrl(urlMatch[0]);
             
             // Create a prominent, boxed display for the tunnel URL
             const tunnelMessage = chalk.green.bold('🌍 CLOUDFLARE TUNNEL ACTIVE') + '\n\n' +
@@ -1516,7 +1491,8 @@ class ClaudeAnalytics {
       // Initialize WebSocket server with performance monitoring
       this.webSocketServer = new WebSocketServer(this.httpServer, {
         path: '/ws',
-        heartbeatInterval: 30000
+        heartbeatInterval: 30000,
+        verifyClient: info => this.dashboardAuth.authorized(info.req)
       }, this.performanceMonitor);
       await this.webSocketServer.initialize();
       
@@ -2358,7 +2334,7 @@ async function runAnalytics(options = {}) {
 
     await analytics.openBrowser(openTo);
 
-    const accessUrl = analytics.publicUrl || `http://localhost:${analytics.port}`;
+    const accessUrl = analytics.dashboardAuth.accessUrl(analytics.publicUrl || `http://localhost:${analytics.port}`);
     
     if (openTo === 'agents') {
       console.log(chalk.green('✅ Claude Code Chats dashboard is running!'));

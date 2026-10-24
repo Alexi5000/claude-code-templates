@@ -186,3 +186,7 @@ MIT License - see the [LICENSE](LICENSE) file for details.
 ---
 
 **⭐ Found this useful? Give us a star to support the project!**
+
+## Private local conversation dashboards
+
+Analytics and mobile chats bind to `127.0.0.1` and require the per-process access link printed by the CLI. Opening that link creates an HttpOnly, SameSite session cookie and removes the token from the URL. API clients can instead send `Authorization: Bearer <token>`. WebSocket connections enforce the same session and origin checks. Restarting the process invalidates prior links. Cloudflare tunnels remain optional; anyone with an access link can read the dashboard, so keep it private.

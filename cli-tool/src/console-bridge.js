@@ -133,7 +133,7 @@ class ConsoleBridge extends EventEmitter {
    */
   async setupWebSocketServer() {
     return new Promise((resolve, reject) => {
-      this.wss = new WebSocket.Server({ 
+      this.wss = new WebSocket.Server({
         port: this.options.port,
         host: this.options.host,
         maxPayload: 64 * 1024,
@@ -179,6 +179,16 @@ class ConsoleBridge extends EventEmitter {
       this.wss.on('listening', resolve);
       this.wss.on('error', reject);
     });
+  }
+
+  /**
+   * Whether a string is a plain device path we are willing to hand to expect
+   * and to a shell. Deliberately strict: /dev/ plus a conservative charset.
+   * @param {string} value - candidate path
+   * @returns {boolean}
+   */
+  static isDevicePath(value) {
+    return typeof value === 'string' && /^\/dev\/[A-Za-z0-9._/-]+$/.test(value);
   }
 
   /**
@@ -254,6 +264,16 @@ class ConsoleBridge extends EventEmitter {
         return;
       }
       
+      // SECURITY: tty comes from parsing `lsof` output and then reaches both an
+      // expect script and a shell command string. Tcl's `open` treats a value
+      // starting with "|" as a command pipeline, and the polling exec() below
+      // interpolates the same value into /bin/sh, so anything that is not a
+      // plain /dev/ device path is refused here rather than downstream.
+      if (!ConsoleBridge.isDevicePath(terminalInfo.tty)) {
+        console.warn(chalk.yellow(`⚠️ Refusing unexpected terminal device path: ${terminalInfo.tty}`));
+        return;
+      }
+
       this.attachedPid = pid;
       this.terminalDevice = terminalInfo.tty;
       
@@ -545,15 +565,29 @@ Do you want to proceed?
     }
     
     if (response.type === 'choice') {
-      // Send the choice number (1-indexed)
-      const choiceNumber = response.value + 1;
+      // Send the choice number (1-indexed). Coerce explicitly: a string `value`
+      // would otherwise concatenate instead of adding and carry its own text
+      // through to the terminal sink.
+      const rawChoice = response.value;
+      const isPlainIndex = typeof rawChoice === 'number' ||
+        (typeof rawChoice === 'string' && /^\d+$/.test(rawChoice));
+      const choiceIndex = isPlainIndex ? Number.parseInt(rawChoice, 10) : NaN;
+      if (!Number.isInteger(choiceIndex) || choiceIndex < 0) {
+        console.warn(chalk.yellow('⚠️ Ignoring choice response with a non-numeric value'));
+        return;
+      }
+      const choiceNumber = choiceIndex + 1;
       console.log(chalk.green(JSON.stringify(require('node:util').format('%s', `✅ Choice selected: ${choiceNumber} - ${response.text}`)).replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/[\x00-\x1f\x7f\x85\u2028\u2029]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'))));
-      
+
       this.writeToTerminal(choiceNumber.toString() + '\n');
-      
+
     } else if (response.type === 'text') {
+      if (typeof response.value !== 'string') {
+        console.warn(chalk.yellow('⚠️ Ignoring text response that is not a string'));
+        return;
+      }
       console.log(chalk.green(JSON.stringify(require('node:util').format('%s', `✅ Text input: "${response.value}"`)).replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/[\x00-\x1f\x7f\x85\u2028\u2029]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'))));
-      
+
       this.writeToTerminal(response.value + '\n');
       
     } else if (response.type === 'cancel') {
@@ -575,9 +609,16 @@ Do you want to proceed?
     }
     
     try {
-      // Try different approaches to send input to the terminal
-      
-      // Method 1: Use expect script to send input
+      // Method 1: Use an expect script to send input.
+      //
+      // SECURITY: `text` is attacker-reachable, so it must never be
+      // interpolated into anything that gets parsed. Two layers here:
+      //   - spawn with shell:false, so the script is a single argv element and
+      //     /bin/sh never sees it (quoting in `text` cannot break out);
+      //   - the value is passed through the environment and read back with
+      //     `$env(...)`, because Tcl re-parses the *body* of a double-quoted
+      //     string ("$var" and "[cmd]" substitutions) but never re-parses a
+      //     variable's value.
       const expectScript = `
         spawn -open [open $env(CLAUDE_BRIDGE_DEVICE) w]
         send -- $env(CLAUDE_BRIDGE_INPUT)
@@ -599,7 +640,7 @@ Do you want to proceed?
           console.log(chalk.green('✅ Input sent via expect'));
         }
       });
-      
+
     } catch (error) {
       console.error(chalk.red('❌ Error writing to terminal:'), error);
       this.tryAlternativeInput(text);
@@ -611,43 +652,18 @@ Do you want to proceed?
    * @param {string} text - Text to send
    */
   tryAlternativeInput(text) {
-    if (!isTerminalDevice(this.terminalDevice)) {
-      console.warn(chalk.yellow('⚠️ No valid terminal device available'));
-      return;
-    }
-    // Method 2: Try using osascript (AppleScript on macOS) to send keystrokes
-    if (process.platform === 'darwin') {
-      const script = `
-        on run argv
-          set inputText to item 1 of argv
-          set devicePath to item 2 of argv
-          tell application "Terminal"
-            repeat with terminalWindow in windows
-              repeat with terminalTab in tabs of terminalWindow
-                if tty of terminalTab is devicePath then
-                  do script inputText in terminalTab
-                  return
-                end if
-              end repeat
-            end repeat
-          end tell
-          error "Attached terminal tab not found"
-        end run
-      `;
-
-      execFile('osascript', ['-e', script, '--', text, this.terminalDevice], { shell: false }, (error) => {
-        if (error) {
-          console.log(chalk.yellow('⚠️ AppleScript method failed, falling back to simulation'));
-          this.simulateResponse({ type: 'choice', value: parseInt(text) - 1, text: text.trim() });
-        } else {
-          console.log(chalk.green('✅ Input sent via AppleScript'));
-        }
-      });
-    } else {
-      // On Linux, try using xdotool or similar
-      console.log(chalk.yellow('⚠️ Non-macOS platform - input simulation not implemented'));
-      this.simulateResponse({ type: 'choice', value: parseInt(text) - 1, text: text.trim() });
-    }
+    // There is no second way to deliver inert terminal input.
+    //
+    // SECURITY: this used to shell out to AppleScript on macOS, but Terminal's
+    // `do script` is documented as "Runs a UNIX shell script or command" - it
+    // executes what it is given instead of typing it. Handing it a response
+    // value therefore ran that value as a shell command, which is the sink
+    // GHSA-4jm9-m3fr-9jpx is about, and passing the text as an argv item
+    // rather than interpolating it does not change that. It never delivered
+    // keystrokes, so nothing is lost by dropping it; every platform now falls
+    // back to simulation, as Linux and Windows already did.
+    console.log(chalk.yellow('⚠️ No terminal input method available - falling back to simulation'));
+    this.simulateResponse({ type: 'choice', value: parseInt(text) - 1, text: text.trim() });
   }
 
   /**

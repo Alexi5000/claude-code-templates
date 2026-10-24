@@ -2,6 +2,8 @@ import type { APIRoute } from 'astro';
 import { createClient } from '@supabase/supabase-js';
 import { corsResponse, jsonResponse } from '../../lib/api/cors';
 import { checkRateLimit, getClientIp } from '../../lib/api/rate-limit';
+import { captureApiError } from '../../lib/api/error-tracking';
+import { getCountry } from '../../lib/api/geo';
 
 function getSupabaseClient() {
   const supabaseUrl = import.meta.env.SUPABASE_URL || process.env.SUPABASE_URL;
@@ -21,7 +23,7 @@ function validateComponentData(data: { type?: string; name?: string; path?: stri
     return { valid: false, error: 'Component type and name are required' };
   }
 
-  const validTypes = ['agent', 'command', 'setting', 'hook', 'mcp', 'skill', 'template'];
+  const validTypes = ['agent', 'command', 'setting', 'hook', 'mcp', 'skill', 'loop', 'mod', 'template'];
   if (!validTypes.includes(type)) {
     return { valid: false, error: 'Invalid component type' };
   }
@@ -50,7 +52,7 @@ export const POST: APIRoute = async ({ request }) => {
       request.headers.get('x-forwarded-for')?.split(',')[0] ||
       request.headers.get('x-real-ip') ||
       '127.0.0.1';
-    const country = request.headers.get('x-vercel-ip-country') || null;
+    const country = getCountry(request);
     const userAgent = request.headers.get('user-agent');
 
     const supabase = getSupabaseClient();
@@ -102,6 +104,7 @@ export const POST: APIRoute = async ({ request }) => {
     });
   } catch (error) {
     console.error('Download tracking error:', error);
+    await captureApiError(error, { route: '/api/track-download-supabase' });
     return jsonResponse(
       {
         error: 'Internal server error',

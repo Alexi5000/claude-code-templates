@@ -29,9 +29,8 @@ catalog, stricter security posture, owned deployment story.
 
 ## Upstream policy
 - `upstream` remote is fetch-only; CI never pushes there.
-- Sync cadence: monthly `git fetch upstream` + cherry-pick catalog additions;
-  never merge upstream `main` wholesale (protects the security fixes above
-  and avoids re-absorbing 400+ unrelated commits at once).
+- Sync policy updated 2026-10-24: merge upstream history on a reviewed integration branch while preserving the fork security gates, custom features and deployment configuration. Resolve conflicts explicitly and run security, build and dependency checks before merging to main. Never reset the fork to upstream or force-push over custom history.
+- This integration incorporates upstream commit `72e5f237` (688 upstream commits since the common ancestor); dated divergence counts above are historical.
 - Divergent files owned by TechTide: `dashboard/src/lib/api/*`,
   `dashboard/src/pages/api/*`, `.github/workflows/security-audit.yml`
   (added under Plans 1–2).

@@ -24,7 +24,7 @@
 
 - Upstream: [davila7/claude-code-templates](https://github.com/davila7/claude-code-templates), MIT license. This fork keeps the MIT license and the upstream [LICENSE](LICENSE) file unchanged; nothing is relicensed.
 - Fork date: 2026-01-19 (GitHub `created_at`).
-- Divergence measured 2026-10-21 (`gh api repos/Alexi5000/claude-code-templates/compare/davila7:main...Alexi5000:main`): 130 commits ahead, 654 commits behind, status `diverged`; the same comparison lists 177 changed files with 23,905 insertions and 16,631 deletions. The fork is deliberately behind; [FORK.md](FORK.md) describes the cherry-pick sync policy.
+- Divergence measured 2026-10-21 (`gh api repos/Alexi5000/claude-code-templates/compare/davila7:main...Alexi5000:main`): 130 commits ahead, 654 commits behind, status `diverged`; the same comparison lists 177 changed files with 23,905 insertions and 16,631 deletions. This is a historical snapshot; the 2026-10-24 integration incorporates upstream `72e5f237` while retaining the fork protections. [FORK.md](FORK.md) describes the updated merge-and-verify policy.
 - What changed in this fork (130 fork-only commits):
   - 58 scheduled catalog-sync commits by `github-actions[bot]` (2026-05-22 to 2026-10-21) from this fork's own `update-json-data.yml` runs.
   - 28 commits on 2026-09-17 and 2026-09-18 adding `CRON_SECRET` cron auth, per-IP telemetry throttling, first-party CORS, Discord signature enforcement, redacted webhook logs, patched dependency floors, weekly and per-PR `npm audit` CI, API test isolation, release 1.29.0 notes, and the FORK, BUSINESS_CASE, DEPLOY, and DATABASE documents.

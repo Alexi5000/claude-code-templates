@@ -26,9 +26,25 @@ async function runScheduled(cron, env) {
   console.log(`${endpoint}: ${response.status}`);
 }
 
+import { reportError, checkIn } from './sentry.js';
+
+const MONITORS = {
+  '*/30 * * * *': 'claude-code-check',
+  '0 * * * *': 'health-check',
+};
+
 export default {
   async scheduled(event, env) {
-    await runScheduled(event.cron, env);
+    const monitor = MONITORS[event.cron];
+    const checkInId = await checkIn(env, monitor, 'in_progress');
+    try {
+      await runScheduled(event.cron, env);
+      await checkIn(env, monitor, 'ok', checkInId);
+    } catch (error) {
+      await reportError(env, error, { worker: 'aitmpl-crons', cron: event.cron });
+      await checkIn(env, monitor, 'error', checkInId);
+      throw error;
+    }
   },
 
   async fetch(request, env) {

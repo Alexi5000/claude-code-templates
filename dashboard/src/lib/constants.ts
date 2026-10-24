@@ -32,29 +32,6 @@ export const FEATURED_ITEMS: FeaturedItem[] = [
     ],
   },
   {
-    name: 'TinyFish',
-    description: 'AI Web Agent Platform',
-    logo: '/tinyfish-logo.png',
-    url: '/featured/tinyfish',
-    tag: 'Web Agents',
-    tagColor: '#0891b2',
-    category: 'Infrastructure',
-    ctaLabel: 'Try TinyFish',
-    ctaUrl: 'https://tinyfish.ai',
-    websiteUrl: 'https://tinyfish.ai',
-    installCommand: 'npx claude-code-templates@latest --mcp web/tinyfish --yes',
-    metadata: {
-      Components: '1',
-      Tools: '4',
-      Integration: 'MCP',
-    },
-    links: [
-      { label: 'Documentation', url: 'https://docs.tinyfish.ai' },
-      { label: 'MCP Integration', url: 'https://docs.tinyfish.ai/mcp-integration' },
-      { label: 'tinyfish.ai', url: 'https://tinyfish.ai' },
-    ],
-  },
-  {
     name: 'ClaudeKit',
     description: 'AI Agents & Skills',
     logo: 'https://docs.claudekit.cc/logo-horizontal.png',
@@ -77,7 +54,7 @@ export const FEATURED_ITEMS: FeaturedItem[] = [
   {
     name: 'BrainGrid',
     description: 'Plan. Build. Verify. Repeat.',
-    logo: '/braingrid-logo.png',
+    logo: '/braingrid-logo.webp',
     url: '/featured/braingrid',
     tag: 'Planning',
     tagColor: '#c5e063',
