@@ -15,9 +15,10 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-# VULNERABLE: Debug mode enabled in production
-# Exposes full stack traces, variables, and allows interactive debugging
-app.run(debug=True, host='0.0.0.0', port=5000)
+# Enabling debug on a public bind exposes an interactive debugger.
+# The distributed example instead starts safely on loopback without debug.
+if __name__ == '__main__':
+    app.run(debug=False, host='127.0.0.1', port=5000)
 
 @app.route('/api/data', methods=['GET'])
 def get_data():

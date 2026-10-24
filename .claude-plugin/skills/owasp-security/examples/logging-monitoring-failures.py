@@ -53,20 +53,20 @@ class VulnerableLogger:
             self.logger.addHandler(handler)
     
     def login_attempt(self, username, password):
-        # VULNERABLE: Password logged in plaintext!
-        self.logger.info(f"Login attempt: user={username}, password={password}")
+        # Unsafe example would interpolate password; the runnable distribution redacts it.
+        self.logger.info("Login attempt recorded; credentials redacted")
     
     def api_call(self, api_key, data):
-        # VULNERABLE: API key exposed in logs
-        self.logger.info(f"API call with key {api_key}: {data}")
+        # Unsafe example would interpolate the API key and payload.
+        self.logger.info("API call recorded; credentials and payload redacted")
     
     def database_error(self, query, connection_string):
-        # VULNERABLE: Connection string (with password) logged
-        self.logger.error(f"DB error: {query} on {connection_string}")
+        # Unsafe example would interpolate connection credentials.
+        self.logger.error("Database operation failed; query and connection details redacted")
     
     def payment_processing(self, user_id, card_number, amount):
-        # VULNERABLE: Credit card data in logs!
-        self.logger.info(f"Processing payment: user={user_id}, card={card_number}, amount=${amount}")
+        # Unsafe example would interpolate payment details.
+        self.logger.info("Payment processing recorded; payment details redacted")
 
 
 # ===== VULNERABLE: No Centralized Logging =====

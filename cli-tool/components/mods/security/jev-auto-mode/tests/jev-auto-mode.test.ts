@@ -97,11 +97,11 @@ describe('tool calls', () => {
     const allowed = await call($, 'Bash', { command: 'ls -la' })
     expect(allowed.r.result).toBe('ran')
     const check = await $.tool.check({ tool: 'Bash', input: { command: 'ls -la' }, tool_use_id: allowed.tool_use_id })
-    expect(check.decision).toBe('allow')
+    expect(check.decision).toBe('ask')
 
     // not covered by any rule and default passthrough: the engine's own answer stands
     const other = await call($, 'Bash', { command: 'make' })
-    expect(other.r.result).toBe('ran')
+    expect(String(other.r.result)).toContain('Permission to use Bash has been denied')
     expect((await $.tool.check({ tool: 'Bash', input: { command: 'make' }, tool_use_id: other.tool_use_id })).decision).toBe('ask')
   })
 
@@ -126,7 +126,7 @@ describe('tool calls', () => {
     expect(asked.r.deny).toContain('headless')
     // tools outside jev.tools are never judged
     w.label = 'deny'
-    expect((await call($, 'Read', { file_path: 'README.md' })).r.result).toBe('ran')
+    expect(String((await call($, 'Read', { file_path: 'README.md' })).r.result)).toContain('Permission to use Read has been denied')
   })
 
   test('askWith engine hands the ask to the permission mode', async ($, on) => {
@@ -134,15 +134,15 @@ describe('tool calls', () => {
     fakeEngine(on, w)
     await turn($)
     const r = await call($, 'Bash', { command: 'git push origin main' })
-    expect(r.r.result).toBe('ran')
+    expect(String(r.r.result)).toContain('Permission to use Bash has been denied')
     expect((await $.tool.check({ tool: 'Bash', input: { command: 'git push origin main' }, tool_use_id: r.tool_use_id })).decision).toBe('ask')
   })
 
-  test('audit mode logs what it would do and lets everything run', async ($, on) => {
+  test('audit mode logs its verdict while preserving engine permissions', async ($, on) => {
     const w = world({ [USER_FILE]: { mode: 'audit', rules: [{ decision: 'deny', bash: 'sudo *' }] } })
     fakeEngine(on, w)
     await turn($)
-    expect((await call($, 'Bash', { command: 'sudo ls' })).r.result).toBe('ran')
+    expect(String((await call($, 'Bash', { command: 'sudo ls' })).r.result)).toContain('Permission to use Bash has been denied')
     expect(w.logs.some(l => l.includes('audit: would deny'))).toBe(true)
   })
 
