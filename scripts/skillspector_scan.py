@@ -437,7 +437,7 @@ def main() -> int:
         return 0
 
     results: list[dict] = []
-    with ThreadPoolExecutor(max_workers=4) as pool:
+    with ThreadPoolExecutor(max_workers=1) as pool:
         for idx, result in enumerate(pool.map(scan_skill, skills), 1):
             print(f"[{idx}/{len(skills)}] scanned {result['path']}", flush=True)
             results.append(result)
