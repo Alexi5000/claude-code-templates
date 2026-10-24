@@ -50,7 +50,7 @@ function runScript(root, ...arguments_) {
   return spawnSync(
     process.execPath,
     [path.join(root, 'scripts/sync-package-versions.js'), ...arguments_],
-    { cwd: root, encoding: 'utf8' }
+    { cwd: root, encoding: 'utf8', timeout: 5000 }
   );
 }
 
@@ -125,4 +125,14 @@ test('invalid semantic versions produce a concise user error', (t) => {
   assert.equal(result.status, 1);
   assert.equal(result.stderr, 'Invalid semantic version: 1.2.3-01\n');
   assert.doesNotMatch(result.stderr, /\n\s+at /);
+});
+
+test('long invalid prerelease input is rejected without hanging or changing manifests', (t) => {
+  const root = createFixture();
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const before = fs.readFileSync(path.join(root, 'package.json'), 'utf8');
+  const result = runScript(root, `1.2.3-${'a'.repeat(100000)}!`);
+  assert.equal(result.error, undefined);
+  assert.equal(result.status, 1);
+  assert.equal(fs.readFileSync(path.join(root, 'package.json'), 'utf8'), before);
 });

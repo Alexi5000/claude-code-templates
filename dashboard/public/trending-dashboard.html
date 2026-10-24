@@ -177,7 +177,8 @@
 
 <script>
 "use strict";
-const NUM = n => n.toLocaleString("en-US");
+const NUM = n => (Number.isFinite(Number(n)) ? Number(n) : 0).toLocaleString("en-US");
+const ESC = value => String(value).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 const $ = s => document.querySelector(s);
 const tt = $("#tooltip");
 
@@ -311,7 +312,7 @@ function renderLine(d) {
       dots[k].setAttribute("cx", X(i)); dots[k].setAttribute("cy", Y(v)); dots[k].setAttribute("opacity", 1);
       return { t, v };
     }).sort((a, b) => b.v - a.v);
-    const html = `<div class="tt-title">${dates[i]}</div>` + rows.map(r =>
+    const html = `<div class="tt-title">${ESC(dates[i])}</div>` + rows.map(r =>
       `<div class="tt-row"><span class="k"><span class="sw" style="background:${r.t.color}"></span>${r.t.label}</span><span class="v">${NUM(r.v)}</span></div>`
     ).join("");
     showTip(html, evt.clientX, evt.clientY);
@@ -327,7 +328,7 @@ function renderLine(d) {
   // description — flag an empty window (no downloads recorded in range)
   const win = `${dates[0]} → ${dates[dates.length - 1]}`;
   if (max === 0) {
-    $("#lineDesc").innerHTML = `Running total per component type, ${win}. <b>No downloads recorded in this window</b> — the latest data in the source ends earlier.`;
+    $("#lineDesc").innerHTML = `Running total per component type, ${ESC(win)}. <b>No downloads recorded in this window</b> — the latest data in the source ends earlier.`;
     el("text", { x: m.l + iw / 2, y: m.t + ih / 2, "text-anchor": "middle", fill: "var(--muted)", "font-size": 13 }, s).textContent = "No activity in this date range";
   } else {
     $("#lineDesc").textContent = `Running total per component type, ${win}.`;
@@ -336,7 +337,7 @@ function renderLine(d) {
   // table
   const head = `<tr><th>Date</th>${TYPES.map(t => `<th class="num">${t.label}</th>`).join("")}</tr>`;
   const body = dates.map((dt, i) =>
-    `<tr><td>${dt}</td>${TYPES.map(t => `<td class="num">${NUM(series[t.key] ? series[t.key][i] : 0)}</td>`).join("")}</tr>`
+    `<tr><td>${ESC(dt)}</td>${TYPES.map(t => `<td class="num">${NUM(series[t.key] ? series[t.key][i] : 0)}</td>`).join("")}</tr>`
   ).join("");
   $("#lineTable").innerHTML = `<table><thead>${head}</thead><tbody>${body}</tbody></table>`;
 }
@@ -369,9 +370,9 @@ function renderBars(hostSel, tableSel, items, opts) {
     // hover
     const hit = el("rect", { x: 0, y, width: W, height: rowH, fill: "transparent" }, s);
     const over = e => showTip(
-      `<div class="tt-title">${it.label}</div>
+      `<div class="tt-title">${ESC(it.label)}</div>
        <div class="tt-row"><span class="k"><span class="sw" style="background:${opts.color}"></span>${opts.valueLabel}</span><span class="v">${NUM(it.value)}</span></div>` +
-      (it.sub ? `<div class="tt-row"><span class="k">${it.sub.k}</span><span class="v">${it.sub.v}</span></div>` : ""),
+      (it.sub ? `<div class="tt-row"><span class="k">${ESC(it.sub.k)}</span><span class="v">${ESC(it.sub.v)}</span></div>` : ""),
       e.clientX, e.clientY);
     hit.addEventListener("mousemove", over);
     hit.addEventListener("mouseleave", hideTip);
@@ -380,7 +381,7 @@ function renderBars(hostSel, tableSel, items, opts) {
 
   // table
   $(tableSel).innerHTML = `<table><thead><tr><th>${opts.rowLabel}</th><th class="num">${opts.valueLabel}</th>${opts.subCol ? `<th class="num">${opts.subCol}</th>` : ""}</tr></thead><tbody>` +
-    items.map(it => `<tr><td>${it.flag ? it.flag + " " : ""}${it.label}</td><td class="num">${NUM(it.value)}</td>${opts.subCol ? `<td class="num">${it.sub ? it.sub.v : ""}</td>` : ""}</tr>`).join("") +
+    items.map(it => `<tr><td>${it.flag ? ESC(it.flag) + " " : ""}${ESC(it.label)}</td><td class="num">${NUM(it.value)}</td>${opts.subCol ? `<td class="num">${it.sub ? ESC(it.sub.v) : ""}</td>` : ""}</tr>`).join("") +
     "</tbody></table>";
 }
 

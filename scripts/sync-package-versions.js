@@ -18,10 +18,22 @@ if (requestedVersions.length > 1 || (checkOnly && requestedVersions.length > 0))
 }
 
 const requestedVersion = requestedVersions[0];
-const semverPattern =
-  /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-(?:(?:[0-9A-Za-z-]*[A-Za-z-][0-9A-Za-z-]*)|0|[1-9]\d*)(?:\.(?:(?:[0-9A-Za-z-]*[A-Za-z-][0-9A-Za-z-]*)|0|[1-9]\d*))*)?(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?$/;
+function isSemanticVersion(value) {
+  const buildParts = value.split('+');
+  if (buildParts.length > 2) return false;
+  const [version, build] = buildParts;
+  const validIdentifier = identifier => /^[0-9A-Za-z-]+$/.test(identifier);
+  if (build !== undefined && !build.split('.').every(validIdentifier)) return false;
+  const dash = version.indexOf('-');
+  const core = dash < 0 ? version : version.slice(0, dash);
+  if (!/^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$/.test(core)) return false;
+  if (dash < 0) return true;
+  return version.slice(dash + 1).split('.').every(identifier =>
+    validIdentifier(identifier) && (!/^[0-9]+$/.test(identifier) || identifier === '0' || !identifier.startsWith('0'))
+  );
+}
 
-if (requestedVersion && !semverPattern.test(requestedVersion)) {
+if (requestedVersion && !isSemanticVersion(requestedVersion)) {
   fail(`Invalid semantic version: ${requestedVersion}`);
 }
 
