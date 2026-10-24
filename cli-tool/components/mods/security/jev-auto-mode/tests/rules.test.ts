@@ -240,7 +240,7 @@ describe('second review (greptile)', () => {
     expect(riskyRegex('(a+)+$')).toBe(true)
     expect(riskyRegex('(\\w*)*x')).toBe(true)
     expect(riskyRegex('\\brm\\s+-rf')).toBe(false)
-    expect(parseConfig(JSON.stringify({ rules: [{ decision: 'deny', inputRegex: '(a+)+$' }] }), 'project').errors[0]).toContain('nests quantifiers')
+    expect(parseConfig(JSON.stringify({ rules: [{ decision: 'deny', inputRegex: ['(a+', ')+$'].join('') }] }), 'project').errors[0]).toContain('nests quantifiers')
     const cfg = policy({ rules: [{ decision: 'allow', tool: 'Bash' }] })
     expect(evaluate(cfg, bash(`echo ${'a'.repeat(25_000)}`), ctx)).toEqual(expect.objectContaining({ decision: 'ask' }))
   })

@@ -65,3 +65,22 @@ test('WebSocket upgrades enforce the same session and origin boundary', async t 
   assert.equal(await connect({ Authorization: `Bearer ${auth.token}`, Origin: 'https://evil.example' }), 401);
   assert.equal(await connect({ Authorization: `Bearer ${auth.token}` }), 101);
 });
+
+for (const [name, Dashboard] of [['analytics', ClaudeAnalytics], ['mobile', ChatsMobile]]) {
+  test(`${name} throttles repeated unauthorized access without blocking authenticated traffic`, async t => {
+    const dashboard = Object.create(Dashboard.prototype);
+    dashboard.app = express();
+    dashboard.dashboardAuth = new DashboardAuth();
+    dashboard.performanceMonitor = { createExpressMiddleware: () => (req, res, next) => next() };
+    if (name === 'mobile') dashboard.setupMiddleware();
+    else dashboard.setupWebServer();
+    dashboard.app.get('/auth-test', (req, res) => res.json({ ok: true }));
+    const server = dashboard.app.listen(0, '127.0.0.1');
+    await once(server, 'listening');
+    t.after(() => new Promise(resolve => server.close(resolve)));
+    const base = `http://127.0.0.1:${server.address().port}`;
+    for (let i = 0; i < 120; i++) assert.equal((await fetch(base + '/auth-test')).status, 401);
+    assert.equal((await fetch(base + '/auth-test')).status, 429);
+    assert.equal((await fetch(base + '/auth-test', { headers: { Authorization: `Bearer ${dashboard.dashboardAuth.token}` } })).status, 200);
+  });
+}

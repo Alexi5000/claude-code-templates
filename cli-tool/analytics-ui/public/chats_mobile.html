@@ -4190,9 +4190,18 @@
 
                 // Use regex to find all occurrences (case-insensitive)
                 const regex = new RegExp(`(${this.escapeRegex(searchTerm)})`, 'gi');
-                const newHTML = textContent.replace(regex, '<span class="message-highlight">$1</span>');
-
-                return newHTML;
+                const fragment = document.createElement('div');
+                let cursor = 0;
+                for (const match of textContent.matchAll(regex)) {
+                    fragment.append(document.createTextNode(textContent.slice(cursor, match.index)));
+                    const mark = document.createElement('span');
+                    mark.className = 'message-highlight';
+                    mark.textContent = match[0];
+                    fragment.append(mark);
+                    cursor = match.index + match[0].length;
+                }
+                fragment.append(document.createTextNode(textContent.slice(cursor)));
+                return fragment.innerHTML;
             }
 
             highlightCurrentMatch(messageIndex) {

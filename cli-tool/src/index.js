@@ -763,7 +763,7 @@ async function installIndividualSetting(settingName, targetDir, options) {
       : null;
     if (settingName.includes('statusline/') || scriptMatch) {
       const pythonFileName = scriptMatch ? scriptMatch[1] : settingName.split('/').pop() + '.py';
-      const pythonUrl = githubUrl.replace(/[^/]+\.json$/, pythonFileName);
+      const pythonUrl = githubUrl.slice(0, githubUrl.lastIndexOf('/') + 1) + pythonFileName;
       
       try {
         console.log(chalk.gray(`📥 Downloading Python script: ${pythonFileName}...`));

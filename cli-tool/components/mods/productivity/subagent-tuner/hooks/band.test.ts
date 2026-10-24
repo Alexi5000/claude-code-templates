@@ -176,7 +176,7 @@ async function expectBand(ui: Band, columns: number, saved: { model: string | nu
   expect((await raw('mode-auto')).startsWith('*'), `auto mark at ${columns}`).toBe(mode === 'auto')
 
   if (columns >= manualNeed(saved, mode)) {
-    expect((await raw('mode-manual')).replace('*', ''), `Manual in full at ${columns}`).toBe('Manual')
+    expect((await raw('mode-manual')).replaceAll('*', ''), `Manual in full at ${columns}`).toBe('Manual')
   }
 }
 
@@ -278,7 +278,7 @@ test('Manual stays in full for every saved default whenever it fits, and Man is 
 
     for (let columns = MIN_COLUMNS; columns <= 140; columns += 1) {
       const ui = await mountBand($, columns)
-      const label = String((await ui.find({ key: 'mode-manual' }))?.props.label).replace('*', '')
+      const label = String((await ui.find({ key: 'mode-manual' }))?.props.label).replaceAll('*', '')
 
       expect(label === 'Manual' || label === 'Man', `at ${columns}`).toBe(true)
 

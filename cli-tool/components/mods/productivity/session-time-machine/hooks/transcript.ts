@@ -188,10 +188,8 @@ export function resumeCommand(cwd: string, newId: string, instruction: string): 
   return instruction.trim() ? `${base} ${shellQuote(instruction)}` : base
 }
 
-/** A random v4 uuid; the module has no crypto, so Math.random does (an id, not a secret). */
-export function newSessionId(random: () => number = Math.random): string {
-  const hex = (n: number) => Array.from({ length: n }, () => Math.floor(random() * 16).toString(16)).join('')
-  return `${hex(8)}-${hex(4)}-4${hex(3)}-${'89ab'[Math.floor(random() * 4)]}${hex(3)}-${hex(12)}`
+export function newSessionId(): string {
+  return crypto.randomUUID()
 }
 
 export type ForkArgs = { kind: 'open' } | { kind: 'list' } | { kind: 'fork'; n: number; instruction: string } | { kind: 'error'; text: string }

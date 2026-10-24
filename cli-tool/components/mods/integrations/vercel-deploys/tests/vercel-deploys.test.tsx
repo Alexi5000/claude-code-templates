@@ -149,7 +149,7 @@ describe('the pane', () => {
     expect(list.auth).toBe(`Bearer ${TOKEN}`)
     expect(list.url).toContain('limit=20')
     // sites are probed without the token
-    const probes = w.calls.filter(c => !c.url.startsWith('https://api.vercel.com'))
+    const probes = w.calls.filter(c => new URL(c.url).origin !== 'https://api.vercel.com')
     expect([...new Set(probes.map(c => c.url))].sort()).toEqual(['https://api.acme.dev', 'https://docs.acme.dev', 'https://www.acme.dev'])
     expect(probes.every(c => c.auth === undefined)).toBe(true)
 
@@ -209,6 +209,6 @@ describe('the pane', () => {
     fakeEngine(on, w)
     await $.session.start({ cwd: '/repo', surface: 'terminal', isInteractive: true } as never)
     await run($)
-    expect(w.calls.every(c => c.url.startsWith('https://api.vercel.com'))).toBe(true)
+    expect(w.calls.every(c => new URL(c.url).origin === 'https://api.vercel.com')).toBe(true)
   })
 })

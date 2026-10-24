@@ -3,6 +3,10 @@
 import { execFileSync, spawnSync } from 'node:child_process';
 import {
   chmodSync,
+  openSync,
+  closeSync,
+  fstatSync,
+  constants,
   existsSync,
   mkdirSync,
   readFileSync,
@@ -540,19 +544,23 @@ const tryGetFromOsStore = () => {
 };
 
 const readTokenFile = (filePath) => {
-  if (!existsSync(filePath)) {
-    return null;
+  let fd;
+  try {
+    fd = openSync(filePath, constants.O_RDONLY | constants.O_NOFOLLOW | constants.O_NONBLOCK);
+  } catch (error) {
+    if (error.code === 'ENOENT') return null;
+    throw error;
   }
-
-  const fileMode = statSync(filePath).mode & 0o777;
-
-  if (platform() !== 'win32' && fileMode !== 0o600) {
-    throw new Error(`${filePath} must have 0600 permissions.`);
-  }
-
-  const token = normalizeToken(readFileSync(filePath, 'utf8'));
-  assertValidToken(token);
-  return token;
+  try {
+    const info = fstatSync(fd);
+    if (!info.isFile() || info.size > 65536) throw new Error('Invalid token file.');
+    if (platform() !== 'win32' && (info.mode & 0o777) !== 0o600) {
+      throw new Error(`${filePath} must have 0600 permissions.`);
+    }
+    const token = normalizeToken(readFileSync(fd, 'utf8'));
+    assertValidToken(token);
+    return token;
+  } finally { closeSync(fd); }
 };
 
 const saveTokenFile = (filePath, token) => {

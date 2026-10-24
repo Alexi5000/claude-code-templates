@@ -2,6 +2,7 @@ const chalk = require('chalk');
 const fs = require('fs-extra');
 const path = require('path');
 const express = require('express');
+const { rateLimit } = require('express-rate-limit');
 const DashboardAuth = require('./dashboard-auth');
 const { dashboardRequestBudget } = require('./sandbox-limits');
 const open = require('open');
@@ -107,6 +108,7 @@ class ChatsMobile {
    */
   setupMiddleware() {
     this.app.use(dashboardRequestBudget(600));
+    this.app.use(rateLimit({ windowMs: 60_000, limit: 120, skip: req => this.dashboardAuth.authorized(req), skipSuccessfulRequests: true, standardHeaders: true, legacyHeaders: false }));
     this.app.use(this.dashboardAuth.middleware());
     this.app.use(express.json());
     

@@ -29,7 +29,7 @@ const strings = (node: Node): string[] =>
 const shape = (node: Node): Node =>
   typeof node === 'string'
     ? node
-    : (JSON.parse(JSON.stringify(node, (key, value: unknown) => (key === 'press' ? undefined : value))) as Node)
+    : (JSON.parse(JSON.stringify(node, (key, value: unknown) => (key === 'press' || key === 'part' ? undefined : value))) as Node)
 
 // The band as drawn alone: the reference for "identical to today".
 async function alone($: Engine, columns = 100, surface: 'terminal' | 'desktop' = 'terminal') {

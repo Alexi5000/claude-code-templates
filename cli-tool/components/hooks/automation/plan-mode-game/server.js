@@ -120,9 +120,9 @@ const server = http.createServer((req, res) => {
         const url = `http://localhost:${PORT}/v/${token}`;
         const text = [
           'Plan Mode Game Scores:',
-          `\u{1F995} Dino Runner: ${payload.d} pts`,
-          `\u{1F40D} Snake: ${payload.s} pts`,
-          `\u{1F426} Flappy Bird: ${payload.f} pts`,
+          `\u{1F995} Dino Runner: ${Number(payload.d) || 0} pts`,
+          `\u{1F40D} Snake: ${Number(payload.s) || 0} pts`,
+          `\u{1F426} Flappy Bird: ${Number(payload.f) || 0} pts`,
           '',
           `Verify → ${url}`
         ].join('\n');
@@ -175,9 +175,9 @@ tr:last-child td{border-bottom:none}
 <h1 class="${valid ? 'valid' : 'invalid'}">${valid ? 'VERIFIED' : 'INVALID'}</h1>
 <p class="subtitle">${valid ? 'These scores are authentic' : 'This score link has been tampered with'}</p>
 ${valid && payload ? `<table>
-<tr><td class="game">\u{1F995} Dino Runner</td><td class="pts">${payload.d} pts</td></tr>
-<tr><td class="game">\u{1F40D} Snake</td><td class="pts">${payload.s} pts</td></tr>
-<tr><td class="game">\u{1F426} Flappy Bird</td><td class="pts">${payload.f} pts</td></tr>
+<tr><td class="game">\u{1F995} Dino Runner</td><td class="pts">${Number(payload.d) || 0} pts</td></tr>
+<tr><td class="game">\u{1F40D} Snake</td><td class="pts">${Number(payload.s) || 0} pts</td></tr>
+<tr><td class="game">\u{1F426} Flappy Bird</td><td class="pts">${Number(payload.f) || 0} pts</td></tr>
 </table>
 <p class="meta">Shared on ${ts}</p>` : ''}
 <a class="play-link" href="/">Play Plan Mode Game</a>
