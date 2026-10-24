@@ -53,7 +53,7 @@ Use these keywords in your prompts to trigger deeper reasoning from the agent:
 
 If the agent is stuck or behaving unexpectedly:
 
-1. **Clear Context**: Start a new session or ask the agent to "forget previous instructions" if confused.
+1. **Clear Context**: Start a new session with a concise task summary. Preserve applicable project instructions, permissions, and safety requirements.
 2. **Explicit Instructions**: Be extremely specific about paths, filenames, and desired outcomes.
 3. **Logs**: Ask the agent to "check the logs" or "run the command with verbose output".
 
