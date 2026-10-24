@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:3f153293217a8c1308a823852bdbfb76133fe03b54a84271ae77f47c826669b6",
+      "rule_id": "AR2",
+      "file": "references/evaluation_framework.md",
+      "reason": "No ethical considerations is a NEGATIVE methodology rubric criterion; surrounding checklist requires ethical review."
+    },
+    {
+      "hash": "sha256:bac74bcb6fc02cc6764d1ea244c37e185f2fdd3775a6d7897af181ce52088637",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    },
+    {
+      "hash": "sha256:87e7703369a4d79625ab4450049906054e41fb2f0849e7f6ef58eef960933a88",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    },
+    {
+      "hash": "sha256:e792b5ec95d0505c197fee94f1758f6933b4d18209719ef6ce7131ac4a392309",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    }
+  ]
+}

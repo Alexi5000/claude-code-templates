@@ -1,0 +1,67 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:a8dd91b3f96292d7c9b853780cceb1ac9d1c79c1053cf4c322398e69603977bf",
+      "rule_id": "E1",
+      "file": "reference/node_mcp_server.md",
+      "reason": "Exact api.example.com documentation placeholder, no real exfiltration destination."
+    },
+    {
+      "hash": "sha256:a2d2a2c91d768fd65ad639e54b68406a9baf3ea564b3f80a2decc819947452c1",
+      "rule_id": "EA1",
+      "file": "reference/evaluation.md",
+      "reason": "Exact CLI model option or negated instruction Should NOT call tools that modify state; explicit user-selected evaluation, not autonomous permission expansion."
+    },
+    {
+      "hash": "sha256:a3322ad330201fccb8033081edd6617b2b68fc90b15a905f762e370617dad501",
+      "rule_id": "EA5",
+      "file": "reference/evaluation.md",
+      "reason": "Exact CLI model option or negated instruction Should NOT call tools that modify state; explicit user-selected evaluation, not autonomous permission expansion."
+    },
+    {
+      "hash": "sha256:4eca221bff4487f9cba6e44720b98ee96185e1b0a652a0d4ab68ffe3f1c4b9cd",
+      "rule_id": "PE3",
+      "file": "reference/mcp_best_practices.md",
+      "reason": "Exact OAuth security advice to validate access tokens for intended audience, not token harvesting."
+    },
+    {
+      "hash": "sha256:7dc550cef969d2a5be2a3cb1d985dc0066f4130fce45faa92bc211ca04c52e1c",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    },
+    {
+      "hash": "sha256:b6b66649ad997b7992549b7b3af5f983d66ac1dbb0ca7d63ecd576ae713bc1fd",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    },
+    {
+      "hash": "sha256:8ccf0aaa6babdd23ff53791abbd791a421138e88e36e01af3b033e7e7d892305",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    },
+    {
+      "hash": "sha256:ad755b327b94b87e93f6cf4f8605bd07befbc3110316617d464a1416d62c1085",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    },
+    {
+      "hash": "sha256:1242d22027c8cb66219794ae2d0618b2e63ed9ecc772486b5447f460a47006e1",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    },
+    {
+      "hash": "sha256:588a47a31048210e1275e22cc9ee13e4ca0fdd8519e09d1d4d8fb4bbab4f66ca",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    }
+  ]
+}

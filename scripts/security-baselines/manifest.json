@@ -1,0 +1,122 @@
+{
+  "career/workorai": {
+    "baseline": "career-workorai.json",
+    "source_tree_sha256": "0354dcc4bce2087dcf8a3dfa34650eeeebb229cf2dae86ba4afbdde33ebd816e",
+    "reviewed_by": "claude_sync with independent root review",
+    "reviewed_at": "2026-10-24"
+  },
+  "development/bleu": {
+    "baseline": "development-bleu.json",
+    "source_tree_sha256": "acbc65aef8fa8c1d126e79e0f1cab9380141a3af9402cc6cd16431b86e8f876b",
+    "reviewed_by": "claude_sync with independent root review",
+    "reviewed_at": "2026-10-24"
+  },
+  "development/mcp-builder": {
+    "baseline": "development-mcp-builder.json",
+    "source_tree_sha256": "c5db6fb0ffad67892cee43063fad23d368fd83eb2da8c27630e1bfc95923ca95",
+    "reviewed_by": "claude_sync with independent root review",
+    "reviewed_at": "2026-10-24"
+  },
+  "development/skill-creator": {
+    "baseline": "development-skill-creator.json",
+    "source_tree_sha256": "87ee588d84bfa6cfa9b90fa60d31b88ab61c8ce4bea9f7c461c912c51d5033a7",
+    "reviewed_by": "claude_sync with independent root review",
+    "reviewed_at": "2026-10-24"
+  },
+  "development/skill-development": {
+    "baseline": "development-skill-development.json",
+    "source_tree_sha256": "f548a36d71420270a250ed55cd79f04fe16af22a1e04ffd134362d9fcb39bd74",
+    "reviewed_by": "claude_sync with independent root review",
+    "reviewed_at": "2026-10-24"
+  },
+  "document-processing/docx-official": {
+    "baseline": "document-processing-docx-official.json",
+    "source_tree_sha256": "69245ad09ff554457375d955fe33a3dc69ac744fbf315e95a4fbf208369358bf",
+    "reviewed_by": "claude_sync with independent root review",
+    "reviewed_at": "2026-10-24"
+  },
+  "enterprise-communication/session-handoff": {
+    "baseline": "enterprise-communication-session-handoff.json",
+    "source_tree_sha256": "f3c20676aaa7a2095c1c36e2abddb3fc0970b63198f0f0d78c4b0e5f3171a609",
+    "reviewed_by": "claude_sync with independent root review",
+    "reviewed_at": "2026-10-24"
+  },
+  "media/speech": {
+    "baseline": "media-speech.json",
+    "source_tree_sha256": "08ce24909ad78b2aca7fd5edf18051693796cfdba63c9706d893be20b1749547",
+    "reviewed_by": "claude_sync with independent root review",
+    "reviewed_at": "2026-10-24"
+  },
+  "productivity/mac-storage-cleaner": {
+    "baseline": "productivity-mac-storage-cleaner.json",
+    "source_tree_sha256": "b6850881b31cf877e901a40360d8444df6385799a7af3c5f2ba84d2ed8e07f0a",
+    "reviewed_by": "claude_sync with independent root review",
+    "reviewed_at": "2026-10-24"
+  },
+  "productivity/skill-creator": {
+    "baseline": "productivity-skill-creator.json",
+    "source_tree_sha256": "7d69ba365ee836a9beddfe5cfee47e325b1e1b16b9e27f4a008abd5f2eef8739",
+    "reviewed_by": "claude_sync with independent root review",
+    "reviewed_at": "2026-10-24"
+  },
+  "document-processing/xlsx-official": {
+    "baseline": "document-processing-xlsx-official.json",
+    "source_tree_sha256": "903d684daf50e74578daa9e4f2f13711218bcceb0f74cedebf1158d8afe8b17e",
+    "reviewed_by": "claude_sync with independent root review",
+    "reviewed_at": "2026-10-24"
+  },
+  "document-processing/pptx-official": {
+    "baseline": "document-processing-pptx-official.json",
+    "source_tree_sha256": "1516aad5365e4e9514666420b87c42d91b8a44706b89e1bbc6dda2223a7dae36",
+    "reviewed_by": "claude_sync with independent root review",
+    "reviewed_at": "2026-10-24"
+  },
+  "scientific/scholar-evaluation": {
+    "baseline": "scientific-scholar-evaluation.json",
+    "source_tree_sha256": "5c6ba92f2886cb39176fb226246242efe555d8675ee9ccb823ae9033d92e1197",
+    "reviewed_by": "claude_sync with independent root review",
+    "reviewed_at": "2026-10-24"
+  },
+  "security/webapp-testing": {
+    "baseline": "security-webapp-testing.json",
+    "source_tree_sha256": "1dc1d5e91adfbf7ed43976641fede6d656b3ae2bf78453fe6a65f9ba62602a44",
+    "reviewed_by": "claude_sync with independent root review",
+    "reviewed_at": "2026-10-24"
+  },
+  "development/webapp-testing": {
+    "baseline": "development-webapp-testing.json",
+    "source_tree_sha256": "1dc1d5e91adfbf7ed43976641fede6d656b3ae2bf78453fe6a65f9ba62602a44",
+    "reviewed_by": "claude_sync with independent root review",
+    "reviewed_at": "2026-10-24"
+  },
+  "development/agirails-agent-payments": {
+    "baseline": "development-agirails-agent-payments.json",
+    "source_tree_sha256": "8690d993f867d69b33df8fadd53be922e11bc59af7736001df6f88294421ba55",
+    "reviewed_by": "claude_sync with independent root review",
+    "reviewed_at": "2026-10-24"
+  },
+  "doordash/doordash-spend-guard": {
+    "baseline": "doordash-doordash-spend-guard.json",
+    "source_tree_sha256": "b7da93d1cdc2cb84c7ec08e5dde795542ea1dd0ed60c24b59676edcb3e94d384",
+    "reviewed_by": "claude_sync with independent root review",
+    "reviewed_at": "2026-10-24"
+  },
+  "document-processing/xlsx": {
+    "baseline": "document-processing-xlsx.json",
+    "source_tree_sha256": "e3ffa62e327094e24ead36ac818daaec14266d6fe0a872d3344c3e8ec752f204",
+    "reviewed_by": "claude_sync with independent root review",
+    "reviewed_at": "2026-10-24"
+  },
+  "document-processing/docx": {
+    "baseline": "document-processing-docx.json",
+    "source_tree_sha256": "d0417b413714fee04bbc405ee2a4975ec1357741f6a4d16ddd8f259ca77a3e5f",
+    "reviewed_by": "claude_sync with independent root review",
+    "reviewed_at": "2026-10-24"
+  },
+  "document-processing/pptx": {
+    "baseline": "document-processing-pptx.json",
+    "source_tree_sha256": "078715b497f65b54169a6aff7c43812e1d59f9deb4185531b2c5c1d6d1272437",
+    "reviewed_by": "claude_sync with independent root review",
+    "reviewed_at": "2026-10-24"
+  }
+}

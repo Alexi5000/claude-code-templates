@@ -1,0 +1,103 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:3b7548935c421f3ef6978400b601a0f8cd69249159a2b799a05b257a64f3949b",
+      "rule_id": "AST4",
+      "file": "scripts/accept_changes.py",
+      "reason": "Reviewed argv-only local LibreOffice/compiler/pdf conversion or git diff for requested document operation. Recalc uses private profile; no user macro overwrite."
+    },
+    {
+      "hash": "sha256:d3d6cad2bfa2074577275fcf81d9cf7b6addb966ed428675978090045b974cd6",
+      "rule_id": "AST4",
+      "file": "scripts/accept_changes.py",
+      "reason": "Reviewed argv-only local LibreOffice/compiler/pdf conversion or git diff for requested document operation. Recalc uses private profile; no user macro overwrite."
+    },
+    {
+      "hash": "sha256:ca57a7f1e9a2fe0309fa8e11ffb34afc81c211a9a7f812e5f5be2c263f3ca666",
+      "rule_id": "AST4",
+      "file": "scripts/office/soffice.py",
+      "reason": "Reviewed argv-only local LibreOffice/compiler/pdf conversion or git diff for requested document operation. Recalc uses private profile; no user macro overwrite."
+    },
+    {
+      "hash": "sha256:22bf331ac5e6452f692d9bed9b2375461e8de6055f055710eb2b9f38bb72877d",
+      "rule_id": "AST4",
+      "file": "scripts/office/soffice.py",
+      "reason": "Reviewed argv-only local LibreOffice/compiler/pdf conversion or git diff for requested document operation. Recalc uses private profile; no user macro overwrite."
+    },
+    {
+      "hash": "sha256:ba3e3bca8e11f4b286bd549b9f045e6508bed546224348a360b906e8edf9d886",
+      "rule_id": "AST4",
+      "file": "scripts/office/validators/redlining.py",
+      "reason": "Reviewed argv-only local LibreOffice/compiler/pdf conversion or git diff for requested document operation. Recalc uses private profile; no user macro overwrite."
+    },
+    {
+      "hash": "sha256:39c60af54d6f45b1e93dcb9172d21ac24caae0546272278c6619961451e53f8d",
+      "rule_id": "AST4",
+      "file": "scripts/office/validators/redlining.py",
+      "reason": "Reviewed argv-only local LibreOffice/compiler/pdf conversion or git diff for requested document operation. Recalc uses private profile; no user macro overwrite."
+    },
+    {
+      "hash": "sha256:fee743385de35fbcf69a5f3581f8c607caf190e96638913a7f46ced136834802",
+      "rule_id": "E2",
+      "file": "scripts/office/soffice.py",
+      "reason": "Environment inheritance for fixed local LibreOffice/gcc argv; no remote forwarding. Shim compiled in private0700 temporary directory."
+    },
+    {
+      "hash": "sha256:00b6a0db3d1ea9bc61cfdfbbc69392f676657e95d89b65bfaf935dd5cdd6b15d",
+      "rule_id": "P2",
+      "file": "SKILL.md",
+      "reason": "Reviewed literal XML tutorial comments or UTF-8 BOM in Office schema, not hidden agent instructions."
+    },
+    {
+      "hash": "sha256:de5a1f9d35cfce104608a444cbd0112c59866509866547f36a4c5f9072920997",
+      "rule_id": "P2",
+      "file": "SKILL.md",
+      "reason": "Reviewed literal XML tutorial comments or UTF-8 BOM in Office schema, not hidden agent instructions."
+    },
+    {
+      "hash": "sha256:9efae4ca721bd6b90eeebc69ff3b21f0d27d6174698c30c9df5670f94e14d2a7",
+      "rule_id": "P2",
+      "file": "scripts/office/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
+      "reason": "Reviewed literal XML tutorial comments or UTF-8 BOM in Office schema, not hidden agent instructions."
+    },
+    {
+      "hash": "sha256:3909c52b8fa4ee1a93f700e42f8c75cfc1477cb9690bd77a7929bb2116984a00",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "reason": "pList is an Office XML schema identifier, not a persistence mechanism."
+    },
+    {
+      "hash": "sha256:ad48518a4b0459e1081595e881b4a3557fe03d2f23ff0d4724d08851d7b520ac",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "reason": "pList is an Office XML schema identifier, not a persistence mechanism."
+    },
+    {
+      "hash": "sha256:b860ce4d57f38d88b3ae4c0dddd74a5cd88235acee6abf5814b88a98acea016f",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "reason": "pList is an Office XML schema identifier, not a persistence mechanism."
+    },
+    {
+      "hash": "sha256:3ef96aaf530b4a843a13fc6b9d50b88f82d9fe4815393e7fe14b34296c0e7e1a",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "reason": "pList is an Office XML schema identifier, not a persistence mechanism."
+    },
+    {
+      "hash": "sha256:3215e6d774140af6951e8f87fefbc111980011567069fae979ae38ede46965fa",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "reason": "pList is an Office XML schema identifier, not a persistence mechanism."
+    },
+    {
+      "hash": "sha256:cb15a7dea6db772509b70a5a2ce588054b9c60e1033dad7a310f16e37056d632",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "reason": "pList is an Office XML schema identifier, not a persistence mechanism."
+    }
+  ]
+}

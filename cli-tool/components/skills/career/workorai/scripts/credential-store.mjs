@@ -6,6 +6,8 @@ import {
   openSync,
   closeSync,
   fstatSync,
+  fchmodSync,
+  ftruncateSync,
   constants,
   existsSync,
   mkdirSync,
@@ -564,12 +566,15 @@ const readTokenFile = (filePath) => {
 };
 
 const saveTokenFile = (filePath, token) => {
-  mkdirSync(dirname(filePath), { recursive: true });
-  writeFileSync(filePath, `${token}\n`, { mode: 0o600 });
-
-  if (platform() !== 'win32') {
-    chmodSync(filePath, 0o600);
-  }
+  mkdirSync(dirname(filePath), { recursive: true, mode: 0o700 });
+  const fd = openSync(filePath, constants.O_WRONLY | constants.O_CREAT | constants.O_NOFOLLOW | constants.O_NONBLOCK, 0o600);
+  try {
+    const info = fstatSync(fd);
+    if (!info.isFile() || info.nlink !== 1) throw new Error('Token destination must be a private regular file.');
+    if (platform() !== 'win32') fchmodSync(fd, 0o600);
+    ftruncateSync(fd, 0);
+    writeFileSync(fd, `${token}\n`);
+  } finally { closeSync(fd); }
 
   return filePath;
 };

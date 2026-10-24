@@ -536,8 +536,12 @@ async def get_document(name: str) -> str:
     Resources are useful for static or semi-static data that doesn't
     require complex parameters. They use URI templates for flexible access.
     '''
-    document_path = f"./docs/{name}"
-    with open(document_path, "r") as f:
+    from pathlib import Path
+    root = Path("./docs").resolve()
+    document_path = (root / name).resolve()
+    if not document_path.is_relative_to(root) or not document_path.is_file():
+        raise ValueError("Document is outside the configured directory")
+    with document_path.open("r") as f:
         return f.read()
 
 @mcp.resource("config://settings/{key}")

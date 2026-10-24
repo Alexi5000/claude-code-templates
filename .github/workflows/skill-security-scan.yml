@@ -10,8 +10,8 @@ on:
       - 'cli-tool/components/skills/**'
       - 'scripts/skillspector_scan.py'
       - '.github/workflows/skill-security-scan.yml'
-      - 'scripts/skillspector_scan.py'
       - 'scripts/test_skillspector_scan.py'
+      - 'scripts/security-baselines/**'
 
 permissions:
   contents: read
@@ -59,6 +59,7 @@ jobs:
           name: skillspector-report
           path: |
             skillspector-report.md
+            skillspector-report.json
             skillspector.sarif
           retention-days: 30
 

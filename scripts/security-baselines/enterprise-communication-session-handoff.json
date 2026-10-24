@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:084482deee778c55fc8af09864befc7395a8f7bab0a3d45531610dba6af6df7c",
+      "rule_id": "PE3",
+      "file": "scripts/validate_handoff.py",
+      "reason": "Credential-leak detection regex matches access tokens to warn on secret leakage; it does not read credentials."
+    },
+    {
+      "hash": "sha256:7737d9253841963051cbc868e1af150def4e03e7e3d2b290fe7be159dea55073",
+      "rule_id": "RA1",
+      "file": "evals/model-expectations.md",
+      "reason": "Evaluation expectations refer to updating requested skill content, not system-rule modification."
+    }
+  ]
+}

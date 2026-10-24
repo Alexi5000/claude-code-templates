@@ -1,0 +1,49 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:791f56481df2418b483b0db5a182f56f91f8a42e8956c5636f573eb741776134",
+      "rule_id": "AST4",
+      "file": "scripts/improve_description.py",
+      "reason": "Reviewed fixed argv local Claude evaluation subprocess with bounded timeouts, not shell injection."
+    },
+    {
+      "hash": "sha256:26aaa96d6b71a74c18a9a6c3835370d56a6e592f93ba8be3f6248466ab17d7b1",
+      "rule_id": "AST4",
+      "file": "scripts/run_eval.py",
+      "reason": "Reviewed fixed argv local Claude evaluation subprocess with bounded timeouts, not shell injection."
+    },
+    {
+      "hash": "sha256:88a2d723f83625393cf528e20d364d26c3f4b7b22df7fb4eeb120147f8001745",
+      "rule_id": "AS1",
+      "file": "scripts/run_eval.py",
+      "reason": "Finds current project .claude directory to place temporary user-requested evaluation command; slug validation prevents path escape."
+    },
+    {
+      "hash": "sha256:6925549013c48a43afd4ecb061f1d67884ab1b60b8f347a6d5f431813d372dec",
+      "rule_id": "E2",
+      "file": "scripts/improve_description.py",
+      "reason": "Environment inherited by fixed argv local Claude subprocess for user-requested evaluation; no environment export destination. Eval filenames now validated."
+    },
+    {
+      "hash": "sha256:be00cec0bfe8758cd71124f6aed0278a329f03496b08a22ba0fe6d693aabe685",
+      "rule_id": "RA2",
+      "file": "SKILL.md",
+      "reason": "Temporary local review viewer requested by workflow; no hidden startup persistence. Unrelated port processes are preserved."
+    },
+    {
+      "hash": "sha256:19da6156f732e459cf9d48d9f8299548590613c218c54f2e0a352a1a18569b83",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    },
+    {
+      "hash": "sha256:c6d837b8e0efe936798e9cbb4500917c1c6767c15593f535dde1d89310537016",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    }
+  ]
+}

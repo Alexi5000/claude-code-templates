@@ -8,6 +8,7 @@ for a set of queries. Outputs results as JSON.
 import argparse
 import json
 import os
+import re
 import select
 import subprocess
 import sys
@@ -48,6 +49,8 @@ def run_single_query(
     stream events (content_block_start) rather than waiting for the
     full assistant message, which only arrives after tool execution.
     """
+    if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", skill_name):
+        raise ValueError("Skill name must be a lowercase slug")
     unique_id = uuid.uuid4().hex[:8]
     clean_name = f"{skill_name}-skill-{unique_id}"
     project_commands_dir = Path(project_root) / ".claude" / "commands"

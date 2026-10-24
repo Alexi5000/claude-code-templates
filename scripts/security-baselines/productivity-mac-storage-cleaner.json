@@ -1,0 +1,37 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:4ecd3cd7f32752f6b4f72a0da150e1abf3ea1c350f2a135aa5c97fa18599f698",
+      "rule_id": "RA2",
+      "file": "references/cache-catalog.md",
+      "reason": "Inventory lists app .plist/saved-state files for review/removal, not instructions to establish persistence."
+    },
+    {
+      "hash": "sha256:a8f5160c57315ba5f8d32332beb61ae7c7f92e74016f04874fd142709d04bdf5",
+      "rule_id": "RA2",
+      "file": "references/cache-catalog.md",
+      "reason": "Inventory lists app .plist/saved-state files for review/removal, not instructions to establish persistence."
+    },
+    {
+      "hash": "sha256:cc8deaa55d0dfaa501ee6f20e92f77de2372c09929034e9cfdf44ad462ed5e14",
+      "rule_id": "TM1",
+      "file": "references/cache-catalog.md",
+      "reason": "Exact documented deletion of reproducible cargo registry cache under requested cleanup; truncated rm -rf ~ match does not represent deleting home."
+    },
+    {
+      "hash": "sha256:da7f94b7a7086d08e99641fe1b37f5b1b595f71279f20995f01c05043539991c",
+      "rule_id": "TM1",
+      "file": "references/cache-catalog.md",
+      "reason": "Exact documented deletion of reproducible cargo registry cache under requested cleanup; truncated rm -rf ~ match does not represent deleting home."
+    },
+    {
+      "hash": "sha256:304eef1cde316a2870c2bd63dd8d3a5f7d48111ce425e20689609a3998f7ca97",
+      "rule_id": "TM1",
+      "file": "references/cache-catalog.md",
+      "reason": "Exact documented deletion of reproducible cargo registry cache under requested cleanup; truncated rm -rf ~ match does not represent deleting home."
+    }
+  ]
+}

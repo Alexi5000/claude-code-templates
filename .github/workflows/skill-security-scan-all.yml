@@ -52,6 +52,7 @@ jobs:
           name: skillspector-full-report
           path: |
             skillspector-report.md
+            skillspector-report.json
             skillspector.sarif
           retention-days: 90
 

@@ -1,0 +1,193 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:37bbcda14587027b9d801b838ad1a9b8459884674f8c2d78c5238c59afbecc8a",
+      "rule_id": "AST4",
+      "file": "recalc.py",
+      "reason": "Reviewed argv-only local LibreOffice/compiler/pdf conversion or git diff for requested document operation. Recalc uses private profile; no user macro overwrite."
+    },
+    {
+      "hash": "sha256:b86fcb4cd95824b05dc61861b47473c3c663e1b0a31a68cb76a87b1790a58a5e",
+      "rule_id": "AST4",
+      "file": "recalc.py",
+      "reason": "Reviewed argv-only local LibreOffice/compiler/pdf conversion or git diff for requested document operation. Recalc uses private profile; no user macro overwrite."
+    },
+    {
+      "hash": "sha256:18280e4b6c08813dfb05d10a3ccad858a81045cf9b8b292972fbda5bfa9fec41",
+      "rule_id": "AST4",
+      "file": "recalc.py",
+      "reason": "Reviewed argv-only local LibreOffice/compiler/pdf conversion or git diff for requested document operation. Recalc uses private profile; no user macro overwrite."
+    },
+    {
+      "hash": "sha256:ca57a7f1e9a2fe0309fa8e11ffb34afc81c211a9a7f812e5f5be2c263f3ca666",
+      "rule_id": "AST4",
+      "file": "scripts/office/soffice.py",
+      "reason": "Reviewed argv-only local LibreOffice/compiler/pdf conversion or git diff for requested document operation. Recalc uses private profile; no user macro overwrite."
+    },
+    {
+      "hash": "sha256:22bf331ac5e6452f692d9bed9b2375461e8de6055f055710eb2b9f38bb72877d",
+      "rule_id": "AST4",
+      "file": "scripts/office/soffice.py",
+      "reason": "Reviewed argv-only local LibreOffice/compiler/pdf conversion or git diff for requested document operation. Recalc uses private profile; no user macro overwrite."
+    },
+    {
+      "hash": "sha256:ba3e3bca8e11f4b286bd549b9f045e6508bed546224348a360b906e8edf9d886",
+      "rule_id": "AST4",
+      "file": "scripts/office/validators/redlining.py",
+      "reason": "Reviewed argv-only local LibreOffice/compiler/pdf conversion or git diff for requested document operation. Recalc uses private profile; no user macro overwrite."
+    },
+    {
+      "hash": "sha256:39c60af54d6f45b1e93dcb9172d21ac24caae0546272278c6619961451e53f8d",
+      "rule_id": "AST4",
+      "file": "scripts/office/validators/redlining.py",
+      "reason": "Reviewed argv-only local LibreOffice/compiler/pdf conversion or git diff for requested document operation. Recalc uses private profile; no user macro overwrite."
+    },
+    {
+      "hash": "sha256:fee743385de35fbcf69a5f3581f8c607caf190e96638913a7f46ced136834802",
+      "rule_id": "E2",
+      "file": "scripts/office/soffice.py",
+      "reason": "Environment inheritance for fixed local LibreOffice/gcc argv; no remote forwarding. Shim compiled in private0700 temporary directory."
+    },
+    {
+      "hash": "sha256:9efae4ca721bd6b90eeebc69ff3b21f0d27d6174698c30c9df5670f94e14d2a7",
+      "rule_id": "P2",
+      "file": "scripts/office/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
+      "reason": "Reviewed UTF-8 byte-order marker at the start of an XML schema; no concealed instruction. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:80591aff8c1a5e81b27bef844fa18188f88ffe3cdae1cc6c6391171258fc0c4b",
+      "rule_id": "P2",
+      "file": "scripts/office/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
+      "reason": "Reviewed UTF-8 byte-order marker at the start of an XML schema; no concealed instruction. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:16992b5452987ddf1860cf69ea2a11f616362d81c865c4de36c3c72570d1f7cb",
+      "rule_id": "P2",
+      "file": "scripts/office/schemas/ecma/fouth-edition/opc-relationships.xsd",
+      "reason": "Reviewed UTF-8 byte-order marker at the start of an XML schema; no concealed instruction. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:3909c52b8fa4ee1a93f700e42f8c75cfc1477cb9690bd77a7929bb2116984a00",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:ad48518a4b0459e1081595e881b4a3557fe03d2f23ff0d4724d08851d7b520ac",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:b860ce4d57f38d88b3ae4c0dddd74a5cd88235acee6abf5814b88a98acea016f",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:3ef96aaf530b4a843a13fc6b9d50b88f82d9fe4815393e7fe14b34296c0e7e1a",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:3215e6d774140af6951e8f87fefbc111980011567069fae979ae38ede46965fa",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:cb15a7dea6db772509b70a5a2ce588054b9c60e1033dad7a310f16e37056d632",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:bfd5ae78a8b1fdeb170d61c7a0220ec68fc8d558b229e367741702e999ab5178",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/ISO-IEC29500-4_2016/pml.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:c7ba14c01f1d7342fc6a12ac7a54d9780b63e552c54057fa3b63be6aa72e56e1",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/ISO-IEC29500-4_2016/pml.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:586ecf263d84b56381b97fddda2800929fa087bc5b025682da421ab1f8688656",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/ISO-IEC29500-4_2016/pml.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:e722613870c372cf277f93f88a5d2314a4028e88f626522d25cc2eed178f915a",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/ISO-IEC29500-4_2016/pml.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:9e3e315d2428a4e7991c299267f579bbdb68497cd07c1e4ad832e26cee5d8a87",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/microsoft/wml-2010.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:fa1e57118e4c19cb0cda337f173b0c5be88e32907cdfd65b348b955525e6879a",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/microsoft/wml-2010.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:e8efbc3b91562f86f70fa2b1495ca94f25a955e4ad40d292f25f3ba9b3624e8f",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    },
+    {
+      "hash": "sha256:5917fb4a966ed871d9566c0061959f940ecaab5b8b3c6056b26a6f21b8dcff46",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    },
+    {
+      "hash": "sha256:24ed738d0b43663e375ec500b56ace6779d651414889ab681ec31ea5b2a1817d",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    },
+    {
+      "hash": "sha256:b797aefb8e696301eac8acb46f6568549701e92a113088ac94b542a994720611",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    },
+    {
+      "hash": "sha256:cd57f8dd04e4fb1e6226d1a9be7a2aa758e550910e7f4d74d3ba6f4f39c85f57",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    },
+    {
+      "hash": "sha256:9711858927f5e9570d5f407d4ef084f76a3b5e37e9fc686627de5147287c7afc",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    },
+    {
+      "hash": "sha256:05b38cc97efe0d68cebbd2f9b5c09fe002be9b956178f09f94629c1bb290a5da",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    },
+    {
+      "hash": "sha256:81358696b6a17ae9322ebbf97becd498d10c4cf2df3eb82d3af3097ba54653cb",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    }
+  ]
+}

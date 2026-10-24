@@ -1,0 +1,50 @@
+# AE1 referenced-artifact review
+
+Reviewed security-relevant executable examples, endpoints, credentials, process calls and file operations; these are coverage exceptions, not claims that the scanner fully analyzed them.
+
+| Artifact under cli-tool/components/skills | Initial review lines/bytes | Review |
+|---|---:|---|
+| career/workorai/scripts/credential-store.mjs |761/23313|No HTTP/network calls. Commands are fixed argv /usr/bin/security, secret-tool, powershell/pwsh; service workorai, candidate/employer accounts only. Token comes stdin or named WORKORAI env; intentional get prints only selected token. Uses role allowlist, redacted errors, consent documented for persistence. Found and fixed descriptor read race; follow-up also fixes save via O_NOFOLLOW+fstat single-link regular file+fchmod before truncate. No generic credential harvesting command.|
+| development/bleu/references/advanced-architecture.md |621/44996|Read opt-in integration design and embedded JSON/markdown. Writes are described within blueprint/{raw,plan,.reflection,.graph,.telemetry}, .claude/{agents,rules,settings}; opt-in schedule/agent hooks and named proposer-validator roles. Only explicit URL is documentation code.claude.com/docs/en/scheduled-tasks. No runtime endpoint/credential-reading code. External integrations explicitly opt-in, no destructive integrations, private company source requires approval. Parser limits concern long hook prompt/config examples.|
+| development/mcp-builder/reference/node_mcp_server.md |970/28550|TypeScript documentation uses fixed https://api.example.com/v1 placeholder, Axios timeout30s, validated query inputs; EXAMPLE_API_KEY existence checks without logging key. No subprocess credential harvesting; package clean removes dist only. HTTP example previously omitted host bind; now restricted127.0.0.1. Stdio/default local server, optional HTTP must receive authentication for remote production use.|
+| development/mcp-builder/reference/python_mcp_server.md |719/25099|Python docs fixed api.example.com placeholder with httpx30s timeout, Pydantic query validation. No process execution in examples. Resource example read docs/{name} lacked containment; fixed resolved root containment including symlinks before file read. Interactive sample explicitly requests API key via typed password input, no hardcoded key or exfil host.|
+| development/skill-creator/assets/eval_review.html |146/7058|Read full template. External resources only Google Fonts CSS/font hosts. No fetch/XHR/WebSocket. Local editable evaluation rows use textContent-based escaping before textarea insertion; numeric array indexes in handlers; exports JSON through Blob/objectURL/download and revokes URL. Placeholder data must be JSON/HTML escaped by caller. All three copies identical hash.|
+| development/skill-development/assets/eval_review.html |146/7058|Identical to above.|
+| productivity/skill-creator/assets/eval_review.html |146/7058|Identical to above.|
+| media/speech/scripts/atlas_text_to_speech.py |428/14350|API origin fixed https://api.atlascloud.ai/api/v1; bearer from ATLASCLOUD_API_KEY only; finite POST/poll attempts with timeout, encoded prediction id. Added refusal of authenticated API redirects. Download sends no bearer, validates HTTPS/public hosts and redirect targets,100MiB cap; uses exclusive output creation absent explicit --force. No subprocesses. Removed separate codex-network docs recommending global never-approval policy.|
+
+## Exact exception policy
+
+Each native v2 baseline retains only individually reviewed fingerprint entries with a reason. No rule-wide exceptions are permitted. The manifest binds each baseline to the SHA-256 of every file in its skill directory, including referenced scripts and templates. Any source change disables that skill baseline; new findings remain active. Native fingerprints additionally bind scanner version, rule, file, full source hash and occurrence. Threshold 50 and fail-closed scanner errors/timeouts remain unchanged. Suppressed findings and raw scanner metadata are uploaded alongside the report for audit.
+
+These exceptions distinguish specific false-positive documentation/argv/schema matches and manually reviewed parser coverage limits. They are not certification that a skill is safe in every environment. Unpinned installer, dynamic-call and other unreviewed findings remain visible. Independent parent review approved these specific occurrences after source inspection.
+
+Substantive repairs precede exception acceptance: descriptor-safe credential writes; private Office shim and recalculation profiles; validated evaluation slugs; preservation of unrelated port listeners; deterministic one-pass JSON/HTML template rendering; fixed local server process-group cleanup; contained documentation resource paths; scoped network-approval guidance; authenticated API redirect refusal; public-address-pinned HTTPS downloads preserving TLS hostname/SNI, rejecting private/benchmark/multicast addresses and bypassing ambient proxies; exclusive download writes unless force is explicit.
+
+The deterministic renderer escapes less-than in JSON and HTML-escapes titles/descriptions, with hostile closing-script and nested-placeholder regression tests. Atlas validates each redirect anew and connects to the exact validated address, preventing DNS rebinding between validation and connection. LibreOffice child environments are used only for fixed argv local document operations, never forwarded to remote hosts.
+
+## Final reviewed artifact metadata
+
+Hashes below identify the reviewed coverage-limited sources. The manifest records the wider whole-tree binding.
+
+| Artifact | Lines | Bytes | SHA-256 |
+|---|---:|---:|---|
+| `career/workorai/scripts/credential-store.mjs` | 766 | 23659 | `b1bceddeba56b0eabc6b194041b7a8f291ef829368d0b587d6c8c03038d49d83` |
+| `development/bleu/references/advanced-architecture.md` | 621 | 44996 | `cf3891db755212095b175e10a626036013faf8333005199d38fd2b2352fbde6b` |
+| `development/mcp-builder/reference/node_mcp_server.md` | 970 | 28563 | `8a87d8acb06feaaabae013f45812023e47bbbe426804aac394f59fbf870d799d` |
+| `development/mcp-builder/reference/python_mcp_server.md` | 723 | 25321 | `96c0302cbf5ed7ff3a41867710bc0555860a4eaa9c5f0c6545314cbf430ed09b` |
+| `development/skill-creator/assets/eval_review.html` | 146 | 7058 | `ce477dcc74dc1c0d1d3352646a79167b5a63634e936b1019160025065974e452` |
+| `development/skill-development/assets/eval_review.html` | 146 | 7058 | `ce477dcc74dc1c0d1d3352646a79167b5a63634e936b1019160025065974e452` |
+| `productivity/skill-creator/assets/eval_review.html` | 146 | 7058 | `ce477dcc74dc1c0d1d3352646a79167b5a63634e936b1019160025065974e452` |
+| `media/speech/scripts/atlas_text_to_speech.py` | 445 | 15331 | `8fe0ff2e1f5031d641bdbe58a304412c6ea1b85a4993ebe68f59003b765535a0` |
+| `scientific/scholar-evaluation/references/evaluation_framework.md` | 663 | 19950 | `0f771d994c048869a0b9fd33354d1e5fafa29e18108986137ec946ad37fea906` |
+| `document-processing/xlsx/recalc.py` | 190 | 6087 | `a8606c128c354fd860c6f73c14ceded5c7e90e9db3fab82e273213bf2d967b1d` |
+| `document-processing/xlsx/scripts/recalc.py` | 189 | 6018 | `06f711cbee78cf2afeebe7dae4d3767b01e13e4ec4f573fc9cd15b327abefcbc` |
+| `document-processing/xlsx-official/recalc.py` | 190 | 6087 | `a8606c128c354fd860c6f73c14ceded5c7e90e9db3fab82e273213bf2d967b1d` |
+| `document-processing/xlsx-official/scripts/recalc.py` | 189 | 6018 | `06f711cbee78cf2afeebe7dae4d3767b01e13e4ec4f573fc9cd15b327abefcbc` |
+
+The scholar framework is a text-only evaluation rubric with no network, process or file execution; its “No ethical considerations” phrase describes a failing methodology criterion. Both spreadsheet entrypoints and their scripts use private temporary LibreOffice profiles and explicit subprocess timeouts; cleanup is limited to their own temporary directories.
+
+## Canonical scanner validation
+
+Baseline fingerprints use the scanner report node's sanitized canonical findings before display deduplication. Display-expanded occurrence records do not reproduce the scanner's suppression input. The reviewed XML BOM and pList schema occurrences in both spreadsheet skills are byte-identical to the reviewed document schemas. All 20 manifest skills were rescanned against the unchanged threshold of 50; the remaining unsuppressed findings remain in the raw report. This does not certify live execution or third-party installer safety.

@@ -14,6 +14,8 @@ Usage:
       -- python test.py
 """
 
+import os
+import signal
 import subprocess
 import socket
 import time
@@ -69,8 +71,7 @@ def main():
             process = subprocess.Popen(
                 server['cmd'],
                 shell=True,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE
+                start_new_session=os.name != "nt"
             )
             server_processes.append(process)
 
@@ -93,10 +94,18 @@ def main():
         print(f"\nStopping {len(server_processes)} server(s)...")
         for i, process in enumerate(server_processes):
             try:
-                process.terminate()
+                if os.name != "nt":
+                    os.killpg(process.pid, signal.SIGTERM)
+                else:
+                    process.terminate()
                 process.wait(timeout=5)
+            except ProcessLookupError:
+                pass
             except subprocess.TimeoutExpired:
-                process.kill()
+                if os.name != "nt":
+                    os.killpg(process.pid, signal.SIGKILL)
+                else:
+                    process.kill()
                 process.wait()
             print(f"Server {i+1} stopped")
         print("All servers stopped")

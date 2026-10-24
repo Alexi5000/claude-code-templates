@@ -1,7 +1,7 @@
 ---
 name: doordash-spend-guard
 description: Hard spending policy for agent-driven DoorDash ordering through the DoorDash CLI (dd-cli). Per-order ceiling, daily/weekly/monthly caps, cooldown between orders, and blocked hours — enforced deterministically by routing every cart-mutation and checkout through the dd-guard wrapper script, which prices the cart, checks the policy against a persistent spend ledger, and refuses out-of-policy checkouts with exit code 2. Use when the user wants budget limits on agent food ordering, asks "how much have I spent on DoorDash", wants to set spending caps, or whenever building carts / checking out with dd-cli while this skill is installed. Pairs with a PreToolUse hook that denies raw dd-cli checkout calls that bypass the wrapper.
-allowed-tools: Bash(dd-cli:*), Bash(bash .claude/skills/doordash-spend-guard/scripts/dd-guard.sh:*), Bash(command -v:*), Bash(mkdir:*), Bash(cat:*), Bash(jq:*), Read
+allowed-tools: Bash(dd-cli:*), Bash(bash .claude/skills/doordash-spend-guard/scripts/dd-guard.sh:*), Bash(command -v:*), Bash(mkdir:*), Bash(cat:*), Bash(jq:*), Read, Write
 tags: [DoorDash, Budget, Spending Limits, Guardrails, CLI, Safety]
 ---
 

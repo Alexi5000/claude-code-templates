@@ -27,6 +27,7 @@ skill never aborts the whole batch.
 from __future__ import annotations
 
 from concurrent.futures import ThreadPoolExecutor
+import hashlib
 import argparse
 import json
 import os
@@ -120,6 +121,46 @@ def discover_changed_skills(base_ref: str, root: Path = SKILLS_ROOT) -> list[Pat
     return sorted(skills)
 
 
+BASELINES_ROOT = Path(__file__).resolve().parent / "security-baselines"
+
+
+def skill_tree_hash(directory: Path) -> str:
+    digest = hashlib.sha256()
+    for path in sorted(directory.rglob("*")):
+        if "__pycache__" in path.parts:
+            continue
+        if path.is_symlink():
+            raise ValueError("Reviewed baselines cannot cover symlinked source")
+        if path.is_file():
+            digest.update(path.relative_to(directory).as_posix().encode() + b"\0")
+            digest.update(hashlib.sha256(path.read_bytes()).digest())
+    return digest.hexdigest()
+
+
+def reviewed_baseline_args(directory: Path) -> list[str]:
+    manifest_path = BASELINES_ROOT / "manifest.json"
+    if not manifest_path.exists():
+        return []
+    manifest = json.loads(manifest_path.read_text())
+    try:
+        key = directory.resolve().relative_to(SKILLS_ROOT.resolve()).as_posix()
+    except ValueError:
+        return []
+    entry = manifest.get(key)
+    if entry is None:
+        return []
+    if skill_tree_hash(directory) != entry["source_tree_sha256"]:
+        print(f"Source changed; exact baseline disabled for {key}", flush=True)
+        return []
+    baseline = BASELINES_ROOT / entry["baseline"]
+    if baseline.resolve().parent != BASELINES_ROOT.resolve():
+        raise ValueError("Baseline path must stay in the reviewed baseline directory")
+    data = json.loads(baseline.read_text())
+    if data.get("version") != 2 or data.get("rules") or not data.get("scanner_version"):
+        raise ValueError("Only exact version-bound fingerprint baselines are permitted")
+    return ["--baseline", str(baseline), "--show-suppressed"]
+
+
 def scan_skill(directory: Path) -> dict:
     """Run skillspector on one skill dir; return a normalized result dict."""
     result: dict = {"path": str(directory), "status": "ok"}
@@ -132,10 +173,12 @@ def scan_skill(directory: Path) -> dict:
                 "--no-llm",
                 "--format",
                 "json",
+                *reviewed_baseline_args(directory),
             ],
             capture_output=True,
             text=True,
             check=False,
+            timeout=180,
         )
     except subprocess.TimeoutExpired:
         result["status"] = "error"
@@ -160,12 +203,28 @@ def scan_skill(directory: Path) -> dict:
         result["raw"] = (proc.stdout or proc.stderr or "")[:500]
         return result
 
-    risk = data.get("risk_assessment", {})
+    risk = data.get("risk_assessment") if isinstance(data, dict) else None
+    score = risk.get("score") if isinstance(risk, dict) else None
+    if (not isinstance(data, dict) or data.get("execution_successful") is False or not isinstance(score, (int, float))
+            or isinstance(score, bool) or not 0 <= score <= 100
+            or not isinstance(data.get("issues", []), list)):
+        result["status"] = "error"
+        result["error"] = "Scanner returned an unsuccessful or invalid report"
+        return result
     result["name"] = (data.get("skill") or {}).get("name") or directory.name
     result["score"] = int(risk.get("score") or 0)
     result["severity"] = (risk.get("severity") or "LOW").upper()
     result["recommendation"] = risk.get("recommendation") or "SAFE"
-    result["issues"] = data.get("issues") or []
+    result["issues"] = [
+        {**issue,
+         "rule_id": issue.get("rule_id") or issue.get("id"),
+         "file": issue.get("file") or (issue.get("location") or {}).get("file"),
+         "start_line": issue.get("start_line") or (issue.get("location") or {}).get("start_line"),
+         "end_line": issue.get("end_line") or (issue.get("location") or {}).get("end_line"),
+         "message": issue.get("message") or issue.get("explanation") or issue.get("finding") or "Finding"}
+        for issue in data.get("issues") or []
+    ]
+    result["suppressed_count"] = data.get("suppressed_count", 0)
     result["report"] = data
     return result
 
@@ -267,6 +326,11 @@ def build_markdown(results: list[dict], threshold: int) -> str:
     if errors:
         lines.append(f"| ⚠️ Scan errors | {len(errors)} |")
     lines.append("")
+
+    suppressed = sum(r.get("suppressed_count", 0) for r in scanned)
+    if suppressed:
+        lines.append(f"Reviewed exact finding exceptions: **{suppressed}**. Full evidence and reasons are retained in the JSON artifact.")
+        lines.append("")
 
     if flagged:
         lines.append("### 🔴 Flagged skills")
@@ -387,6 +451,8 @@ def main() -> int:
     Path(args.output_sarif).write_text(
         json.dumps(_aggregate_sarif(results), indent=2), encoding="utf-8"
     )
+
+    Path(args.output_md).with_suffix(".json").write_text(json.dumps(results, indent=2), encoding="utf-8")
 
     print(
         f"Scanned={len(scanned)} flagged={len(flagged)} errors={len(errors)} "

@@ -8,6 +8,7 @@ retried, and every polling loop is finite.
 from __future__ import annotations
 
 import argparse
+import http.client
 import ipaddress
 import json
 import os
@@ -57,7 +58,6 @@ LANGUAGES = {
 }
 CODECS = {"mp3", "wav", "pcm", "mulaw", "alaw"}
 TERMINAL_FAILURES = {"failed", "timeout", "canceled", "cancelled"}
-BENCHMARK_NETWORK = ipaddress.ip_network("198.18.0.0/15")
 
 
 def _die(message: str, code: int = 1) -> None:
@@ -116,6 +116,11 @@ def _api_key(dry_run: bool) -> str:
     return ""  # unreachable
 
 
+class _NoApiRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+
 def _request_json(
     url: str,
     *,
@@ -137,7 +142,7 @@ def _request_json(
     for attempt in range(1, attempts + 1):
         request = urllib.request.Request(url, data=body, headers=headers, method=method)
         try:
-            with urllib.request.urlopen(request, timeout=60) as response:
+            with urllib.request.build_opener(_NoApiRedirect()).open(request, timeout=60) as response:
                 result = json.loads(response.read().decode("utf-8"))
             if not isinstance(result, dict):
                 raise ValueError("API response was not a JSON object")
@@ -235,18 +240,10 @@ def _poll(
     return ""  # unreachable
 
 
-def _is_safe_ip(address: str, *, named_host: bool) -> bool:
-    ip = ipaddress.ip_address(address)
-    if named_host and ip in BENCHMARK_NETWORK:
-        # macOS proxy/TUN clients commonly synthesize public DNS into this block.
-        return True
-    return ip.is_global
-
-
-def _validate_download_url(url: str) -> None:
+def _validate_download_url(url: str) -> list[str]:
     parsed = urllib.parse.urlparse(url)
-    if parsed.scheme != "https" or not parsed.hostname:
-        _die("Atlas output URL must use HTTPS.")
+    if parsed.scheme != "https" or not parsed.hostname or parsed.port not in (None, 443):
+        _die("Atlas output URL must use HTTPS on port 443.")
     if parsed.username or parsed.password:
         _die("Atlas output URL must not include user information.")
     host = parsed.hostname
@@ -255,23 +252,48 @@ def _validate_download_url(url: str) -> None:
     except ValueError:
         literal = None
     if literal is not None:
-        if not _is_safe_ip(str(literal), named_host=False):
-            _die("Atlas output URL resolves to a non-public address.")
-        return
-    if host.lower() == "localhost" or host.lower().endswith(".localhost"):
-        _die("Atlas output URL must not target localhost.")
-    try:
-        addresses = {
-            item[4][0]
-            for item in socket.getaddrinfo(host, 443, type=socket.SOCK_STREAM)
-        }
-    except socket.gaierror as exc:
-        _die(f"Could not resolve Atlas output host: {exc}")
-        return
-    if not addresses or any(
-        not _is_safe_ip(address, named_host=True) for address in addresses
-    ):
+        addresses = [str(literal)]
+    else:
+        if host.lower() == "localhost" or host.lower().endswith(".localhost"):
+            _die("Atlas output URL must not target localhost.")
+        try:
+            addresses = sorted({item[4][0] for item in socket.getaddrinfo(host, 443, type=socket.SOCK_STREAM)})
+        except socket.gaierror as exc:
+            _die(f"Could not resolve Atlas output host: {exc}")
+    if not addresses or any(not ipaddress.ip_address(address).is_global or ipaddress.ip_address(address).is_multicast for address in addresses):
         _die("Atlas output URL resolves to a non-public address.")
+    return addresses
+
+
+class _PinnedHTTPSConnection(http.client.HTTPSConnection):
+    def __init__(self, host, *, addresses, **kwargs):
+        super().__init__(host, **kwargs)
+        self.addresses = addresses
+
+    def connect(self):
+        if self._tunnel_host:
+            raise ValueError("Download proxy tunnels are not supported")
+        last_error = None
+        for address in self.addresses:
+            try:
+                sock = socket.create_connection((address, 443), self.timeout, self.source_address)
+                try:
+                    self.sock = self._context.wrap_socket(sock, server_hostname=self.host)
+                except Exception:
+                    sock.close()
+                    raise
+                return
+            except OSError as error:
+                last_error = error
+        raise last_error or OSError("No validated download address")
+
+
+class _PinnedHTTPSHandler(urllib.request.HTTPSHandler):
+    def https_open(self, request):
+        addresses = _validate_download_url(request.full_url)
+        def connection(host, **kwargs):
+            return _PinnedHTTPSConnection(host, addresses=addresses, **kwargs)
+        return self.do_open(connection, request, context=self._context, check_hostname=self._check_hostname)
 
 
 class _SafeRedirectHandler(urllib.request.HTTPRedirectHandler):
@@ -290,9 +312,9 @@ def _download(url: str, out_path: Path, *, force: bool) -> None:
         headers={"Accept": "audio/*", "User-Agent": USER_AGENT},
         method="GET",
     )
-    opener = urllib.request.build_opener(_SafeRedirectHandler())
+    opener = urllib.request.build_opener(urllib.request.ProxyHandler({}), _PinnedHTTPSHandler(), _SafeRedirectHandler())
     written = 0
-    with opener.open(request, timeout=60) as response, out_path.open("wb") as target:
+    with opener.open(request, timeout=60) as response, out_path.open("wb" if force else "xb") as target:
         while True:
             chunk = response.read(64 * 1024)
             if not chunk:
