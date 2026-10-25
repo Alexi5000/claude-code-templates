@@ -8,6 +8,8 @@ jobs = (root / 'docs/jobs.html').read_text()
 start = jobs.index('        function jobElement(')
 end = jobs.index('        // Enhanced keyboard shortcuts', start)
 mobile = (root / 'cli-tool/src/analytics-web/chats_mobile.html').read_text()
+mobile_source = (root / 'cli-tool/analytics-ui/public/chats_mobile.html').read_text()
+assert mobile_source == mobile, 'Mobile analytics source and shipped HTML must preserve identical security behavior'
 start_mobile = mobile.index('            highlightSearchResults(query) {')
 end_mobile = mobile.index('            highlightCurrentMatch(', start_mobile)
 clear_start = mobile.index('            clearSearchHighlights() {')

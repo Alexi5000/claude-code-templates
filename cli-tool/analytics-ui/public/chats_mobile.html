@@ -4167,41 +4167,37 @@
 
             highlightSearchResults(query) {
                 this.clearSearchHighlights();
-                const searchTerm = query.toLowerCase();
-                const messageElements = document.querySelectorAll('.message-content');
-
-                messageElements.forEach(element => {
-                    const text = element.textContent;
-                    if (text.toLowerCase().includes(searchTerm)) {
-                        const highlightedHTML = this.highlightText(element.innerHTML, query);
-                        element.innerHTML = highlightedHTML;
-                    }
+                if (!query) return;
+                document.querySelectorAll('.message-content').forEach(element => {
+                    this.highlightText(element, query);
                 });
             }
 
-            highlightText(html, searchTerm) {
-                const text = document.createElement('div');
-                text.innerHTML = html;
-                const textContent = text.textContent;
-
-                if (!textContent.toLowerCase().includes(searchTerm.toLowerCase())) {
-                    return html;
-                }
-
-                // Use regex to find all occurrences (case-insensitive)
-                const regex = new RegExp(`(${this.escapeRegex(searchTerm)})`, 'gi');
-                const fragment = document.createElement('div');
-                let cursor = 0;
-                for (const match of textContent.matchAll(regex)) {
-                    fragment.append(document.createTextNode(textContent.slice(cursor, match.index)));
-                    const mark = document.createElement('span');
-                    mark.className = 'message-highlight';
-                    mark.textContent = match[0];
-                    fragment.append(mark);
-                    cursor = match.index + match[0].length;
-                }
-                fragment.append(document.createTextNode(textContent.slice(cursor)));
-                return fragment.innerHTML;
+            highlightText(element, searchTerm) {
+                if (!searchTerm) return;
+                const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, {
+                    acceptNode: node => node.parentElement.closest('script, style, textarea')
+                        ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT
+                });
+                const nodes = [];
+                while (walker.nextNode()) nodes.push(walker.currentNode);
+                const regex = new RegExp(this.escapeRegex(searchTerm), 'gi');
+                nodes.forEach(node => {
+                    const text = node.textContent;
+                    const fragment = document.createDocumentFragment();
+                    let offset = 0;
+                    for (const match of text.matchAll(regex)) {
+                        fragment.append(document.createTextNode(text.slice(offset, match.index)));
+                        const span = document.createElement('span');
+                        span.className = 'message-highlight';
+                        span.textContent = match[0];
+                        fragment.append(span);
+                        offset = match.index + match[0].length;
+                    }
+                    if (offset === 0) return;
+                    fragment.append(document.createTextNode(text.slice(offset)));
+                    node.replaceWith(fragment);
+                });
             }
 
             highlightCurrentMatch(messageIndex) {
