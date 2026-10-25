@@ -2,8 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
-const source = await readFile(new URL('./index.js', import.meta.url), 'utf8');
-const worker = (await import(`data:text/javascript,${encodeURIComponent(source)}`)).default;
+const worker = (await import(new URL('./index.js', import.meta.url))).default;
 const env = { DASHBOARD_URL: 'https://dashboard.example.test', TRIGGER_SECRET: 'test-shared-secret' };
 
 function request(query = '', token = env.TRIGGER_SECRET) {

@@ -1,11 +1,12 @@
 ---
 name: transformer-lens-interpretability
 description: Provides guidance for mechanistic interpretability research using TransformerLens to inspect and manipulate transformer internals via HookPoints and activation caching. Use when reverse-engineering model algorithms, studying attention patterns, or performing activation patching experiments.
-version: 1.0.0
-author: Orchestra Research
 license: MIT
-tags: [Mechanistic Interpretability, TransformerLens, Activation Patching, Circuit Analysis]
-dependencies: [transformer-lens>=2.0.0, torch>=2.0.0]
+metadata:
+  version: 1.0.0
+  author: Orchestra Research
+  tags: [Mechanistic Interpretability, TransformerLens, Activation Patching, Circuit Analysis]
+  dependencies: [transformer-lens>=2.0.0, torch>=2.0.0]
 ---
 
 # TransformerLens: Mechanistic Interpretability for Transformers
@@ -38,7 +39,15 @@ pip install transformer-lens
 
 For development version:
 ```bash
-pip install git+https://github.com/TransformerLensOrg/TransformerLens
+git clone --no-checkout https://github.com/TransformerLensOrg/TransformerLens.git transformerlens-source &&
+git -C transformerlens-source checkout --detach 6bea1fa7cfcbf9064aa8ac99bbd5fb1e4a6c2240
+```
+
+This source snapshot is pinned to `6bea1fa7cfcbf9064aa8ac99bbd5fb1e4a6c2240`. Review its build scripts and dependency changes before installing it in an isolated development environment. Stop if checkout fails. Updating the snapshot requires a new review.
+
+```bash
+[ "$(git -C transformerlens-source rev-parse HEAD)" = "6bea1fa7cfcbf9064aa8ac99bbd5fb1e4a6c2240" ] &&
+pip install ./transformerlens-source
 ```
 
 ## Core Concepts

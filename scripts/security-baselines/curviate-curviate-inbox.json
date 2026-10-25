@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:718f3dde324993043eff8e40d8bea04f0216645e592ba405d60afa96dfb021b2",
+      "rule_id": "P2",
+      "file": "SKILL.md",
+      "reason": "HTML comment labels the CLI0.33.0 generated command-surface section. It contains provenance metadata, not hidden behavioral instructions."
+    }
+  ]
+}

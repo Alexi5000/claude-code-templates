@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:c15a16b8b0c734acb01c5d7277f678325126b381c9807e8122bc36460fed3929",
+      "rule_id": "MP3",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 386: C code with clear memory ownership refers to allocation ownership and Valgrind. It does not reset or alter an AI agent's memory. Independent parent review completed."
+    }
+  ]
+}

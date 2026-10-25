@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:5f7649e7bc881ac65790a5e007dfc1eb31cc1a8abc76a959f77ec147c865400f",
+      "rule_id": "AS1",
+      "file": "references/figma-mcp-config.md",
+      "reason": "Source review 2026-10-25, alert 329: Explicit Figma MCP setup edits only the named mcp_servers.figma stanza, using a bearer-token environment variable. Token echo was removed in 72046568. No unrelated agent credentials are read. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:628b22b95f86ec7a5054fac03311f129e53fdc151049edc913a4d46b1a20b388",
+      "rule_id": "AS1",
+      "file": "references/figma-mcp-config.md",
+      "reason": "Source review 2026-10-25, alert 328: Explicit Figma MCP setup edits only the named mcp_servers.figma stanza, using a bearer-token environment variable. Token echo was removed in 72046568. No unrelated agent credentials are read. Independent parent review completed."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:2c0896f4ad7494541a160e917feee6891fec85a47b52d8ce46dbf22e23f20bbb",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Read complete router. SKILL.md refers to separately installed protocol packages, explicitly identified as external; no bundled executable claimed. Bounded spending/testnet guidance remains. This exception does not certify external package execution."
+    }
+  ]
+}

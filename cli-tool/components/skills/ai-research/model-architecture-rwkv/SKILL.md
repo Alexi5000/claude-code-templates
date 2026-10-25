@@ -1,11 +1,12 @@
 ---
 name: rwkv-architecture
 description: RNN+Transformer hybrid with O(n) inference. Linear time, infinite context, no KV cache. Train like GPT (parallel), infer like RNN (sequential). Linux Foundation AI project. Production at Windows, Office, NeMo. RWKV-7 (March 2025). Models up to 14B parameters.
-version: 1.0.0
-author: Orchestra Research
 license: MIT
-tags: [RWKV, Model Architecture, RNN, Transformer Hybrid, Linear Complexity, Infinite Context, Efficient Inference, Linux Foundation, Alternative Architecture]
-dependencies: [rwkv, torch, transformers]
+metadata:
+  version: 1.0.0
+  author: Orchestra Research
+  tags: [RWKV, Model Architecture, RNN, Transformer Hybrid, Linear Complexity, Infinite Context, Efficient Inference, Linux Foundation, Alternative Architecture]
+  dependencies: [rwkv, torch, transformers]
 ---
 
 # RWKV - Receptance Weighted Key Value
@@ -17,7 +18,7 @@ RWKV (RwaKuv) combines Transformer parallelization (training) with RNN efficienc
 **Installation**:
 ```bash
 # Install PyTorch
-pip install torch --upgrade --extra-index-url https://download.pytorch.org/whl/cu121
+pip install torch --upgrade --index-url https://download.pytorch.org/whl/cu121
 
 # Install dependencies
 pip install pytorch-lightning==1.9.5 deepspeed wandb ninja --upgrade

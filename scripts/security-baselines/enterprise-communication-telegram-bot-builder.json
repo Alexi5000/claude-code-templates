@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:ba02df82f08c6fc64ad0f2e22fc06fc1f14cefb0317ca51d1328fe59eb107c5a",
+      "rule_id": "PE3",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 655: Project directory tree lists .env, secret.yaml or .env.local by filename. Listing the file convention is not accessing or exporting its contents. Independent parent review completed."
+    }
+  ]
+}

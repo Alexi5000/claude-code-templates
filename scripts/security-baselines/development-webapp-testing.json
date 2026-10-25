@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:f317e262b095ec419815a83feec80b2db514c6b15075e4f42aa68db8b4959056",
+      "rule_id": "TM1",
+      "file": "scripts/with_server.py",
+      "reason": "Intentional shell runner for explicit caller-supplied --server commands (documented cd/&& support), no untrusted remote input interpolation. Spawned POSIX process group is cleaned safely."
+    },
+    {
+      "hash": "sha256:7f69b6777ae8dbd06b6da7c703a2df2da932490e27bfc91d98708751d28f8bbf",
+      "rule_id": "TM1",
+      "file": "scripts/with_server.py",
+      "reason": "Intentional shell runner for explicit caller-supplied --server commands (documented cd/&& support), no untrusted remote input interpolation. Spawned POSIX process group is cleaned safely."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:2f12448093a21b3e31d299fb80685a90cc8570e9a37e5499961b2223ee5368bf",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 318: Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. SentencePiece training: corpus/model-prefix parameters and numerical normalization, coverage and vocabulary settings. No remote endpoint or host execution sink. Independent parent review completed."
+    }
+  ]
+}

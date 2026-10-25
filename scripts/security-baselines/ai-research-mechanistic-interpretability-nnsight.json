@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:af51c1778bd22df6d0e9530e5aa9ecfec19727c60f6158918fd1f736f2a8c0a2",
+      "rule_id": "PE3",
+      "file": "references/api.md",
+      "reason": "Source review 2026-10-25, alert 271: Access tokenizer comment precedes model.tokenizer; tokenizer means text tokenization object, not an access credential. Independent parent review completed."
+    }
+  ]
+}

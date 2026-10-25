@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:9e43080d3b7eb3d941e4e8e7003ddd698253e202c988d539c994ee78fe972f1f",
+      "rule_id": "AR2",
+      "file": "SKILL.md",
+      "reason": "Errors do not apologize describes UI error-copy style; adjacent instructions require concrete failure explanations and remedies, not omission of safety warnings."
+    }
+  ]
+}

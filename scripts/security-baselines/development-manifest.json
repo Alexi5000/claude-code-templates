@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:7c7d5e790f6da39715c9cabffafbd6c48b0ccc04042e9595557371f0a3c9a2d5",
+      "rule_id": "AS1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 467: Manifest troubleshooting reads only its gateway.log and filters for manifest events in the user's requested integration. It does not read agent configuration or credential stores. Independent parent review completed."
+    }
+  ]
+}

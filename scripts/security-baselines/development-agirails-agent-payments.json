@@ -1,0 +1,43 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:0ded736485ad59e8389106797d0715848272acb6cf5496199fa4c8168b298208",
+      "rule_id": "E1",
+      "file": "SKILL.md",
+      "reason": "Exact chmod600 restricts key permissions without elevation; example.com/provider.com examples are documentation placeholders. Unpinned installer warnings remain visible."
+    },
+    {
+      "hash": "sha256:cc5a0e742a5a3fbda320a505186203df67a1c1d3fc1ff2f56d7448831afbdf21",
+      "rule_id": "E1",
+      "file": "SKILL.md",
+      "reason": "Exact chmod600 restricts key permissions without elevation; example.com/provider.com examples are documentation placeholders. Unpinned installer warnings remain visible."
+    },
+    {
+      "hash": "sha256:eb971b880d4a99fc6e3903e6d9b6b7af11156aa48923b4a92dc4d9c071f6fc30",
+      "rule_id": "E1",
+      "file": "SKILL.md",
+      "reason": "Exact chmod600 restricts key permissions without elevation; example.com/provider.com examples are documentation placeholders. Unpinned installer warnings remain visible."
+    },
+    {
+      "hash": "sha256:29bccb2da5c8c45b938324b6fd6467cc0a47dbc8dc34c5689486b9febbcee073",
+      "rule_id": "PE2",
+      "file": "SKILL.md",
+      "reason": "Exact chmod600 restricts key permissions without elevation; example.com/provider.com examples are documentation placeholders. Unpinned installer warnings remain visible."
+    },
+    {
+      "hash": "sha256:c72a44b80db234cb3aecc3d1d90fd5207305357716a38b497cf5917577d72493",
+      "rule_id": "PE2",
+      "file": "SKILL.md",
+      "reason": "Exact chmod600 restricts key permissions without elevation; example.com/provider.com examples are documentation placeholders. Unpinned installer warnings remain visible."
+    },
+    {
+      "hash": "sha256:919702b3e628051ba8f0e664d718107e4f9b95008b4e8c0d7f303d713a6dd31c",
+      "rule_id": "PE2",
+      "file": "SKILL.md",
+      "reason": "Exact chmod600 restricts key permissions without elevation; example.com/provider.com examples are documentation placeholders. Unpinned installer warnings remain visible."
+    }
+  ]
+}

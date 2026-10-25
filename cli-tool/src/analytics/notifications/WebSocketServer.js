@@ -35,7 +35,8 @@ class WebSocketServer {
       this.wss = new WebSocket.Server({
         server: this.httpServer,
         path: this.options.path,
-        clientTracking: true
+        clientTracking: true,
+        verifyClient: this.options.verifyClient
       });
 
       this.setupEventHandlers();

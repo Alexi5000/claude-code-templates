@@ -18,7 +18,7 @@ http_headers = { "X-Figma-Region" = "us-east-1" }
 ## Env var setup (if missing)
 - One-time set for current shell: `export FIGMA_OAUTH_TOKEN="<token>"`
 - Persist for future sessions: add the export line to your shell profile (e.g., `~/.zshrc` or `~/.bashrc`), then restart the shell or your IDE.
-- Verify before launching Codex: `echo $FIGMA_OAUTH_TOKEN` should print a non-empty token.
+- Verify before launching Codex: `test -n "$FIGMA_OAUTH_TOKEN"` should succeed without printing the token.
 
 ## Setup + verification checklist
 - Add the snippet above to `~/.codex/config.toml` under `[mcp_servers.figma]`, and enable `[features].rmcp_client = true` (or `experimental_use_rmcp_client = true` on older releases).

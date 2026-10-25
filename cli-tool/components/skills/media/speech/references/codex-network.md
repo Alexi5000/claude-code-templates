@@ -1,28 +1,7 @@
-# Codex network approvals / sandbox notes
+# Network access for speech generation
 
-This guidance is intentionally isolated from `SKILL.md` because it can vary by environment and may become stale. Prefer the defaults in your environment when in doubt.
+Speech generation sends the requested text to the configured speech provider. Keep the environment's existing sandbox and approval policy.
 
-## Why am I asked to approve every speech generation call?
-Speech generation uses the OpenAI Audio API, so the CLI needs outbound network access. In many Codex setups, network access is disabled by default (especially under stricter sandbox modes), and/or the approval policy may require confirmation before networked commands run.
+If the command is blocked, request approval for the specific speech command and provider endpoint through the environment's normal approval flow. Explain what text will be sent and where output will be written. If approval is unavailable, stop and report the blocked command; a dry run can still prepare its payload without sending it.
 
-## How do I reduce repeated approval prompts (network)?
-If you trust the repo and want fewer prompts, enable network access for the relevant sandbox mode and relax the approval policy.
-
-Example `~/.codex/config.toml` pattern:
-
-```
-approval_policy = "never"
-sandbox_mode = "workspace-write"
-
-[sandbox_workspace_write]
-network_access = true
-```
-
-Or for a single session:
-
-```
-codex --sandbox workspace-write --ask-for-approval never
-```
-
-## Safety note
-Use caution: enabling network and disabling approvals reduces friction but increases risk if you run untrusted code or work in an untrusted repository.
+For repeated jobs, use an explicitly authorized, narrowly scoped command rule if the environment supports one. Do not change global approval settings or disable sandbox protections to avoid prompts. Never send credentials or unrelated workspace content as speech input.

@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:44fc81fc7b04bf60cf6e88129caddef24e8d7640b835abec9368f2808f4ee63f",
+      "rule_id": "MP3",
+      "file": "references/multi-gpu.md",
+      "reason": "Source review 2026-10-25, alert 253: Restart server to reset state is GPU inference troubleshooting for model sharding. It does not erase agent instructions or permission state. Independent parent review completed."
+    }
+  ]
+}

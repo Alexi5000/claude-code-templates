@@ -1,11 +1,12 @@
 ---
 name: dspy
 description: Build complex AI systems with declarative programming, optimize prompts automatically, create modular RAG systems and agents with DSPy - Stanford NLP's framework for systematic LM programming
-version: 1.0.0
-author: Orchestra Research
 license: MIT
-tags: [Prompt Engineering, DSPy, Declarative Programming, RAG, Agents, Prompt Optimization, LM Programming, Stanford NLP, Automatic Optimization, Modular AI]
-dependencies: [dspy, openai, anthropic]
+metadata:
+  version: 1.0.0
+  author: Orchestra Research
+  tags: [Prompt Engineering, DSPy, Declarative Programming, RAG, Agents, Prompt Optimization, LM Programming, Stanford NLP, Automatic Optimization, Modular AI]
+  dependencies: [dspy, openai, anthropic]
 ---
 
 # DSPy: Declarative Language Model Programming
@@ -29,7 +30,15 @@ Use DSPy when you need to:
 pip install dspy
 
 # Latest development version
-pip install git+https://github.com/stanfordnlp/dspy.git
+git clone --no-checkout https://github.com/stanfordnlp/dspy.git dspy-source &&
+git -C dspy-source checkout --detach 15aad8de2678a4d89a3a093e944fe58f8744c497
+```
+
+This source snapshot is pinned to `15aad8de2678a4d89a3a093e944fe58f8744c497`. Review its build scripts and dependency changes before installing it in an isolated development environment. Stop if checkout fails. Updating the snapshot requires a new review.
+
+```bash
+[ "$(git -C dspy-source rev-parse HEAD)" = "15aad8de2678a4d89a3a093e944fe58f8744c497" ] &&
+pip install ./dspy-source
 
 # With specific LM providers
 pip install dspy[openai]        # OpenAI

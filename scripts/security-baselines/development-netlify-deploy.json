@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:591ba1c2a587e6f4cb19adbf76debff15b61d5109afb86de11c8730e51692466",
+      "rule_id": "PE3",
+      "file": "references/cli-commands.md",
+      "reason": "Source review 2026-10-25, alert 477: Explicit Netlify environment import command for the project the operator is deploying, not unrelated credential harvesting. Deployment destination/account approval remains required. Independent parent review completed."
+    }
+  ]
+}

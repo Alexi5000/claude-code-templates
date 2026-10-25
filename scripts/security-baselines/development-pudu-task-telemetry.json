@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:89a5664f90544ab4e22831ceb7770599f86c293203a1ff4a04c08d403a4d0901",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Read complete telemetry-contract.md: prose specifies bounded local storage, scoped metrics, privacy exclusions, timeouts, failure codes and lock recovery; no executable expression. Parser span coverage limitation, not concealment."
+    }
+  ]
+}

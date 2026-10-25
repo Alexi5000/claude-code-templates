@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:9cfc4b7257432221ac008d603dd28fed0ed01bcfa69bf49ebb24a7f4cffd95bc",
+      "rule_id": "P6",
+      "file": "references/few-shot-learning.md",
+      "reason": "Source review 2026-10-25, alert 314: return prompt returns a function-built few-shot prompt from its examples/query arguments. It never accesses an agent system prompt or hidden instruction state. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:60bedb5c49e3ad827b98c374e22f2382b1c6412bd1c361ae327a2ef45051827f",
+      "rule_id": "P6",
+      "file": "references/few-shot-learning.md",
+      "reason": "Source review 2026-10-25, alert 313: return prompt returns a function-built few-shot prompt from its examples/query arguments. It never accesses an agent system prompt or hidden instruction state. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:f5e0d5da26e523542b10161a866d1358fb84006c16344bbb16696f34f2297dd9",
+      "rule_id": "P6",
+      "file": "references/few-shot-learning.md",
+      "reason": "Source review 2026-10-25, alert 312: return prompt returns a function-built few-shot prompt from its examples/query arguments. It never accesses an agent system prompt or hidden instruction state. Independent parent review completed."
+    }
+  ]
+}

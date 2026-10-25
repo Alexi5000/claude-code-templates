@@ -266,6 +266,8 @@ async function promptCommandOptimization(analysis, targetDir) {
     const optimizationPrompt = createOptimizationPrompt(analysis, targetDir);
     
     // Execute Claude Code with optimization prompt
+    // Pass the prompt as an argv entry: it contains command names read from
+    // .claude/commands/, which must never be parsed by a shell.
     const claudeProcess = spawn('claude', [optimizationPrompt], {
       cwd: targetDir,
       stdio: 'inherit'

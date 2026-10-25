@@ -119,7 +119,7 @@ def main() -> None:
         raise SystemExit(f"Refusing to overwrite existing file without --force: {out_path}")
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    with out_path.open("w", encoding="utf-8") as f:
+    with out_path.open("w" if args.force else "x", encoding="utf-8") as f:
         json.dump(notebook, f, indent=2)
         f.write("\n")
 

@@ -1,0 +1,1466 @@
+[
+  {
+    "number": 807,
+    "rule": "P3",
+    "location": {
+      "path": "cli-tool/components/skills/workflow-automation/slack-automation/SKILL.md",
+      "start_line": 31,
+      "end_line": 31,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "User-requested Slack channel/DM workflow explicitly starts with resolving the requested destination. The matched heading is Send Messages to Channels, not covert conversation forwarding."
+  },
+  {
+    "number": 802,
+    "rule": "P3",
+    "location": {
+      "path": "cli-tool/components/skills/workflow-automation/n8n-workflow-patterns/SKILL.md",
+      "start_line": 287,
+      "end_line": 287,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Explicit form-submit webhook example maps submitted form fields to a named notifications channel; no conversation/system-prompt collection exists in this example."
+  },
+  {
+    "number": 801,
+    "rule": "TM1",
+    "location": {
+      "path": "cli-tool/components/skills/workflow-automation/github-workflow-automation/SKILL.md",
+      "start_line": 537,
+      "end_line": 537,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Documented rebase workflow uses force-with-lease, preserving the remote-ref concurrency check; it is not unconditional force or arbitrary command interpolation."
+  },
+  {
+    "number": 800,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/workflow-automation/github-actions-templates/SKILL.md",
+      "start_line": 165,
+      "end_line": 165,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "AWS EKS deployment example explicitly updates the selected production-cluster kubeconfig with configured CI AWS credentials. No private-key read or credential export to an unrelated destination."
+  },
+  {
+    "number": 799,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/workflow-automation/github-actions-templates/SKILL.md",
+      "start_line": 163,
+      "end_line": 163,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "AWS EKS deployment example explicitly updates the selected production-cluster kubeconfig with configured CI AWS credentials. No private-key read or credential export to an unrelated destination."
+  },
+  {
+    "number": 796,
+    "rule": "P2",
+    "location": {
+      "path": "cli-tool/components/skills/web-development/sveltekit/SKILL.md",
+      "start_line": 91,
+      "end_line": 148,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Reviewed literal HTML/XML comments in fenced framework examples label slots, hydration, SEO tags or Maven dependencies. These are visible source examples, not hidden agent control instructions."
+  },
+  {
+    "number": 786,
+    "rule": "OH1",
+    "location": {
+      "path": "cli-tool/components/skills/web-development/react-best-practices/references/rules/rendering-hydration-no-flicker.md",
+      "start_line": 63,
+      "end_line": 63,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Inline script is a fixed literal string. localStorage theme is applied through DOM class state, not interpolated into executable HTML. No model output reaches the script literal."
+  },
+  {
+    "number": 785,
+    "rule": "OH1",
+    "location": {
+      "path": "cli-tool/components/skills/web-development/react-best-practices/references/react-performance-guidelines.md",
+      "start_line": 1200,
+      "end_line": 1200,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Inline script is a fixed literal string. localStorage theme is applied through DOM class state, not interpolated into executable HTML. No model output reaches the script literal."
+  },
+  {
+    "number": 762,
+    "rule": "P2",
+    "location": {
+      "path": "cli-tool/components/skills/web-development/astro/SKILL.md",
+      "start_line": 171,
+      "end_line": 319,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Reviewed literal HTML/XML comments in fenced framework examples label slots, hydration, SEO tags or Maven dependencies. These are visible source examples, not hidden agent control instructions."
+  },
+  {
+    "number": 757,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/security/sqlmap-database-pentesting/SKILL.md",
+      "start_line": 304,
+      "end_line": 304,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Explicit penetration-test teaching fixture or payload in the named security testing skill; no automatic execution on skill load. The selected occurrence demonstrates a vulnerability/test tool rather than implementing credential theft by the catalog. Authorization and target selection remain required; this is test material, not a claim the payload is harmless when executed."
+  },
+  {
+    "number": 756,
+    "rule": "YR4",
+    "location": {
+      "path": "cli-tool/components/skills/security/sqlmap-database-pentesting/SKILL.md",
+      "start_line": 58,
+      "end_line": 58,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Explicit penetration-test teaching fixture or payload in the named security testing skill; no automatic execution on skill load. The selected occurrence demonstrates a vulnerability/test tool rather than implementing credential theft by the catalog. Authorization and target selection remain required; this is test material, not a claim the payload is harmless when executed."
+  },
+  {
+    "number": 750,
+    "rule": "YR4",
+    "location": {
+      "path": "cli-tool/components/skills/security/smtp-penetration-testing/SKILL.md",
+      "start_line": 71,
+      "end_line": 71,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Explicit penetration-test teaching fixture or payload in the named security testing skill; no automatic execution on skill load. The selected occurrence demonstrates a vulnerability/test tool rather than implementing credential theft by the catalog. Authorization and target selection remain required; this is test material, not a claim the payload is harmless when executed."
+  },
+  {
+    "number": 736,
+    "rule": "YR4",
+    "location": {
+      "path": "cli-tool/components/skills/security/pentest-checklist/SKILL.md",
+      "start_line": 109,
+      "end_line": 109,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Explicit penetration-test teaching fixture or payload in the named security testing skill; no automatic execution on skill load. The selected occurrence demonstrates a vulnerability/test tool rather than implementing credential theft by the catalog. Authorization and target selection remain required; this is test material, not a claim the payload is harmless when executed."
+  },
+  {
+    "number": 734,
+    "rule": "P2",
+    "location": {
+      "path": "cli-tool/components/skills/security/html-injection-testing/SKILL.md",
+      "start_line": 217,
+      "end_line": 238,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Explicit penetration-test teaching fixture or payload in the named security testing skill; no automatic execution on skill load. The selected occurrence demonstrates a vulnerability/test tool rather than implementing credential theft by the catalog. Authorization and target selection remain required; this is test material, not a claim the payload is harmless when executed."
+  },
+  {
+    "number": 733,
+    "rule": "P2",
+    "location": {
+      "path": "cli-tool/components/skills/security/html-injection-testing/SKILL.md",
+      "start_line": 194,
+      "end_line": 203,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Explicit penetration-test teaching fixture or payload in the named security testing skill; no automatic execution on skill load. The selected occurrence demonstrates a vulnerability/test tool rather than implementing credential theft by the catalog. Authorization and target selection remain required; this is test material, not a claim the payload is harmless when executed."
+  },
+  {
+    "number": 732,
+    "rule": "P2",
+    "location": {
+      "path": "cli-tool/components/skills/security/html-injection-testing/SKILL.md",
+      "start_line": 168,
+      "end_line": 191,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Explicit penetration-test teaching fixture or payload in the named security testing skill; no automatic execution on skill load. The selected occurrence demonstrates a vulnerability/test tool rather than implementing credential theft by the catalog. Authorization and target selection remain required; this is test material, not a claim the payload is harmless when executed."
+  },
+  {
+    "number": 731,
+    "rule": "P2",
+    "location": {
+      "path": "cli-tool/components/skills/security/html-injection-testing/SKILL.md",
+      "start_line": 151,
+      "end_line": 165,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Explicit penetration-test teaching fixture or payload in the named security testing skill; no automatic execution on skill load. The selected occurrence demonstrates a vulnerability/test tool rather than implementing credential theft by the catalog. Authorization and target selection remain required; this is test material, not a claim the payload is harmless when executed."
+  },
+  {
+    "number": 730,
+    "rule": "P2",
+    "location": {
+      "path": "cli-tool/components/skills/security/html-injection-testing/SKILL.md",
+      "start_line": 51,
+      "end_line": 144,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Explicit penetration-test teaching fixture or payload in the named security testing skill; no automatic execution on skill load. The selected occurrence demonstrates a vulnerability/test tool rather than implementing credential theft by the catalog. Authorization and target selection remain required; this is test material, not a claim the payload is harmless when executed."
+  },
+  {
+    "number": 729,
+    "rule": "P2",
+    "location": {
+      "path": "cli-tool/components/skills/security/html-injection-testing/SKILL.md",
+      "start_line": 43,
+      "end_line": 48,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Explicit penetration-test teaching fixture or payload in the named security testing skill; no automatic execution on skill load. The selected occurrence demonstrates a vulnerability/test tool rather than implementing credential theft by the catalog. Authorization and target selection remain required; this is test material, not a claim the payload is harmless when executed."
+  },
+  {
+    "number": 728,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/security/google-cloud-auth/SKILL.md",
+      "start_line": 183,
+      "end_line": 183,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Google Cloud authentication guidance explicitly recommends short-lived service-account credentials and workload federation instead of static keys. No credential file is accessed at the matched occurrence."
+  },
+  {
+    "number": 727,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/security/google-cloud-auth/SKILL.md",
+      "start_line": 153,
+      "end_line": 153,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Google Cloud authentication guidance explicitly recommends short-lived service-account credentials and workload federation instead of static keys. No credential file is accessed at the matched occurrence."
+  },
+  {
+    "number": 726,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/security/burp-suite-testing/SKILL.md",
+      "start_line": 290,
+      "end_line": 290,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Explicit penetration-test teaching fixture or payload in the named security testing skill; no automatic execution on skill load. The selected occurrence demonstrates a vulnerability/test tool rather than implementing credential theft by the catalog. Authorization and target selection remain required; this is test material, not a claim the payload is harmless when executed."
+  },
+  {
+    "number": 725,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/security/burp-suite-testing/SKILL.md",
+      "start_line": 285,
+      "end_line": 285,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Explicit penetration-test teaching fixture or payload in the named security testing skill; no automatic execution on skill load. The selected occurrence demonstrates a vulnerability/test tool rather than implementing credential theft by the catalog. Authorization and target selection remain required; this is test material, not a claim the payload is harmless when executed."
+  },
+  {
+    "number": 723,
+    "rule": "YR4",
+    "location": {
+      "path": "cli-tool/components/skills/security/broken-authentication/SKILL.md",
+      "start_line": 110,
+      "end_line": 110,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Explicit penetration-test teaching fixture or payload in the named security testing skill; no automatic execution on skill load. The selected occurrence demonstrates a vulnerability/test tool rather than implementing credential theft by the catalog. Authorization and target selection remain required; this is test material, not a claim the payload is harmless when executed."
+  },
+  {
+    "number": 721,
+    "rule": "TM1",
+    "location": {
+      "path": "cli-tool/components/skills/security/api-fuzzing-bug-bounty/SKILL.md",
+      "start_line": 166,
+      "end_line": 166,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Explicit penetration-test teaching fixture or payload in the named security testing skill; no automatic execution on skill load. The selected occurrence demonstrates a vulnerability/test tool rather than implementing credential theft by the catalog. Authorization and target selection remain required; this is test material, not a claim the payload is harmless when executed."
+  },
+  {
+    "number": 720,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/security/api-fuzzing-bug-bounty/SKILL.md",
+      "start_line": 296,
+      "end_line": 296,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Explicit penetration-test teaching fixture or payload in the named security testing skill; no automatic execution on skill load. The selected occurrence demonstrates a vulnerability/test tool rather than implementing credential theft by the catalog. Authorization and target selection remain required; this is test material, not a claim the payload is harmless when executed."
+  },
+  {
+    "number": 719,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/security/api-fuzzing-bug-bounty/SKILL.md",
+      "start_line": 139,
+      "end_line": 139,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Explicit penetration-test teaching fixture or payload in the named security testing skill; no automatic execution on skill load. The selected occurrence demonstrates a vulnerability/test tool rather than implementing credential theft by the catalog. Authorization and target selection remain required; this is test material, not a claim the payload is harmless when executed."
+  },
+  {
+    "number": 713,
+    "rule": "E2",
+    "location": {
+      "path": "cli-tool/components/skills/productivity/skill-creator/scripts/run_eval.py",
+      "start_line": 86,
+      "end_line": 86,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Local evaluation inherits the operator environment to fixed argv claude subprocess and excludes CLAUDECODE; reviewed process call has no shell or remote environment-export endpoint. Exact occurrence already covered by prior source review, but this fingerprint remained visible."
+  },
+  {
+    "number": 712,
+    "rule": "P2",
+    "location": {
+      "path": "cli-tool/components/skills/productivity/planning-with-files/templates/task_plan.md",
+      "start_line": 9,
+      "end_line": 104,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Author-facing Markdown template comments explain filling the requested task plan/findings artifact. They do not override permissions, conceal data transfer, or supply a system instruction."
+  },
+  {
+    "number": 711,
+    "rule": "P2",
+    "location": {
+      "path": "cli-tool/components/skills/productivity/planning-with-files/templates/task_plan.md",
+      "start_line": 2,
+      "end_line": 6,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Author-facing Markdown template comments explain filling the requested task plan/findings artifact. They do not override permissions, conceal data transfer, or supply a system instruction."
+  },
+  {
+    "number": 710,
+    "rule": "P2",
+    "location": {
+      "path": "cli-tool/components/skills/productivity/planning-with-files/templates/findings.md",
+      "start_line": 20,
+      "end_line": 44,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Author-facing Markdown template comments explain filling the requested task plan/findings artifact. They do not override permissions, conceal data transfer, or supply a system instruction."
+  },
+  {
+    "number": 709,
+    "rule": "P2",
+    "location": {
+      "path": "cli-tool/components/skills/productivity/planning-with-files/templates/findings.md",
+      "start_line": 2,
+      "end_line": 19,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Author-facing Markdown template comments explain filling the requested task plan/findings artifact. They do not override permissions, conceal data transfer, or supply a system instruction."
+  },
+  {
+    "number": 679,
+    "rule": "TM1",
+    "location": {
+      "path": "cli-tool/components/skills/pocketbase/pb-deploy/SKILL.md",
+      "start_line": 112,
+      "end_line": 112,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Docker build removes only /tmp/pb.zip immediately after extracting that same downloaded archive. The literal rm path is confined to the disposable build image, not arbitrary host cleanup."
+  },
+  {
+    "number": 678,
+    "rule": "TM1",
+    "location": {
+      "path": "cli-tool/components/skills/pocketbase/pb-api-rules/SKILL.md",
+      "start_line": 18,
+      "end_line": 18,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "REST API documentation lists DELETE alongside GET/POST/PATCH and describes authorization/response semantics. No command execution, forced deletion, or tool-parameter injection occurs at this literal example."
+  },
+  {
+    "number": 655,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/enterprise-communication/telegram-bot-builder/SKILL.md",
+      "start_line": 83,
+      "end_line": 83,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Project directory tree lists .env, secret.yaml or .env.local by filename. Listing the file convention is not accessing or exporting its contents."
+  },
+  {
+    "number": 627,
+    "rule": "P2",
+    "location": {
+      "path": "cli-tool/components/skills/document-processing/pptx-official/scripts/office/schemas/ecma/fouth-edition/opc-relationships.xsd",
+      "start_line": 1,
+      "end_line": 1,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "UTF-8 BOM precedes the XML declaration of the reviewed Office XSD. Remaining content is a declarative OPC schema, with no hidden natural-language agent instructions."
+  },
+  {
+    "number": 626,
+    "rule": "P2",
+    "location": {
+      "path": "cli-tool/components/skills/document-processing/pptx-official/scripts/office/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
+      "start_line": 1,
+      "end_line": 1,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "UTF-8 BOM precedes the XML declaration of the reviewed Office XSD. Remaining content is a declarative OPC schema, with no hidden natural-language agent instructions."
+  },
+  {
+    "number": 611,
+    "rule": "P2",
+    "location": {
+      "path": "cli-tool/components/skills/document-processing/docx-official/scripts/office/schemas/ecma/fouth-edition/opc-relationships.xsd",
+      "start_line": 1,
+      "end_line": 1,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "UTF-8 BOM precedes the XML declaration of the reviewed Office XSD. Remaining content is a declarative OPC schema, with no hidden natural-language agent instructions."
+  },
+  {
+    "number": 610,
+    "rule": "P2",
+    "location": {
+      "path": "cli-tool/components/skills/document-processing/docx-official/scripts/office/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
+      "start_line": 1,
+      "end_line": 1,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "UTF-8 BOM precedes the XML declaration of the reviewed Office XSD. Remaining content is a declarative OPC schema, with no hidden natural-language agent instructions."
+  },
+  {
+    "number": 606,
+    "rule": "E2",
+    "location": {
+      "path": "cli-tool/components/skills/document-processing/doc/scripts/render_docx.py",
+      "start_line": 106,
+      "end_line": 106,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Environment is inherited only by local document-conversion subprocess argv; stdout/stderr are discarded and there is no HTTP or shell sink in run_cmd_no_check."
+  },
+  {
+    "number": 599,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/development/vercel-deploy/scripts/deploy.sh",
+      "start_line": 204,
+      "end_line": 204,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "tar explicitly EXCLUDES .env and .env.* from the deployment bundle. Scanner matches the exclusion string as credential access, reversing its meaning."
+  },
+  {
+    "number": 594,
+    "rule": "E2",
+    "location": {
+      "path": "cli-tool/components/skills/development/skill-development/scripts/run_eval.py",
+      "start_line": 86,
+      "end_line": 86,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Local evaluation inherits the operator environment to fixed argv claude subprocess and excludes CLAUDECODE; reviewed process call has no shell or remote environment-export endpoint. Exact occurrence already covered by prior source review, but this fingerprint remained visible."
+  },
+  {
+    "number": 592,
+    "rule": "E2",
+    "location": {
+      "path": "cli-tool/components/skills/development/skill-creator/scripts/run_eval.py",
+      "start_line": 86,
+      "end_line": 86,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Local evaluation inherits the operator environment to fixed argv claude subprocess and excludes CLAUDECODE; reviewed process call has no shell or remote environment-export endpoint. Exact occurrence already covered by prior source review, but this fingerprint remained visible."
+  },
+  {
+    "number": 590,
+    "rule": "AR2",
+    "location": {
+      "path": "cli-tool/components/skills/development/rust-cli-builder/SKILL.md",
+      "start_line": 535,
+      "end_line": 535,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Checklist requires cargo clippy to pass without warnings. This enforces compiler diagnostics; it does not instruct an agent to suppress safety warnings."
+  },
+  {
+    "number": 582,
+    "rule": "P2",
+    "location": {
+      "path": "cli-tool/components/skills/development/playwright-java/config.md",
+      "start_line": 29,
+      "end_line": 123,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Reviewed literal HTML/XML comments in fenced framework examples label slots, hydration, SEO tags or Maven dependencies. These are visible source examples, not hidden agent control instructions."
+  },
+  {
+    "number": 569,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/development/plaid-fintech/SKILL.md",
+      "start_line": 34,
+      "end_line": 34,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Plaid documentation explains token lifecycle and explicitly marks plaintext token storage as an anti-pattern. No credential collection or exposure code at these occurrences."
+  },
+  {
+    "number": 568,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/development/plaid-fintech/SKILL.md",
+      "start_line": 15,
+      "end_line": 15,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Plaid documentation explains token lifecycle and explicitly marks plaintext token storage as an anti-pattern. No credential collection or exposure code at these occurrences."
+  },
+  {
+    "number": 477,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/development/netlify-deploy/references/cli-commands.md",
+      "start_line": 95,
+      "end_line": 95,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Explicit Netlify environment import command for the project the operator is deploying, not unrelated credential harvesting. Deployment destination/account approval remains required."
+  },
+  {
+    "number": 476,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/development/nestjs-expert/SKILL.md",
+      "start_line": 215,
+      "end_line": 215,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Troubleshooting documentation configures the named application's own key via an environment placeholder. It does not search other applications' credentials or export secrets."
+  },
+  {
+    "number": 467,
+    "rule": "AS1",
+    "location": {
+      "path": "cli-tool/components/skills/development/manifest/SKILL.md",
+      "start_line": 79,
+      "end_line": 79,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Manifest troubleshooting reads only its gateway.log and filters for manifest events in the user's requested integration. It does not read agent configuration or credential stores."
+  },
+  {
+    "number": 462,
+    "rule": "RA1",
+    "location": {
+      "path": "cli-tool/components/skills/development/jupyter-notebook/scripts/new_notebook.py",
+      "start_line": 119,
+      "end_line": 119,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Notebook generator refuses overwrite without explicit --force. Exclusive creation now also closes the check/write race (72046568); this is file overwrite consent, not self-modification of agent rules."
+  },
+  {
+    "number": 451,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/development/helm-chart-scaffolding/references/chart-structure.md",
+      "start_line": 27,
+      "end_line": 27,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Project directory tree lists .env, secret.yaml or .env.local by filename. Listing the file convention is not accessing or exporting its contents."
+  },
+  {
+    "number": 449,
+    "rule": "TM1",
+    "location": {
+      "path": "cli-tool/components/skills/development/github-workflow-automation/SKILL.md",
+      "start_line": 537,
+      "end_line": 537,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Documented rebase workflow uses force-with-lease, preserving the remote-ref concurrency check; it is not unconditional force or arbitrary command interpolation."
+  },
+  {
+    "number": 397,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/development/convex/SKILL.md",
+      "start_line": 80,
+      "end_line": 80,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Project directory tree lists .env, secret.yaml or .env.local by filename. Listing the file convention is not accessing or exporting its contents."
+  },
+  {
+    "number": 395,
+    "rule": "YR4",
+    "location": {
+      "path": "cli-tool/components/skills/development/cloud-run-basics/SKILL.md",
+      "start_line": 3,
+      "end_line": 3,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Cloud Run skill description uses worker pools for ordinary managed services. No offensive tool or exploit appears in the matched description."
+  },
+  {
+    "number": 393,
+    "rule": "AS1",
+    "location": {
+      "path": "cli-tool/components/skills/development/cc-skill-strategic-compact/suggest-compact.sh",
+      "start_line": 11,
+      "end_line": 11,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Comment documents opt-in Claude hook configuration. The matched comment never opens settings.json. Runtime script operates its own counter or user-designated transcript, not configuration credentials."
+  },
+  {
+    "number": 392,
+    "rule": "OH1",
+    "location": {
+      "path": "cli-tool/components/skills/development/cc-skill-security-review/SKILL.md",
+      "start_line": 208,
+      "end_line": 208,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "User HTML is passed through DOMPurify with a five-tag allowlist and no attributes before dangerouslySetInnerHTML. This occurrence is the sanitized example, not an unvalidated output sink."
+  },
+  {
+    "number": 389,
+    "rule": "AS1",
+    "location": {
+      "path": "cli-tool/components/skills/development/cc-skill-continuous-learning/evaluate-session.sh",
+      "start_line": 9,
+      "end_line": 9,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Comment documents opt-in Claude hook configuration. The matched comment never opens settings.json. Runtime script operates its own counter or user-designated transcript, not configuration credentials."
+  },
+  {
+    "number": 388,
+    "rule": "TM1",
+    "location": {
+      "path": "cli-tool/components/skills/development/cc-skill-coding-standards/SKILL.md",
+      "start_line": 241,
+      "end_line": 241,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "REST API documentation lists DELETE alongside GET/POST/PATCH and describes authorization/response semantics. No command execution, forced deletion, or tool-parameter injection occurs at this literal example."
+  },
+  {
+    "number": 387,
+    "rule": "TM1",
+    "location": {
+      "path": "cli-tool/components/skills/development/cc-skill-backend-patterns/SKILL.md",
+      "start_line": 24,
+      "end_line": 24,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "REST API documentation lists DELETE alongside GET/POST/PATCH and describes authorization/response semantics. No command execution, forced deletion, or tool-parameter injection occurs at this literal example."
+  },
+  {
+    "number": 386,
+    "rule": "MP3",
+    "location": {
+      "path": "cli-tool/components/skills/development/c-pro/SKILL.md",
+      "start_line": 48,
+      "end_line": 48,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "C code with clear memory ownership refers to allocation ownership and Valgrind. It does not reset or alter an AI agent's memory."
+  },
+  {
+    "number": 377,
+    "rule": "E4",
+    "location": {
+      "path": "cli-tool/components/skills/development/architecture-decision-records/SKILL.md",
+      "start_line": 12,
+      "end_line": 12,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Architecture Decision Records capture technical decision rationale in local documentation. No endpoint or instruction transmits agent conversation history."
+  },
+  {
+    "number": 376,
+    "rule": "E4",
+    "location": {
+      "path": "cli-tool/components/skills/development/architecture-decision-records/SKILL.md",
+      "start_line": 3,
+      "end_line": 3,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Architecture Decision Records capture technical decision rationale in local documentation. No endpoint or instruction transmits agent conversation history."
+  },
+  {
+    "number": 371,
+    "rule": "TM1",
+    "location": {
+      "path": "cli-tool/components/skills/development/api-design-principles/resources/implementation-playbook.md",
+      "start_line": 72,
+      "end_line": 72,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "REST API documentation lists DELETE alongside GET/POST/PATCH and describes authorization/response semantics. No command execution, forced deletion, or tool-parameter injection occurs at this literal example."
+  },
+  {
+    "number": 370,
+    "rule": "TM1",
+    "location": {
+      "path": "cli-tool/components/skills/development/api-design-principles/references/rest-best-practices.md",
+      "start_line": 79,
+      "end_line": 79,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "REST API documentation lists DELETE alongside GET/POST/PATCH and describes authorization/response semantics. No command execution, forced deletion, or tool-parameter injection occurs at this literal example."
+  },
+  {
+    "number": 369,
+    "rule": "P2",
+    "location": {
+      "path": "cli-tool/components/skills/development/angular/SKILL.md",
+      "start_line": 449,
+      "end_line": 667,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Reviewed literal HTML/XML comments in fenced framework examples label slots, hydration, SEO tags or Maven dependencies. These are visible source examples, not hidden agent control instructions."
+  },
+  {
+    "number": 348,
+    "rule": "MP3",
+    "location": {
+      "path": "cli-tool/components/skills/development/agent-development/references/triggering-examples.md",
+      "start_line": 476,
+      "end_line": 476,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Provide clear context for each example is guidance for writing agent trigger examples, not an instruction to clear agent context."
+  },
+  {
+    "number": 347,
+    "rule": "AR3",
+    "location": {
+      "path": "cli-tool/components/skills/database/sql-pro/SKILL.md",
+      "start_line": 32,
+      "end_line": 32,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Avoid heavy queries on production without safeguards is an explicit restriction, not nullification of safeguards. The next line recommends read replicas or limits."
+  },
+  {
+    "number": 330,
+    "rule": "E4",
+    "location": {
+      "path": "cli-tool/components/skills/creative-design/figma-implement-design/SKILL.md",
+      "start_line": 66,
+      "end_line": 66,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Figma context is the selected design frame/node obtained from the configured MCP server. The passage distinguishes local selection from a user-supplied remote frame link; it does not export conversation context."
+  },
+  {
+    "number": 329,
+    "rule": "AS1",
+    "location": {
+      "path": "cli-tool/components/skills/creative-design/figma/references/figma-mcp-config.md",
+      "start_line": 24,
+      "end_line": 24,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Explicit Figma MCP setup edits only the named mcp_servers.figma stanza, using a bearer-token environment variable. Token echo was removed in 72046568. No unrelated agent credentials are read."
+  },
+  {
+    "number": 328,
+    "rule": "AS1",
+    "location": {
+      "path": "cli-tool/components/skills/creative-design/figma/references/figma-mcp-config.md",
+      "start_line": 3,
+      "end_line": 3,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Explicit Figma MCP setup edits only the named mcp_servers.figma stanza, using a bearer-token environment variable. Token echo was removed in 72046568. No unrelated agent credentials are read."
+  },
+  {
+    "number": 324,
+    "rule": "P2",
+    "location": {
+      "path": "cli-tool/components/skills/business-marketing/seo-optimizer/SKILL.md",
+      "start_line": 235,
+      "end_line": 262,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Reviewed literal HTML/XML comments in fenced framework examples label slots, hydration, SEO tags or Maven dependencies. These are visible source examples, not hidden agent control instructions."
+  },
+  {
+    "number": 323,
+    "rule": "P2",
+    "location": {
+      "path": "cli-tool/components/skills/business-marketing/seo-optimizer/SKILL.md",
+      "start_line": 52,
+      "end_line": 232,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Reviewed literal HTML/XML comments in fenced framework examples label slots, hydration, SEO tags or Maven dependencies. These are visible source examples, not hidden agent control instructions."
+  },
+  {
+    "number": 321,
+    "rule": "AR1",
+    "location": {
+      "path": "cli-tool/components/skills/business-marketing/ai-wrapper-product/SKILL.md",
+      "start_line": 128,
+      "end_line": 128,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Always respond in a specified format/valid JSON constrains output syntax. It does not direct universal compliance or prohibit safety refusals."
+  },
+  {
+    "number": 320,
+    "rule": "AR1",
+    "location": {
+      "path": "cli-tool/components/skills/business-marketing/ai-wrapper-product/SKILL.md",
+      "start_line": 68,
+      "end_line": 68,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Always respond in a specified format/valid JSON constrains output syntax. It does not direct universal compliance or prohibit safety refusals."
+  },
+  {
+    "number": 314,
+    "rule": "P6",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/prompt-engineering-patterns/references/few-shot-learning.md",
+      "start_line": 251,
+      "end_line": 251,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "return prompt returns a function-built few-shot prompt from its examples/query arguments. It never accesses an agent system prompt or hidden instruction state."
+  },
+  {
+    "number": 313,
+    "rule": "P6",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/prompt-engineering-patterns/references/few-shot-learning.md",
+      "start_line": 239,
+      "end_line": 239,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "return prompt returns a function-built few-shot prompt from its examples/query arguments. It never accesses an agent system prompt or hidden instruction state."
+  },
+  {
+    "number": 312,
+    "rule": "P6",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/prompt-engineering-patterns/references/few-shot-learning.md",
+      "start_line": 227,
+      "end_line": 227,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "return prompt returns a function-built few-shot prompt from its examples/query arguments. It never accesses an agent system prompt or hidden instruction state."
+  },
+  {
+    "number": 295,
+    "rule": "EA5",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/optimization-gguf/SKILL.md",
+      "start_line": 143,
+      "end_line": 143,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "llama-cli loads a local GGUF file with explicit GPU-layer or token options. It does not change a remote provider, account, or billing plan."
+  },
+  {
+    "number": 293,
+    "rule": "MP3",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/observability-langsmith/references/troubleshooting.md",
+      "start_line": 331,
+      "end_line": 331,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Clear memory comment precedes Python gc.collect(), reclaiming object memory after batches. It is not agent memory or safety-state modification."
+  },
+  {
+    "number": 292,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/observability-langsmith/references/troubleshooting.md",
+      "start_line": 47,
+      "end_line": 47,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Troubleshooting documentation configures the named application's own key via an environment placeholder. It does not search other applications' credentials or export secrets."
+  },
+  {
+    "number": 281,
+    "rule": "SC10",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/model-architecture-rwkv/SKILL.md",
+      "start_line": 21,
+      "end_line": 21,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "The single HTTPS index download.pytorch.org/whl/cu121 is PyTorch's documented vendor index (https://pytorch.org/get-started/previous-versions/), not a substituted third-party mirror. The previous extra-index fallback was removed. This disposition covers source origin only, not package-version or GPU safety certification."
+  },
+  {
+    "number": 271,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/mechanistic-interpretability-nnsight/references/api.md",
+      "start_line": 32,
+      "end_line": 32,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Access tokenizer comment precedes model.tokenizer; tokenizer means text tokenization object, not an access credential."
+  },
+  {
+    "number": 269,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/infrastructure-skypilot/references/troubleshooting.md",
+      "start_line": 24,
+      "end_line": 24,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Explicit SkyPilot existing-cluster configuration sets KUBECONFIG to the operator's standard kube config and checks that cluster. No credentials are copied to an unrelated host."
+  },
+  {
+    "number": 268,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/infrastructure-skypilot/references/advanced-usage.md",
+      "start_line": 305,
+      "end_line": 305,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Explicit SkyPilot existing-cluster configuration sets KUBECONFIG to the operator's standard kube config and checks that cluster. No credentials are copied to an unrelated host."
+  },
+  {
+    "number": 267,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/infrastructure-skypilot/references/troubleshooting.md",
+      "start_line": 24,
+      "end_line": 24,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Explicit SkyPilot existing-cluster configuration sets KUBECONFIG to the operator's standard kube config and checks that cluster. No credentials are copied to an unrelated host."
+  },
+  {
+    "number": 266,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/infrastructure-skypilot/references/advanced-usage.md",
+      "start_line": 305,
+      "end_line": 305,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Explicit SkyPilot existing-cluster configuration sets KUBECONFIG to the operator's standard kube config and checks that cluster. No credentials are copied to an unrelated host."
+  },
+  {
+    "number": 265,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/infrastructure-skypilot/references/advanced-usage.md",
+      "start_line": 304,
+      "end_line": 304,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Explicit SkyPilot existing-cluster configuration sets KUBECONFIG to the operator's standard kube config and checks that cluster. No credentials are copied to an unrelated host."
+  },
+  {
+    "number": 264,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/infrastructure-skypilot/references/advanced-usage.md",
+      "start_line": 145,
+      "end_line": 145,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "The .env occurrence is in the deployment exclusion list beside .git and node_modules. It prevents uploading environment secrets rather than reading them."
+  },
+  {
+    "number": 253,
+    "rule": "MP3",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/inference-serving-tensorrt-llm/references/multi-gpu.md",
+      "start_line": 250,
+      "end_line": 250,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Restart server to reset state is GPU inference troubleshooting for model sharding. It does not erase agent instructions or permission state."
+  },
+  {
+    "number": 249,
+    "rule": "EA5",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/inference-serving-llama-cpp/SKILL.md",
+      "start_line": 160,
+      "end_line": 160,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "llama-cli loads a local GGUF file with explicit GPU-layer or token options. It does not change a remote provider, account, or billing plan."
+  },
+  {
+    "number": 246,
+    "rule": "PE5",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/fine-tuning-llama-factory/references/advanced.md",
+      "start_line": 258,
+      "end_line": 258,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "NPU container documentation maps specifically enumerated /dev/davinci devices for requested accelerator training. No privileged container, host root mount, or unrestricted device access is requested at this occurrence."
+  },
+  {
+    "number": 240,
+    "rule": "OH1",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/evaluation-lm-evaluation-harness/references/custom-tasks.md",
+      "start_line": 362,
+      "end_line": 362,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Generated code is delegated to execute_with_timeout, whose only body raises NotImplementedError requiring a separately configured isolated execution service. No eval/exec/subprocess executes predictions in the host."
+  },
+  {
+    "number": 234,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/distributed-training-ray-train/references/multi-node.md",
+      "start_line": 226,
+      "end_line": 226,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Ray cluster YAML explicitly uses the operator's SSH key to authenticate to provisioned Ubuntu nodes. No key contents or unrelated credential stores are exported."
+  },
+  {
+    "number": 208,
+    "rule": "MP3",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/agents-llamaindex/references/query_engines.md",
+      "start_line": 309,
+      "end_line": 309,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "chat_engine.reset() resets the application's explicit LlamaIndex chat history. It does not alter the executing agent's permissions or system instructions."
+  },
+  {
+    "number": 206,
+    "rule": "PE3",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/agents-crewai/references/troubleshooting.md",
+      "start_line": 319,
+      "end_line": 319,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Troubleshooting documentation configures the named application's own key via an environment placeholder. It does not search other applications' credentials or export secrets."
+  },
+  {
+    "number": 205,
+    "rule": "AE1",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/agents-crewai/SKILL.md",
+      "start_line": 490,
+      "end_line": 490,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. CrewAI troubleshooting: ordinary agent/task examples, local storage setting, named provider environment placeholders, model output logging. No subprocess, dynamic code execution or credential-export endpoint. Provider use remains operator configured."
+  },
+  {
+    "number": 235,
+    "rule": "AE1",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/emerging-techniques-long-context/SKILL.md",
+      "start_line": 533,
+      "end_line": 533,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. RoPE reference: numerical tensor rotation/position scaling and research links. No file, network or subprocess execution examples."
+  },
+  {
+    "number": 279,
+    "rule": "AE1",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/mlops-tensorboard/SKILL.md",
+      "start_line": 628,
+      "end_line": 628,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. TensorBoard integrations: writes scalar/image/histogram metrics to explicitly named local runs/logs paths; model training callbacks across frameworks. No credential scan or arbitrary command execution. Data logging is intentional, not evidence of remote exfiltration."
+  },
+  {
+    "number": 305,
+    "rule": "AE1",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/post-training-simpo/SKILL.md",
+      "start_line": 193,
+      "end_line": 193,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. SimPO hyperparameter guide: numerical beta/gamma/learning-rate experiments and configuration values. No credential, file export, shell or network execution."
+  },
+  {
+    "number": 316,
+    "rule": "AE1",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/tokenization-huggingface-tokenizers/SKILL.md",
+      "start_line": 507,
+      "end_line": 507,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Tokenizer integration: model/tokenizer loading, local corpus input, explicit save_pretrained destinations, chat-template formatting and caching. No trust_remote_code flag, shell execution or environment secret access. Third-party model/dependency trust is retained as a separate consideration."
+  },
+  {
+    "number": 318,
+    "rule": "AE1",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/tokenization-sentencepiece/SKILL.md",
+      "start_line": 227,
+      "end_line": 227,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. SentencePiece training: corpus/model-prefix parameters and numerical normalization, coverage and vocabulary settings. No remote endpoint or host execution sink."
+  },
+  {
+    "number": 378,
+    "rule": "AE1",
+    "location": {
+      "path": "cli-tool/components/skills/development/artifacts-builder/SKILL.md",
+      "start_line": 10,
+      "end_line": 10,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Both identical artifact init scripts: generate a requested React project, npm/pnpm dependencies, fixed local configuration files, bundled component archive. Found unsafe project-name interpolation into sed replacement and option positions; now names must be a single alphanumeric-leading basename before any Node/install side effects. Two test methods cover 12 hostile names and both normal paths; shell syntax passes. No exception before this repair. Mutable npm package versions remain separate scanner warnings."
+  },
+  {
+    "number": 379,
+    "rule": "AE1",
+    "location": {
+      "path": "cli-tool/components/skills/development/artifacts-builder/SKILL.md",
+      "start_line": 28,
+      "end_line": 28,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Both identical artifact init scripts: generate a requested React project, npm/pnpm dependencies, fixed local configuration files, bundled component archive. Found unsafe project-name interpolation into sed replacement and option positions; now names must be a single alphanumeric-leading basename before any Node/install side effects. Two test methods cover 12 hostile names and both normal paths; shell syntax passes. No exception before this repair. Mutable npm package versions remain separate scanner warnings."
+  },
+  {
+    "number": 601,
+    "rule": "AE1",
+    "location": {
+      "path": "cli-tool/components/skills/development/web-artifacts-builder/SKILL.md",
+      "start_line": 10,
+      "end_line": 10,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Both identical artifact init scripts: generate a requested React project, npm/pnpm dependencies, fixed local configuration files, bundled component archive. Found unsafe project-name interpolation into sed replacement and option positions; now names must be a single alphanumeric-leading basename before any Node/install side effects. Two test methods cover 12 hostile names and both normal paths; shell syntax passes. No exception before this repair. Mutable npm package versions remain separate scanner warnings."
+  },
+  {
+    "number": 602,
+    "rule": "AE1",
+    "location": {
+      "path": "cli-tool/components/skills/development/web-artifacts-builder/SKILL.md",
+      "start_line": 28,
+      "end_line": 28,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Both identical artifact init scripts: generate a requested React project, npm/pnpm dependencies, fixed local configuration files, bundled component archive. Found unsafe project-name interpolation into sed replacement and option positions; now names must be a single alphanumeric-leading basename before any Node/install side effects. Two test methods cover 12 hostile names and both normal paths; shell syntax passes. No exception before this repair. Mutable npm package versions remain separate scanner warnings."
+  },
+  {
+    "number": 420,
+    "rule": "AE1",
+    "location": {
+      "path": "cli-tool/components/skills/development/e2e-testing-patterns/SKILL.md",
+      "start_line": 45,
+      "end_line": 45,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. E2E testing playbook: Playwright/Cypress browser fixtures target localhost, test admin credential from named ADMIN_PASSWORD, isolated page/context fixtures. No shell interpolation or collection of unrelated credentials."
+  },
+  {
+    "number": 450,
+    "rule": "AE1",
+    "location": {
+      "path": "cli-tool/components/skills/development/google-cloud-networking-observability/SKILL.md",
+      "start_line": 83,
+      "end_line": 83,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Cloud threat-analysis guide read in full: read-only Cloud Logging filters and bounded SELECT queries against selected project/dataset. No DDL/write query, external forwarding or credential reading."
+  },
+  {
+    "number": 455,
+    "rule": "AE1",
+    "location": {
+      "path": "cli-tool/components/skills/development/javascript-testing-patterns/SKILL.md",
+      "start_line": 35,
+      "end_line": 35,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. JavaScript testing playbook: fetch is mocked against api.example.com, nodemailer transport is mocked in the testing example, authentication tests use synthetic credentials. Entire file is ASCII, no base64/atob/fromCharCode/eval decoding path. Obfuscation notice is not hidden Unicode. Examples include long code fixtures, but no encoded payload or safety override found."
+  },
+  {
+    "number": 456,
+    "rule": "AE1",
+    "location": {
+      "path": "cli-tool/components/skills/development/javascript-testing-patterns/SKILL.md",
+      "start_line": 39,
+      "end_line": 39,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. JavaScript testing playbook: fetch is mocked against api.example.com, nodemailer transport is mocked in the testing example, authentication tests use synthetic credentials. Entire file is ASCII, no base64/atob/fromCharCode/eval decoding path. Obfuscation notice is not hidden Unicode. Examples include long code fixtures, but no encoded payload or safety override found."
+  },
+  {
+    "number": 566,
+    "rule": "AE1",
+    "location": {
+      "path": "cli-tool/components/skills/development/nodejs-backend-patterns/SKILL.md",
+      "start_line": 35,
+      "end_line": 35,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Node backend playbook: explicitly configured DB/Redis/API credentials; bound SQL values, jwt.verify, bcrypt, validation and production-safe error messages. No generic credential search or dynamic shell execution. These are architecture examples, not a fully provisioned production authentication service."
+  },
+  {
+    "number": 567,
+    "rule": "AE1",
+    "location": {
+      "path": "cli-tool/components/skills/development/nodejs-backend-patterns/SKILL.md",
+      "start_line": 39,
+      "end_line": 39,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Node backend playbook: explicitly configured DB/Redis/API credentials; bound SQL values, jwt.verify, bcrypt, validation and production-safe error messages. No generic credential search or dynamic shell execution. These are architecture examples, not a fully provisioned production authentication service."
+  },
+  {
+    "number": 694,
+    "rule": "AE1",
+    "location": {
+      "path": "cli-tool/components/skills/productivity/code-review-excellence/SKILL.md",
+      "start_line": 33,
+      "end_line": 33,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Code-review playbook: authorization, secret handling, parameterized SQL and no-eval checklists; fetch examples contrast missing and present error handling. No executable secret export or instruction override."
+  },
+  {
+    "number": 695,
+    "rule": "AE1",
+    "location": {
+      "path": "cli-tool/components/skills/productivity/code-review-excellence/SKILL.md",
+      "start_line": 44,
+      "end_line": 44,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Code-review playbook: authorization, secret handling, parameterized SQL and no-eval checklists; fetch examples contrast missing and present error handling. No executable secret export or instruction override."
+  },
+  {
+    "number": 696,
+    "rule": "AE1",
+    "location": {
+      "path": "cli-tool/components/skills/productivity/debugging-strategies/SKILL.md",
+      "start_line": 34,
+      "end_line": 34,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Debugging playbook: explicit local CPU/heap profiles and localhost pprof inspection. Profiles may contain sensitive application data, so they remain local artifacts. No remote export or generic credential scan."
+  },
+  {
+    "number": 697,
+    "rule": "AE1",
+    "location": {
+      "path": "cli-tool/components/skills/productivity/debugging-strategies/SKILL.md",
+      "start_line": 38,
+      "end_line": 38,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Debugging playbook: explicit local CPU/heap profiles and localhost pprof inspection. Profiles may contain sensitive application data, so they remain local artifacts. No remote export or generic credential scan."
+  },
+  {
+    "number": 782,
+    "rule": "AE1",
+    "location": {
+      "path": "cli-tool/components/skills/web-development/nextjs-app-router-patterns/SKILL.md",
+      "start_line": 33,
+      "end_line": 33,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Next.js playbook: example.com or operator-supplied API origin, URLSearchParams filters, framework caching and server-component separation. No string-built executable code or hardcoded credentials."
+  },
+  {
+    "number": 783,
+    "rule": "AE1",
+    "location": {
+      "path": "cli-tool/components/skills/web-development/nextjs-app-router-patterns/SKILL.md",
+      "start_line": 37,
+      "end_line": 37,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Next.js playbook: example.com or operator-supplied API origin, URLSearchParams filters, framework caching and server-component separation. No string-built executable code or hardcoded credentials."
+  },
+  {
+    "number": 790,
+    "rule": "AE1",
+    "location": {
+      "path": "cli-tool/components/skills/web-development/react-native-architecture/SKILL.md",
+      "start_line": 33,
+      "end_line": 33,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. React Native playbook: named authToken in Expo SecureStore, application API login and logout, push registration for configured project. No unrelated token-store enumeration or hidden network destination."
+  },
+  {
+    "number": 791,
+    "rule": "AE1",
+    "location": {
+      "path": "cli-tool/components/skills/web-development/react-native-architecture/SKILL.md",
+      "start_line": 37,
+      "end_line": 37,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. React Native playbook: named authToken in Expo SecureStore, application API login and logout, push registration for configured project. No unrelated token-store enumeration or hidden network destination."
+  },
+  {
+    "number": 797,
+    "rule": "AE1",
+    "location": {
+      "path": "cli-tool/components/skills/web-development/tailwind-design-system/SKILL.md",
+      "start_line": 33,
+      "end_line": 33,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Tailwind playbook: styling tokens, static class variants, local component composition and design-system links. No credential, file, shell or network execution."
+  },
+  {
+    "number": 798,
+    "rule": "AE1",
+    "location": {
+      "path": "cli-tool/components/skills/web-development/tailwind-design-system/SKILL.md",
+      "start_line": 37,
+      "end_line": 37,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Tailwind playbook: styling tokens, static class variants, local component composition and design-system links. No credential, file, shell or network execution."
+  }
+]

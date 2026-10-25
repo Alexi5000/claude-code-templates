@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:3463db9a3aba4657e3800d3929f55f1107faeae98d063b519869a7f91714bceb",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 305: Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. SimPO hyperparameter guide: numerical beta/gamma/learning-rate experiments and configuration values. No credential, file export, shell or network execution. Independent parent review completed."
+    }
+  ]
+}

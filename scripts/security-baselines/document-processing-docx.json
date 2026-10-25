@@ -1,0 +1,259 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:3b7548935c421f3ef6978400b601a0f8cd69249159a2b799a05b257a64f3949b",
+      "rule_id": "AST4",
+      "file": "scripts/accept_changes.py",
+      "reason": "Reviewed argv-only local LibreOffice/compiler/pdf conversion or git diff for requested document operation. Recalc uses private profile; no user macro overwrite."
+    },
+    {
+      "hash": "sha256:d3d6cad2bfa2074577275fcf81d9cf7b6addb966ed428675978090045b974cd6",
+      "rule_id": "AST4",
+      "file": "scripts/accept_changes.py",
+      "reason": "Reviewed argv-only local LibreOffice/compiler/pdf conversion or git diff for requested document operation. Recalc uses private profile; no user macro overwrite."
+    },
+    {
+      "hash": "sha256:ca57a7f1e9a2fe0309fa8e11ffb34afc81c211a9a7f812e5f5be2c263f3ca666",
+      "rule_id": "AST4",
+      "file": "scripts/office/soffice.py",
+      "reason": "Reviewed argv-only local LibreOffice/compiler/pdf conversion or git diff for requested document operation. Recalc uses private profile; no user macro overwrite."
+    },
+    {
+      "hash": "sha256:22bf331ac5e6452f692d9bed9b2375461e8de6055f055710eb2b9f38bb72877d",
+      "rule_id": "AST4",
+      "file": "scripts/office/soffice.py",
+      "reason": "Reviewed argv-only local LibreOffice/compiler/pdf conversion or git diff for requested document operation. Recalc uses private profile; no user macro overwrite."
+    },
+    {
+      "hash": "sha256:ba3e3bca8e11f4b286bd549b9f045e6508bed546224348a360b906e8edf9d886",
+      "rule_id": "AST4",
+      "file": "scripts/office/validators/redlining.py",
+      "reason": "Reviewed argv-only local LibreOffice/compiler/pdf conversion or git diff for requested document operation. Recalc uses private profile; no user macro overwrite."
+    },
+    {
+      "hash": "sha256:39c60af54d6f45b1e93dcb9172d21ac24caae0546272278c6619961451e53f8d",
+      "rule_id": "AST4",
+      "file": "scripts/office/validators/redlining.py",
+      "reason": "Reviewed argv-only local LibreOffice/compiler/pdf conversion or git diff for requested document operation. Recalc uses private profile; no user macro overwrite."
+    },
+    {
+      "hash": "sha256:fee743385de35fbcf69a5f3581f8c607caf190e96638913a7f46ced136834802",
+      "rule_id": "E2",
+      "file": "scripts/office/soffice.py",
+      "reason": "Environment inheritance for fixed local LibreOffice/gcc argv; no remote forwarding. Shim compiled in private0700 temporary directory."
+    },
+    {
+      "hash": "sha256:41d15ca381084b90a23b172ffd89d929019c7debe501f39bfa76a296e4116496",
+      "rule_id": "P2",
+      "file": "SKILL.md",
+      "reason": "Reviewed literal XML tutorial comments or UTF-8 BOM in Office schema, not hidden agent instructions."
+    },
+    {
+      "hash": "sha256:cfa3c9661abacf2c96d423e00af6e8182e05862e962d2a54c8cbd9eac144bf7b",
+      "rule_id": "P2",
+      "file": "SKILL.md",
+      "reason": "Reviewed literal XML tutorial comments or UTF-8 BOM in Office schema, not hidden agent instructions."
+    },
+    {
+      "hash": "sha256:4fbdd40fd30e261b2e8217824df669f72d4f7f8842d614a1bcb4df36b97d0f8f",
+      "rule_id": "P2",
+      "file": "ooxml.md",
+      "reason": "Reviewed XML tutorial comment naming the slide document, not a concealed agent instruction."
+    },
+    {
+      "hash": "sha256:85abee05acd5ee889a13ab320219413d92b49b31bc2edc6c86fad9f56cddaf46",
+      "rule_id": "P2",
+      "file": "ooxml.md",
+      "reason": "Reviewed XML tutorial comment naming the slide document, not a concealed agent instruction."
+    },
+    {
+      "hash": "sha256:fcc7bf51edadaa2960184283fa5b858fce00006bfc65b2b5e64162f2b5996946",
+      "rule_id": "P2",
+      "file": "ooxml.md",
+      "reason": "Reviewed XML tutorial comment naming the slide document, not a concealed agent instruction."
+    },
+    {
+      "hash": "sha256:f7a204c991ac84ec3a41dbed5c8bb97d2f680f8d1875ae47b52d07ed6e4f4639",
+      "rule_id": "P2",
+      "file": "ooxml/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
+      "reason": "Reviewed UTF-8 byte-order marker at the start of an XML schema; no concealed instruction. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:b5a524a16d3661730d555800ff869e37e23471c4eb69a22b3c76ff862dafa287",
+      "rule_id": "P2",
+      "file": "ooxml/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
+      "reason": "Reviewed UTF-8 byte-order marker at the start of an XML schema; no concealed instruction. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:8d797940ab084f95cd1901e3f4ab27b7413c9d606f3496d30eb83679cb730e1a",
+      "rule_id": "P2",
+      "file": "ooxml/schemas/ecma/fouth-edition/opc-relationships.xsd",
+      "reason": "Reviewed UTF-8 byte-order marker at the start of an XML schema; no concealed instruction. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:9efae4ca721bd6b90eeebc69ff3b21f0d27d6174698c30c9df5670f94e14d2a7",
+      "rule_id": "P2",
+      "file": "scripts/office/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
+      "reason": "Reviewed UTF-8 byte-order marker at the start of an XML schema; no concealed instruction. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:80591aff8c1a5e81b27bef844fa18188f88ffe3cdae1cc6c6391171258fc0c4b",
+      "rule_id": "P2",
+      "file": "scripts/office/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
+      "reason": "Reviewed UTF-8 byte-order marker at the start of an XML schema; no concealed instruction. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:16992b5452987ddf1860cf69ea2a11f616362d81c865c4de36c3c72570d1f7cb",
+      "rule_id": "P2",
+      "file": "scripts/office/schemas/ecma/fouth-edition/opc-relationships.xsd",
+      "reason": "Reviewed UTF-8 byte-order marker at the start of an XML schema; no concealed instruction. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:ee4ee1fedf7d396c683e891a0cacf163edaa8c3eca8a89785439c87b326b657d",
+      "rule_id": "RA2",
+      "file": "ooxml/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:1a1df0dadb4f234080455200ee21e046c3d890b216208e052d178a28bcbd7b92",
+      "rule_id": "RA2",
+      "file": "ooxml/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:07cadfe54aa0676b2a8e467b0e5c6a924b144af5ff83f4a68e3be6eedf2bcaa5",
+      "rule_id": "RA2",
+      "file": "ooxml/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:66f3c688ebe7f773f233f73482186ad185e95cc20acc77fae3aaff1ce9ab25dc",
+      "rule_id": "RA2",
+      "file": "ooxml/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:f13fa103765adc77ed23d044c9f351f13b4eea52cd1be04b470ee7771db0efe2",
+      "rule_id": "RA2",
+      "file": "ooxml/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:c523c0fcb413832be9fc413e3af3f56e3429c1d44eeebf44cd6d47208350fefb",
+      "rule_id": "RA2",
+      "file": "ooxml/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:8442d4b59eff632de44664e63bfa6bfa99cbd01d909734f193e28f9a93bca6b6",
+      "rule_id": "RA2",
+      "file": "ooxml/schemas/ISO-IEC29500-4_2016/pml.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:ff9d83ec8f696583edc28adcfbc88ee068b90c9f626cddb5be8d34bf3b10060b",
+      "rule_id": "RA2",
+      "file": "ooxml/schemas/ISO-IEC29500-4_2016/pml.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:78fbbb481bf77a7bea09805e15de6e3bb195fc26c86f45880fe4a5b38f1b47d3",
+      "rule_id": "RA2",
+      "file": "ooxml/schemas/ISO-IEC29500-4_2016/pml.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:353617f33ae2acbfff22cd888ce588d31a44aa5e972b016afbf075e5a14dc0b6",
+      "rule_id": "RA2",
+      "file": "ooxml/schemas/ISO-IEC29500-4_2016/pml.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:96f2aad543bf601421466b509d94878809ed37815f7914474f63311add6f18e0",
+      "rule_id": "RA2",
+      "file": "ooxml/schemas/microsoft/wml-2010.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:63122bfbbeac22bbfb71eb825045a115829fd889021370127316667510a006aa",
+      "rule_id": "RA2",
+      "file": "ooxml/schemas/microsoft/wml-2010.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:3909c52b8fa4ee1a93f700e42f8c75cfc1477cb9690bd77a7929bb2116984a00",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:ad48518a4b0459e1081595e881b4a3557fe03d2f23ff0d4724d08851d7b520ac",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:b860ce4d57f38d88b3ae4c0dddd74a5cd88235acee6abf5814b88a98acea016f",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:3ef96aaf530b4a843a13fc6b9d50b88f82d9fe4815393e7fe14b34296c0e7e1a",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:3215e6d774140af6951e8f87fefbc111980011567069fae979ae38ede46965fa",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:cb15a7dea6db772509b70a5a2ce588054b9c60e1033dad7a310f16e37056d632",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:bfd5ae78a8b1fdeb170d61c7a0220ec68fc8d558b229e367741702e999ab5178",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/ISO-IEC29500-4_2016/pml.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:c7ba14c01f1d7342fc6a12ac7a54d9780b63e552c54057fa3b63be6aa72e56e1",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/ISO-IEC29500-4_2016/pml.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:586ecf263d84b56381b97fddda2800929fa087bc5b025682da421ab1f8688656",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/ISO-IEC29500-4_2016/pml.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:e722613870c372cf277f93f88a5d2314a4028e88f626522d25cc2eed178f915a",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/ISO-IEC29500-4_2016/pml.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:9e3e315d2428a4e7991c299267f579bbdb68497cd07c1e4ad832e26cee5d8a87",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/microsoft/wml-2010.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    },
+    {
+      "hash": "sha256:fa1e57118e4c19cb0cda337f173b0c5be88e32907cdfd65b348b955525e6879a",
+      "rule_id": "RA2",
+      "file": "scripts/office/schemas/microsoft/wml-2010.xsd",
+      "reason": "Reviewed Office XML schema pList identifiers; no executable persistence operation. Exact source and occurrence fingerprint."
+    }
+  ]
+}

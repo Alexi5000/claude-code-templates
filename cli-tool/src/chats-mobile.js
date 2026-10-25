@@ -2,6 +2,8 @@ const chalk = require('chalk');
 const fs = require('fs-extra');
 const path = require('path');
 const express = require('express');
+const { rateLimit } = require('express-rate-limit');
+const DashboardAuth = require('./dashboard-auth');
 const { dashboardRequestBudget } = require('./sandbox-limits');
 const open = require('open');
 const os = require('os');
@@ -17,6 +19,7 @@ const SessionSharing = require('./session-sharing');
 class ChatsMobile {
   constructor(options = {}) {
     this.app = express();
+    this.dashboardAuth = new DashboardAuth();
     this.port = 9876; // Uncommon port for chats mobile
     this.fileWatcher = new FileWatcher();
     this.stateCalculator = new StateCalculator();
@@ -105,6 +108,8 @@ class ChatsMobile {
    */
   setupMiddleware() {
     this.app.use(dashboardRequestBudget(600));
+    this.app.use(rateLimit({ windowMs: 60_000, limit: 120, skip: req => this.dashboardAuth.authorized(req), skipSuccessfulRequests: true, standardHeaders: true, legacyHeaders: false }));
+    this.app.use(this.dashboardAuth.middleware());
     this.app.use(express.json());
     
     // Serve static files from analytics-web directory (for services, components, etc.)
@@ -1047,15 +1052,17 @@ class ChatsMobile {
    */
   async startServer() {
     return new Promise(async (resolve) => {
-      this.httpServer = this.app.listen(this.port, async () => {
+      this.httpServer = this.app.listen(this.port, '127.0.0.1', async () => {
+        this.port = this.httpServer.address().port;
         this.localUrl = `http://localhost:${this.port}`;
-        console.log(chalk.green(`📱 Chats Mobile server started at ${this.localUrl}`));
+        console.log(chalk.green(`📱 Chats Mobile access: ${this.dashboardAuth.accessUrl(this.localUrl)}`));
         
         // Initialize WebSocket server with HTTP server
         try {
           this.webSocketServer = new WebSocketServer(this.httpServer, {
             port: this.port,
-            path: '/ws'
+            path: '/ws',
+            verifyClient: info => this.dashboardAuth.authorized(info.req)
           });
           await this.webSocketServer.initialize();
           this.log('info', chalk.green('🌐 WebSocket server initialized'));
@@ -1119,7 +1126,7 @@ class ChatsMobile {
           }
           
           if (urlMatch) {
-            this.tunnelUrl = urlMatch[0];
+            this.tunnelUrl = this.dashboardAuth.accessUrl(urlMatch[0]);
             console.log(chalk.green(`☁️  Cloudflare Tunnel ready: ${this.tunnelUrl}`));
             resolve(this.tunnelUrl);
           }
@@ -1133,7 +1140,7 @@ class ChatsMobile {
           // Sometimes tunnel URLs appear in stderr
           let urlMatch = str.match(/https:\/\/[a-zA-Z0-9-]+\.(?:trycloudflare|cfargotunnel)\.com/);
           if (urlMatch && !this.tunnelUrl) {
-            this.tunnelUrl = urlMatch[0];
+            this.tunnelUrl = this.dashboardAuth.accessUrl(urlMatch[0]);
             console.log(chalk.green(`☁️  Cloudflare Tunnel ready: ${this.tunnelUrl}`));
             resolve(this.tunnelUrl);
           }
@@ -1178,7 +1185,7 @@ class ChatsMobile {
       // Use tunnel URL if available, otherwise local URL
       const url = this.tunnelUrl || this.localUrl || `http://localhost:${this.port}`;
       console.log(chalk.cyan(`🌐 Opening browser to ${url}`));
-      await open(url);
+      await open(this.dashboardAuth.accessUrl(url));
     } catch (error) {
       console.warn(chalk.yellow('⚠️  Could not auto-open browser:', error.message));
     }
@@ -1247,7 +1254,7 @@ async function startChatsMobile(options = {}) {
     console.log(chalk.green('✅ Claude Code Chats Mobile is running!'));
     
     // Show access URLs
-    console.log(chalk.cyan(`📱 Local access: ${chatsMobile.localUrl}`));
+    console.log(chalk.cyan(`📱 Local access: ${chatsMobile.dashboardAuth.accessUrl(chatsMobile.localUrl)}`));
     if (chatsMobile.tunnelUrl) {
       console.log(chalk.cyan(`☁️  Remote access: ${chatsMobile.tunnelUrl}`));
       console.log(chalk.blue(`🌐 Opening remote URL: ${chatsMobile.tunnelUrl}`));

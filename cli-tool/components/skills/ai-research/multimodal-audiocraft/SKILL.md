@@ -1,11 +1,12 @@
 ---
 name: audiocraft-audio-generation
 description: PyTorch library for audio generation including text-to-music (MusicGen) and text-to-sound (AudioGen). Use when you need to generate music from text descriptions, create sound effects, or perform melody-conditioned music generation.
-version: 1.0.0
-author: Orchestra Research
 license: MIT
-tags: [Multimodal, Audio Generation, Text-to-Music, Text-to-Audio, MusicGen]
-dependencies: [audiocraft, torch>=2.0.0, transformers>=4.30.0]
+metadata:
+  version: 1.0.0
+  author: Orchestra Research
+  tags: [Multimodal, Audio Generation, Text-to-Music, Text-to-Audio, MusicGen]
+  dependencies: [audiocraft, torch>=2.0.0, transformers>=4.30.0]
 ---
 
 # AudioCraft: Audio Generation
@@ -45,7 +46,15 @@ Comprehensive guide to using Meta's AudioCraft for text-to-music and text-to-aud
 pip install audiocraft
 
 # From GitHub (latest)
-pip install git+https://github.com/facebookresearch/audiocraft.git
+git clone --no-checkout https://github.com/facebookresearch/audiocraft.git audiocraft-source &&
+git -C audiocraft-source checkout --detach 896ec7c47f5e5d1e5aa1e4b260c4405328bf009d
+```
+
+This source snapshot is pinned to `896ec7c47f5e5d1e5aa1e4b260c4405328bf009d`. Review its build scripts and dependency changes before installing it in an isolated development environment. Stop if checkout fails. Updating the snapshot requires a new review.
+
+```bash
+[ "$(git -C audiocraft-source rev-parse HEAD)" = "896ec7c47f5e5d1e5aa1e4b260c4405328bf009d" ] &&
+pip install ./audiocraft-source
 
 # Or use HuggingFace Transformers
 pip install transformers torch torchaudio

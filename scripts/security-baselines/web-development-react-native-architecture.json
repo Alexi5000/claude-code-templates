@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:54c1a7cdb6c5c8c064ad1e1f438ec3108ea17dd3fcc0313cac6c490c965a588b",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 790: Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. React Native playbook: named authToken in Expo SecureStore, application API login and logout, push registration for configured project. No unrelated token-store enumeration or hidden network destination. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:d3969a19d8fc07e56b27a7edf755fb32edff07a47fa503c04fa9a0bed72b4215",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 791: Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. React Native playbook: named authToken in Expo SecureStore, application API login and logout, push registration for configured project. No unrelated token-store enumeration or hidden network destination. Independent parent review completed."
+    }
+  ]
+}

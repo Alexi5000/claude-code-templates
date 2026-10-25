@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:d37f877462ce567aa57caedf1b20cfa2427be73ba0d73910ab5c869b62f8dddb",
+      "rule_id": "AS1",
+      "file": "evaluate-session.sh",
+      "reason": "Source review 2026-10-25, alert 389: Comment documents opt-in Claude hook configuration. The matched comment never opens settings.json. Runtime script operates its own counter or user-designated transcript, not configuration credentials. Independent parent review completed."
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:98a2341bbb7624d0b51d7b96f4441e89aa7280a15ef1b3600f7effdee993d504",
+      "rule_id": "OH1",
+      "file": "references/rules/rendering-hydration-no-flicker.md",
+      "reason": "Source review 2026-10-25, alert 786: Inline script is a fixed literal string. localStorage theme is applied through DOM class state, not interpolated into executable HTML. No model output reaches the script literal. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:3a9b285db2b32d290fda0d2142f29ff2a0f6bb2cc05622934f2d284561ef1d8f",
+      "rule_id": "OH1",
+      "file": "references/react-performance-guidelines.md",
+      "reason": "Source review 2026-10-25, alert 785: Inline script is a fixed literal string. localStorage theme is applied through DOM class state, not interpolated into executable HTML. No model output reaches the script literal. Independent parent review completed."
+    }
+  ]
+}

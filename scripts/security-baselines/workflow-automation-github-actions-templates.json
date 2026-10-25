@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:fb528f6b0a058e7184333382f8472b12ce66e2a23fc5136ee843b28afffde993",
+      "rule_id": "PE3",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 800: AWS EKS deployment example explicitly updates the selected production-cluster kubeconfig with configured CI AWS credentials. No private-key read or credential export to an unrelated destination. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:6ca3af396c909657653c628a2f343ccfcd50728666f07c5f55c3d159c037f9ca",
+      "rule_id": "PE3",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 799: AWS EKS deployment example explicitly updates the selected production-cluster kubeconfig with configured CI AWS credentials. No private-key read or credential export to an unrelated destination. Independent parent review completed."
+    }
+  ]
+}

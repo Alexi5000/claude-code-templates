@@ -1,0 +1,85 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:d76361fbb03b312e91b1980ee8a627fc72ee0d577e0b2c9ace6ebba275b99641",
+      "rule_id": "AS1",
+      "file": "references/claude-code-integration.md",
+      "reason": "Opt-in local project Claude configuration/documentation integration, reviewed exact passages; not unrelated agent credential harvesting."
+    },
+    {
+      "hash": "sha256:fec0e6eb855f6720bf32ed45a070294c6c2979e4147c8687040000439c73b27c",
+      "rule_id": "AS1",
+      "file": "references/claude-code-integration.md",
+      "reason": "Opt-in local project Claude configuration/documentation integration, reviewed exact passages; not unrelated agent credential harvesting."
+    },
+    {
+      "hash": "sha256:48ef0cadf9acc12de93eaa116bfd47953d4f02f2357b1faf0edc78efc909c3b7",
+      "rule_id": "AR3",
+      "file": "references/landscape-research.md",
+      "reason": "Exact sentence explains recursive hook enforcement PREVENTS subagent bypass, not an instruction to bypass."
+    },
+    {
+      "hash": "sha256:cfcdbe45dbeba24cc31fc226186e608c138af217d2f7460d4eb5be0ec709fe5b",
+      "rule_id": "EA2",
+      "file": "SKILL.md",
+      "reason": "Reviewed opt-in blueprint workflow, explicit Never auto-invoke without confirmation, verification requirements, and warnings about enshrining incorrect rules. Exact source-bound passages, not blanket permission."
+    },
+    {
+      "hash": "sha256:58d066da5051b12194171c21f41060a84a64582de0068f00618eb3f33853e921",
+      "rule_id": "EA2",
+      "file": "references/advanced-architecture.md",
+      "reason": "Reviewed opt-in blueprint workflow, explicit Never auto-invoke without confirmation, verification requirements, and warnings about enshrining incorrect rules. Exact source-bound passages, not blanket permission."
+    },
+    {
+      "hash": "sha256:b97065793dccb3ec1601fc99a2ccb97574da652fb06243a30c97a1bfdbf67467",
+      "rule_id": "EA2",
+      "file": "references/advanced-architecture.md",
+      "reason": "Reviewed opt-in blueprint workflow, explicit Never auto-invoke without confirmation, verification requirements, and warnings about enshrining incorrect rules. Exact source-bound passages, not blanket permission."
+    },
+    {
+      "hash": "sha256:86508a42aac240871e6d54c9212931b85d4f40838129903066a6af84cb0db002",
+      "rule_id": "EA2",
+      "file": "references/advanced-architecture.md",
+      "reason": "Reviewed opt-in blueprint workflow, explicit Never auto-invoke without confirmation, verification requirements, and warnings about enshrining incorrect rules. Exact source-bound passages, not blanket permission."
+    },
+    {
+      "hash": "sha256:0f60da61a7b16e09bb7aa1f6725033c24f4f974cf4889d13f5b5c349a1ba4a67",
+      "rule_id": "EA2",
+      "file": "references/handoff-formats.md",
+      "reason": "Reviewed opt-in blueprint workflow, explicit Never auto-invoke without confirmation, verification requirements, and warnings about enshrining incorrect rules. Exact source-bound passages, not blanket permission."
+    },
+    {
+      "hash": "sha256:911327d99a1573bebb7388d1c643192fa93c7da969904a6c8c8f765e24e574c6",
+      "rule_id": "MP1",
+      "file": "references/advanced-architecture.md",
+      "reason": "Reviewed opt-in blueprint workflow, explicit Never auto-invoke without confirmation, verification requirements, and warnings about enshrining incorrect rules. Exact source-bound passages, not blanket permission."
+    },
+    {
+      "hash": "sha256:d5a6dfa3e123f76097d287fa8073755d2afcbbeceacc484fe46a108f0cbdfbd7",
+      "rule_id": "RA2",
+      "file": "references/claude-code-integration.md",
+      "reason": "Reviewed opt-in blueprint workflow, explicit Never auto-invoke without confirmation, verification requirements, and warnings about enshrining incorrect rules. Exact source-bound passages, not blanket permission."
+    },
+    {
+      "hash": "sha256:38ea96fb948b13e9d6dc22ed4c851c855fc9a01dab01a6c11203c5792b25fe1a",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    },
+    {
+      "hash": "sha256:1c43edea9a5cf19d53658e4ae512256e05df1c3eb7d271d2163aa88fcf4ee435",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    },
+    {
+      "hash": "sha256:0c28223d35b43ae99ea37e3747c832d57af79d8998c264a5cb1990cb70d56802",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    }
+  ]
+}

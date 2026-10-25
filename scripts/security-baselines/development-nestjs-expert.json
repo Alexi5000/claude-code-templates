@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:7c7f1ca7941c659678a3f98ac4c1c43b6d33cec2427b4857c496015f71a19b2d",
+      "rule_id": "PE3",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 476: Troubleshooting documentation configures the named application's own key via an environment placeholder. It does not search other applications' credentials or export secrets. Independent parent review completed."
+    }
+  ]
+}

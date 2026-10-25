@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:83451612246d517d11622c19de55b74058a5ab7d82cb9ae0948c2741b3470d04",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 455: Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. JavaScript testing playbook: fetch is mocked against api.example.com, nodemailer transport is mocked in the testing example, authentication tests use synthetic credentials. Entire file is ASCII, no base64/atob/fromCharCode/eval decoding path. Obfuscation notice is not hidden Unicode. Examples include long code fixtures, but no encoded payload or safety override found. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:3080518aa74da97651f991e9c4b1be06e54f35fb19b67277674d298d22ec3649",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 456: Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. JavaScript testing playbook: fetch is mocked against api.example.com, nodemailer transport is mocked in the testing example, authentication tests use synthetic credentials. Entire file is ASCII, no base64/atob/fromCharCode/eval decoding path. Obfuscation notice is not hidden Unicode. Examples include long code fixtures, but no encoded payload or safety override found. Independent parent review completed."
+    }
+  ]
+}

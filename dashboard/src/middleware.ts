@@ -1,4 +1,5 @@
 import { defineMiddleware } from 'astro:middleware';
+import { MARKDOWN_CONTENT_TYPE, notFoundMarkdown, prefersMarkdown } from './lib/agent-readiness';
 
 /**
  * Injects Cloudflare Workers env bindings into process.env so that
@@ -15,5 +16,20 @@ export const onRequest = defineMiddleware(async (context, next) => {
     }
   }
 
-  return next();
+  const response = await next();
+
+  if (response.status !== 404 || context.url.pathname.startsWith('/api/')) {
+    return response;
+  }
+
+  if (prefersMarkdown(context.request.headers.get('accept'))) {
+    return new Response(notFoundMarkdown(context.url.pathname), {
+      status: 404,
+      headers: { 'Content-Type': MARKDOWN_CONTENT_TYPE, Vary: 'Accept' },
+    });
+  }
+
+  const vary = response.headers.get('Vary') ?? '';
+  if (!/(^|,)\s*accept\s*(,|$)/i.test(vary)) response.headers.append('Vary', 'Accept');
+  return response;
 });

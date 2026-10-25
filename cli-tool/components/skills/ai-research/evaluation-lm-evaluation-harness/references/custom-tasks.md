@@ -374,9 +374,11 @@ def execute_code(predictions, references):
         return 0.0
 
 def execute_with_timeout(code, input_data, timeout=5):
-    """Safely execute code with timeout."""
-    # Implementation with subprocess and timeout
-    pass
+    """Requires an operator-configured isolated execution service."""
+    raise NotImplementedError(
+        "Configure a sandbox without host credentials or network, with CPU, "
+        "memory, process and wall-clock limits. A subprocess timeout is insufficient."
+    )
 
 def process_code_results(doc, results):
     """Process code execution results."""

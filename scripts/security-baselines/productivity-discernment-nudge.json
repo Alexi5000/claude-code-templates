@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:6684ae1a3de5c1e2848ef73c8d0b2118b7efc8a68aef173017f32453063dcadd",
+      "rule_id": "AR1",
+      "file": "SKILL.md",
+      "reason": "Answer-completely instruction concerns response ordering before optional follow-up prompts; no instruction to bypass restrictions or comply with unsafe requests."
+    }
+  ]
+}

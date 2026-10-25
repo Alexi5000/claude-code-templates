@@ -1,11 +1,12 @@
 ---
 name: segment-anything-model
 description: Foundation model for image segmentation with zero-shot transfer. Use when you need to segment any object in images using points, boxes, or masks as prompts, or automatically generate all object masks in an image.
-version: 1.0.0
-author: Orchestra Research
 license: MIT
-tags: [Multimodal, Image Segmentation, Computer Vision, SAM, Zero-Shot]
-dependencies: [segment-anything, transformers>=4.30.0, torch>=1.7.0]
+metadata:
+  version: 1.0.0
+  author: Orchestra Research
+  tags: [Multimodal, Image Segmentation, Computer Vision, SAM, Zero-Shot]
+  dependencies: [segment-anything, transformers>=4.30.0, torch>=1.7.0]
 ---
 
 # Segment Anything Model (SAM)
@@ -42,7 +43,15 @@ Comprehensive guide to using Meta AI's Segment Anything Model for zero-shot imag
 
 ```bash
 # From GitHub
-pip install git+https://github.com/facebookresearch/segment-anything.git
+git clone --no-checkout https://github.com/facebookresearch/segment-anything.git segment-anything-source &&
+git -C segment-anything-source checkout --detach dca509fe793f601edb92606367a655c15ac00fdf
+```
+
+This source snapshot is pinned to `dca509fe793f601edb92606367a655c15ac00fdf`. Review its build scripts and dependency changes before installing it in an isolated development environment. Stop if checkout fails. Updating the snapshot requires a new review.
+
+```bash
+[ "$(git -C segment-anything-source rev-parse HEAD)" = "dca509fe793f601edb92606367a655c15ac00fdf" ] &&
+pip install ./segment-anything-source
 
 # Optional dependencies
 pip install opencv-python pycocotools matplotlib

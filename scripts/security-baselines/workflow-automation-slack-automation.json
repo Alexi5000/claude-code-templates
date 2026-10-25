@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:d51dbf8eb922710ec47ae086feef65c55174f3b405cc139658397f4cf3746710",
+      "rule_id": "P3",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 807: User-requested Slack channel/DM workflow explicitly starts with resolving the requested destination. The matched heading is Send Messages to Channels, not covert conversation forwarding. Independent parent review completed."
+    }
+  ]
+}

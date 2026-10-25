@@ -9,6 +9,12 @@ const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 3444;
 
+// Platform-aware command names. Now that spawns run without `shell: true`,
+// Windows needs the `.cmd` shim to resolve npm-installed executables (bare
+// 'npx'/'claude' would fail with ENOENT on win32).
+const NPX_CMD = process.platform === 'win32' ? 'npx.cmd' : 'npx';
+const CLAUDE_CMD = process.platform === 'win32' ? 'claude.cmd' : 'claude';
+
 // Load .env file from current working directory (where user runs the command)
 function loadEnvFile() {
     const envPath = path.join(process.cwd(), '.env');
@@ -237,9 +243,10 @@ app.post('/api/install-agent', async (req, res) => {
     if (isBusy()) return res.status(429).json({ success: false, error: 'Sandbox is busy; retry shortly' });
     try {
         console.log(chalk.blue('🔧 Installing agent:'), chalk.cyan(agentName));
-        
-        // Use the CLI tool to install the agent
-        const child = spawn('npx', ['claude-code-templates@latest', '--agent', agentName, '--yes'], {
+
+        // SECURITY: shell:false (default) keeps agentName as a single argv entry —
+        // no shell parses it, so metacharacters cannot inject commands.
+        const child = spawn(NPX_CMD, ['claude-code-templates@latest', '--agent', agentName, '--yes'], {
             cwd: process.cwd(),
             stdio: ['pipe', 'pipe', 'pipe'],
             shell: process.platform === 'win32'
@@ -309,8 +316,15 @@ async function checkAndInstallAgent(agentName, task) {
     
     task.output.push(`🔧 Agent ${agentName} not found locally. Installing...`);
     
+    // SECURITY: reject anything that is not a plain `category/name` slug.
+    if (!/^[A-Za-z0-9._/-]+$/.test(agentName)) {
+        task.output.push(`❌ Invalid agent name: ${agentName}`);
+        return Promise.resolve(false);
+    }
+
     return new Promise((resolve, reject) => {
-        const child = spawn('npx', ['claude-code-templates@latest', '--agent', agentName, '--yes'], {
+        // SECURITY: shell:false (default) — agentName stays a single argv entry.
+        const child = spawn(NPX_CMD, ['claude-code-templates@latest', '--agent', agentName, '--yes'], {
             cwd: process.cwd(),
             stdio: ['pipe', 'pipe', 'pipe'],
             shell: process.platform === 'win32'

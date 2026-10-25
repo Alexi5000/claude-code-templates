@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:4d92ebdfee47ae39fd4b7a59064054bbb78ef3a6d46b0051f5efcf7977c701fd",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 782: Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Next.js playbook: example.com or operator-supplied API origin, URLSearchParams filters, framework caching and server-component separation. No string-built executable code or hardcoded credentials. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:f4a9f896996059369736d24eaec8cb0589db441fa156eee5677b70caf392c8c4",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 783: Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Next.js playbook: example.com or operator-supplied API origin, URLSearchParams filters, framework caching and server-component separation. No string-built executable code or hardcoded credentials. Independent parent review completed."
+    }
+  ]
+}

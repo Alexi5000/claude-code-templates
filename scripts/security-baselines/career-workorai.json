@@ -1,0 +1,139 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:65d83816afeab836e2ebc9eb22b8369ff195af715d01c53052bba0ec6d8f7063",
+      "rule_id": "EA3",
+      "file": "LICENSE.txt",
+      "reason": "MIT warranty phrase NOT LIMITED TO, not agent scope instruction."
+    },
+    {
+      "hash": "sha256:d759cb69fe808d858e7114bfdc4c0792323aadae5d0fa743ae272599cf6bf612",
+      "rule_id": "PE3",
+      "file": "scripts/credential-store.mjs",
+      "reason": "Exact OS-secret-store code for workorai service/candidate-employer accounts; no network calls or generic credential search. Descriptor reads/writes reject links; token persistence is explicit-consent. Root reviewed source."
+    },
+    {
+      "hash": "sha256:5d210364a0e7f9233307754b1e70e0be492ab9e7413b4e4c6d833cc1feb6b0cb",
+      "rule_id": "PE3",
+      "file": "scripts/credential-store.mjs",
+      "reason": "Exact OS-secret-store code for workorai service/candidate-employer accounts; no network calls or generic credential search. Descriptor reads/writes reject links; token persistence is explicit-consent. Root reviewed source."
+    },
+    {
+      "hash": "sha256:a14258098a76534499b0570cd81ddad7e357d451677365f9f292be70cb3bbe09",
+      "rule_id": "PE3",
+      "file": "scripts/credential-store.mjs",
+      "reason": "Exact OS-secret-store code for workorai service/candidate-employer accounts; no network calls or generic credential search. Descriptor reads/writes reject links; token persistence is explicit-consent. Root reviewed source."
+    },
+    {
+      "hash": "sha256:3c0a8b9605ad3ccbff8237132972585c49ac9034f312d17e9975a5e9fc2313e7",
+      "rule_id": "PE3",
+      "file": "scripts/credential-store.mjs",
+      "reason": "Exact OS-secret-store code for workorai service/candidate-employer accounts; no network calls or generic credential search. Descriptor reads/writes reject links; token persistence is explicit-consent. Root reviewed source."
+    },
+    {
+      "hash": "sha256:669dd6c813297be6c7c6b983851bdded6317f2b29c597c9de0185df0e711c1e5",
+      "rule_id": "PE3",
+      "file": "scripts/credential-store.mjs",
+      "reason": "Exact OS-secret-store code for workorai service/candidate-employer accounts; no network calls or generic credential search. Descriptor reads/writes reject links; token persistence is explicit-consent. Root reviewed source."
+    },
+    {
+      "hash": "sha256:b5ed3661bb3cefdf2f1789c7589bb9781751e97a1ee321f979691f3cb7af8c32",
+      "rule_id": "PE3",
+      "file": "scripts/credential-store.mjs",
+      "reason": "Exact OS-secret-store code for workorai service/candidate-employer accounts; no network calls or generic credential search. Descriptor reads/writes reject links; token persistence is explicit-consent. Root reviewed source."
+    },
+    {
+      "hash": "sha256:927cf30a07706b378912cec0e68d46e323652e2c4133d93dc2084b34c020119f",
+      "rule_id": "PE3",
+      "file": "scripts/credential-store.mjs",
+      "reason": "Exact OS-secret-store code for workorai service/candidate-employer accounts; no network calls or generic credential search. Descriptor reads/writes reject links; token persistence is explicit-consent. Root reviewed source."
+    },
+    {
+      "hash": "sha256:2519f45ead98f50910de1488628d68c2f31985358436d163e1120219f79a5c4f",
+      "rule_id": "PE3",
+      "file": "scripts/credential-store.mjs",
+      "reason": "Exact OS-secret-store code for workorai service/candidate-employer accounts; no network calls or generic credential search. Descriptor reads/writes reject links; token persistence is explicit-consent. Root reviewed source."
+    },
+    {
+      "hash": "sha256:5ac56a1062c67b707d7bb3f82755f3d1d9ce562fd99508fbf69f23177ba3d328",
+      "rule_id": "PE3",
+      "file": "scripts/credential-store.mjs",
+      "reason": "Exact OS-secret-store code for workorai service/candidate-employer accounts; no network calls or generic credential search. Descriptor reads/writes reject links; token persistence is explicit-consent. Root reviewed source."
+    },
+    {
+      "hash": "sha256:8a0751b1bf0976bd5c128dd117602764170e15fd6dbc0fa31260b09e9493f779",
+      "rule_id": "PE3",
+      "file": "scripts/credential-store.mjs",
+      "reason": "Exact OS-secret-store code for workorai service/candidate-employer accounts; no network calls or generic credential search. Descriptor reads/writes reject links; token persistence is explicit-consent. Root reviewed source."
+    },
+    {
+      "hash": "sha256:3cbc51b851565cb1d15c0e3df398c9b1b2660e43da2fbd73db881c98a829a392",
+      "rule_id": "PE3",
+      "file": "scripts/credential-store.mjs",
+      "reason": "Exact OS-secret-store code for workorai service/candidate-employer accounts; no network calls or generic credential search. Descriptor reads/writes reject links; token persistence is explicit-consent. Root reviewed source."
+    },
+    {
+      "hash": "sha256:d5bf8fe3189a307bdccb8f6c52ffc084326ba3a61363b2de45ae220d53a8e6bd",
+      "rule_id": "PE3",
+      "file": "scripts/credential-store.mjs",
+      "reason": "Exact OS-secret-store code for workorai service/candidate-employer accounts; no network calls or generic credential search. Descriptor reads/writes reject links; token persistence is explicit-consent. Root reviewed source."
+    },
+    {
+      "hash": "sha256:f84824b8184c7a0d36f0520d8f8fef44e21dae69ce52ec3e30e1744124145322",
+      "rule_id": "PE3",
+      "file": "scripts/credential-store.mjs",
+      "reason": "Exact OS-secret-store code for workorai service/candidate-employer accounts; no network calls or generic credential search. Descriptor reads/writes reject links; token persistence is explicit-consent. Root reviewed source."
+    },
+    {
+      "hash": "sha256:bcff132e8ac25c2d6951068afda7dae05fc76ec3a02151143717ac15b387d3f6",
+      "rule_id": "PE3",
+      "file": "scripts/credential-store.mjs",
+      "reason": "Exact OS-secret-store code for workorai service/candidate-employer accounts; no network calls or generic credential search. Descriptor reads/writes reject links; token persistence is explicit-consent. Root reviewed source."
+    },
+    {
+      "hash": "sha256:030b079fa4d32ea20a474e4439cceffed9f7866cf3d623bbdd6fb08c498d38db",
+      "rule_id": "PE3",
+      "file": "scripts/credential-store.mjs",
+      "reason": "Exact OS-secret-store code for workorai service/candidate-employer accounts; no network calls or generic credential search. Descriptor reads/writes reject links; token persistence is explicit-consent. Root reviewed source."
+    },
+    {
+      "hash": "sha256:2e02ef3c86e0084fbd2259d59bbdd835f58a549ad15e49a4d1f14dd765636607",
+      "rule_id": "PE3",
+      "file": "scripts/credential-store.mjs",
+      "reason": "Exact OS-secret-store code for workorai service/candidate-employer accounts; no network calls or generic credential search. Descriptor reads/writes reject links; token persistence is explicit-consent. Root reviewed source."
+    },
+    {
+      "hash": "sha256:6ff04813b7092866758dfba33e7bcfa19c605ab91cc05dc3b527a7a8aad2c8dc",
+      "rule_id": "RA2",
+      "file": "references/auth-flow.md",
+      "reason": "Exact instructions explicitly require consent before saving the selected WorkorAI token; not hidden persistence."
+    },
+    {
+      "hash": "sha256:ef721aa7f6b38bd3e58077857a978ac60abed23233d01699c761dfaa79ff21e9",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    },
+    {
+      "hash": "sha256:05c2d08e7f040ef15db75971e6cb4fd592393f86512dc8dc9426898941e20c77",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    },
+    {
+      "hash": "sha256:6642506673335323cbc1a0c12bca88906de88b1d905d79835b7e6f045ffaa149",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    },
+    {
+      "hash": "sha256:e18219498971f3e69279fa7f1fbfe565038ab18de4ce7f5423bc308a8efcacc6",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    }
+  ]
+}

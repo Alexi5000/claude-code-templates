@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:bd7b3c95e25d4f2f35e61d80e98fccfab0671a9cd9eedba78c2e475cc521f44d",
+      "rule_id": "PE5",
+      "file": "references/advanced.md",
+      "reason": "Source review 2026-10-25, alert 246: NPU container documentation maps specifically enumerated /dev/davinci devices for requested accelerator training. No privileged container, host root mount, or unrestricted device access is requested at this occurrence. Independent parent review completed."
+    }
+  ]
+}

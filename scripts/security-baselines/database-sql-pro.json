@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:174572ffd95a5e75df1d5f3917a7177f54e153cf550f6654fe9f025a376dd7ca",
+      "rule_id": "AR3",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 347: Avoid heavy queries on production without safeguards is an explicit restriction, not nullification of safeguards. The next line recommends read replicas or limits. Independent parent review completed."
+    }
+  ]
+}

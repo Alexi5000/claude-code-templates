@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:802e828cf9cc4edbed1407808f6c889e1ff8ac28afb63a2e47091a269a954e74",
+      "rule_id": "SC10",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 281: The single HTTPS index download.pytorch.org/whl/cu121 is PyTorch's documented vendor index (https://pytorch.org/get-started/previous-versions/), not a substituted third-party mirror. The previous extra-index fallback was removed. This disposition covers source origin only, not package-version or GPU safety certification. Independent parent review completed."
+    }
+  ]
+}

@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
     paths:
+      - 'cli-tool/components/skills/development/artifacts-builder/scripts/init-artifact.sh'
+      - 'cli-tool/components/skills/development/web-artifacts-builder/scripts/init-artifact.sh'
+      - 'cli-tool/components/skills/development/jupyter-notebook/scripts/new_notebook.py'
       - 'cli-tool/components/skills/scientific/pydicom/scripts/anonymize_dicom.py'
       - 'cli-tool/components/skills/scientific/perplexity-search/scripts/setup_env.py'
       - 'cli-tool/components/skills/scientific/citation-management/scripts/extract_metadata.py'
@@ -12,10 +15,14 @@ on:
       - 'cli-tool/components/skills/enterprise-communication/session-handoff/scripts/validate_handoff.py'
       - 'cli-tool/components/hooks/security/secret-scanner.py'
       - 'cli-tool/components/skills/development/devops-iac-engineer/scripts/devops_utils.py'
+      - 'cli-tool/components/skills/ai-research/post-training-grpo-rl-training/examples/reward_functions_library.py'
       - 'cli-tool/tests/security/**'
       - '.github/workflows/security-hooks.yml'
   pull_request:
     paths:
+      - 'cli-tool/components/skills/development/artifacts-builder/scripts/init-artifact.sh'
+      - 'cli-tool/components/skills/development/web-artifacts-builder/scripts/init-artifact.sh'
+      - 'cli-tool/components/skills/development/jupyter-notebook/scripts/new_notebook.py'
       - 'cli-tool/components/skills/scientific/pydicom/scripts/anonymize_dicom.py'
       - 'cli-tool/components/skills/scientific/perplexity-search/scripts/setup_env.py'
       - 'cli-tool/components/skills/scientific/citation-management/scripts/extract_metadata.py'
@@ -24,6 +31,7 @@ on:
       - 'cli-tool/components/skills/enterprise-communication/session-handoff/scripts/validate_handoff.py'
       - 'cli-tool/components/hooks/security/secret-scanner.py'
       - 'cli-tool/components/skills/development/devops-iac-engineer/scripts/devops_utils.py'
+      - 'cli-tool/components/skills/ai-research/post-training-grpo-rl-training/examples/reward_functions_library.py'
       - 'cli-tool/tests/security/**'
       - '.github/workflows/security-hooks.yml'
 

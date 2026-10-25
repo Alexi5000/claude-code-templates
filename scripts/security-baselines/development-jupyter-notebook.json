@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:e8bba9eceebb2ed8c299a07e8e462fae6215cb4e6f26a65e394e6b342ddd1623",
+      "rule_id": "RA1",
+      "file": "scripts/new_notebook.py",
+      "reason": "Source review 2026-10-25, alert 462: Notebook generator refuses overwrite without explicit --force. Exclusive creation now also closes the check/write race (72046568); this is file overwrite consent, not self-modification of agent rules. Independent parent review completed."
+    }
+  ]
+}

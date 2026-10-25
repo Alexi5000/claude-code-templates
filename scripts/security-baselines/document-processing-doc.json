@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:f8fd94d3019979d117bbf3e84a4ee9c0f3d826fe52ca5204357eebc84eed1c16",
+      "rule_id": "E2",
+      "file": "scripts/render_docx.py",
+      "reason": "Source review 2026-10-25, alert 606: Environment is inherited only by local document-conversion subprocess argv; stdout/stderr are discarded and there is no HTTP or shell sink in run_cmd_no_check. Independent parent review completed."
+    }
+  ]
+}

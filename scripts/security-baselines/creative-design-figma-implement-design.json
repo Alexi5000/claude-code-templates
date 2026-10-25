@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:dffb9a110e35c72626647be7f670feeb6be0dcd086becb93b0c4fffcc49f2530",
+      "rule_id": "E4",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 330: Figma context is the selected design frame/node obtained from the configured MCP server. The passage distinguishes local selection from a user-supplied remote frame link; it does not export conversation context. Independent parent review completed."
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:898bae28f691cd042f100c5b064fbc13ae4fb22d717b2d0148c978ba181d0eae",
+      "rule_id": "AR2",
+      "file": "SKILL.md",
+      "reason": "Describes an upstream CLI silent-filter failure and prescribes identifier resolution; not suppression of agent warnings."
+    },
+    {
+      "hash": "sha256:d4c8f7282430879c4e944b66a0917cf170c38d9a39e710453ab94bff67018e5d",
+      "rule_id": "P2",
+      "file": "SKILL.md",
+      "reason": "HTML comment labels the CLI0.33.0 generated command-surface section. It contains provenance metadata, not hidden behavioral instructions."
+    }
+  ]
+}

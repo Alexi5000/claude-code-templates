@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:016a92b43a6c1a19cc86e8d3e6f55ff07160f7d41312415163451e685d87891b",
+      "rule_id": "P6",
+      "file": "SKILL.md",
+      "reason": "Safety and output rules constrain booking tools, require explicit cancellation consent and prohibit collecting payment credentials; not prompt disclosure."
+    }
+  ]
+}

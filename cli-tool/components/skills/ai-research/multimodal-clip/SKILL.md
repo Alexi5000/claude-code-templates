@@ -1,11 +1,12 @@
 ---
 name: clip
 description: OpenAI's model connecting vision and language. Enables zero-shot image classification, image-text matching, and cross-modal retrieval. Trained on 400M image-text pairs. Use for image search, content moderation, or vision-language tasks without fine-tuning. Best for general-purpose image understanding.
-version: 1.0.0
-author: Orchestra Research
 license: MIT
-tags: [Multimodal, CLIP, Vision-Language, Zero-Shot, Image Classification, OpenAI, Image Search, Cross-Modal Retrieval, Content Moderation]
-dependencies: [transformers, torch, pillow]
+metadata:
+  version: 1.0.0
+  author: Orchestra Research
+  tags: [Multimodal, CLIP, Vision-Language, Zero-Shot, Image Classification, OpenAI, Image Search, Cross-Modal Retrieval, Content Moderation]
+  dependencies: [transformers, torch, pillow]
 ---
 
 # CLIP - Contrastive Language-Image Pre-Training
@@ -38,7 +39,15 @@ OpenAI's model that understands images from natural language.
 ### Installation
 
 ```bash
-pip install git+https://github.com/openai/CLIP.git
+git clone --no-checkout https://github.com/openai/CLIP.git clip-source &&
+git -C clip-source checkout --detach d05afc436d78f1c48dc0dbf8e5980a9d471f35f6
+```
+
+This source snapshot is pinned to `d05afc436d78f1c48dc0dbf8e5980a9d471f35f6`. Review its build scripts and dependency changes before installing it in an isolated development environment. Stop if checkout fails. Updating the snapshot requires a new review.
+
+```bash
+[ "$(git -C clip-source rev-parse HEAD)" = "d05afc436d78f1c48dc0dbf8e5980a9d471f35f6" ] &&
+pip install ./clip-source
 pip install torch torchvision ftfy regex tqdm
 ```
 

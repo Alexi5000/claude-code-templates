@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:fd7e015c57a7fb1d1e75bcdd23bac8eadd7e0d5f660b31bf9f9175cfa0cd20e8",
+      "rule_id": "P6",
+      "file": "scripts/text_to_speech.py",
+      "reason": "return instructions returns caller-provided vocal delivery text, not any system prompt."
+    },
+    {
+      "hash": "sha256:19c4b9dda032533ed9fc038f3dc6e1ba3f34fd605b800940752a0c34e514d296",
+      "rule_id": "TM1",
+      "file": "references/cli.md",
+      "reason": "Exact cleanup removes tmp/speech/jobs.jsonl created by preceding batch example, not arbitrary user data."
+    },
+    {
+      "hash": "sha256:d9a266a0cf94a97cd3cf1cb33ba19c0c479b1ab7ba7b40ec3ef6483560c6957e",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    }
+  ]
+}
