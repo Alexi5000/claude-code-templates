@@ -9,8 +9,9 @@
 //
 // Usage: node scripts/generate-og-images.mjs [--only type/path ...] [--out dir]
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
-import { dirname, join } from 'node:path';
+import { readFileSync, existsSync } from 'node:fs';
+import { dirname, join, relative } from 'node:path';
+import { readManifest, writeOutput } from './og-output.mjs';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { availableParallelism } from 'node:os';
@@ -149,16 +150,15 @@ function entries() {
 async function render(e, file) {
   const svg = await satori(card(e), { width: WIDTH, height: HEIGHT, fonts });
   const png = new Resvg(svg, { fitTo: { mode: 'width', value: WIDTH } }).render().asPng();
-  mkdirSync(dirname(file), { recursive: true });
-  writeFileSync(file, png);
+  const outputRoot = isMainThread ? outDir : workerData.outDir;
+  writeOutput(outputRoot, relative(outputRoot, file).split('\\').join('/'), png);
 }
 
 if (!isMainThread) {
   for (const { e, file } of workerData.jobs) await render(e, file);
 } else {
   const started = Date.now();
-  const manifestPath = join(outDir, '.manifest.json');
-  const manifest = existsSync(manifestPath) ? JSON.parse(readFileSync(manifestPath, 'utf8')) : {};
+  const manifest = readManifest(outDir);
 
   const jobs = [];
   let skipped = 0;
@@ -175,13 +175,12 @@ if (!isMainThread) {
   const threads = Math.max(1, Math.min(availableParallelism(), 8, Math.ceil(jobs.length / 50)));
   await Promise.all(Array.from({ length: threads }, (_, i) => new Promise((resolve, reject) => {
     const slice = jobs.filter((_, j) => j % threads === i).map(({ e, file }) => ({ e, file }));
-    const worker = new Worker(fileURLToPath(import.meta.url), { workerData: { jobs: slice } });
+    const worker = new Worker(fileURLToPath(import.meta.url), { workerData: { jobs: slice, outDir } });
     worker.on('error', reject);
     worker.on('exit', (code) => (code === 0 ? resolve() : reject(new Error(`og worker exited with ${code}`))));
   })));
 
   for (const { key, hash } of jobs) manifest[key] = hash;
-  mkdirSync(outDir, { recursive: true });
-  writeFileSync(manifestPath, JSON.stringify(manifest));
+  writeOutput(outDir, '.manifest.json', JSON.stringify(manifest));
   console.log(`og images: ${jobs.length} rendered, ${skipped} unchanged, ${threads} threads (${((Date.now() - started) / 1000).toFixed(1)}s)`);
 }

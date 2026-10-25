@@ -14,6 +14,7 @@ function installer(name, extra = {}) {
   return vm.runInNewContext(`(${source.slice(start, end)})`, {
     fs, path, process, writeSandboxFile, validateComponentName,
     downloadE2BComponent: async () => 'downloaded content',
+    parseLoopReferencedComponents: () => [],
     chalk: new Proxy({}, {get: () => x => x}),
     console: {log() {}},
     trackingService: {trackDownload() {}, trackInstallationOutcome() {}},
@@ -22,7 +23,7 @@ function installer(name, extra = {}) {
   });
 }
 
-for (const [name, directory] of [['installIndividualAgent', 'agents'], ['installIndividualCommand', 'commands']]) {
+for (const [name, directory] of [['installIndividualAgent', 'agents'], ['installIndividualCommand', 'commands'], ['installIndividualLoop', 'loops']]) {
   test(`${directory} installer preserves normal installs and rejects linked parents and leaves`, async t => {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), 'installer-boundary-'));
     t.after(() => fs.removeSync(root));
