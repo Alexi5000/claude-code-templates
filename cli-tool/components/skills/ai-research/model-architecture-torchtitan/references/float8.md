@@ -10,7 +10,15 @@ Float8 training provides substantial speedups for models where GEMMs are large e
 ## Installation
 
 ```bash
-USE_CPP=0 pip install git+https://github.com/pytorch/ao.git
+git clone --no-checkout https://github.com/pytorch/ao.git ao-source &&
+git -C ao-source checkout --detach 9e9dca96d42cf05985aeaf0afe5546d9d002b337
+```
+
+This source snapshot is pinned to `9e9dca96d42cf05985aeaf0afe5546d9d002b337`. Review its build scripts and dependency changes before installing it in an isolated development environment. Stop if checkout fails. Updating the snapshot requires a new review.
+
+```bash
+[ "$(git -C ao-source rev-parse HEAD)" = "9e9dca96d42cf05985aeaf0afe5546d9d002b337" ] &&
+USE_CPP=0 pip install ./ao-source
 ```
 
 ## Usage: Tensorwise Scaling

@@ -39,7 +39,15 @@ pip install transformer-lens
 
 For development version:
 ```bash
-pip install git+https://github.com/TransformerLensOrg/TransformerLens
+git clone --no-checkout https://github.com/TransformerLensOrg/TransformerLens.git transformerlens-source &&
+git -C transformerlens-source checkout --detach 6bea1fa7cfcbf9064aa8ac99bbd5fb1e4a6c2240
+```
+
+This source snapshot is pinned to `6bea1fa7cfcbf9064aa8ac99bbd5fb1e4a6c2240`. Review its build scripts and dependency changes before installing it in an isolated development environment. Stop if checkout fails. Updating the snapshot requires a new review.
+
+```bash
+[ "$(git -C transformerlens-source rev-parse HEAD)" = "6bea1fa7cfcbf9064aa8ac99bbd5fb1e4a6c2240" ] &&
+pip install ./transformerlens-source
 ```
 
 ## Core Concepts

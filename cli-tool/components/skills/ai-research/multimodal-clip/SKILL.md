@@ -39,7 +39,15 @@ OpenAI's model that understands images from natural language.
 ### Installation
 
 ```bash
-pip install git+https://github.com/openai/CLIP.git
+git clone --no-checkout https://github.com/openai/CLIP.git clip-source &&
+git -C clip-source checkout --detach d05afc436d78f1c48dc0dbf8e5980a9d471f35f6
+```
+
+This source snapshot is pinned to `d05afc436d78f1c48dc0dbf8e5980a9d471f35f6`. Review its build scripts and dependency changes before installing it in an isolated development environment. Stop if checkout fails. Updating the snapshot requires a new review.
+
+```bash
+[ "$(git -C clip-source rev-parse HEAD)" = "d05afc436d78f1c48dc0dbf8e5980a9d471f35f6" ] &&
+pip install ./clip-source
 pip install torch torchvision ftfy regex tqdm
 ```
 

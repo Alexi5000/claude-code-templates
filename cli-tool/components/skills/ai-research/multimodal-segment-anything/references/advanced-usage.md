@@ -7,7 +7,15 @@
 SAM 2 extends SAM to video segmentation with streaming memory architecture:
 
 ```bash
-pip install git+https://github.com/facebookresearch/segment-anything-2.git
+git clone --no-checkout https://github.com/facebookresearch/segment-anything-2.git segment-anything-2-source &&
+git -C segment-anything-2-source checkout --detach 2b90b9f5ceec907a1c18123530e92e794ad901a4
+```
+
+This source snapshot is pinned to `2b90b9f5ceec907a1c18123530e92e794ad901a4`. Review its build scripts and dependency changes before installing it in an isolated development environment. Stop if checkout fails. Updating the snapshot requires a new review.
+
+```bash
+[ "$(git -C segment-anything-2-source rev-parse HEAD)" = "2b90b9f5ceec907a1c18123530e92e794ad901a4" ] &&
+pip install ./segment-anything-2-source
 ```
 
 ### Video segmentation
@@ -50,7 +58,15 @@ for frame_idx, masks in predictor.propagate_in_video():
 
 ```bash
 pip install groundingdino-py
-pip install git+https://github.com/facebookresearch/segment-anything.git
+git clone --no-checkout https://github.com/facebookresearch/segment-anything.git segment-anything-source &&
+git -C segment-anything-source checkout --detach dca509fe793f601edb92606367a655c15ac00fdf
+```
+
+This source snapshot is pinned to `dca509fe793f601edb92606367a655c15ac00fdf`. Review its build scripts and dependency changes before installing it in an isolated development environment. Stop if checkout fails. Updating the snapshot requires a new review.
+
+```bash
+[ "$(git -C segment-anything-source rev-parse HEAD)" = "dca509fe793f601edb92606367a655c15ac00fdf" ] &&
+pip install ./segment-anything-source
 ```
 
 ### Text-to-mask pipeline

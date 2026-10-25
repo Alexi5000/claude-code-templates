@@ -46,7 +46,15 @@ Comprehensive guide to using Meta's AudioCraft for text-to-music and text-to-aud
 pip install audiocraft
 
 # From GitHub (latest)
-pip install git+https://github.com/facebookresearch/audiocraft.git
+git clone --no-checkout https://github.com/facebookresearch/audiocraft.git audiocraft-source &&
+git -C audiocraft-source checkout --detach 896ec7c47f5e5d1e5aa1e4b260c4405328bf009d
+```
+
+This source snapshot is pinned to `896ec7c47f5e5d1e5aa1e4b260c4405328bf009d`. Review its build scripts and dependency changes before installing it in an isolated development environment. Stop if checkout fails. Updating the snapshot requires a new review.
+
+```bash
+[ "$(git -C audiocraft-source rev-parse HEAD)" = "896ec7c47f5e5d1e5aa1e4b260c4405328bf009d" ] &&
+pip install ./audiocraft-source
 
 # Or use HuggingFace Transformers
 pip install transformers torch torchaudio

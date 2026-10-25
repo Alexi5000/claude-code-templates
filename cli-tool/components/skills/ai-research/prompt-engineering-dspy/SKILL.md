@@ -30,7 +30,15 @@ Use DSPy when you need to:
 pip install dspy
 
 # Latest development version
-pip install git+https://github.com/stanfordnlp/dspy.git
+git clone --no-checkout https://github.com/stanfordnlp/dspy.git dspy-source &&
+git -C dspy-source checkout --detach 15aad8de2678a4d89a3a093e944fe58f8744c497
+```
+
+This source snapshot is pinned to `15aad8de2678a4d89a3a093e944fe58f8744c497`. Review its build scripts and dependency changes before installing it in an isolated development environment. Stop if checkout fails. Updating the snapshot requires a new review.
+
+```bash
+[ "$(git -C dspy-source rev-parse HEAD)" = "15aad8de2678a4d89a3a093e944fe58f8744c497" ] &&
+pip install ./dspy-source
 
 # With specific LM providers
 pip install dspy[openai]        # OpenAI

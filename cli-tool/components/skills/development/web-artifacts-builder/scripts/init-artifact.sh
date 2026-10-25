@@ -3,6 +3,11 @@
 # Exit on error
 set -e
 
+if [[ ! "${1:-}" =~ ^[a-zA-Z0-9][a-zA-Z0-9._-]*$ ]]; then
+  echo "Project name must be a single directory name using letters, digits, dots, underscores or hyphens." >&2
+  exit 1
+fi
+
 # Detect Node version
 NODE_VERSION=$(node -v | cut -d'v' -f2 | cut -d'.' -f1)
 

@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
     paths:
+      - 'cli-tool/components/skills/development/artifacts-builder/scripts/init-artifact.sh'
+      - 'cli-tool/components/skills/development/web-artifacts-builder/scripts/init-artifact.sh'
       - 'cli-tool/components/skills/development/jupyter-notebook/scripts/new_notebook.py'
       - 'cli-tool/components/skills/scientific/pydicom/scripts/anonymize_dicom.py'
       - 'cli-tool/components/skills/scientific/perplexity-search/scripts/setup_env.py'
@@ -18,6 +20,8 @@ on:
       - '.github/workflows/security-hooks.yml'
   pull_request:
     paths:
+      - 'cli-tool/components/skills/development/artifacts-builder/scripts/init-artifact.sh'
+      - 'cli-tool/components/skills/development/web-artifacts-builder/scripts/init-artifact.sh'
       - 'cli-tool/components/skills/development/jupyter-notebook/scripts/new_notebook.py'
       - 'cli-tool/components/skills/scientific/pydicom/scripts/anonymize_dicom.py'
       - 'cli-tool/components/skills/scientific/perplexity-search/scripts/setup_env.py'
