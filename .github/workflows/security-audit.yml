@@ -7,11 +7,15 @@ on:
       - '**/package.json'
       - '**/package-lock.json'
       - '.github/workflows/security-audit.yml'
+      - 'dashboard/**'
+      - 'cli-tool/components/sandbox/cloudflare/safe-output.cjs'
   pull_request:
     paths:
       - '**/package.json'
       - '**/package-lock.json'
       - '.github/workflows/security-audit.yml'
+      - 'dashboard/**'
+      - 'cli-tool/components/sandbox/cloudflare/safe-output.cjs'
   schedule:
     - cron: '0 6 * * 1'
 
