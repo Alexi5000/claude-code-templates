@@ -14,7 +14,8 @@ git -C segment-anything-2-source checkout --detach 2b90b9f5ceec907a1c18123530e92
 This source snapshot is pinned to `2b90b9f5ceec907a1c18123530e92e794ad901a4`. Review its build scripts and dependency changes before installing it in an isolated development environment. Stop if checkout fails. Updating the snapshot requires a new review.
 
 ```bash
-[ "$(git -C segment-anything-2-source rev-parse HEAD)" = "2b90b9f5ceec907a1c18123530e92e794ad901a4" ] &&
+checkout_commit=$(git -C segment-anything-2-source rev-parse HEAD)
+test "$checkout_commit" = "2b90b9f5ceec907a1c18123530e92e794ad901a4" &&
 pip install ./segment-anything-2-source
 ```
 
@@ -65,7 +66,8 @@ git -C segment-anything-source checkout --detach dca509fe793f601edb92606367a655c
 This source snapshot is pinned to `dca509fe793f601edb92606367a655c15ac00fdf`. Review its build scripts and dependency changes before installing it in an isolated development environment. Stop if checkout fails. Updating the snapshot requires a new review.
 
 ```bash
-[ "$(git -C segment-anything-source rev-parse HEAD)" = "dca509fe793f601edb92606367a655c15ac00fdf" ] &&
+checkout_commit=$(git -C segment-anything-source rev-parse HEAD)
+test "$checkout_commit" = "dca509fe793f601edb92606367a655c15ac00fdf" &&
 pip install ./segment-anything-source
 ```
 

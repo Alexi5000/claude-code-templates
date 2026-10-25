@@ -676,5 +676,11 @@
     "source_tree_sha256": "39e1369f958e8eb8a43d07ffa6647978f90f6f359c07dbc0530e4d228365f505",
     "reviewed_by": "claude lane with independent parent source review",
     "reviewed_at": "2026-10-25"
+  },
+  "ai-research/model-architecture-rwkv": {
+    "baseline": "ai-research-model-architecture-rwkv.json",
+    "source_tree_sha256": "b81a0e4143f0d2d5b2173c59ac09b3c3af2a3c3d4a4863baa4bf63fdf217ac5f",
+    "reviewed_by": "claude lane with independent parent source review",
+    "reviewed_at": "2026-10-25"
   }
 }

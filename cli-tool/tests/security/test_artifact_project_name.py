@@ -16,7 +16,7 @@ class ArtifactProjectNames(unittest.TestCase):
                 with self.subTest(skill=skill, name=name), tempfile.TemporaryDirectory() as tmp:
                     marker = Path(tmp) / "node-was-called"
                     node = Path(tmp) / "node"
-                    node.write_text('#!/bin/sh\ntouch "$MARKER"\necho v20.0.0\n')
+                    node.write_text('#!/bin/sh\n/usr/bin/touch "$MARKER"\necho v20.0.0\n')
                     node.chmod(0o755)
                     result = subprocess.run(["/bin/bash", str(script), name], env={**os.environ, "PATH": tmp, "MARKER": str(marker)}, capture_output=True, text=True)
                     self.assertEqual(result.returncode, 1)

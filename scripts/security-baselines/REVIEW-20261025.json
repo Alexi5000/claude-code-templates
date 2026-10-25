@@ -972,6 +972,18 @@
     "reason": "Troubleshooting documentation configures the named application's own key via an environment placeholder. It does not search other applications' credentials or export secrets."
   },
   {
+    "number": 281,
+    "rule": "SC10",
+    "location": {
+      "path": "cli-tool/components/skills/ai-research/model-architecture-rwkv/SKILL.md",
+      "start_line": 21,
+      "end_line": 21,
+      "start_column": 1,
+      "end_column": 0
+    },
+    "reason": "The single HTTPS index download.pytorch.org/whl/cu121 is PyTorch's documented vendor index (https://pytorch.org/get-started/previous-versions/), not a substituted third-party mirror. The previous extra-index fallback was removed. This disposition covers source origin only, not package-version or GPU safety certification."
+  },
+  {
     "number": 271,
     "rule": "PE3",
     "location": {
