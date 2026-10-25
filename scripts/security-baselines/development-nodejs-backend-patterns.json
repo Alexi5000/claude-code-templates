@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:0c10356736b18b548f67643a7544fbdaf2b00699c4c49dd4f20c2c52fcd7e7de",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 566: Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Node backend playbook: explicitly configured DB/Redis/API credentials; bound SQL values, jwt.verify, bcrypt, validation and production-safe error messages. No generic credential search or dynamic shell execution. These are architecture examples, not a fully provisioned production authentication service. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:5a12536b006a222dacd0c3a700e42e360368981e88331e3aef0c24e2834c5ffc",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 567: Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Node backend playbook: explicitly configured DB/Redis/API credentials; bound SQL values, jwt.verify, bcrypt, validation and production-safe error messages. No generic credential search or dynamic shell execution. These are architecture examples, not a fully provisioned production authentication service. Independent parent review completed."
+    }
+  ]
+}

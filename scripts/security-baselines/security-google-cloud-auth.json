@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:34813a2371caee35f4d5d3a2443686afbc27ffd319e988efe15725c98fb5eb1c",
+      "rule_id": "PE3",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 728: Google Cloud authentication guidance explicitly recommends short-lived service-account credentials and workload federation instead of static keys. No credential file is accessed at the matched occurrence. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:783854fa681986c9ad567a5daff81bb957516fff57e94cff2cab74117f210eeb",
+      "rule_id": "PE3",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 727: Google Cloud authentication guidance explicitly recommends short-lived service-account credentials and workload federation instead of static keys. No credential file is accessed at the matched occurrence. Independent parent review completed."
+    }
+  ]
+}

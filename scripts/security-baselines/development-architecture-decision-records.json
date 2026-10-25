@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:36bca909ab10c593a95226ad814d5e3f80318d5aa9f8eb483b8c5a10fc3281af",
+      "rule_id": "E4",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 377: Architecture Decision Records capture technical decision rationale in local documentation. No endpoint or instruction transmits agent conversation history. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:a8e2f0c9ea999b56e0ed387c4fe64d82d85496eff03a4fb9975cefac2fe57b8b",
+      "rule_id": "E4",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 376: Architecture Decision Records capture technical decision rationale in local documentation. No endpoint or instruction transmits agent conversation history. Independent parent review completed."
+    }
+  ]
+}

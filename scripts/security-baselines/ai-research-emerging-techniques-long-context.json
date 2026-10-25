@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:28c7e9b0482238a15f51c4dad80d6587b02b1023aaf22eb1a3d030675c8137e4",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 235: Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. RoPE reference: numerical tensor rotation/position scaling and research links. No file, network or subprocess execution examples. Independent parent review completed."
+    }
+  ]
+}

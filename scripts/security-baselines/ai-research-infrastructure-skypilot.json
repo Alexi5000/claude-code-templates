@@ -1,0 +1,43 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:927efa45addc41a9eb4020ecde6382538a47f638e48cb5ffeecfc776223be40a",
+      "rule_id": "PE3",
+      "file": "references/troubleshooting.md",
+      "reason": "Source review 2026-10-25, alert 269: Explicit SkyPilot existing-cluster configuration sets KUBECONFIG to the operator's standard kube config and checks that cluster. No credentials are copied to an unrelated host. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:153c8f26f8fc779ca81bec59ce7446a8eade6878ed9be151732d684e26fc1c31",
+      "rule_id": "PE3",
+      "file": "references/troubleshooting.md",
+      "reason": "Source review 2026-10-25, alert 269: Explicit SkyPilot existing-cluster configuration sets KUBECONFIG to the operator's standard kube config and checks that cluster. No credentials are copied to an unrelated host. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:9167bc1a822ad3e2c724406063dc5bc54412d096e8d6480f30c00ebc3f9c8b61",
+      "rule_id": "PE3",
+      "file": "references/advanced-usage.md",
+      "reason": "Source review 2026-10-25, alert 268: Explicit SkyPilot existing-cluster configuration sets KUBECONFIG to the operator's standard kube config and checks that cluster. No credentials are copied to an unrelated host. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:3be01c81eb698a61048bc21172b30e9fd3edc74c58d3e7ff073a4f45d50f04d6",
+      "rule_id": "PE3",
+      "file": "references/advanced-usage.md",
+      "reason": "Source review 2026-10-25, alert 268: Explicit SkyPilot existing-cluster configuration sets KUBECONFIG to the operator's standard kube config and checks that cluster. No credentials are copied to an unrelated host. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:1376a0a6eb973ba87ae5b9ebf270178e0686656399504bbe220491e71b11ba5e",
+      "rule_id": "PE3",
+      "file": "references/advanced-usage.md",
+      "reason": "Source review 2026-10-25, alert 265: Explicit SkyPilot existing-cluster configuration sets KUBECONFIG to the operator's standard kube config and checks that cluster. No credentials are copied to an unrelated host. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:591ece2c5ff425815b03e684685743a7542ee1bcbfadf3557cce042072d7b194",
+      "rule_id": "PE3",
+      "file": "references/advanced-usage.md",
+      "reason": "Source review 2026-10-25, alert 264: The .env occurrence is in the deployment exclusion list beside .git and node_modules. It prevents uploading environment secrets rather than reading them. Independent parent review completed."
+    }
+  ]
+}

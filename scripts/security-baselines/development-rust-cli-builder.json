@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:895bea4afaadde0b2eaea317e66ffe1c4e0759cc1c1bb98b8abfc83cca7b15d7",
+      "rule_id": "AR2",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 590: Checklist requires cargo clippy to pass without warnings. This enforces compiler diagnostics; it does not instruct an agent to suppress safety warnings. Independent parent review completed."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:f6a6561f42a1ef09ed7af4a64ec51e774ce5cc7ce30e44a98140e793da4ad40d",
+      "rule_id": "YR4",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 395: Cloud Run skill description uses worker pools for ordinary managed services. No offensive tool or exploit appears in the matched description. Independent parent review completed."
+    }
+  ]
+}

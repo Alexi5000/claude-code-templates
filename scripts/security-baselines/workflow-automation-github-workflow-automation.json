@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:4bf5882782dfcb16f4f8d9733e726ad6b10a48121e9a2ae222a7c1191534f59f",
+      "rule_id": "TM1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 801: Documented rebase workflow uses force-with-lease, preserving the remote-ref concurrency check; it is not unconditional force or arbitrary command interpolation. Independent parent review completed."
+    }
+  ]
+}

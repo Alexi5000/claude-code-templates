@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:76351826d0acf6700e821e8abceb615035d014eb1ea4fd0c8708b8bda6d45a07",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 420: Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. E2E testing playbook: Playwright/Cypress browser fixtures target localhost, test admin credential from named ADMIN_PASSWORD, isolated page/context fixtures. No shell interpolation or collection of unrelated credentials. Independent parent review completed."
+    }
+  ]
+}

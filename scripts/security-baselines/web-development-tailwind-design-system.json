@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:867d0015a281f71099b61e400b2ed3f94dbd0fe7da0ddbca71b8de4f3732c361",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 797: Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Tailwind playbook: styling tokens, static class variants, local component composition and design-system links. No credential, file, shell or network execution. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:1651a0b62fc07d6f8463f7c709cef3fc0d996d69cef447aee64373f84484fb8a",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 798: Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Tailwind playbook: styling tokens, static class variants, local component composition and design-system links. No credential, file, shell or network execution. Independent parent review completed."
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:b93935c3c01b9c4ebf2d9ad9122f0c899b01ee5bf05b1579f473ea59c9f87b1c",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 696: Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Debugging playbook: explicit local CPU/heap profiles and localhost pprof inspection. Profiles may contain sensitive application data, so they remain local artifacts. No remote export or generic credential scan. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:8e0383d3823371adf327358426588b0ea6b7c5879d1127f41f058f4366491a6b",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 697: Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Debugging playbook: explicit local CPU/heap profiles and localhost pprof inspection. Profiles may contain sensitive application data, so they remain local artifacts. No remote export or generic credential scan. Independent parent review completed."
+    }
+  ]
+}

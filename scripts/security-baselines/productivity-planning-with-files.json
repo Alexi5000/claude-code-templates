@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:92909704fd75906f8d4cb43c51c163bfdc0356cee6a792493afa215f8b04db11",
+      "rule_id": "P2",
+      "file": "templates/task_plan.md",
+      "reason": "Source review 2026-10-25, alert 712: Author-facing Markdown template comments explain filling the requested task plan/findings artifact. They do not override permissions, conceal data transfer, or supply a system instruction. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:450b2f960dd44d2e7a5f9dd0bfe19158934f593dd9bd0d6bab2d32bcd17ab54e",
+      "rule_id": "P2",
+      "file": "templates/task_plan.md",
+      "reason": "Source review 2026-10-25, alert 711: Author-facing Markdown template comments explain filling the requested task plan/findings artifact. They do not override permissions, conceal data transfer, or supply a system instruction. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:049dbd4abcb908f9942e0dc58edda8bb9c3e7fca9c6c8deb5a9926d5edc532b4",
+      "rule_id": "P2",
+      "file": "templates/findings.md",
+      "reason": "Source review 2026-10-25, alert 710: Author-facing Markdown template comments explain filling the requested task plan/findings artifact. They do not override permissions, conceal data transfer, or supply a system instruction. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:613549bbf868b58325ad7a6cc064f833a8a8e5fe152a540dfedebc918db9e76a",
+      "rule_id": "P2",
+      "file": "templates/findings.md",
+      "reason": "Source review 2026-10-25, alert 709: Author-facing Markdown template comments explain filling the requested task plan/findings artifact. They do not override permissions, conceal data transfer, or supply a system instruction. Independent parent review completed."
+    }
+  ]
+}

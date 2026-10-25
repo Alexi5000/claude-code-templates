@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:020052aec7e7c3e3c546e845c45f5143f07b2177d2826bbb816bd77597cdea91",
+      "rule_id": "MP3",
+      "file": "references/query_engines.md",
+      "reason": "Source review 2026-10-25, alert 208: chat_engine.reset() resets the application's explicit LlamaIndex chat history. It does not alter the executing agent's permissions or system instructions. Independent parent review completed."
+    }
+  ]
+}

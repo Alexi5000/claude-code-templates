@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:a35ea234836931dde2b48e3d6245df77da2a55f4d167527606cbeecfca6ba966",
+      "rule_id": "AR1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 321: Always respond in a specified format/valid JSON constrains output syntax. It does not direct universal compliance or prohibit safety refusals. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:f3120954089ce993a504dbd3258225402d192fa237901d5736210f1b8f80541e",
+      "rule_id": "AR1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 320: Always respond in a specified format/valid JSON constrains output syntax. It does not direct universal compliance or prohibit safety refusals. Independent parent review completed."
+    }
+  ]
+}

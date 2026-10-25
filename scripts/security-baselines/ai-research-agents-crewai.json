@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:6fc74199b9e17405331eafbc4078c4e017fe4ac4577a1712b664aedaa8475a08",
+      "rule_id": "PE3",
+      "file": "references/troubleshooting.md",
+      "reason": "Source review 2026-10-25, alert 206: Troubleshooting documentation configures the named application's own key via an environment placeholder. It does not search other applications' credentials or export secrets. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:a6e1d23d7574e184911459dd2e66351fef74037d7c25dc19fb89eb28582b7bc7",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 205: Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. CrewAI troubleshooting: ordinary agent/task examples, local storage setting, named provider environment placeholders, model output logging. No subprocess, dynamic code execution or credential-export endpoint. Provider use remains operator configured. Independent parent review completed."
+    }
+  ]
+}

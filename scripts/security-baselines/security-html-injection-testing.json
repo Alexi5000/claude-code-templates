@@ -1,0 +1,43 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:2aa3d37aab87ece1ec831e58767bdf8a70dd2293100b21d2851f32ba356a2264",
+      "rule_id": "P2",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 734: Explicit penetration-test teaching fixture or payload in the named security testing skill; no automatic execution on skill load. The selected occurrence demonstrates a vulnerability/test tool rather than implementing credential theft by the catalog. Authorization and target selection remain required; this is test material, not a claim the payload is harmless when executed. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:4a701b80185d4984ec7e2dd257b8cd2caf795b24dd171b2f8b17cc1b511b2345",
+      "rule_id": "P2",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 733: Explicit penetration-test teaching fixture or payload in the named security testing skill; no automatic execution on skill load. The selected occurrence demonstrates a vulnerability/test tool rather than implementing credential theft by the catalog. Authorization and target selection remain required; this is test material, not a claim the payload is harmless when executed. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:b346c65af0ea5eaa8d00dfab5e675183e5a488b17bb107454ed938f8a406dfeb",
+      "rule_id": "P2",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 732: Explicit penetration-test teaching fixture or payload in the named security testing skill; no automatic execution on skill load. The selected occurrence demonstrates a vulnerability/test tool rather than implementing credential theft by the catalog. Authorization and target selection remain required; this is test material, not a claim the payload is harmless when executed. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:609b5d0b831c40c429dbc1549d8c36d384f42d5e6ae26150615208ded6c74c75",
+      "rule_id": "P2",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 731: Explicit penetration-test teaching fixture or payload in the named security testing skill; no automatic execution on skill load. The selected occurrence demonstrates a vulnerability/test tool rather than implementing credential theft by the catalog. Authorization and target selection remain required; this is test material, not a claim the payload is harmless when executed. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:bab52aca19570dbcfac4bc59fe9d6854b81d51c5191caadbd7057cb9efdb9df4",
+      "rule_id": "P2",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 730: Explicit penetration-test teaching fixture or payload in the named security testing skill; no automatic execution on skill load. The selected occurrence demonstrates a vulnerability/test tool rather than implementing credential theft by the catalog. Authorization and target selection remain required; this is test material, not a claim the payload is harmless when executed. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:16bbb205c1c79933039ccf3668c08ad472ed2ab5fd9ada8fe642f042155a3b2b",
+      "rule_id": "P2",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 729: Explicit penetration-test teaching fixture or payload in the named security testing skill; no automatic execution on skill load. The selected occurrence demonstrates a vulnerability/test tool rather than implementing credential theft by the catalog. Authorization and target selection remain required; this is test material, not a claim the payload is harmless when executed. Independent parent review completed."
+    }
+  ]
+}

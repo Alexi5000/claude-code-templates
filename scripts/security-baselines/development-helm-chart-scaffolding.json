@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:93914ff7beb063bbe165fa6eb3dc9dbb6d81856f7bcd4234e1e9ea24a509e8bb",
+      "rule_id": "PE3",
+      "file": "references/chart-structure.md",
+      "reason": "Source review 2026-10-25, alert 451: Project directory tree lists .env, secret.yaml or .env.local by filename. Listing the file convention is not accessing or exporting its contents. Independent parent review completed."
+    }
+  ]
+}

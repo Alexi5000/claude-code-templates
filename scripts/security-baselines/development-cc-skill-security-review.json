@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:f30c56c3ee2df523c6a33e73ddaac17c25196c395f330f106bb3121d1e285745",
+      "rule_id": "OH1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 392: User HTML is passed through DOMPurify with a five-tag allowlist and no attributes before dangerouslySetInnerHTML. This occurrence is the sanitized example, not an unvalidated output sink. Independent parent review completed."
+    }
+  ]
+}

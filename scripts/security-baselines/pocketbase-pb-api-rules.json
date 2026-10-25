@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:a714129da78a1165daaa6b724cab18519c512f85f7051549b88d641012ae11ea",
+      "rule_id": "TM1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 678: REST API documentation lists DELETE alongside GET/POST/PATCH and describes authorization/response semantics. No command execution, forced deletion, or tool-parameter injection occurs at this literal example. Independent parent review completed."
+    }
+  ]
+}

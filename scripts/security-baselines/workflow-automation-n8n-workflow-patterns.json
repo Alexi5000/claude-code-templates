@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:094505272d432334ca8ef1860a2b71b0ca253c66d7aa4a3d60ca64ba1662b7b7",
+      "rule_id": "P3",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 802: Explicit form-submit webhook example maps submitted form fields to a named notifications channel; no conversation/system-prompt collection exists in this example. Independent parent review completed."
+    }
+  ]
+}

@@ -50,6 +50,12 @@
       "rule_id": "AE1",
       "file": "SKILL.md",
       "reason": "Manually reviewed referenced source despite bounded-parser coverage limitation; not a claim of complete scanner analysis. Referenced artifacts and whole skill tree are hash-bound; see REVIEW.md. Independent root review 2026-10-24."
+    },
+    {
+      "hash": "sha256:dc2586fae03a08d913be2598434140ab424031d3e21d18ff398377e9648f64a0",
+      "rule_id": "E2",
+      "file": "scripts/run_eval.py",
+      "reason": "Source review 2026-10-25, alert 713: Local evaluation inherits the operator environment to fixed argv claude subprocess and excludes CLAUDECODE; reviewed process call has no shell or remote environment-export endpoint. Exact occurrence already covered by prior source review, but this fingerprint remained visible. Independent parent review completed."
     }
   ]
 }

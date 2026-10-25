@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:cfde1558bd32d05879b62fefe22e1ea3debf211182a1f57cc8d00ef207bc46a5",
+      "rule_id": "MP3",
+      "file": "references/triggering-examples.md",
+      "reason": "Source review 2026-10-25, alert 348: Provide clear context for each example is guidance for writing agent trigger examples, not an instruction to clear agent context. Independent parent review completed."
+    }
+  ]
+}

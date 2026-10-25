@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:a13dd295fff9c4b679a5c47c96a1c6a91e61740eae89f5da6a6864a569cac964",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 378: Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Both identical artifact init scripts: generate a requested React project, npm/pnpm dependencies, fixed local configuration files, bundled component archive. Found unsafe project-name interpolation into sed replacement and option positions; now names must be a single alphanumeric-leading basename before any Node/install side effects. Two test methods cover 12 hostile names and both normal paths; shell syntax passes. No exception before this repair. Mutable npm package versions remain separate scanner warnings. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:a894657602623ba32a9c3a8a337867ff3fd22ca06330388d11900b3801ec2c5f",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 379: Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Both identical artifact init scripts: generate a requested React project, npm/pnpm dependencies, fixed local configuration files, bundled component archive. Found unsafe project-name interpolation into sed replacement and option positions; now names must be a single alphanumeric-leading basename before any Node/install side effects. Two test methods cover 12 hostile names and both normal paths; shell syntax passes. No exception before this repair. Mutable npm package versions remain separate scanner warnings. Independent parent review completed."
+    }
+  ]
+}

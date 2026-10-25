@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:36dce603d7f791ecd7d6296d8f7dd945c2555bd0944cdee1afe20b32d2428298",
+      "rule_id": "EA5",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 295: llama-cli loads a local GGUF file with explicit GPU-layer or token options. It does not change a remote provider, account, or billing plan. Independent parent review completed."
+    }
+  ]
+}

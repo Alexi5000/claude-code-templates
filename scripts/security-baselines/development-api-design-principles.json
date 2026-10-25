@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:815f39c9206f3489f0c9f37c833b88583e05ebbfea6a30f2151e4af81417fc33",
+      "rule_id": "TM1",
+      "file": "resources/implementation-playbook.md",
+      "reason": "Source review 2026-10-25, alert 371: REST API documentation lists DELETE alongside GET/POST/PATCH and describes authorization/response semantics. No command execution, forced deletion, or tool-parameter injection occurs at this literal example. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:a4d217c1e68a4465e3896f17c4f31617d62b78249695a8b72a75f13b922d73ff",
+      "rule_id": "TM1",
+      "file": "references/rest-best-practices.md",
+      "reason": "Source review 2026-10-25, alert 370: REST API documentation lists DELETE alongside GET/POST/PATCH and describes authorization/response semantics. No command execution, forced deletion, or tool-parameter injection occurs at this literal example. Independent parent review completed."
+    }
+  ]
+}

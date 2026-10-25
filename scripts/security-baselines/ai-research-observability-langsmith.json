@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:aba37e2e660c7292b275980415c373c040dcc0258c6e8b29e63540e513e7d364",
+      "rule_id": "MP3",
+      "file": "references/troubleshooting.md",
+      "reason": "Source review 2026-10-25, alert 293: Clear memory comment precedes Python gc.collect(), reclaiming object memory after batches. It is not agent memory or safety-state modification. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:bd63bd6c85f672ba009851d47be9e67829871258a838ae457953639fc26959d8",
+      "rule_id": "PE3",
+      "file": "references/troubleshooting.md",
+      "reason": "Source review 2026-10-25, alert 292: Troubleshooting documentation configures the named application's own key via an environment placeholder. It does not search other applications' credentials or export secrets. Independent parent review completed."
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:9785fb137416e128d1c99667efb9597aabe79bed94e918c7291a60d3a8639a9e",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 694: Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Code-review playbook: authorization, secret handling, parameterized SQL and no-eval checklists; fetch examples contrast missing and present error handling. No executable secret export or instruction override. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:8fa67bc0d641f36c05494d00053656aa52c93be20d663f113da6bc7121ce8177",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 695: Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Code-review playbook: authorization, secret handling, parameterized SQL and no-eval checklists; fetch examples contrast missing and present error handling. No executable secret export or instruction override. Independent parent review completed."
+    }
+  ]
+}

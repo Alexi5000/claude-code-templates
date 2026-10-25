@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:6bbabdd3e18cde80bf1c70380b62a5ae08b070d8e50172326b1c7252ede71fb4",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 279: Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. TensorBoard integrations: writes scalar/image/histogram metrics to explicitly named local runs/logs paths; model training callbacks across frameworks. No credential scan or arbitrary command execution. Data logging is intentional, not evidence of remote exfiltration. Independent parent review completed."
+    }
+  ]
+}

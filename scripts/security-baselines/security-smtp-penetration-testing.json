@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:8ac9995bac80df8b4fb341636935113d1d1390fd3fc84d6a1e9a752a65f83be1",
+      "rule_id": "YR4",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 750: Explicit penetration-test teaching fixture or payload in the named security testing skill; no automatic execution on skill load. The selected occurrence demonstrates a vulnerability/test tool rather than implementing credential theft by the catalog. Authorization and target selection remain required; this is test material, not a claim the payload is harmless when executed. Independent parent review completed."
+    }
+  ]
+}

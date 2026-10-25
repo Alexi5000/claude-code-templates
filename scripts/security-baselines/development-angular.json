@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:a8fc51a22d9d5708ed4c48a56d54d8317f533849f60ea3a65fab850831403491",
+      "rule_id": "P2",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 369: Reviewed literal HTML/XML comments in fenced framework examples label slots, hydration, SEO tags or Maven dependencies. These are visible source examples, not hidden agent control instructions. Independent parent review completed."
+    }
+  ]
+}

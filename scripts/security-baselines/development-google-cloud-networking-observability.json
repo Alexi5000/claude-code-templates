@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:768c3bccd5c9352a52db5f55007e15d86e2afb5814f464244d68a8a395d181e3",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 450: Bounded parser coverage manually reviewed, not fully scanned or a fixed vulnerability. Cloud threat-analysis guide read in full: read-only Cloud Logging filters and bounded SELECT queries against selected project/dataset. No DDL/write query, external forwarding or credential reading. Independent parent review completed."
+    }
+  ]
+}

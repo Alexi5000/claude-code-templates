@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:e5b43270e153efacdccf949c3e813ccef5e84f12b4874e0bb4f5e59b998dec02",
+      "rule_id": "PE3",
+      "file": "scripts/deploy.sh",
+      "reason": "Source review 2026-10-25, alert 599: tar explicitly EXCLUDES .env and .env.* from the deployment bundle. Scanner matches the exclusion string as credential access, reversing its meaning. Independent parent review completed."
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:c03cd2bb6c9500a06e5404604466c98e365b96d80491b98a42c86f44c43b1013",
+      "rule_id": "PE3",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 569: Plaid documentation explains token lifecycle and explicitly marks plaintext token storage as an anti-pattern. No credential collection or exposure code at these occurrences. Independent parent review completed."
+    },
+    {
+      "hash": "sha256:f13f479c22df2c7e1b9d84614a57ce454c735a4f516ae3202f63fdcca5364576",
+      "rule_id": "PE3",
+      "file": "SKILL.md",
+      "reason": "Source review 2026-10-25, alert 568: Plaid documentation explains token lifecycle and explicitly marks plaintext token storage as an anti-pattern. No credential collection or exposure code at these occurrences. Independent parent review completed."
+    }
+  ]
+}
