@@ -56,7 +56,7 @@ slime is an LLM post-training framework from Tsinghua's THUDM team, powering GLM
 ```bash
 # Recommended: Docker
 docker pull slimerl/slime:latest
-docker run --rm --gpus all --ipc=host --shm-size=16g \
+docker run --rm --gpus all --ipc=private --shm-size=16g \
   -it slimerl/slime:latest /bin/bash
 
 # Inside container

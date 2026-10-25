@@ -48,7 +48,7 @@ miles is a high-performance, enterprise-ready RL framework optimized for large-s
 ```bash
 # Recommended: Docker
 docker pull radixark/miles:latest
-docker run --rm --gpus all --ipc=host --shm-size=16g \
+docker run --rm --gpus all --ipc=private --shm-size=16g \
   -it radixark/miles:latest /bin/bash
 
 # From source

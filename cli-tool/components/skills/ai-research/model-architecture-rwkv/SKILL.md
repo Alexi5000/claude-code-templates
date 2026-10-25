@@ -18,7 +18,7 @@ RWKV (RwaKuv) combines Transformer parallelization (training) with RNN efficienc
 **Installation**:
 ```bash
 # Install PyTorch
-pip install torch --upgrade --extra-index-url https://download.pytorch.org/whl/cu121
+pip install torch --upgrade --index-url https://download.pytorch.org/whl/cu121
 
 # Install dependencies
 pip install pytorch-lightning==1.9.5 deepspeed wandb ninja --upgrade
