@@ -1850,6 +1850,7 @@ async function installIndividualMod(modName, targetDir, options = {}) {
 }
 
 async function installIndividualLoop(loopName, targetDir, options = {}) {
+  validateComponentName(loopName);
   console.log(chalk.blue(`🔁 Installing loop: ${loopName}`));
   const startTime = Date.now();
 
@@ -1874,7 +1875,7 @@ async function installIndividualLoop(loopName, targetDir, options = {}) {
     await fs.ensureDir(loopsDir);
     const fileName = loopName.includes('/') ? loopName.split('/').pop() : loopName;
     const targetFile = path.join(loopsDir, `${fileName}.md`);
-    await fs.writeFile(targetFile, loopContent, 'utf8');
+    writeSandboxFile(targetDir, `.claude/loops/${fileName}.md`, loopContent);
     options.onWrite?.(targetFile);
 
     if (!options.silent) {
