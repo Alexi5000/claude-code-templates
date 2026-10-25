@@ -1,5 +1,6 @@
 // ECharts tree-shaken setup — no CDN, fully offline
 import * as echarts from 'echarts/core';
+import 'echarts/theme/v5';
 import { LineChart, BarChart, PieChart, HeatmapChart } from 'echarts/charts';
 import {
   GridComponent,
@@ -60,7 +61,7 @@ export function createChart(
   el: HTMLElement,
   option: echarts.EChartsOption,
 ): echarts.ECharts {
-  const chart = echarts.init(el);
+  const chart = echarts.init(el, 'v5');
   chart.setOption(option);
 
   // Resize when container size changes
