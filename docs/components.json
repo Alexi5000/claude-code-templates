@@ -34115,7 +34115,7 @@
             "id": "LP3",
             "category": "MCP Least Privilege",
             "severity": "MEDIUM",
-            "title": "Skill declares no tool scope ('permissions' or 'allowed-tools') but code capabilities were detected: env, file_read, shell.",
+            "title": "Without declared permissions the skill's intent is opaque and cannot be validated.",
             "file": "SKILL.md",
             "line": 1,
             "count": 1
@@ -34130,9 +34130,9 @@
             "count": 3
           }
         ],
-        "hash": "66705dd1727898a9",
+        "hash": "2e12b48579148ed0",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:30:55Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -34472,7 +34472,7 @@
             "id": "RP1",
             "category": "MCP Rug Pull",
             "severity": "MEDIUM",
-            "title": "MCP server referenced without pinned version: 'npx wrangler'.",
+            "title": "npx commands without a version suffix (e.g. @1.0.0) create a rug-pull risk if the upstream server is compromised and publishes a malicious update.",
             "file": "README.md",
             "line": 18,
             "count": 9
@@ -34487,9 +34487,9 @@
             "count": 1
           }
         ],
-        "hash": "1aa5afdb948c311d",
+        "hash": "776e1d410c7c5804",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T21:46:22Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -34642,21 +34642,12 @@
         "lastValidated": null
       },
       "skillspector": {
-        "score": 8,
+        "score": 7,
         "severity": "LOW",
-        "recommendation": "CAUTION",
-        "issueCount": 12,
-        "analysis": "partial",
+        "recommendation": "SAFE",
+        "issueCount": 14,
+        "analysis": "complete",
         "findings": [
-          {
-            "id": "SC4",
-            "category": "Supply Chain",
-            "severity": "LOW",
-            "title": "🟡 SC4: OSV.dev unreachable, using static fallback (9 packages). Results may be incomplete. Set SKILLSPECTOR_OSV_TIMEOUT to increase timeout or check network connectivity to api.osv.dev.",
-            "file": "package.json",
-            "line": 1,
-            "count": 1
-          },
           {
             "id": "SC1",
             "category": "Supply Chain",
@@ -34665,11 +34656,38 @@
             "file": "package.json",
             "line": 20,
             "count": 11
+          },
+          {
+            "id": "SC4",
+            "category": "Supply Chain",
+            "severity": "LOW",
+            "title": "Unverifiable Dependency: node-fetch has 3 known advisory(ies) (CVE-2022-0235 (node-fetch forwards secure headers to untrusted sites); CVE-2022-2596 (node-fetch Inefficient Regular Expression Complexity ); CVE-2020-15168 (The `size` option isn't honored after following a redirect in node-fetch)), but the manifest does not pin a version, so it is unknown whether the installed release is affected",
+            "file": "package.json",
+            "line": 22,
+            "count": 1
+          },
+          {
+            "id": "SC4",
+            "category": "Supply Chain",
+            "severity": "LOW",
+            "title": "Unverifiable Dependency: vitest has 3 known advisory(ies) (CVE-2026-47429 (When Vitest UI server is listening, arbitrary file can be read and executed); CVE-2026-84373 (Vitest: Path Traversal / Arbitrary File Read via @vitest/mocker Redirect Mock); CVE-2025-24964 (Vitest allows Remote Code Execution when accessing a malicious website while Vit)), but the manifest does not pin a version, so it is unknown whether the installed release is affected",
+            "file": "package.json",
+            "line": 31,
+            "count": 1
+          },
+          {
+            "id": "SC4",
+            "category": "Supply Chain",
+            "severity": "LOW",
+            "title": "Unverifiable Dependency: wrangler has 4 known advisory(ies) (CVE-2026-0933 (Wrangler affected by OS Command Injection in `wrangler pages deploy`); CVE-2023-3348 (Cloudflare Wrangler directory traversal vulnerability); CVE-2023-7079 (Arbitrary remote file read in Wrangler dev server) +1 more), but the manifest does not pin a version, so it is unknown whether the installed release is affected",
+            "file": "package.json",
+            "line": 32,
+            "count": 1
           }
         ],
-        "hash": "896822f7976d2464",
+        "hash": "e819cd70f4eac005",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -35790,10 +35808,10 @@
       },
       "references": [],
       "skillspector": {
-        "score": 50,
-        "severity": "MEDIUM",
+        "score": 20,
+        "severity": "LOW",
         "recommendation": "CAUTION",
-        "issueCount": 3,
+        "issueCount": 1,
         "analysis": "partial",
         "findings": [
           {
@@ -35803,21 +35821,12 @@
             "title": "Memory Manipulation",
             "file": "SKILL.md",
             "line": 56,
-            "count": 2
-          },
-          {
-            "id": "P1",
-            "category": "Prompt Injection",
-            "severity": "HIGH",
-            "title": "Instruction Override",
-            "file": "SKILL.md",
-            "line": 56,
             "count": 1
           }
         ],
-        "hash": "99bd9e479304839d",
+        "hash": "84796fa45ff78941",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T03:16:09Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -37253,9 +37262,9 @@
             "count": 3
           }
         ],
-        "hash": "69d26f0ee1980c1d",
+        "hash": "b96d5852278c570f",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -39992,25 +40001,15 @@
         "references/tutorials.md"
       ],
       "skillspector": {
-        "score": 21,
-        "severity": "MEDIUM",
+        "score": 0,
+        "severity": "LOW",
         "recommendation": "CAUTION",
-        "issueCount": 1,
-        "analysis": "complete",
-        "findings": [
-          {
-            "id": "YR1",
-            "category": "YARA Match",
-            "severity": "HIGH",
-            "title": "YARA rule 'agent_skill_remote_bootstrap_execution': Remote script or code download followed by execution/bootstrap installation [agent_skills]",
-            "file": "SKILL.md",
-            "line": 42,
-            "count": 1
-          }
-        ],
-        "hash": "d2958b6582693e25",
+        "issueCount": 0,
+        "analysis": "partial",
+        "findings": [],
+        "hash": "206d95f801cd5c4d",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -40578,9 +40577,9 @@
             "count": 1
           }
         ],
-        "hash": "c27f82fc3fbf0f77",
+        "hash": "e5626209afc8083e",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -40621,34 +40620,15 @@
         "references/fsdp.md"
       ],
       "skillspector": {
-        "score": 31,
-        "severity": "MEDIUM",
+        "score": 0,
+        "severity": "LOW",
         "recommendation": "CAUTION",
-        "issueCount": 2,
+        "issueCount": 0,
         "analysis": "partial",
-        "findings": [
-          {
-            "id": "YR1",
-            "category": "YARA Match",
-            "severity": "HIGH",
-            "title": "YARA rule 'agent_skill_remote_bootstrap_execution': Remote script or code download followed by execution/bootstrap installation [agent_skills]",
-            "file": "SKILL.md",
-            "line": 187,
-            "count": 1
-          },
-          {
-            "id": "YR1",
-            "category": "YARA Match",
-            "severity": "HIGH",
-            "title": "YARA rule 'agent_skill_remote_bootstrap_execution': Remote script or code download followed by execution/bootstrap installation [agent_skills]",
-            "file": "references/float8.md",
-            "line": 13,
-            "count": 1
-          }
-        ],
-        "hash": "ada8cdb30192673d",
+        "findings": [],
+        "hash": "4186f2375150e0e1",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -40682,43 +40662,25 @@
         "references/troubleshooting.md"
       ],
       "skillspector": {
-        "score": 38,
-        "severity": "MEDIUM",
+        "score": 7,
+        "severity": "LOW",
         "recommendation": "CAUTION",
-        "issueCount": 3,
+        "issueCount": 1,
         "analysis": "partial",
         "findings": [
-          {
-            "id": "YR1",
-            "category": "YARA Match",
-            "severity": "HIGH",
-            "title": "YARA rule 'agent_skill_remote_bootstrap_execution': Remote script or code download followed by execution/bootstrap installation [agent_skills]",
-            "file": "SKILL.md",
-            "line": 49,
-            "count": 1
-          },
-          {
-            "id": "YR1",
-            "category": "YARA Match",
-            "severity": "HIGH",
-            "title": "YARA rule 'agent_skill_remote_bootstrap_execution': Remote script or code download followed by execution/bootstrap installation [agent_skills]",
-            "file": "references/troubleshooting.md",
-            "line": 15,
-            "count": 1
-          },
           {
             "id": "PE2",
             "category": "Privilege Escalation",
             "severity": "MEDIUM",
             "title": "Sudo/Root Execution",
             "file": "references/troubleshooting.md",
-            "line": 28,
+            "line": 36,
             "count": 1
           }
         ],
-        "hash": "3b20bd345952da3a",
+        "hash": "7a80e70d7e8c0702",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -40797,25 +40759,15 @@
         "references/applications.md"
       ],
       "skillspector": {
-        "score": 21,
-        "severity": "MEDIUM",
+        "score": 0,
+        "severity": "LOW",
         "recommendation": "CAUTION",
-        "issueCount": 1,
+        "issueCount": 0,
         "analysis": "partial",
-        "findings": [
-          {
-            "id": "YR1",
-            "category": "YARA Match",
-            "severity": "HIGH",
-            "title": "YARA rule 'agent_skill_remote_bootstrap_execution': Remote script or code download followed by execution/bootstrap installation [agent_skills]",
-            "file": "SKILL.md",
-            "line": 42,
-            "count": 1
-          }
-        ],
-        "hash": "7786c68cea6f3df9",
+        "findings": [],
+        "hash": "7da10d5de4f1d3cf",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -40895,43 +40847,15 @@
         "references/troubleshooting.md"
       ],
       "skillspector": {
-        "score": 37,
-        "severity": "MEDIUM",
+        "score": 0,
+        "severity": "LOW",
         "recommendation": "CAUTION",
-        "issueCount": 3,
+        "issueCount": 0,
         "analysis": "partial",
-        "findings": [
-          {
-            "id": "YR1",
-            "category": "YARA Match",
-            "severity": "HIGH",
-            "title": "YARA rule 'agent_skill_remote_bootstrap_execution': Remote script or code download followed by execution/bootstrap installation [agent_skills]",
-            "file": "SKILL.md",
-            "line": 46,
-            "count": 1
-          },
-          {
-            "id": "YR1",
-            "category": "YARA Match",
-            "severity": "HIGH",
-            "title": "YARA rule 'agent_skill_remote_bootstrap_execution': Remote script or code download followed by execution/bootstrap installation [agent_skills]",
-            "file": "references/troubleshooting.md",
-            "line": 31,
-            "count": 1
-          },
-          {
-            "id": "YR1",
-            "category": "YARA Match",
-            "severity": "HIGH",
-            "title": "YARA rule 'agent_skill_remote_bootstrap_execution': Remote script or code download followed by execution/bootstrap installation [agent_skills]",
-            "file": "references/advanced-usage.md",
-            "line": 10,
-            "count": 1
-          }
-        ],
-        "hash": "0ce4415e260c83c6",
+        "findings": [],
+        "hash": "f0f79360dddb0586",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -41709,30 +41633,29 @@
       },
       "references": [
         "README.md",
-        "examples/__pycache__/reward_functions_library.cpython-311.pyc",
         "examples/reward_functions_library.py",
         "templates/basic_grpo_training.py"
       ],
       "skillspector": {
-        "score": 27,
-        "severity": "MEDIUM",
-        "recommendation": "CAUTION",
+        "score": 7,
+        "severity": "LOW",
+        "recommendation": "SAFE",
         "issueCount": 1,
         "analysis": "complete",
         "findings": [
           {
-            "id": "AST1",
-            "category": "Dangerous Code Execution",
-            "severity": "HIGH",
-            "title": "exec() call detected",
-            "file": "examples/reward_functions_library.py",
-            "line": 354,
+            "id": "LP3",
+            "category": "MCP Least Privilege",
+            "severity": "MEDIUM",
+            "title": "Without declared permissions the skill's intent is opaque and cannot be validated.",
+            "file": "SKILL.md",
+            "line": 1,
             "count": 1
           }
         ],
-        "hash": "3610c567a79e9b5e",
+        "hash": "124d1e7b2cd6e046",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -41768,21 +41691,12 @@
         "references/troubleshooting.md"
       ],
       "skillspector": {
-        "score": 31,
-        "severity": "MEDIUM",
+        "score": 11,
+        "severity": "LOW",
         "recommendation": "CAUTION",
-        "issueCount": 3,
+        "issueCount": 2,
         "analysis": "partial",
         "findings": [
-          {
-            "id": "PE5",
-            "category": "Privilege Escalation",
-            "severity": "HIGH",
-            "title": "Privileged Container / Container Escape",
-            "file": "SKILL.md",
-            "line": 51,
-            "count": 1
-          },
           {
             "id": "RP1",
             "category": "MCP Rug Pull",
@@ -41793,9 +41707,9 @@
             "count": 2
           }
         ],
-        "hash": "35d6b020e942ddec",
+        "hash": "90a31a4674682c5c",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -41992,21 +41906,12 @@
         "references/troubleshooting.md"
       ],
       "skillspector": {
-        "score": 31,
-        "severity": "MEDIUM",
+        "score": 11,
+        "severity": "LOW",
         "recommendation": "CAUTION",
-        "issueCount": 3,
+        "issueCount": 2,
         "analysis": "partial",
         "findings": [
-          {
-            "id": "PE5",
-            "category": "Privilege Escalation",
-            "severity": "HIGH",
-            "title": "Privileged Container / Container Escape",
-            "file": "SKILL.md",
-            "line": 59,
-            "count": 1
-          },
           {
             "id": "RP1",
             "category": "MCP Rug Pull",
@@ -42017,9 +41922,9 @@
             "count": 2
           }
         ],
-        "hash": "14755b5d4973fef3",
+        "hash": "75b84d3513f5244e",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -42305,25 +42210,15 @@
         "references/optimizers.md"
       ],
       "skillspector": {
-        "score": 21,
-        "severity": "MEDIUM",
+        "score": 0,
+        "severity": "LOW",
         "recommendation": "CAUTION",
-        "issueCount": 1,
+        "issueCount": 0,
         "analysis": "partial",
-        "findings": [
-          {
-            "id": "YR1",
-            "category": "YARA Match",
-            "severity": "HIGH",
-            "title": "YARA rule 'agent_skill_remote_bootstrap_execution': Remote script or code download followed by execution/bootstrap installation [agent_skills]",
-            "file": "SKILL.md",
-            "line": 33,
-            "count": 1
-          }
-        ],
-        "hash": "df72118800f502b8",
+        "findings": [],
+        "hash": "a630f72af8590959",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -46167,10 +46062,10 @@
         "scripts/credential-store.mjs"
       ],
       "skillspector": {
-        "score": 94,
+        "score": 100,
         "severity": "CRITICAL",
         "recommendation": "DO_NOT_INSTALL",
-        "issueCount": 23,
+        "issueCount": 24,
         "analysis": "partial",
         "findings": [
           {
@@ -46188,16 +46083,25 @@
             "severity": "HIGH",
             "title": "Credential Access",
             "file": "scripts/credential-store.mjs",
-            "line": 241,
+            "line": 247,
             "count": 17
           },
           {
             "id": "LP3",
             "category": "MCP Least Privilege",
             "severity": "MEDIUM",
-            "title": "Skill declares no tool scope ('permissions' or 'allowed-tools') but code capabilities were detected: env.",
+            "title": "Without declared permissions the skill's intent is opaque and cannot be validated.",
             "file": "SKILL.md",
             "line": 1,
+            "count": 1
+          },
+          {
+            "id": "RA2",
+            "category": "Rogue Agent",
+            "severity": "MEDIUM",
+            "title": "Session Persistence",
+            "file": "references/auth-flow.md",
+            "line": 120,
             "count": 1
           },
           {
@@ -46210,9 +46114,9 @@
             "count": 1
           }
         ],
-        "hash": "359b3230f6c13864",
+        "hash": "efc943dc9cd550df",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -46307,10 +46211,10 @@
         "templates/viewer.html"
       ],
       "skillspector": {
-        "score": 25,
+        "score": 43,
         "severity": "MEDIUM",
         "recommendation": "CAUTION",
-        "issueCount": 1,
+        "issueCount": 6,
         "analysis": "partial",
         "findings": [
           {
@@ -46319,13 +46223,13 @@
             "severity": "HIGH",
             "title": "Incomplete referenced artifact analysis",
             "file": "SKILL.md",
-            "line": 396,
-            "count": 1
+            "line": 109,
+            "count": 6
           }
         ],
-        "hash": "8c15717769d76330",
+        "hash": "0a1ea3eb3f0f58f8",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -46856,9 +46760,9 @@
             "count": 2
           }
         ],
-        "hash": "a508d3d3a63805c8",
+        "hash": "aefe570996c83975",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -49937,9 +49841,9 @@
             "count": 2
           }
         ],
-        "hash": "b6e503dca3a8aa81",
+        "hash": "dbcab45d6eefc92c",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -52937,9 +52841,9 @@
             "count": 1
           }
         ],
-        "hash": "047a9024a7d57e06",
+        "hash": "79d77e7d897856da",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -55313,8 +55217,6 @@
         "references/notebook-structure.md",
         "references/quality-checklist.md",
         "references/tutorial-patterns.md",
-        "scripts/__pycache__/new_notebook.cpython-311.pyc",
-        "scripts/__pycache__/new_notebook.cpython-312.pyc",
         "scripts/new_notebook.py"
       ],
       "skillspector": {
@@ -55361,9 +55263,9 @@
             "count": 1
           }
         ],
-        "hash": "b033d4d8e2b0cd99",
+        "hash": "eac73f6e09e654a5",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -55781,7 +55683,7 @@
         "score": 100,
         "severity": "CRITICAL",
         "recommendation": "DO_NOT_INSTALL",
-        "issueCount": 16,
+        "issueCount": 17,
         "analysis": "partial",
         "findings": [
           {
@@ -55824,15 +55726,15 @@
             "id": "LP3",
             "category": "MCP Least Privilege",
             "severity": "MEDIUM",
-            "title": "Skill declares no tool scope ('permissions' or 'allowed-tools') but code capabilities were detected: file_write, mcp.",
+            "title": "Without declared permissions the skill's intent is opaque and cannot be validated.",
             "file": "SKILL.md",
             "line": 1,
             "count": 1
           }
         ],
-        "hash": "456000d851fedaff",
+        "hash": "60d23d2c3ae8a878",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -57445,9 +57347,9 @@
             "count": 1
           }
         ],
-        "hash": "8a2066fa7ca49e29",
+        "hash": "ee43bea752bf5eb8",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -59315,8 +59217,8 @@
             "severity": "HIGH",
             "title": "Incomplete referenced artifact analysis",
             "file": "SKILL.md",
-            "line": 364,
-            "count": 1
+            "line": 367,
+            "count": 2
           },
           {
             "id": "AS1",
@@ -59324,7 +59226,7 @@
             "severity": "HIGH",
             "title": "Agent Config Directory Access",
             "file": "scripts/run_eval.py",
-            "line": 23,
+            "line": 24,
             "count": 1
           },
           {
@@ -59342,22 +59244,22 @@
             "severity": "HIGH",
             "title": "Env Variable Harvesting",
             "file": "scripts/run_eval.py",
-            "line": 83,
+            "line": 86,
             "count": 1
           },
           {
             "id": "LP3",
             "category": "MCP Least Privilege",
             "severity": "MEDIUM",
-            "title": "Skill declares no tool scope ('permissions' or 'allowed-tools') but code capabilities were detected: env, file_read, file_write, shell.",
+            "title": "Without declared permissions the skill's intent is opaque and cannot be validated.",
             "file": "SKILL.md",
             "line": 1,
             "count": 1
           }
         ],
-        "hash": "3aa8c4c504317039",
+        "hash": "59853845a5f2c1e5",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -59413,8 +59315,8 @@
             "severity": "HIGH",
             "title": "Incomplete referenced artifact analysis",
             "file": "SKILL.md",
-            "line": 364,
-            "count": 1
+            "line": 367,
+            "count": 2
           },
           {
             "id": "RA1",
@@ -59431,7 +59333,7 @@
             "severity": "HIGH",
             "title": "Agent Config Directory Access",
             "file": "scripts/run_eval.py",
-            "line": 23,
+            "line": 24,
             "count": 1
           },
           {
@@ -59449,13 +59351,13 @@
             "severity": "HIGH",
             "title": "Env Variable Harvesting",
             "file": "scripts/run_eval.py",
-            "line": 83,
+            "line": 86,
             "count": 1
           }
         ],
-        "hash": "bd11e7e0cbb12207",
+        "hash": "8bc7006f978d63c6",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -60562,9 +60464,9 @@
             "count": 2
           }
         ],
-        "hash": "0f102ba19f13b4de",
+        "hash": "f3089449e11bf932",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -60665,10 +60567,10 @@
         "scripts/with_server.py"
       ],
       "skillspector": {
-        "score": 49,
-        "severity": "MEDIUM",
-        "recommendation": "CAUTION",
-        "issueCount": 4,
+        "score": 64,
+        "severity": "HIGH",
+        "recommendation": "DO_NOT_INSTALL",
+        "issueCount": 5,
         "analysis": "complete",
         "findings": [
           {
@@ -60677,14 +60579,14 @@
             "severity": "HIGH",
             "title": "Tool Parameter Abuse",
             "file": "scripts/with_server.py",
-            "line": 69,
-            "count": 1
+            "line": 71,
+            "count": 2
           },
           {
             "id": "LP3",
             "category": "MCP Least Privilege",
             "severity": "MEDIUM",
-            "title": "Skill declares no tool scope ('permissions' or 'allowed-tools') but code capabilities were detected: file_write, shell.",
+            "title": "Without declared permissions the skill's intent is opaque and cannot be validated.",
             "file": "SKILL.md",
             "line": 1,
             "count": 1
@@ -60695,13 +60597,13 @@
             "severity": "MEDIUM",
             "title": "subprocess module call",
             "file": "scripts/with_server.py",
-            "line": 69,
+            "line": 71,
             "count": 2
           }
         ],
-        "hash": "abfaf4cc6cf57234",
+        "hash": "f78c360e29c97879",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -61340,10 +61242,10 @@
         "scripts/templates/people.xml"
       ],
       "skillspector": {
-        "score": 72,
-        "severity": "HIGH",
+        "score": 89,
+        "severity": "CRITICAL",
         "recommendation": "DO_NOT_INSTALL",
-        "issueCount": 11,
+        "issueCount": 26,
         "analysis": "partial",
         "findings": [
           {
@@ -61356,6 +61258,33 @@
             "count": 2
           },
           {
+            "id": "P2",
+            "category": "Prompt Injection",
+            "severity": "HIGH",
+            "title": "Hidden Instructions",
+            "file": "scripts/office/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
+            "line": 1,
+            "count": 1
+          },
+          {
+            "id": "P2",
+            "category": "Prompt Injection",
+            "severity": "HIGH",
+            "title": "Hidden Instructions",
+            "file": "scripts/office/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
+            "line": 1,
+            "count": 1
+          },
+          {
+            "id": "P2",
+            "category": "Prompt Injection",
+            "severity": "HIGH",
+            "title": "Hidden Instructions",
+            "file": "scripts/office/schemas/ecma/fouth-edition/opc-relationships.xsd",
+            "line": 1,
+            "count": 1
+          },
+          {
             "id": "E2",
             "category": "Data Exfiltration",
             "severity": "HIGH",
@@ -61363,38 +61292,11 @@
             "file": "scripts/office/soffice.py",
             "line": 25,
             "count": 1
-          },
-          {
-            "id": "LP3",
-            "category": "MCP Least Privilege",
-            "severity": "MEDIUM",
-            "title": "Skill declares no tool scope ('permissions' or 'allowed-tools') but code capabilities were detected: env, file_read, file_write, shell.",
-            "file": "SKILL.md",
-            "line": 1,
-            "count": 1
-          },
-          {
-            "id": "AST4",
-            "category": "Dangerous Code Execution",
-            "severity": "MEDIUM",
-            "title": "subprocess module call",
-            "file": "scripts/accept_changes.py",
-            "line": 68,
-            "count": 2
-          },
-          {
-            "id": "AST4",
-            "category": "Dangerous Code Execution",
-            "severity": "MEDIUM",
-            "title": "subprocess module call",
-            "file": "scripts/office/soffice.py",
-            "line": 37,
-            "count": 2
           }
         ],
-        "hash": "8e560a85b5d94167",
+        "hash": "a8d51dc839d4736d",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -62089,12 +61991,39 @@
         "scripts/thumbnail.py"
       ],
       "skillspector": {
-        "score": 42,
-        "severity": "MEDIUM",
-        "recommendation": "CAUTION",
-        "issueCount": 8,
+        "score": 81,
+        "severity": "CRITICAL",
+        "recommendation": "DO_NOT_INSTALL",
+        "issueCount": 23,
         "analysis": "partial",
         "findings": [
+          {
+            "id": "P2",
+            "category": "Prompt Injection",
+            "severity": "HIGH",
+            "title": "Hidden Instructions",
+            "file": "scripts/office/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
+            "line": 1,
+            "count": 1
+          },
+          {
+            "id": "P2",
+            "category": "Prompt Injection",
+            "severity": "HIGH",
+            "title": "Hidden Instructions",
+            "file": "scripts/office/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
+            "line": 1,
+            "count": 1
+          },
+          {
+            "id": "P2",
+            "category": "Prompt Injection",
+            "severity": "HIGH",
+            "title": "Hidden Instructions",
+            "file": "scripts/office/schemas/ecma/fouth-edition/opc-relationships.xsd",
+            "line": 1,
+            "count": 1
+          },
           {
             "id": "E2",
             "category": "Data Exfiltration",
@@ -62105,45 +62034,18 @@
             "count": 1
           },
           {
-            "id": "LP3",
-            "category": "MCP Least Privilege",
+            "id": "RA2",
+            "category": "Rogue Agent",
             "severity": "MEDIUM",
-            "title": "Skill declares no tool scope ('permissions' or 'allowed-tools') but code capabilities were detected: env, file_read, file_write, shell.",
-            "file": "SKILL.md",
-            "line": 1,
-            "count": 1
-          },
-          {
-            "id": "AST4",
-            "category": "Dangerous Code Execution",
-            "severity": "MEDIUM",
-            "title": "subprocess module call",
-            "file": "scripts/office/soffice.py",
-            "line": 37,
-            "count": 2
-          },
-          {
-            "id": "AST4",
-            "category": "Dangerous Code Execution",
-            "severity": "MEDIUM",
-            "title": "subprocess module call",
-            "file": "scripts/office/validators/redlining.py",
-            "line": 138,
-            "count": 2
-          },
-          {
-            "id": "AST4",
-            "category": "Dangerous Code Execution",
-            "severity": "MEDIUM",
-            "title": "subprocess module call",
-            "file": "scripts/thumbnail.py",
-            "line": 161,
-            "count": 2
+            "title": "Session Persistence",
+            "file": "scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+            "line": 1455,
+            "count": 6
           }
         ],
-        "hash": "e08af6a48e34ddfe",
+        "hash": "255681c8b79684eb",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -62275,12 +62177,48 @@
         "scripts/recalc.py"
       ],
       "skillspector": {
-        "score": 49,
-        "severity": "MEDIUM",
-        "recommendation": "CAUTION",
-        "issueCount": 13,
+        "score": 100,
+        "severity": "CRITICAL",
+        "recommendation": "DO_NOT_INSTALL",
+        "issueCount": 36,
         "analysis": "partial",
         "findings": [
+          {
+            "id": "AE1",
+            "category": "analysis-evasion",
+            "severity": "HIGH",
+            "title": "Incomplete referenced artifact analysis",
+            "file": "SKILL.md",
+            "line": 74,
+            "count": 8
+          },
+          {
+            "id": "P2",
+            "category": "Prompt Injection",
+            "severity": "HIGH",
+            "title": "Hidden Instructions",
+            "file": "scripts/office/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
+            "line": 1,
+            "count": 1
+          },
+          {
+            "id": "P2",
+            "category": "Prompt Injection",
+            "severity": "HIGH",
+            "title": "Hidden Instructions",
+            "file": "scripts/office/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
+            "line": 1,
+            "count": 1
+          },
+          {
+            "id": "P2",
+            "category": "Prompt Injection",
+            "severity": "HIGH",
+            "title": "Hidden Instructions",
+            "file": "scripts/office/schemas/ecma/fouth-edition/opc-relationships.xsd",
+            "line": 1,
+            "count": 1
+          },
           {
             "id": "E2",
             "category": "Data Exfiltration",
@@ -62289,47 +62227,11 @@
             "file": "scripts/office/soffice.py",
             "line": 25,
             "count": 1
-          },
-          {
-            "id": "LP3",
-            "category": "MCP Least Privilege",
-            "severity": "MEDIUM",
-            "title": "Skill declares no tool scope ('permissions' or 'allowed-tools') but code capabilities were detected: env, file_read, file_write, shell.",
-            "file": "SKILL.md",
-            "line": 1,
-            "count": 1
-          },
-          {
-            "id": "P4",
-            "category": "Prompt Injection",
-            "severity": "MEDIUM",
-            "title": "Behavior Manipulation",
-            "file": "SKILL.md",
-            "line": 101,
-            "count": 1
-          },
-          {
-            "id": "AST4",
-            "category": "Dangerous Code Execution",
-            "severity": "MEDIUM",
-            "title": "subprocess module call",
-            "file": "recalc.py",
-            "line": 31,
-            "count": 3
-          },
-          {
-            "id": "AST4",
-            "category": "Dangerous Code Execution",
-            "severity": "MEDIUM",
-            "title": "subprocess module call",
-            "file": "scripts/office/soffice.py",
-            "line": 37,
-            "count": 2
           }
         ],
-        "hash": "b959eeb7c6935408",
+        "hash": "e6f6664527d5bff0",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -62409,12 +62311,48 @@
         "scripts/recalc.py"
       ],
       "skillspector": {
-        "score": 49,
-        "severity": "MEDIUM",
-        "recommendation": "CAUTION",
-        "issueCount": 13,
+        "score": 100,
+        "severity": "CRITICAL",
+        "recommendation": "DO_NOT_INSTALL",
+        "issueCount": 36,
         "analysis": "partial",
         "findings": [
+          {
+            "id": "AE1",
+            "category": "analysis-evasion",
+            "severity": "HIGH",
+            "title": "Incomplete referenced artifact analysis",
+            "file": "SKILL.md",
+            "line": 74,
+            "count": 8
+          },
+          {
+            "id": "P2",
+            "category": "Prompt Injection",
+            "severity": "HIGH",
+            "title": "Hidden Instructions",
+            "file": "scripts/office/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
+            "line": 1,
+            "count": 1
+          },
+          {
+            "id": "P2",
+            "category": "Prompt Injection",
+            "severity": "HIGH",
+            "title": "Hidden Instructions",
+            "file": "scripts/office/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
+            "line": 1,
+            "count": 1
+          },
+          {
+            "id": "P2",
+            "category": "Prompt Injection",
+            "severity": "HIGH",
+            "title": "Hidden Instructions",
+            "file": "scripts/office/schemas/ecma/fouth-edition/opc-relationships.xsd",
+            "line": 1,
+            "count": 1
+          },
           {
             "id": "E2",
             "category": "Data Exfiltration",
@@ -62423,47 +62361,11 @@
             "file": "scripts/office/soffice.py",
             "line": 25,
             "count": 1
-          },
-          {
-            "id": "LP3",
-            "category": "MCP Least Privilege",
-            "severity": "MEDIUM",
-            "title": "Skill declares no tool scope ('permissions' or 'allowed-tools') but code capabilities were detected: env, file_read, file_write, shell.",
-            "file": "SKILL.md",
-            "line": 1,
-            "count": 1
-          },
-          {
-            "id": "P4",
-            "category": "Prompt Injection",
-            "severity": "MEDIUM",
-            "title": "Behavior Manipulation",
-            "file": "SKILL.md",
-            "line": 101,
-            "count": 1
-          },
-          {
-            "id": "AST4",
-            "category": "Dangerous Code Execution",
-            "severity": "MEDIUM",
-            "title": "subprocess module call",
-            "file": "recalc.py",
-            "line": 31,
-            "count": 3
-          },
-          {
-            "id": "AST4",
-            "category": "Dangerous Code Execution",
-            "severity": "MEDIUM",
-            "title": "subprocess module call",
-            "file": "scripts/office/soffice.py",
-            "line": 37,
-            "count": 2
           }
         ],
-        "hash": "f1797bd070dd2e4e",
+        "hash": "2b3de76c3e5cbdb8",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -62679,7 +62581,7 @@
         "scripts/dd-guard.sh"
       ],
       "skillspector": {
-        "score": 45,
+        "score": 29,
         "severity": "MEDIUM",
         "recommendation": "CAUTION",
         "issueCount": 2,
@@ -62695,18 +62597,18 @@
             "count": 1
           },
           {
-            "id": "LP1",
-            "category": "MCP Least Privilege",
-            "severity": "HIGH",
-            "title": "Code capability 'file_write' detected in scripts/dd-guard.sh but not covered by declared permissions.",
-            "file": "scripts/dd-guard.sh",
-            "line": 1,
+            "id": "AS3",
+            "category": "Agent Snooping",
+            "severity": "MEDIUM",
+            "title": "Skill Enumeration",
+            "file": "SKILL.md",
+            "line": 37,
             "count": 1
           }
         ],
-        "hash": "9872c5f95ad914a6",
+        "hash": "90fc1d31f32aa028",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -63796,7 +63698,7 @@
             "id": "LP3",
             "category": "MCP Least Privilege",
             "severity": "MEDIUM",
-            "title": "Skill declares no tool scope ('permissions' or 'allowed-tools') but code capabilities were detected: env, file_read, file_write, shell.",
+            "title": "Without declared permissions the skill's intent is opaque and cannot be validated.",
             "file": "SKILL.md",
             "line": 1,
             "count": 1
@@ -63820,9 +63722,9 @@
             "count": 1
           }
         ],
-        "hash": "242741bd5b319490",
+        "hash": "6ae81fb6cfbd0343",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -64457,37 +64359,19 @@
         "tests/test_atlas_text_to_speech.py"
       ],
       "skillspector": {
-        "score": 100,
+        "score": 91,
         "severity": "CRITICAL",
         "recommendation": "DO_NOT_INSTALL",
-        "issueCount": 8,
+        "issueCount": 6,
         "analysis": "partial",
         "findings": [
           {
-            "id": "TT3",
-            "category": "Data Flow",
-            "severity": "CRITICAL",
-            "title": "Tainted flow: 'request' from os.getenv (line 138, credential/environment) → urllib.request.urlopen (network output)",
-            "file": "scripts/atlas_text_to_speech.py",
-            "line": 140,
-            "count": 1
-          },
-          {
-            "id": "TT3",
-            "category": "Data Flow",
-            "severity": "CRITICAL",
-            "title": "Tainted flow: 'request' from os.getenv (line 288, credential/environment) → urllib.request.build_opener.open (network output)",
-            "file": "scripts/atlas_text_to_speech.py",
-            "line": 295,
-            "count": 1
-          },
-          {
-            "id": "AS1",
-            "category": "Agent Snooping",
+            "id": "AE1",
+            "category": "analysis-evasion",
             "severity": "HIGH",
-            "title": "Agent Config Directory Access",
-            "file": "references/codex-network.md",
-            "line": 11,
+            "title": "Incomplete referenced artifact analysis",
+            "file": "SKILL.md",
+            "line": 25,
             "count": 1
           },
           {
@@ -64507,11 +64391,29 @@
             "file": "scripts/text_to_speech.py",
             "line": 180,
             "count": 1
+          },
+          {
+            "id": "LP3",
+            "category": "MCP Least Privilege",
+            "severity": "MEDIUM",
+            "title": "Without declared permissions the skill's intent is opaque and cannot be validated.",
+            "file": "SKILL.md",
+            "line": 1,
+            "count": 1
+          },
+          {
+            "id": "E1",
+            "category": "Data Exfiltration",
+            "severity": "MEDIUM",
+            "title": "External Transmission",
+            "file": "scripts/atlas_text_to_speech.py",
+            "line": 24,
+            "count": 1
           }
         ],
-        "hash": "8aab88d3d24a44b6",
+        "hash": "1ad8d6ee6a3fcd5b",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -66261,7 +66163,7 @@
         "score": 100,
         "severity": "CRITICAL",
         "recommendation": "DO_NOT_INSTALL",
-        "issueCount": 22,
+        "issueCount": 25,
         "analysis": "partial",
         "findings": [
           {
@@ -66301,18 +66203,18 @@
             "count": 1
           },
           {
-            "id": "AS3",
-            "category": "Agent Snooping",
-            "severity": "MEDIUM",
-            "title": "Skill Enumeration",
-            "file": "README.md",
-            "line": 333,
-            "count": 1
+            "id": "PE3",
+            "category": "Privilege Escalation",
+            "severity": "HIGH",
+            "title": "Credential Access",
+            "file": ".gitignore",
+            "line": 26,
+            "count": 2
           }
         ],
-        "hash": "8eb63bd7d26a9326",
+        "hash": "26e7eb8e43b1c1c3",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -66947,8 +66849,8 @@
             "severity": "HIGH",
             "title": "Incomplete referenced artifact analysis",
             "file": "SKILL.md",
-            "line": 364,
-            "count": 1
+            "line": 367,
+            "count": 2
           },
           {
             "id": "RA1",
@@ -66965,7 +66867,7 @@
             "severity": "HIGH",
             "title": "Agent Config Directory Access",
             "file": "scripts/run_eval.py",
-            "line": 23,
+            "line": 24,
             "count": 1
           },
           {
@@ -66983,13 +66885,13 @@
             "severity": "HIGH",
             "title": "Env Variable Harvesting",
             "file": "scripts/run_eval.py",
-            "line": 83,
+            "line": 86,
             "count": 1
           }
         ],
-        "hash": "9b6f28a16d3f1faf",
+        "hash": "9164a09725f06c3a",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -68342,13 +68244,13 @@
             "severity": "HIGH",
             "title": "Credential Access",
             "file": "scripts/setup_environment.py",
-            "line": 130,
+            "line": 132,
             "count": 4
           }
         ],
-        "hash": "de8f58fa6a64d731",
+        "hash": "d4dca635450e38b7",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -68427,17 +68329,26 @@
         "scripts/biorxiv_search.py"
       ],
       "skillspector": {
-        "score": 15,
-        "severity": "LOW",
-        "recommendation": "CAUTION",
-        "issueCount": 6,
+        "score": 59,
+        "severity": "HIGH",
+        "recommendation": "DO_NOT_INSTALL",
+        "issueCount": 22,
         "analysis": "partial",
         "findings": [
+          {
+            "id": "AE1",
+            "category": "analysis-evasion",
+            "severity": "HIGH",
+            "title": "Incomplete referenced artifact analysis",
+            "file": "SKILL.md",
+            "line": 31,
+            "count": 16
+          },
           {
             "id": "LP3",
             "category": "MCP Least Privilege",
             "severity": "MEDIUM",
-            "title": "Skill declares no tool scope ('permissions' or 'allowed-tools') but code capabilities were detected: file_write, network.",
+            "title": "Without declared permissions the skill's intent is opaque and cannot be validated.",
             "file": "SKILL.md",
             "line": 1,
             "count": 1
@@ -68452,9 +68363,9 @@
             "count": 5
           }
         ],
-        "hash": "0704c0c330373694",
+        "hash": "e500458065de945f",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -68787,7 +68698,7 @@
             "id": "LP1",
             "category": "MCP Least Privilege",
             "severity": "HIGH",
-            "title": "Code capability 'network' detected in scripts/doi_to_bibtex.py but not covered by declared permissions.",
+            "title": "The skill uses 'network' capability that is not listed in its permissions. This may indicate deceptive intent or missing permission declarations.",
             "file": "scripts/doi_to_bibtex.py",
             "line": 1,
             "count": 1
@@ -68796,7 +68707,7 @@
             "id": "LP1",
             "category": "MCP Least Privilege",
             "severity": "HIGH",
-            "title": "Code capability 'env' detected in scripts/extract_metadata.py but not covered by declared permissions.",
+            "title": "The skill uses 'env' capability that is not listed in its permissions. This may indicate deceptive intent or missing permission declarations.",
             "file": "scripts/extract_metadata.py",
             "line": 1,
             "count": 1
@@ -68820,9 +68731,9 @@
             "count": 4
           }
         ],
-        "hash": "65e5249d4746a056",
+        "hash": "30cbc882a46bd1cf",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -72427,10 +72338,10 @@
         "scripts/setup_env.py"
       ],
       "skillspector": {
-        "score": 65,
+        "score": 64,
         "severity": "HIGH",
         "recommendation": "DO_NOT_INSTALL",
-        "issueCount": 27,
+        "issueCount": 28,
         "analysis": "complete",
         "findings": [
           {
@@ -72479,9 +72390,9 @@
             "count": 1
           }
         ],
-        "hash": "2df1e59cd7ba3646",
+        "hash": "a24d1ee46b9b725c",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -72962,7 +72873,7 @@
             "id": "LP3",
             "category": "MCP Least Privilege",
             "severity": "MEDIUM",
-            "title": "Skill declares no tool scope ('permissions' or 'allowed-tools') but code capabilities were detected: file_write.",
+            "title": "Without declared permissions the skill's intent is opaque and cannot be validated.",
             "file": "SKILL.md",
             "line": 1,
             "count": 1
@@ -72977,9 +72888,9 @@
             "count": 4
           }
         ],
-        "hash": "d68b00188645822b",
+        "hash": "b6603a63b472228b",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -75264,10 +75175,10 @@
         "scripts/validate_treatment_plan.py"
       ],
       "skillspector": {
-        "score": 99,
+        "score": 91,
         "severity": "CRITICAL",
         "recommendation": "DO_NOT_INSTALL",
-        "issueCount": 15,
+        "issueCount": 14,
         "analysis": "partial",
         "findings": [
           {
@@ -75316,9 +75227,9 @@
             "count": 5
           }
         ],
-        "hash": "b82553aa3806516b",
+        "hash": "176d8f574e5e2b8f",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -78100,10 +78011,10 @@
         "scripts/with_server.py"
       ],
       "skillspector": {
-        "score": 49,
-        "severity": "MEDIUM",
-        "recommendation": "CAUTION",
-        "issueCount": 4,
+        "score": 64,
+        "severity": "HIGH",
+        "recommendation": "DO_NOT_INSTALL",
+        "issueCount": 5,
         "analysis": "complete",
         "findings": [
           {
@@ -78112,14 +78023,14 @@
             "severity": "HIGH",
             "title": "Tool Parameter Abuse",
             "file": "scripts/with_server.py",
-            "line": 69,
-            "count": 1
+            "line": 71,
+            "count": 2
           },
           {
             "id": "LP3",
             "category": "MCP Least Privilege",
             "severity": "MEDIUM",
-            "title": "Skill declares no tool scope ('permissions' or 'allowed-tools') but code capabilities were detected: file_write, shell.",
+            "title": "Without declared permissions the skill's intent is opaque and cannot be validated.",
             "file": "SKILL.md",
             "line": 1,
             "count": 1
@@ -78130,13 +78041,13 @@
             "severity": "MEDIUM",
             "title": "subprocess module call",
             "file": "scripts/with_server.py",
-            "line": 69,
+            "line": 71,
             "count": 2
           }
         ],
-        "hash": "abfaf4cc6cf57234",
+        "hash": "f78c360e29c97879",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -84683,10 +84594,10 @@
         "tests/vercel-deploys.test.tsx"
       ],
       "skillspector": {
-        "score": 76,
-        "severity": "HIGH",
+        "score": 85,
+        "severity": "CRITICAL",
         "recommendation": "DO_NOT_INSTALL",
-        "issueCount": 12,
+        "issueCount": 13,
         "analysis": "partial",
         "findings": [
           {
@@ -84735,9 +84646,9 @@
             "count": 1
           }
         ],
-        "hash": "67c946028bade2a0",
+        "hash": "c9cba0a44d290fbf",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -86001,15 +85912,15 @@
             "id": "RP1",
             "category": "MCP Rug Pull",
             "severity": "MEDIUM",
-            "title": "MCP server referenced without pinned version: 'npx claude-code-templates'.",
+            "title": "npx commands without a version suffix (e.g. @1.0.0) create a rug-pull risk if the upstream server is compromised and publishes a malicious update.",
             "file": "README.md",
             "line": 115,
             "count": 1
           }
         ],
-        "hash": "5facea8efd1e0ad1",
+        "hash": "25c94829c9610910",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -86093,15 +86004,15 @@
             "id": "RP1",
             "category": "MCP Rug Pull",
             "severity": "MEDIUM",
-            "title": "MCP server referenced without pinned version: 'npx claude-code-templates'.",
+            "title": "npx commands without a version suffix (e.g. @1.0.0) create a rug-pull risk if the upstream server is compromised and publishes a malicious update.",
             "file": "README.md",
             "line": 26,
             "count": 1
           }
         ],
-        "hash": "6f8dc16c1f5bb294",
+        "hash": "97e635950c2e5158",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -86490,7 +86401,7 @@
         "score": 100,
         "severity": "CRITICAL",
         "recommendation": "DO_NOT_INSTALL",
-        "issueCount": 73,
+        "issueCount": 76,
         "analysis": "partial",
         "findings": [
           {
@@ -86539,9 +86450,9 @@
             "count": 1
           }
         ],
-        "hash": "c55ae57506a92320",
+        "hash": "14f01483c599ecba",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-25T13:41:09Z"
       }
     },
     {
@@ -87774,10 +87685,10 @@
       "category": "languages",
       "description": "Common project template",
       "files": [
-        "README.md",
-        ".claude/commands/project-setup.md",
         ".claude/commands/git-workflow.md",
+        ".claude/commands/project-setup.md",
         ".mcp.json",
+        "README.md",
         "CLAUDE.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=common --yes",
@@ -87809,12 +87720,12 @@
       "language": "python",
       "description": "Fastapi-App with Python",
       "files": [
-        "CLAUDE.md",
-        ".claude/commands/auth.md",
         ".claude/commands/database.md",
-        ".claude/commands/testing.md",
+        ".claude/commands/auth.md",
+        ".claude/commands/api-endpoints.md",
         ".claude/commands/deployment.md",
-        ".claude/commands/api-endpoints.md"
+        ".claude/commands/testing.md",
+        "CLAUDE.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=fastapi-app --yes",
       "downloads": 0
@@ -87828,13 +87739,13 @@
       "language": "python",
       "description": "Flask-App with Python",
       "files": [
-        "CLAUDE.md",
-        ".claude/commands/app-factory.md",
         ".claude/commands/database.md",
+        ".claude/commands/app-factory.md",
+        ".claude/commands/flask-route.md",
+        ".claude/commands/deployment.md",
         ".claude/commands/testing.md",
         ".claude/commands/blueprint.md",
-        ".claude/commands/deployment.md",
-        ".claude/commands/flask-route.md"
+        "CLAUDE.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=flask-app --yes",
       "downloads": 0
@@ -87847,8 +87758,8 @@
       "category": "languages",
       "description": "Go project template",
       "files": [
-        "README.md",
-        ".mcp.json"
+        ".mcp.json",
+        "README.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=go --yes",
       "downloads": 0
@@ -87861,17 +87772,17 @@
       "category": "languages",
       "description": "Javascript-Typescript project template",
       "files": [
-        ".mcp.json",
         ".claude/settings.json",
-        ".claude/commands/test.md",
-        ".claude/commands/lint.md",
-        ".claude/commands/api-endpoint.md",
         ".claude/commands/refactor.md",
         ".claude/commands/typescript-migrate.md",
+        ".claude/commands/api-endpoint.md",
+        ".claude/commands/test.md",
+        ".claude/commands/lint.md",
         ".claude/commands/debug.md",
         ".claude/commands/npm-scripts.md",
-        "CLAUDE.md",
-        "README.md"
+        ".mcp.json",
+        "README.md",
+        "CLAUDE.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=javascript-typescript --yes",
       "downloads": 0
@@ -87885,11 +87796,11 @@
       "language": "javascript-typescript",
       "description": "Node-Api with Javascript-Typescript",
       "files": [
-        "CLAUDE.md",
         ".claude/commands/database.md",
         ".claude/commands/api-endpoint.md",
         ".claude/commands/route.md",
-        ".claude/commands/middleware.md"
+        ".claude/commands/middleware.md",
+        "CLAUDE.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=node-api --yes",
       "downloads": 0
@@ -87902,11 +87813,11 @@
       "category": "languages",
       "description": "Python project template",
       "files": [
-        ".mcp.json",
-        "CLAUDE.md",
         ".claude/settings.json",
         ".claude/commands/test.md",
-        ".claude/commands/lint.md"
+        ".claude/commands/lint.md",
+        ".mcp.json",
+        "CLAUDE.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=python --yes",
       "downloads": 0
@@ -87935,9 +87846,9 @@
       "language": "javascript-typescript",
       "description": "React-App with Javascript-Typescript",
       "files": [
-        ".claude/commands/component.md",
         ".claude/commands/hooks.md",
         ".claude/commands/state-management.md",
+        ".claude/commands/component.md",
         "CLAUDE.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=react-app --yes",
@@ -87951,10 +87862,10 @@
       "category": "languages",
       "description": "Ruby project template",
       "files": [
-        ".mcp.json",
         ".claude/settings.json",
-        ".claude/commands/test.md",
         ".claude/commands/model.md",
+        ".claude/commands/test.md",
+        ".mcp.json",
         "CLAUDE.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=ruby --yes",
@@ -87983,8 +87894,8 @@
       "language": "javascript-typescript",
       "description": "Vue-App with Javascript-Typescript",
       "files": [
-        ".claude/commands/composables.md",
-        ".claude/commands/components.md"
+        ".claude/commands/components.md",
+        ".claude/commands/composables.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=vue-app --yes",
       "downloads": 0
