@@ -61102,10 +61102,10 @@
         "scripts/utilities.py"
       ],
       "skillspector": {
-        "score": 76,
-        "severity": "HIGH",
+        "score": 89,
+        "severity": "CRITICAL",
         "recommendation": "DO_NOT_INSTALL",
-        "issueCount": 17,
+        "issueCount": 47,
         "analysis": "partial",
         "findings": [
           {
@@ -61127,36 +61127,36 @@
             "count": 3
           },
           {
-            "id": "E2",
-            "category": "Data Exfiltration",
+            "id": "P2",
+            "category": "Prompt Injection",
             "severity": "HIGH",
-            "title": "Env Variable Harvesting",
-            "file": "scripts/office/soffice.py",
-            "line": 25,
-            "count": 1
-          },
-          {
-            "id": "LP3",
-            "category": "MCP Least Privilege",
-            "severity": "MEDIUM",
-            "title": "Skill declares no tool scope ('permissions' or 'allowed-tools') but code capabilities were detected: env, file_read, file_write, shell.",
-            "file": "SKILL.md",
+            "title": "Hidden Instructions",
+            "file": "ooxml/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
             "line": 1,
             "count": 1
           },
           {
-            "id": "AST4",
-            "category": "Dangerous Code Execution",
-            "severity": "MEDIUM",
-            "title": "subprocess module call",
-            "file": "ooxml/scripts/pack.py",
-            "line": 103,
+            "id": "P2",
+            "category": "Prompt Injection",
+            "severity": "HIGH",
+            "title": "Hidden Instructions",
+            "file": "ooxml/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
+            "line": 1,
+            "count": 1
+          },
+          {
+            "id": "P2",
+            "category": "Prompt Injection",
+            "severity": "HIGH",
+            "title": "Hidden Instructions",
+            "file": "ooxml/schemas/ecma/fouth-edition/opc-relationships.xsd",
+            "line": 1,
             "count": 1
           }
         ],
-        "hash": "16825f9b4a873891",
+        "hash": "344929bed9d57d4e",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-26T03:25:38Z"
       }
     },
     {
@@ -61853,10 +61853,10 @@
         "scripts/thumbnail.py"
       ],
       "skillspector": {
-        "score": 63,
-        "severity": "HIGH",
+        "score": 87,
+        "severity": "CRITICAL",
         "recommendation": "DO_NOT_INSTALL",
-        "issueCount": 13,
+        "issueCount": 43,
         "analysis": "partial",
         "findings": [
           {
@@ -61869,45 +61869,45 @@
             "count": 1
           },
           {
-            "id": "E2",
-            "category": "Data Exfiltration",
+            "id": "P2",
+            "category": "Prompt Injection",
             "severity": "HIGH",
-            "title": "Env Variable Harvesting",
-            "file": "scripts/office/soffice.py",
-            "line": 25,
-            "count": 1
-          },
-          {
-            "id": "LP3",
-            "category": "MCP Least Privilege",
-            "severity": "MEDIUM",
-            "title": "Skill declares no tool scope ('permissions' or 'allowed-tools') but code capabilities were detected: env, file_read, file_write, shell.",
-            "file": "SKILL.md",
+            "title": "Hidden Instructions",
+            "file": "ooxml/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
             "line": 1,
             "count": 1
           },
           {
-            "id": "AST4",
-            "category": "Dangerous Code Execution",
-            "severity": "MEDIUM",
-            "title": "subprocess module call",
-            "file": "ooxml/scripts/pack.py",
-            "line": 103,
+            "id": "P2",
+            "category": "Prompt Injection",
+            "severity": "HIGH",
+            "title": "Hidden Instructions",
+            "file": "ooxml/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
+            "line": 1,
             "count": 1
           },
           {
-            "id": "AST4",
-            "category": "Dangerous Code Execution",
-            "severity": "MEDIUM",
-            "title": "subprocess module call",
-            "file": "ooxml/scripts/validation/redlining.py",
-            "line": 153,
-            "count": 2
+            "id": "P2",
+            "category": "Prompt Injection",
+            "severity": "HIGH",
+            "title": "Hidden Instructions",
+            "file": "ooxml/schemas/ecma/fouth-edition/opc-relationships.xsd",
+            "line": 1,
+            "count": 1
+          },
+          {
+            "id": "P2",
+            "category": "Prompt Injection",
+            "severity": "HIGH",
+            "title": "Hidden Instructions",
+            "file": "scripts/office/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
+            "line": 1,
+            "count": 1
           }
         ],
-        "hash": "6f6a87e0db201412",
+        "hash": "e595aea9f7f17cb6",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-10-26T03:25:38Z"
       }
     },
     {
