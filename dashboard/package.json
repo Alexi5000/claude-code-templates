@@ -24,12 +24,12 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "astro": "^7.4.0",
-    "discord-interactions": "^4.4.0",
     "gpt-tokenizer": "^3.4.0",
     "marked": "^17.0.4",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.1.18",
+    "xss": "1.0.17"
   },
   "devDependencies": {
     "@resvg/resvg-js": "^2.6.2",
