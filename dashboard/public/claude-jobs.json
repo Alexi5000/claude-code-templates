@@ -1,13 +1,79 @@
 {
-  "lastUpdated": "2026-10-26T03:22:22.895339+00:00",
-  "totalJobs": 101,
+  "lastUpdated": "2026-10-31T03:16:41.064251+00:00",
+  "totalJobs": 102,
   "sources": [
     "Anthropic",
     "HackerNews",
-    "RemoteOK",
-    "WeWorkRemotely"
+    "RemoteOK"
   ],
   "jobs": [
+    {
+      "id": "rok-remote-cloud-engineer-automation-smile-digital-health-1137600",
+      "company": "Smile Digital Health",
+      "position": "Cloud Engineer Automation",
+      "location": "Remote",
+      "remote": true,
+      "salary": "",
+      "description": "Working for a company like Smile Digital Health means supporting our mandate for #BetterGlobalHealth . We strive towards this goal every day, and the results can be seen in the impact of our innovative health data platform and data management solutions, which are used in over 20 countries. We were...",
+      "applyUrl": "https://remoteOK.com/remote-jobs/remote-cloud-engineer-automation-smile-digital-health-1137600",
+      "source": "RemoteOK",
+      "sourceUrl": "https://remoteok.com/remote-jobs/remote-cloud-engineer-automation-smile-digital-health-1137600",
+      "postedAt": "2026-10-29T16:00:03+00:00",
+      "tags": [
+        "Python",
+        "Go",
+        "PostgreSQL",
+        "Azure",
+        "Kubernetes",
+        "Claude Code",
+        "Rails"
+      ],
+      "companyIcon": ""
+    },
+    {
+      "id": "anth-5464493008",
+      "company": "Anthropic",
+      "position": "Tech Lead Manager, Core Apps Data Scientist",
+      "location": "New York City, NY; San Francisco, CA | New York City, NY; Seattle, WA",
+      "remote": false,
+      "salary": "",
+      "description": "As part of our growing Data Science and Analytics team, you will play an instrumental role in our company’s mission of building safe and beneficial artificial intelligence by driving data-informed decision making across our organization. You bring experience from high-bar teams and are eager to...",
+      "applyUrl": "https://job-boards.greenhouse.io/anthropic/jobs/5464493008",
+      "source": "Anthropic",
+      "sourceUrl": "https://job-boards.greenhouse.io/anthropic/jobs/5464493008",
+      "postedAt": "2026-10-27T17:37:35-04:00",
+      "tags": [
+        "Python",
+        "Rust",
+        "AWS",
+        "Claude Code",
+        "Anthropic"
+      ],
+      "companyIcon": "https://www.anthropic.com/favicon.ico"
+    },
+    {
+      "id": "rok-remote-senior-software-engineer-latam-wagmo-1137572",
+      "company": "Wagmo",
+      "position": "Senior Software Engineer LATAM",
+      "location": "Remote",
+      "remote": true,
+      "salary": "",
+      "description": "Senior Software Engineer Remote role based in Latin America. Must work at least 6 hours of overlap with US Eastern Time. What We Do Wagmo is a modern pet healthcare company built around how pet parents actually care for their pets. We partner with employers to provide a complete approach to pet and...",
+      "applyUrl": "https://remoteOK.com/remote-jobs/remote-senior-software-engineer-latam-wagmo-1137572",
+      "source": "RemoteOK",
+      "sourceUrl": "https://remoteok.com/remote-jobs/remote-senior-software-engineer-latam-wagmo-1137572",
+      "postedAt": "2026-10-26T08:00:06+00:00",
+      "tags": [
+        "React",
+        "TypeScript",
+        "Python",
+        "Rust",
+        "Go",
+        "Claude Code",
+        "Django"
+      ],
+      "companyIcon": ""
+    },
     {
       "id": "anth-5455627008",
       "company": "Anthropic",
@@ -570,28 +636,6 @@
       "postedAt": "2026-10-02T22:11:43+00:00",
       "tags": [
         "Claude Code"
-      ],
-      "companyIcon": ""
-    },
-    {
-      "id": "wwr-humane-world-for-animals-web-designer-ecrm-1",
-      "company": "Humane World for Animals",
-      "position": "Web Designer, eCRM",
-      "location": "Remote",
-      "remote": true,
-      "salary": "$80,000 – 115,000",
-      "description": "Headquarters: Humane World for Animals URL: https://humaneworld.org The general salary range for this full-time position is $80,000 – 115,000. Salary offers will be commensurate with experience, qualifications, skills, training and education. Humane World for Animals, a global leader in animal...",
-      "applyUrl": "https://weworkremotely.com/remote-jobs/humane-world-for-animals-web-designer-ecrm-1",
-      "source": "WeWorkRemotely",
-      "sourceUrl": "https://weworkremotely.com/remote-jobs/humane-world-for-animals-web-designer-ecrm-1",
-      "postedAt": "2026-10-02T17:39:45+00:00",
-      "tags": [
-        "JavaScript",
-        "AWS",
-        "Claude Code",
-        "Copilot",
-        "Rails",
-        "MySQL"
       ],
       "companyIcon": ""
     },
@@ -1216,27 +1260,6 @@
       "companyIcon": "https://www.anthropic.com/favicon.ico"
     },
     {
-      "id": "anth-5390894008",
-      "company": "Anthropic",
-      "position": "Manager Applied AI Architecture, Financial Services",
-      "location": "New York City, NY; San Francisco, CA | New York City, NY",
-      "remote": false,
-      "salary": "",
-      "description": "As manager of the Financial Services Solutions Architect team within Applied AI at Anthropic, you will drive the adoption of frontier AI in partnership with the rest of the go to market organization. We work with customers that include companies across banking, insurance, asset management, and...",
-      "applyUrl": "https://job-boards.greenhouse.io/anthropic/jobs/5390894008",
-      "source": "Anthropic",
-      "sourceUrl": "https://job-boards.greenhouse.io/anthropic/jobs/5390894008",
-      "postedAt": "2026-08-20T21:55:46-04:00",
-      "tags": [
-        "Rust",
-        "Go",
-        "AWS",
-        "Claude Code",
-        "Anthropic"
-      ],
-      "companyIcon": "https://www.anthropic.com/favicon.ico"
-    },
-    {
       "id": "anth-5390890008",
       "company": "Anthropic",
       "position": "Manager Applied AI Architecture, Healthcare & Life Sciences",
@@ -1379,29 +1402,6 @@
         "GCP",
         "Azure",
         "Claude Code",
-        "Anthropic"
-      ],
-      "companyIcon": "https://www.anthropic.com/favicon.ico"
-    },
-    {
-      "id": "anth-5391151008",
-      "company": "Anthropic",
-      "position": "AI Operations Engineer, Partnerships",
-      "location": "San Francisco, CA",
-      "remote": false,
-      "salary": "",
-      "description": "Our Partner Experience team is building an AI-native operating model. We already run a growing set of partner-facing systems: a partner portal, CRM workflows, enablement and certification platforms, and the trackers that connect them. The systems lead on our team owns that foundation — the portal,...",
-      "applyUrl": "https://job-boards.greenhouse.io/anthropic/jobs/5391151008",
-      "source": "Anthropic",
-      "sourceUrl": "https://job-boards.greenhouse.io/anthropic/jobs/5391151008",
-      "postedAt": "2026-08-14T18:07:17-04:00",
-      "tags": [
-        "JavaScript",
-        "Python",
-        "Rust",
-        "AWS",
-        "Claude Code",
-        "Rails",
         "Anthropic"
       ],
       "companyIcon": "https://www.anthropic.com/favicon.ico"
@@ -1912,6 +1912,27 @@
       "tags": [
         "React",
         "TypeScript",
+        "Rust",
+        "AWS",
+        "Claude Code",
+        "Rails",
+        "Anthropic"
+      ],
+      "companyIcon": "https://www.anthropic.com/favicon.ico"
+    },
+    {
+      "id": "anth-5174755008",
+      "company": "Anthropic",
+      "position": "Staff+ Software Engineer, Backend",
+      "location": "San Francisco, CA | New York City, NY",
+      "remote": false,
+      "salary": "",
+      "description": "Anthropic is looking for experienced, product-minded engineers to own the backend systems that power user experiences across our API, Claude Code, and Claude.ai. You'll independently scope complex, multi-month projects through ambiguous problem spaces and lead peers through technical and product...",
+      "applyUrl": "https://job-boards.greenhouse.io/anthropic/jobs/5174755008",
+      "source": "Anthropic",
+      "sourceUrl": "https://job-boards.greenhouse.io/anthropic/jobs/5174755008",
+      "postedAt": "2026-04-08T14:57:22-04:00",
+      "tags": [
         "Rust",
         "AWS",
         "Claude Code",
