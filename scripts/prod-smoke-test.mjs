@@ -297,9 +297,13 @@ for (const r of results) {
 }
 console.log(`\n${results.length - failed.length}/${results.length} passed against ${base}`);
 
+// Markdown table cell: escape backslashes before pipes so a detail ending in
+// `\` cannot un-escape the next delimiter, and keep rows on one line.
+const mdCell = (v) => String(v).slice(0, 160).replace(/\\/g, '\\\\').replace(/\|/g, '\\|').replace(/[\r\n]+/g, ' ');
+
 if (process.env.GITHUB_STEP_SUMMARY) {
   const { appendFileSync } = await import('node:fs');
-  const rows = results.map((r) => `| ${r.ok ? '✅' : '❌'} | ${r.section} | ${r.name} | ${String(r.detail).replace(/\|/g, '\\|').slice(0, 160)} |`);
+  const rows = results.map((r) => `| ${r.ok ? '✅' : '❌'} | ${r.section} | ${r.name} | ${mdCell(r.detail)} |`);
   appendFileSync(
     process.env.GITHUB_STEP_SUMMARY,
     `## Production smoke test\n\n${results.length - failed.length}/${results.length} passed against ${base}\n\n| | Area | Check | Detail |\n|---|---|---|---|\n${rows.join('\n')}\n`,
