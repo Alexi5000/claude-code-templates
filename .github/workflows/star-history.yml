@@ -11,6 +11,8 @@ permissions:
 
 jobs:
   update-star-history:
+    # The stargazers API only answers the repo's own token, so forks skip this.
+    if: github.repository == 'davila7/claude-code-templates'
     runs-on: ubuntu-latest
 
     steps:
