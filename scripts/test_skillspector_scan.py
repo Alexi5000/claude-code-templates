@@ -46,6 +46,24 @@ class ScannerTests(unittest.TestCase):
         self.assertEqual(finding["locations"][0]["physicalLocation"]["artifactLocation"]["uri"], "fixture/script.py")
         self.assertEqual(finding["locations"][0]["physicalLocation"]["region"]["startLine"], 12)
 
+    def test_sarif_rules_carry_metadata(self):
+        result = {"path": "skill", "status": "ok", "score": 80, "issues": [
+            {"rule_id": "PE3", "severity": "MEDIUM", "category": "Privilege Escalation", "pattern": "credential path access", "message": "Reads ~/.ssh", "file": "a.py"}]}
+        rules = scanner._aggregate_sarif([result], 50)["runs"][0]["tool"]["driver"]["rules"]
+        self.assertEqual([r["id"] for r in rules], ["PE3"])
+        self.assertEqual(rules[0]["name"], "Privilege Escalation")
+        self.assertTrue(rules[0]["shortDescription"]["text"])
+        self.assertTrue(rules[0]["help"]["text"])
+
+    def test_sarif_threshold_drops_low_findings_on_low_score_skills(self):
+        low = {"path": "low", "status": "ok", "score": 10, "issues": [
+            {"rule_id": "E1", "severity": "LOW", "message": "minor"},
+            {"rule_id": "PE2", "severity": "HIGH", "message": "serious"}]}
+        high = {"path": "high", "status": "ok", "score": 90, "issues": [{"rule_id": "E1", "severity": "LOW", "message": "minor"}]}
+        run = scanner._aggregate_sarif([low, high], 50)["runs"][0]
+        self.assertEqual(sorted((r["ruleId"], r["locations"][0]["physicalLocation"]["artifactLocation"]["uri"]) for r in run["results"]), [("E1", "high"), ("PE2", "low")])
+        self.assertEqual(len(scanner._aggregate_sarif([low, high])["runs"][0]["results"]), 3)
+
     def test_unsuccessful_or_malformed_report_is_not_a_clean_scan(self):
         for report in ({"execution_successful": False, "risk_assessment": {"score": 0}}, {}, [], {"risk_assessment": {"score": -1}}):
             with self.subTest(report=report), patch.object(scanner.subprocess, "run", return_value=subprocess.CompletedProcess([], 0, stdout=json.dumps(report))), patch.object(scanner, "reviewed_baseline_args", return_value=[]):
