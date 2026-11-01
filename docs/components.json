@@ -27274,6 +27274,27 @@
         "errorCount": 0,
         "warningCount": 0,
         "lastValidated": null
+      },
+      "skillspector": {
+        "score": 7,
+        "severity": "LOW",
+        "recommendation": "SAFE",
+        "issueCount": 1,
+        "analysis": "complete",
+        "findings": [
+          {
+            "id": "TR2",
+            "category": "Trigger Abuse",
+            "severity": "MEDIUM",
+            "title": "Shadow Command Trigger",
+            "file": "SKILL.md",
+            "line": 1,
+            "count": 1
+          }
+        ],
+        "hash": "8ee9899b47c80b9b",
+        "version": "2.12.0",
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -28899,6 +28920,17 @@
         "errorCount": 0,
         "warningCount": 0,
         "lastValidated": null
+      },
+      "skillspector": {
+        "score": 0,
+        "severity": "LOW",
+        "recommendation": "SAFE",
+        "issueCount": 0,
+        "analysis": "complete",
+        "findings": [],
+        "hash": "ac9aa861c46ab342",
+        "version": "2.12.0",
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -28920,6 +28952,17 @@
         "errorCount": 0,
         "warningCount": 0,
         "lastValidated": null
+      },
+      "skillspector": {
+        "score": 0,
+        "severity": "LOW",
+        "recommendation": "SAFE",
+        "issueCount": 0,
+        "analysis": "complete",
+        "findings": [],
+        "hash": "666cc04f65e35ef1",
+        "version": "2.12.0",
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -35447,9 +35490,9 @@
             "count": 1
           }
         ],
-        "hash": "70a843810e2caecb",
+        "hash": "a8623c62c7e230a0",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -35514,9 +35557,9 @@
             "count": 1
           }
         ],
-        "hash": "ea48f41d84b927ca",
+        "hash": "49c0531c8ae11cd8",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -35572,9 +35615,9 @@
             "count": 1
           }
         ],
-        "hash": "04c6dc8d99b32f07",
+        "hash": "424c5882f7afb15b",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -35640,9 +35683,9 @@
             "count": 1
           }
         ],
-        "hash": "cb08f0648ba88daa",
+        "hash": "a83a22aad0152f0f",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -36143,9 +36186,9 @@
         "issueCount": 0,
         "analysis": "complete",
         "findings": [],
-        "hash": "7b9decf4205f0e3c",
+        "hash": "89155f318cd845f7",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -36190,9 +36233,9 @@
         "issueCount": 0,
         "analysis": "complete",
         "findings": [],
-        "hash": "4dedfa28cc9e79ec",
+        "hash": "e3e43dd19bc14b0f",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -36458,9 +36501,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "f7e4b748ede9644c",
+        "hash": "212a279765effbb3",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -36506,10 +36549,10 @@
         "references/tutorials.md"
       ],
       "skillspector": {
-        "score": 47,
-        "severity": "MEDIUM",
-        "recommendation": "CAUTION",
-        "issueCount": 9,
+        "score": 53,
+        "severity": "HIGH",
+        "recommendation": "DO_NOT_INSTALL",
+        "issueCount": 10,
         "analysis": "partial",
         "findings": [
           {
@@ -36549,18 +36592,18 @@
             "count": 1
           },
           {
-            "id": "EA3",
-            "category": "Excessive Agency",
-            "severity": "LOW",
-            "title": "Scope Creep",
-            "file": "references/mii.md",
-            "line": 25,
+            "id": "RA2",
+            "category": "Rogue Agent",
+            "severity": "MEDIUM",
+            "title": "Session Persistence",
+            "file": "references/tutorials.md",
+            "line": 5453,
             "count": 1
           }
         ],
-        "hash": "4863a734a6549511",
+        "hash": "70cb284e26a58c3f",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -36625,9 +36668,9 @@
             "count": 1
           }
         ],
-        "hash": "dbb4101f4760d4c5",
+        "hash": "522396120d2a3839",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -36708,9 +36751,9 @@
             "count": 5
           }
         ],
-        "hash": "f7a58e6ecdb9acdf",
+        "hash": "c214d4a9f30386fc",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -36756,9 +36799,9 @@
         "issueCount": 0,
         "analysis": "complete",
         "findings": [],
-        "hash": "c95315de34268fd4",
+        "hash": "2283d54ee8608123",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -36812,9 +36855,9 @@
             "count": 1
           }
         ],
-        "hash": "0612f868f0bf56ef",
+        "hash": "6850429754f3c59f",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -36858,9 +36901,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "24371c02e566cfb4",
+        "hash": "2247a9771bb901aa",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -36944,9 +36987,9 @@
             "count": 1
           }
         ],
-        "hash": "8579ccbbee153d48",
+        "hash": "9d4582488b85a708",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -37003,9 +37046,9 @@
             "count": 1
           }
         ],
-        "hash": "a5c0c85db3ef517a",
+        "hash": "277c85b2fc9d68be",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -37050,9 +37093,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "7c21525239f1ac66",
+        "hash": "7a3ad9745abfeaf2",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -37099,9 +37142,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "2dcc7b9201da34d9",
+        "hash": "529d4f4ffbe56d03",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -37146,9 +37189,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "9fffa1cb966132b1",
+        "hash": "8f39576c1499632d",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -37206,42 +37249,42 @@
             "id": "RP1",
             "category": "MCP Rug Pull",
             "severity": "MEDIUM",
-            "title": "Docker image referenced without tag or digest: 'docker pull ghcr.io/bigcode-project/evaluation-harness-multiple'.",
+            "title": "Docker image references without a specific tag (:latest is implicit) or digest (@sha256:...) can be silently replaced by a malicious image.",
             "file": "SKILL.md",
             "line": 169,
+            "count": 4
+          },
+          {
+            "id": "RP1",
+            "category": "MCP Rug Pull",
+            "severity": "MEDIUM",
+            "title": "Docker image references without a specific tag (:latest is implicit) or digest (@sha256:...) can be silently replaced by a malicious image.",
+            "file": "references/benchmarks.md",
+            "line": 137,
             "count": 2
           },
           {
             "id": "RP1",
             "category": "MCP Rug Pull",
             "severity": "MEDIUM",
-            "title": "Docker image referenced without tag or digest: 'docker pull ghcr.io/bigcode-project/evaluation-harness-multiple'.",
-            "file": "references/benchmarks.md",
-            "line": 137,
-            "count": 1
-          },
-          {
-            "id": "RP1",
-            "category": "MCP Rug Pull",
-            "severity": "MEDIUM",
-            "title": "Docker image referenced without tag or digest: 'docker pull ghcr.io/bigcode-project/evaluation-harness-multiple'.",
+            "title": "Docker image references without a specific tag (:latest is implicit) or digest (@sha256:...) can be silently replaced by a malicious image.",
             "file": "references/issues.md",
             "line": 164,
-            "count": 1
+            "count": 4
           },
           {
-            "id": "RP1",
-            "category": "MCP Rug Pull",
+            "id": "PE2",
+            "category": "Privilege Escalation",
             "severity": "MEDIUM",
-            "title": "Docker image referenced without tag or digest: 'docker run -v'.",
-            "file": "SKILL.md",
-            "line": 172,
-            "count": 1
+            "title": "Sudo/Root Execution",
+            "file": "references/issues.md",
+            "line": 320,
+            "count": 2
           }
         ],
-        "hash": "107d06ea4fd07ec2",
+        "hash": "47b1a27f0523b7bd",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -37325,9 +37368,9 @@
             "count": 3
           }
         ],
-        "hash": "b96d5852278c570f",
+        "hash": "442f72d15ce89fb2",
         "version": "2.12.0",
-        "scannedAt": "2026-10-25T13:41:09Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -37372,7 +37415,7 @@
         "score": 73,
         "severity": "HIGH",
         "recommendation": "DO_NOT_INSTALL",
-        "issueCount": 7,
+        "issueCount": 8,
         "analysis": "partial",
         "findings": [
           {
@@ -37399,8 +37442,8 @@
             "severity": "MEDIUM",
             "title": "Sudo/Root Execution",
             "file": "references/execution-backends.md",
-            "line": 317,
-            "count": 3
+            "line": 336,
+            "count": 4
           },
           {
             "id": "E1",
@@ -37412,9 +37455,9 @@
             "count": 1
           }
         ],
-        "hash": "5f4f10e723ef9645",
+        "hash": "00bdfa2bde6ed421",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -37461,7 +37504,7 @@
         "score": 100,
         "severity": "CRITICAL",
         "recommendation": "DO_NOT_INSTALL",
-        "issueCount": 17,
+        "issueCount": 18,
         "analysis": "partial",
         "findings": [
           {
@@ -37510,9 +37553,9 @@
             "count": 1
           }
         ],
-        "hash": "ba41ff91ec97c8d1",
+        "hash": "ad3103c75b189591",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -37590,9 +37633,9 @@
             "count": 1
           }
         ],
-        "hash": "d2fcf0ff762ffe9f",
+        "hash": "9b0037faaa9daac8",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -37636,9 +37679,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "212a1429dce04893",
+        "hash": "03af4807f15b3343",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -38001,9 +38044,9 @@
             "count": 1
           }
         ],
-        "hash": "bdcaa22527dc0b8d",
+        "hash": "3ab08a120054abca",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -38071,7 +38114,7 @@
             "id": "RP1",
             "category": "MCP Rug Pull",
             "severity": "MEDIUM",
-            "title": "Docker image referenced without tag or digest: 'docker run --gpus'.",
+            "title": "Docker image references without a specific tag (:latest is implicit) or digest (@sha256:...) can be silently replaced by a malicious image.",
             "file": "references/deployment.md",
             "line": 82,
             "count": 3
@@ -38095,9 +38138,9 @@
             "count": 1
           }
         ],
-        "hash": "a7a7a82604eb0ee7",
+        "hash": "fdfe89f2876c344d",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -38190,9 +38233,9 @@
             "count": 1
           }
         ],
-        "hash": "ef8c5c8ee3f9b6a8",
+        "hash": "3c202dac0627ea56",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -38275,9 +38318,9 @@
             "count": 1
           }
         ],
-        "hash": "a7f2f8e653fd1dd8",
+        "hash": "b86640768048b0df",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -38314,7 +38357,7 @@
         "score": 100,
         "severity": "CRITICAL",
         "recommendation": "DO_NOT_INSTALL",
-        "issueCount": 20,
+        "issueCount": 23,
         "analysis": "complete",
         "findings": [
           {
@@ -38363,9 +38406,9 @@
             "count": 1
           }
         ],
-        "hash": "6732b9236bfc6e47",
+        "hash": "103c38a673feb3a9",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -38416,9 +38459,9 @@
             "count": 1
           }
         ],
-        "hash": "7f9423a6ce1afa5d",
+        "hash": "4c81e8904969b4e4",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -38487,9 +38530,9 @@
             "count": 1
           }
         ],
-        "hash": "5e8462a990eaaee9",
+        "hash": "0ebf589f2258fd33",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -39942,9 +39985,9 @@
             "count": 1
           }
         ],
-        "hash": "5d44e3f3ff8ec61a",
+        "hash": "19a8c98bcbed3254",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -39985,9 +40028,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "45a7fb3d6a542e24",
+        "hash": "7270ef391e0f9c8d",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -40028,9 +40071,9 @@
         "issueCount": 0,
         "analysis": "complete",
         "findings": [],
-        "hash": "4b7838a4b0f37a2a",
+        "hash": "149f24ea396f8fbf",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -40070,9 +40113,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "206d95f801cd5c4d",
+        "hash": "70815dd41053c73b",
         "version": "2.12.0",
-        "scannedAt": "2026-10-25T13:41:09Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -40322,9 +40365,9 @@
             "count": 1
           }
         ],
-        "hash": "0260211ef60ca627",
+        "hash": "cedc7a9350357c47",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -40379,9 +40422,9 @@
             "count": 1
           }
         ],
-        "hash": "718f544d5c6e1506",
+        "hash": "5fecde7beb77fef5",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -40428,9 +40471,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "55bf6ef9bbcf318f",
+        "hash": "9534a33c68637860",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -40479,9 +40522,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "fc6779674b61b39c",
+        "hash": "554665b36e583367",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -40536,9 +40579,9 @@
             "count": 1
           }
         ],
-        "hash": "9efd0bc01124c5b5",
+        "hash": "77d8b1f6317d76bf",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -40583,9 +40626,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "29f6f88f5c2539f1",
+        "hash": "ad7a730b6c9b0a54",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -40640,9 +40683,9 @@
             "count": 1
           }
         ],
-        "hash": "e5626209afc8083e",
+        "hash": "a11fecffbec340d2",
         "version": "2.12.0",
-        "scannedAt": "2026-10-25T13:41:09Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -40689,9 +40732,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "4186f2375150e0e1",
+        "hash": "de578dbefe44ddee",
         "version": "2.12.0",
-        "scannedAt": "2026-10-25T13:41:09Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -40741,9 +40784,9 @@
             "count": 1
           }
         ],
-        "hash": "7a80e70d7e8c0702",
+        "hash": "cb06beecf2b275b2",
         "version": "2.12.0",
-        "scannedAt": "2026-10-25T13:41:09Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -40783,9 +40826,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "5f8679405c74ad7c",
+        "hash": "30c85b3189a2ba78",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -40828,9 +40871,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "7da10d5de4f1d3cf",
+        "hash": "f529f7fb86fb2e00",
         "version": "2.12.0",
-        "scannedAt": "2026-10-25T13:41:09Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -40874,9 +40917,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "b4b5d5e6505c487b",
+        "hash": "45bec374d5f16974",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -40916,9 +40959,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "f0f79360dddb0586",
+        "hash": "ec3bb2a6f2c9e941",
         "version": "2.12.0",
-        "scannedAt": "2026-10-25T13:41:09Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -40953,10 +40996,10 @@
         "references/troubleshooting.md"
       ],
       "skillspector": {
-        "score": 52,
+        "score": 58,
         "severity": "HIGH",
         "recommendation": "DO_NOT_INSTALL",
-        "issueCount": 5,
+        "issueCount": 6,
         "analysis": "partial",
         "findings": [
           {
@@ -40987,6 +41030,15 @@
             "count": 1
           },
           {
+            "id": "RA2",
+            "category": "Rogue Agent",
+            "severity": "MEDIUM",
+            "title": "Session Persistence",
+            "file": "references/troubleshooting.md",
+            "line": 254,
+            "count": 1
+          },
+          {
             "id": "TM1",
             "category": "Tool Misuse",
             "severity": "LOW",
@@ -40996,9 +41048,9 @@
             "count": 2
           }
         ],
-        "hash": "82107a1659f5fa9f",
+        "hash": "54273901e8deaafc",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -41052,9 +41104,9 @@
             "count": 1
           }
         ],
-        "hash": "f11ec65c5d03b9ea",
+        "hash": "b352329cf87750fa",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -41117,9 +41169,9 @@
             "count": 1
           }
         ],
-        "hash": "d78628e1c2811bfd",
+        "hash": "ad38aeac05144107",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -41175,7 +41227,7 @@
             "id": "RP1",
             "category": "MCP Rug Pull",
             "severity": "MEDIUM",
-            "title": "Docker image referenced without tag or digest: 'docker run -p'.",
+            "title": "Docker image references without a specific tag (:latest is implicit) or digest (@sha256:...) can be silently replaced by a malicious image.",
             "file": "SKILL.md",
             "line": 385,
             "count": 1
@@ -41184,7 +41236,7 @@
             "id": "RP1",
             "category": "MCP Rug Pull",
             "severity": "MEDIUM",
-            "title": "Docker image referenced without tag or digest: 'docker run -m'.",
+            "title": "Docker image references without a specific tag (:latest is implicit) or digest (@sha256:...) can be silently replaced by a malicious image.",
             "file": "references/troubleshooting.md",
             "line": 103,
             "count": 1
@@ -41208,9 +41260,9 @@
             "count": 3
           }
         ],
-        "hash": "86d9ee50c2a32266",
+        "hash": "5f46fe75c91648b2",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -41302,9 +41354,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "91bc433c505b8d2a",
+        "hash": "54fb7345b95b88a1",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -41351,9 +41403,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "09e6cc904c2e72e5",
+        "hash": "7dd17e3d1d01b5cd",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -41399,9 +41451,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "7004aa26f5f8fbe5",
+        "hash": "e85c939a5a737df6",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -41480,9 +41532,9 @@
             "count": 1
           }
         ],
-        "hash": "9a75c8287dbdbeac",
+        "hash": "60c06e916fefda9f",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -41547,9 +41599,9 @@
             "count": 1
           }
         ],
-        "hash": "f53c6b2423ba8766",
+        "hash": "8c3109aca4e212af",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -41590,9 +41642,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "d1d5d615399fd6e4",
+        "hash": "07cd72838d9398fb",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -41716,9 +41768,9 @@
             "count": 1
           }
         ],
-        "hash": "124d1e7b2cd6e046",
+        "hash": "3376f95bcdfd0786",
         "version": "2.12.0",
-        "scannedAt": "2026-10-25T13:41:09Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -41770,9 +41822,9 @@
             "count": 2
           }
         ],
-        "hash": "90a31a4674682c5c",
+        "hash": "48f2fb731ad0e1c3",
         "version": "2.12.0",
-        "scannedAt": "2026-10-25T13:41:09Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -41852,7 +41904,7 @@
             "id": "RP1",
             "category": "MCP Rug Pull",
             "severity": "MEDIUM",
-            "title": "Docker image referenced without tag or digest: 'docker run --runtime=nvidia'.",
+            "title": "Docker image references without a specific tag (:latest is implicit) or digest (@sha256:...) can be silently replaced by a malicious image.",
             "file": "SKILL.md",
             "line": 20,
             "count": 1
@@ -41861,15 +41913,15 @@
             "id": "RP1",
             "category": "MCP Rug Pull",
             "severity": "MEDIUM",
-            "title": "Docker image referenced without tag or digest: 'docker run --runtime=nvidia'.",
+            "title": "Docker image references without a specific tag (:latest is implicit) or digest (@sha256:...) can be silently replaced by a malicious image.",
             "file": "references/multi-node-training.md",
             "line": 16,
             "count": 2
           }
         ],
-        "hash": "f7c67636334903e5",
+        "hash": "bfeb9d5f6686be99",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -41932,9 +41984,9 @@
             "count": 1
           }
         ],
-        "hash": "154f6d8d059e28ae",
+        "hash": "b37052ab14f8fae0",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -41985,9 +42037,9 @@
             "count": 2
           }
         ],
-        "hash": "75b84d3513f5244e",
+        "hash": "9be74e5e6cf7481f",
         "version": "2.12.0",
-        "scannedAt": "2026-10-25T13:41:09Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -42029,9 +42081,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "440a5bd1e09c94dc",
+        "hash": "1c4770b8617d08de",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -42079,9 +42131,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "349617052f44cdc5",
+        "hash": "2d1c995920db5e55",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -42132,9 +42184,9 @@
             "count": 1
           }
         ],
-        "hash": "d9126712545257e8",
+        "hash": "cfe51066bce1ed1b",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -42279,9 +42331,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "a630f72af8590959",
+        "hash": "702d46b9aa209bf7",
         "version": "2.12.0",
-        "scannedAt": "2026-10-25T13:41:09Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -42326,9 +42378,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "1d19be1827bb5c08",
+        "hash": "12dcd27c6c4bc1e0",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -42375,9 +42427,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "6274ad3c5363423e",
+        "hash": "baaf71d2efe21d6e",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -42451,9 +42503,9 @@
             "count": 1
           }
         ],
-        "hash": "a43fe6bceec9b898",
+        "hash": "15d234acd2e39cdf",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -42693,9 +42745,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "a126b51e37c477f3",
+        "hash": "207f5cc918718f0c",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -42773,9 +42825,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "aba619933a44ec23",
+        "hash": "88cd55ebedbaf01f",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -42852,9 +42904,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "1cadba926043541f",
+        "hash": "e64b6efd542f019c",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -42929,7 +42981,7 @@
             "id": "RP1",
             "category": "MCP Rug Pull",
             "severity": "MEDIUM",
-            "title": "Docker image referenced without tag or digest: 'docker run -p'.",
+            "title": "Docker image references without a specific tag (:latest is implicit) or digest (@sha256:...) can be silently replaced by a malicious image.",
             "file": "SKILL.md",
             "line": 48,
             "count": 2
@@ -42938,15 +42990,15 @@
             "id": "RP1",
             "category": "MCP Rug Pull",
             "severity": "MEDIUM",
-            "title": "Docker image referenced without tag or digest: 'docker run -p'.",
+            "title": "Docker image references without a specific tag (:latest is implicit) or digest (@sha256:...) can be silently replaced by a malicious image.",
             "file": "references/troubleshooting.md",
             "line": 26,
-            "count": 1
+            "count": 2
           }
         ],
-        "hash": "136ad4ec8524daa5",
+        "hash": "baca3c77b1736965",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -42990,9 +43042,9 @@
         "issueCount": 0,
         "analysis": "complete",
         "findings": [],
-        "hash": "5c1b91a71d3a314c",
+        "hash": "77da9ef49a411f9c",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -43066,9 +43118,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "80c3118968892ace",
+        "hash": "2fdbbfb946fdd753",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -43128,9 +43180,9 @@
             "count": 1
           }
         ],
-        "hash": "081edaf4256a806b",
+        "hash": "bead5ee6d539bb3b",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -43200,9 +43252,9 @@
             "count": 2
           }
         ],
-        "hash": "f3b5275a301e0dbd",
+        "hash": "5a7eebf91ffeda27",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -43305,9 +43357,9 @@
             "count": 1
           }
         ],
-        "hash": "a2e0d072f8c8c6fd",
+        "hash": "71435c543086a00b",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -43371,9 +43423,9 @@
             "count": 1
           }
         ],
-        "hash": "0e128ad702b6aad6",
+        "hash": "936c2c9242f16aaa",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -43942,9 +43994,9 @@
         "issueCount": 0,
         "analysis": "complete",
         "findings": [],
-        "hash": "b8f0175af6318b5f",
+        "hash": "0e4c4377ab316da9",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -43977,9 +44029,9 @@
         "issueCount": 0,
         "analysis": "complete",
         "findings": [],
-        "hash": "b8f0175af6318b5f",
+        "hash": "b0abb898169e34d2",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -46494,9 +46546,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "9ba8b99acf8a3b35",
+        "hash": "24def5e4d416737b",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -50495,13 +50547,13 @@
       "skillspector": {
         "score": 0,
         "severity": "LOW",
-        "recommendation": "SAFE",
+        "recommendation": "CAUTION",
         "issueCount": 0,
-        "analysis": "complete",
+        "analysis": "partial",
         "findings": [],
-        "hash": "3682bde98145886e",
+        "hash": "6a6ad1ee295d348a",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -50740,9 +50792,9 @@
             "count": 1
           }
         ],
-        "hash": "4e274ad122377d1b",
+        "hash": "9beb5ba82bd359ee",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -50773,9 +50825,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "9ef0536053aa7994",
+        "hash": "48bf04677965b896",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -50816,9 +50868,9 @@
             "count": 1
           }
         ],
-        "hash": "f20ccf50dab38e3a",
+        "hash": "1fbdc11ccadb368b",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -50913,9 +50965,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "749285472ad396e8",
+        "hash": "b751f0cbb8d8e388",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -50989,9 +51041,9 @@
             "count": 1
           }
         ],
-        "hash": "f590891296654c48",
+        "hash": "9419c85e99b2ad63",
         "version": "2.12.0",
-        "scannedAt": "2026-10-24T02:20:12Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -57189,9 +57241,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "a1f89440e1a1dc62",
+        "hash": "1bcd22f8f91f0d24",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -57639,7 +57691,7 @@
             "id": "RP1",
             "category": "MCP Rug Pull",
             "severity": "MEDIUM",
-            "title": "MCP server referenced without pinned version: 'npx svgo'.",
+            "title": "npx commands without a version suffix (e.g. @1.0.0) create a rug-pull risk if the upstream server is compromised and publishes a malicious update.",
             "file": "AGENTS.md",
             "line": 1406,
             "count": 1
@@ -57648,15 +57700,15 @@
             "id": "RP1",
             "category": "MCP Rug Pull",
             "severity": "MEDIUM",
-            "title": "MCP server referenced without pinned version: 'npx svgo'.",
+            "title": "npx commands without a version suffix (e.g. @1.0.0) create a rug-pull risk if the upstream server is compromised and publishes a malicious update.",
             "file": "rules/rendering-svg-precision.md",
             "line": 27,
             "count": 1
           }
         ],
-        "hash": "120db97dfa2e384f",
+        "hash": "cffd3c23a02833b8",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -59421,9 +59473,9 @@
             "count": 1
           }
         ],
-        "hash": "8bc7006f978d63c6",
+        "hash": "50d602d0fb216d87",
         "version": "2.12.0",
-        "scannedAt": "2026-10-25T13:41:09Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -61555,25 +61607,34 @@
         "scripts/fill_pdf_form_with_annotations.py"
       ],
       "skillspector": {
-        "score": 7,
+        "score": 15,
         "severity": "LOW",
         "recommendation": "CAUTION",
-        "issueCount": 1,
+        "issueCount": 2,
         "analysis": "partial",
         "findings": [
+          {
+            "id": "TR3",
+            "category": "Trigger Abuse",
+            "severity": "MEDIUM",
+            "title": "Keyword Baiting Trigger",
+            "file": "SKILL.md",
+            "line": 1,
+            "count": 1
+          },
           {
             "id": "LP3",
             "category": "MCP Least Privilege",
             "severity": "MEDIUM",
-            "title": "Skill declares no tool scope ('permissions' or 'allowed-tools') but code capabilities were detected: file_read, file_write.",
+            "title": "Without declared permissions the skill's intent is opaque and cannot be validated.",
             "file": "SKILL.md",
             "line": 1,
             "count": 1
           }
         ],
-        "hash": "4f72d2e69d029233",
+        "hash": "e73ea52ee6d727c2",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -61698,25 +61759,34 @@
         "scripts/fill_pdf_form_with_annotations.py"
       ],
       "skillspector": {
-        "score": 7,
+        "score": 15,
         "severity": "LOW",
         "recommendation": "CAUTION",
-        "issueCount": 1,
+        "issueCount": 2,
         "analysis": "partial",
         "findings": [
+          {
+            "id": "TR3",
+            "category": "Trigger Abuse",
+            "severity": "MEDIUM",
+            "title": "Keyword Baiting Trigger",
+            "file": "SKILL.md",
+            "line": 1,
+            "count": 1
+          },
           {
             "id": "LP3",
             "category": "MCP Least Privilege",
             "severity": "MEDIUM",
-            "title": "Skill declares no tool scope ('permissions' or 'allowed-tools') but code capabilities were detected: file_read, file_write.",
+            "title": "Without declared permissions the skill's intent is opaque and cannot be validated.",
             "file": "SKILL.md",
             "line": 1,
             "count": 1
           }
         ],
-        "hash": "bec7c5d855b62314",
+        "hash": "d6a1840d5aa2395c",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -63316,9 +63386,9 @@
         "issueCount": 0,
         "analysis": "complete",
         "findings": [],
-        "hash": "2f3b650ede9c830b",
+        "hash": "d258f6b75e96dacc",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -63351,9 +63421,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "038f52c6cabe6fea",
+        "hash": "1e4152a780fbfa2c",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -64109,9 +64179,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "cea5e45623e56b88",
+        "hash": "266a5112aa9048e6",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -66450,15 +66520,25 @@
         "scripts/nowait_processor.py"
       ],
       "skillspector": {
-        "score": 0,
-        "severity": "LOW",
+        "score": 25,
+        "severity": "MEDIUM",
         "recommendation": "CAUTION",
-        "issueCount": 0,
+        "issueCount": 1,
         "analysis": "partial",
-        "findings": [],
-        "hash": "dbcfda24c0b51298",
+        "findings": [
+          {
+            "id": "AE1",
+            "category": "analysis-evasion",
+            "severity": "HIGH",
+            "title": "Incomplete referenced artifact analysis",
+            "file": "SKILL.md",
+            "line": 146,
+            "count": 1
+          }
+        ],
+        "hash": "66a898de098adddf",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -66813,7 +66893,46 @@
       },
       "references": [
         "scripts/rex-claude.sh"
-      ]
+      ],
+      "skillspector": {
+        "score": 64,
+        "severity": "HIGH",
+        "recommendation": "DO_NOT_INSTALL",
+        "issueCount": 4,
+        "analysis": "partial",
+        "findings": [
+          {
+            "id": "AE1",
+            "category": "analysis-evasion",
+            "severity": "HIGH",
+            "title": "Incomplete referenced artifact analysis",
+            "file": "SKILL.md",
+            "line": 10,
+            "count": 1
+          },
+          {
+            "id": "AS1",
+            "category": "Agent Snooping",
+            "severity": "HIGH",
+            "title": "Agent Config Directory Access",
+            "file": "SKILL.md",
+            "line": 21,
+            "count": 2
+          },
+          {
+            "id": "RA2",
+            "category": "Rogue Agent",
+            "severity": "MEDIUM",
+            "title": "Session Persistence",
+            "file": "SKILL.md",
+            "line": 64,
+            "count": 1
+          }
+        ],
+        "hash": "d10b5ad7aa340d15",
+        "version": "2.12.0",
+        "scannedAt": "2026-11-01T20:13:55Z"
+      }
     },
     {
       "name": "ship-learn-next",
@@ -72584,9 +72703,9 @@
         "issueCount": 0,
         "analysis": "partial",
         "findings": [],
-        "hash": "d67fa1f110ba4da3",
+        "hash": "0e308aa32ef5a9ff",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -73174,9 +73293,9 @@
             "count": 1
           }
         ],
-        "hash": "d0590cecfe3d3118",
+        "hash": "1f66061045828f7d",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T20:13:55Z"
       }
     },
     {
@@ -85957,7 +86076,64 @@
         "hooks/hooks.json",
         "hooks/session-chats.tsx",
         "tests/session-chats.test.tsx"
-      ]
+      ],
+      "skillspector": {
+        "score": 85,
+        "severity": "CRITICAL",
+        "recommendation": "DO_NOT_INSTALL",
+        "issueCount": 6,
+        "analysis": "partial",
+        "findings": [
+          {
+            "id": "TM1",
+            "category": "Tool Misuse",
+            "severity": "HIGH",
+            "title": "Tool Parameter Abuse",
+            "file": "tests/session-chats.test.tsx",
+            "line": 132,
+            "count": 2
+          },
+          {
+            "id": "TM2",
+            "category": "Tool Misuse",
+            "severity": "HIGH",
+            "title": "Chaining Abuse",
+            "file": "tests/session-chats.test.tsx",
+            "line": 132,
+            "count": 1
+          },
+          {
+            "id": "RP1",
+            "category": "MCP Rug Pull",
+            "severity": "MEDIUM",
+            "title": "npx commands without a version suffix (e.g. @1.0.0) create a rug-pull risk if the upstream server is compromised and publishes a malicious update.",
+            "file": "README.md",
+            "line": 72,
+            "count": 1
+          },
+          {
+            "id": "RA2",
+            "category": "Rogue Agent",
+            "severity": "MEDIUM",
+            "title": "Session Persistence",
+            "file": "README.md",
+            "line": 63,
+            "count": 1
+          },
+          {
+            "id": "RA2",
+            "category": "Rogue Agent",
+            "severity": "MEDIUM",
+            "title": "Session Persistence",
+            "file": "hooks/chats.ts",
+            "line": 6,
+            "count": 1
+          }
+        ],
+        "hash": "7da4c3391e4844bb",
+        "version": "2.12.0",
+        "scannedAt": "2026-11-01T20:13:55Z"
+      }
     },
     {
       "name": "session-time-machine",
@@ -87553,7 +87729,37 @@
         "hooks/hooks.json",
         "hooks/spooky-season.tsx",
         "tests/spooky-season.test.tsx"
-      ]
+      ],
+      "skillspector": {
+        "score": 19,
+        "severity": "LOW",
+        "recommendation": "CAUTION",
+        "issueCount": 3,
+        "analysis": "partial",
+        "findings": [
+          {
+            "id": "AS3",
+            "category": "Agent Snooping",
+            "severity": "MEDIUM",
+            "title": "Skill Enumeration",
+            "file": "README.md",
+            "line": 52,
+            "count": 1
+          },
+          {
+            "id": "RP1",
+            "category": "MCP Rug Pull",
+            "severity": "MEDIUM",
+            "title": "npx commands without a version suffix (e.g. @1.0.0) create a rug-pull risk if the upstream server is compromised and publishes a malicious update.",
+            "file": "README.md",
+            "line": 24,
+            "count": 2
+          }
+        ],
+        "hash": "19a2ada8323e89d5",
+        "version": "2.12.0",
+        "scannedAt": "2026-11-01T20:13:55Z"
+      }
     },
     {
       "name": "stack-viewer",
@@ -87833,8 +88039,8 @@
       "language": "javascript-typescript",
       "description": "Angular-App with Javascript-Typescript",
       "files": [
-        ".claude/commands/components.md",
-        ".claude/commands/services.md"
+        ".claude/commands/services.md",
+        ".claude/commands/components.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=angular-app --yes",
       "downloads": 0
@@ -87847,10 +88053,10 @@
       "category": "languages",
       "description": "Common project template",
       "files": [
-        ".claude/commands/git-workflow.md",
+        "README.md",
         ".claude/commands/project-setup.md",
-        "CLAUDE.md",
-        "README.md"
+        ".claude/commands/git-workflow.md",
+        "CLAUDE.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=common --yes",
       "downloads": 0
@@ -87865,8 +88071,8 @@
       "description": "Django-App with Python",
       "files": [
         ".claude/commands/admin.md",
-        ".claude/commands/django-model.md",
         ".claude/commands/views.md",
+        ".claude/commands/django-model.md",
         "CLAUDE.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=django-app --yes",
@@ -87881,10 +88087,10 @@
       "language": "python",
       "description": "Fastapi-App with Python",
       "files": [
-        ".claude/commands/api-endpoints.md",
+        ".claude/commands/deployment.md",
         ".claude/commands/auth.md",
         ".claude/commands/database.md",
-        ".claude/commands/deployment.md",
+        ".claude/commands/api-endpoints.md",
         ".claude/commands/testing.md",
         "CLAUDE.md"
       ],
@@ -87900,11 +88106,11 @@
       "language": "python",
       "description": "Flask-App with Python",
       "files": [
-        ".claude/commands/app-factory.md",
-        ".claude/commands/blueprint.md",
-        ".claude/commands/database.md",
         ".claude/commands/deployment.md",
         ".claude/commands/flask-route.md",
+        ".claude/commands/blueprint.md",
+        ".claude/commands/app-factory.md",
+        ".claude/commands/database.md",
         ".claude/commands/testing.md",
         "CLAUDE.md"
       ],
@@ -87932,16 +88138,16 @@
       "category": "languages",
       "description": "Javascript-Typescript project template",
       "files": [
+        "README.md",
         ".claude/settings.json",
-        ".claude/commands/api-endpoint.md",
-        ".claude/commands/debug.md",
-        ".claude/commands/lint.md",
-        ".claude/commands/npm-scripts.md",
         ".claude/commands/refactor.md",
-        ".claude/commands/test.md",
+        ".claude/commands/npm-scripts.md",
         ".claude/commands/typescript-migrate.md",
-        "CLAUDE.md",
-        "README.md"
+        ".claude/commands/lint.md",
+        ".claude/commands/test.md",
+        ".claude/commands/debug.md",
+        ".claude/commands/api-endpoint.md",
+        "CLAUDE.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=javascript-typescript --yes",
       "downloads": 0
@@ -87955,10 +88161,10 @@
       "language": "javascript-typescript",
       "description": "Node-Api with Javascript-Typescript",
       "files": [
-        ".claude/commands/api-endpoint.md",
         ".claude/commands/database.md",
         ".claude/commands/middleware.md",
         ".claude/commands/route.md",
+        ".claude/commands/api-endpoint.md",
         "CLAUDE.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=node-api --yes",
@@ -88004,9 +88210,9 @@
       "language": "javascript-typescript",
       "description": "React-App with Javascript-Typescript",
       "files": [
-        ".claude/commands/component.md",
-        ".claude/commands/hooks.md",
         ".claude/commands/state-management.md",
+        ".claude/commands/hooks.md",
+        ".claude/commands/component.md",
         "CLAUDE.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=react-app --yes",
