@@ -34,15 +34,20 @@
 
 ```bash
 # Install a complete development stack
-npx claude-code-templates@latest --agent development-team/frontend-developer --command testing/generate-tests --mcp development/github-integration --yes
+npx claude-code-templates@latest --agent development-team/frontend-developer --command testing/generate-tests --mcp integration/github-integration --yes
 
 # Browse and install interactively
 npx claude-code-templates@latest
 
 # Install specific components
+npx claude-code-templates@latest --skill creative-design/frontend-design --yes
 npx claude-code-templates@latest --agent development-tools/code-reviewer --yes
-npx claude-code-templates@latest --setting performance/mcp-timeouts --yes
-npx claude-code-templates@latest --hook git/pre-commit-validation --yes
+npx claude-code-templates@latest --command performance/optimize-bundle-size --yes
+npx claude-code-templates@latest --setting mcp/mcp-timeouts --yes
+npx claude-code-templates@latest --hook git/conventional-commits --yes
+npx claude-code-templates@latest --mcp database/postgresql-integration --yes
+npx claude-code-templates@latest --mod security/secret-redactor --yes
+npx claude-code-templates@latest --loop engineering/docs-sweep-loop --yes  # also installs the components the loop uses
 ```
 
 ## Catalog at a Glance
