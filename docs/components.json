@@ -28881,6 +28881,48 @@
       }
     },
     {
+      "name": "halloween-spinner",
+      "path": "appearance/halloween-spinner.json",
+      "category": "appearance",
+      "type": "setting",
+      "description": "Halloween words for the spinner that animates while Claude works: Conjuring, Brewing, Haunting, Summoning and more replace the built-in verbs. Uses the spinnerVerbs setting (mode replace). Remove the spinnerVerbs key to get the defaults back.",
+      "author": "",
+      "repo": "",
+      "version": "",
+      "license": "",
+      "keywords": [],
+      "downloads": 0,
+      "security": {
+        "validated": false,
+        "valid": null,
+        "score": null,
+        "errorCount": 0,
+        "warningCount": 0,
+        "lastValidated": null
+      }
+    },
+    {
+      "name": "halloween-theme",
+      "path": "appearance/halloween-theme.json",
+      "category": "appearance",
+      "type": "setting",
+      "description": "Halloween color theme for the terminal: pumpkin-orange logo and accents, blood-red prompt border, bone-colored text, ghost-green success and hex-purple plan mode. Writes the theme to ~/.claude/themes/halloween.json (the only folder Claude Code reads custom themes from) and selects it. Terminal only; Claude Desktop keeps its own look. Switch back any time with /theme.",
+      "author": "",
+      "repo": "",
+      "version": "",
+      "license": "",
+      "keywords": [],
+      "downloads": 0,
+      "security": {
+        "validated": false,
+        "valid": null,
+        "score": null,
+        "errorCount": 0,
+        "warningCount": 0,
+        "lastValidated": null
+      }
+    },
+    {
       "name": "api-key-helper",
       "path": "authentication/api-key-helper.json",
       "category": "authentication",
@@ -50431,11 +50473,11 @@
       "path": "development/brainstorming",
       "category": "development",
       "type": "skill",
-      "description": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
-      "author": "",
+      "description": "You MUST use this before any creative or build work: creating features, building components, adding functionality, modifying behavior, or planning anything new, in software or out of it (a website, a talk, a business). Finds out what the user actually wants and why, one question at a time, compares 2-3 approaches and gets a design doc approved before anything is built. Use it even if they never say brainstorm or design; skip it only for fully specified one-line tasks.",
+      "author": "Jesse Vincent (obra/superpowers), adapted by claude-code-templates",
       "repo": "",
-      "version": "",
-      "license": "",
+      "version": "2.0.0",
+      "license": "MIT",
       "keywords": [],
       "downloads": 10772,
       "security": {
@@ -50446,7 +50488,10 @@
         "warningCount": 0,
         "lastValidated": null
       },
-      "references": [],
+      "references": [
+        "LICENSE",
+        "references/builder-check.md"
+      ],
       "skillspector": {
         "score": 0,
         "severity": "LOW",
@@ -65142,39 +65187,6 @@
         "hash": "18571e4a163cc7e1",
         "version": "2.12.0",
         "scannedAt": "2026-10-24T02:20:12Z"
-      }
-    },
-    {
-      "name": "brainstorming",
-      "path": "productivity/brainstorming",
-      "category": "productivity",
-      "type": "skill",
-      "description": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
-      "author": "",
-      "repo": "",
-      "version": "",
-      "license": "",
-      "keywords": [],
-      "downloads": 480,
-      "security": {
-        "validated": false,
-        "valid": null,
-        "score": null,
-        "errorCount": 0,
-        "warningCount": 0,
-        "lastValidated": null
-      },
-      "references": [],
-      "skillspector": {
-        "score": 0,
-        "severity": "LOW",
-        "recommendation": "SAFE",
-        "issueCount": 0,
-        "analysis": "complete",
-        "findings": [],
-        "hash": "3682bde98145886e",
-        "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
       }
     },
     {
@@ -87507,6 +87519,43 @@
       }
     },
     {
+      "name": "spooky-season",
+      "path": "ui/spooky-season",
+      "category": "ui",
+      "type": "mod",
+      "description": "Halloween band above the prompt (a row of dripping blood and a pumpkin) and haunted end-of-turn words (Haunted for 4s). /halloween on|off. Pairs with the halloween-theme and halloween-spinner settings.",
+      "author": "claude-code-templates",
+      "repo": "https://github.com/davila7/claude-code-templates",
+      "version": "0.1.0",
+      "license": "MIT",
+      "keywords": [
+        "mod",
+        "function-hooks",
+        "ui",
+        "halloween",
+        "theme"
+      ],
+      "downloads": 0,
+      "security": {
+        "validated": false,
+        "valid": null,
+        "score": null,
+        "errorCount": 0,
+        "warningCount": 0,
+        "lastValidated": null
+      },
+      "modules": [
+        "spooky-season.tsx"
+      ],
+      "userConfig": {},
+      "references": [
+        ".claude-plugin/plugin.json",
+        "hooks/hooks.json",
+        "hooks/spooky-season.tsx",
+        "tests/spooky-season.test.tsx"
+      ]
+    },
+    {
       "name": "stack-viewer",
       "path": "ui/stack-viewer",
       "category": "ui",
@@ -87800,7 +87849,6 @@
       "files": [
         ".claude/commands/git-workflow.md",
         ".claude/commands/project-setup.md",
-        ".mcp.json",
         "CLAUDE.md",
         "README.md"
       ],
@@ -87871,7 +87919,6 @@
       "category": "languages",
       "description": "Go project template",
       "files": [
-        ".mcp.json",
         "README.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=go --yes",
@@ -87893,7 +87940,6 @@
         ".claude/commands/refactor.md",
         ".claude/commands/test.md",
         ".claude/commands/typescript-migrate.md",
-        ".mcp.json",
         "CLAUDE.md",
         "README.md"
       ],
@@ -87929,7 +87975,6 @@
         ".claude/settings.json",
         ".claude/commands/lint.md",
         ".claude/commands/test.md",
-        ".mcp.json",
         "CLAUDE.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=python --yes",
@@ -87978,7 +88023,6 @@
         ".claude/settings.json",
         ".claude/commands/model.md",
         ".claude/commands/test.md",
-        ".mcp.json",
         "CLAUDE.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=ruby --yes",
@@ -87992,7 +88036,6 @@
       "category": "languages",
       "description": "Rust project template",
       "files": [
-        ".mcp.json",
         "README.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=rust --yes",

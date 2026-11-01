@@ -1,11 +1,9 @@
 const inquirer = require('inquirer');
 const chalk = require('chalk');
-const { select, isCancel, cancel } = require('@clack/prompts');
+const { cancel } = require('@clack/prompts');
 const fs = require('fs-extra');
 const path = require('path');
 const ora = require('ora');
-const {downloadE2BComponent} = require('./e2b-components');
-const {writeSandboxFile, validateComponentName} = require('../components/sandbox/cloudflare/safe-output.cjs');
 const { detectProject } = require('./utils');
 const { getTemplateConfig, TEMPLATES_CONFIG } = require('./templates');
 const { createPrompts, interactivePrompts } = require('./prompts');
@@ -63,56 +61,22 @@ function replacePythonCommands(config) {
   return config;
 }
 
-async function showMainMenu() {
-  const action = await select({
-    message: 'What would you like to do?',
-    options: [
-      { value: 'analytics', label: '📊 Analytics Dashboard', hint: 'Monitor Claude Code usage and sessions' },
-      { value: 'setup',     label: '⚙️  Project Setup',      hint: 'Configure Claude Code for your project' },
-      { value: 'agents',   label: '🤖 Agents Dashboard',    hint: 'View multi-agent collaboration sessions' },
-      { value: 'chats',    label: '💬 Chats Mobile',         hint: 'AI-first mobile interface for conversations' },
-      { value: 'health',   label: '🔍 Health Check',         hint: 'Verify your Claude Code setup' },
-    ],
-  });
-
-  if (isCancel(action)) {
-    cancel('Cancelled.');
-    process.exit(0);
-  }
-
-  if (action === 'analytics') {
-    trackingService.trackAnalyticsDashboard({ page: 'dashboard', source: 'interactive_menu' });
-    await runAnalytics({});
+async function runCatalogBrowser(options, targetDir) {
+  const { browseCatalog, equivalentCommand, printNonInteractiveHelp } = require('./catalog-browser');
+  const version = require('../package.json').version;
+  const interactive = Boolean(process.stdout.isTTY && process.stdin.isTTY) && !process.env.CI;
+  if (!interactive) {
+    printNonInteractiveHelp(version);
     return;
   }
-
-  if (action === 'chats') {
-    trackingService.trackAnalyticsDashboard({ page: 'chats-mobile', source: 'interactive_menu' });
-    await startChatsMobile({});
+  trackingService.trackCommandExecution('catalog-browser');
+  const selection = await browseCatalog({ version, targetDir });
+  if (!selection) {
+    cancel('Nothing installed.');
     return;
   }
-
-  if (action === 'agents') {
-    trackingService.trackAnalyticsDashboard({ page: 'agents', source: 'interactive_menu' });
-    await runAnalytics({ openTo: 'agents' });
-    return;
-  }
-
-  if (action === 'health') {
-    const healthResult = await runHealthCheck();
-    trackingService.trackHealthCheck({
-      setup_recommended: healthResult.runSetup,
-      issues_found: healthResult.issues || 0
-    });
-    if (healthResult.runSetup) {
-      return await createClaudeConfig({});
-    } else {
-      return await showMainMenu();
-    }
-  }
-
-  // 'setup'
-  return await createClaudeConfig({ setupFromMenu: true });
+  console.log(chalk.gray('│'));
+  await installMultipleComponents({ ...selection, skipHeader: true, repeatCommand: equivalentCommand(selection) }, targetDir);
 }
 
 async function createClaudeConfig(options = {}) {
@@ -330,14 +294,15 @@ async function createClaudeConfig(options = {}) {
       console.log(chalk.blue('⚙️  Starting Project Setup...'));
       shouldRunSetup = true;
     } else {
-      console.log(chalk.green('👍 Health check completed. Returning to main menu...'));
-      return await showMainMenu();
+      console.log(chalk.green('👍 Health check completed.'));
+      return;
     }
   }
   
-  // Add initial choice prompt (only if no specific options are provided and not continuing from health check or menu)
-  if (!shouldRunSetup && !options.setupFromMenu && !options.yes && !options.language && !options.framework && !options.dryRun) {
-    return await showMainMenu();
+  // No arguments: browse the catalog in a terminal, print usage anywhere else
+  // (agents, CI, pipes), so the command never waits for input nobody can give.
+  if (!shouldRunSetup && !options.setupFromMenu && !options.yes && !options.language && !options.framework && !options.template && !options.dryRun) {
+    return await runCatalogBrowser(options, targetDir);
   } else {
     console.log(chalk.blue('🚀 Setting up Claude Code configuration...'));
   }
@@ -373,8 +338,10 @@ async function createClaudeConfig(options = {}) {
       mcps: defaultMCPs
     };
   } else {
-    // Interactive prompts with back navigation
-    config = await interactivePrompts(projectInfo, options);
+    // Interactive prompts with back navigation (--template preselects the language)
+    config = await interactivePrompts(projectInfo, options.template && !options.language
+      ? { ...options, language: options.template }
+      : options);
   }
   
   // Check if user confirmed the setup
@@ -470,8 +437,9 @@ async function createClaudeConfig(options = {}) {
     });
   }
   
-  // Run post-installation validation
-  if (!options.dryRun) {
+  // Offer a Claude Code review of the result; never with --yes or without a
+  // terminal, where nobody can answer the prompt.
+  if (!options.dryRun && !options.yes && process.stdin.isTTY) {
     await runPostInstallationValidation(targetDir, templateConfig);
   }
   
@@ -483,7 +451,6 @@ async function createClaudeConfig(options = {}) {
 
 // Individual component installation functions
 async function installIndividualAgent(agentName, targetDir, options) {
-  validateComponentName(agentName);
   console.log(chalk.blue(`🤖 Installing agent: ${agentName}`));
   const startTime = Date.now();
 
@@ -527,7 +494,7 @@ async function installIndividualAgent(agentName, targetDir, options) {
     }
 
     const targetFile = path.join(agentsDir, `${fileName}.md`);
-    writeSandboxFile(targetDir, `.claude/agents/${fileName}.md`, agentContent);
+    await fs.writeFile(targetFile, agentContent, 'utf8');
     options.onWrite?.(targetFile);
 
     if (!options.silent) {
@@ -554,7 +521,6 @@ async function installIndividualAgent(agentName, targetDir, options) {
 }
 
 async function installIndividualCommand(commandName, targetDir, options) {
-  validateComponentName(commandName);
   console.log(chalk.blue(`⚡ Installing command: ${commandName}`));
   const startTime = Date.now();
 
@@ -599,7 +565,7 @@ async function installIndividualCommand(commandName, targetDir, options) {
     
     const targetFile = path.join(commandsDir, `${fileName}.md`);
     
-    writeSandboxFile(targetDir, `.claude/commands/${fileName}.md`, commandContent);
+    await fs.writeFile(targetFile, commandContent, 'utf8');
     options.onWrite?.(targetFile);
     
     if (!options.silent) {
@@ -763,7 +729,7 @@ async function installIndividualSetting(settingName, targetDir, options) {
       : null;
     if (settingName.includes('statusline/') || scriptMatch) {
       const pythonFileName = scriptMatch ? scriptMatch[1] : settingName.split('/').pop() + '.py';
-      const pythonUrl = githubUrl.slice(0, githubUrl.lastIndexOf('/') + 1) + pythonFileName;
+      const pythonUrl = githubUrl.replace(/[^/]+\.json$/, pythonFileName);
       
       try {
         console.log(chalk.gray(`📥 Downloading Python script: ${pythonFileName}...`));
@@ -1015,8 +981,17 @@ async function installIndividualSetting(settingName, targetDir, options) {
           try {
             // A setting may only add files under the install location's .claude/
             // directory: no absolute paths, no ~, no `..` out of it.
-            const claudeRoot = path.resolve(currentTargetDir, '.claude');
-            const resolvedFilePath = path.resolve(currentTargetDir, filePath);
+            // Exception: Claude Code reads custom themes only from ~/.claude/themes/,
+            // while a `theme` key works from any settings file, so theme files always
+            // go to the user's home whatever location the setting is installed in.
+            const fileBaseDir = /^\.claude[\\/]themes[\\/]/.test(filePath)
+              ? require('os').homedir()
+              : currentTargetDir;
+            if (fileBaseDir !== currentTargetDir) {
+              console.log(chalk.gray(`🎨 Theme file goes to ~/.claude/themes/, the only folder Claude Code reads themes from`));
+            }
+            const claudeRoot = path.resolve(fileBaseDir, '.claude');
+            const resolvedFilePath = path.resolve(fileBaseDir, filePath);
             if (path.isAbsolute(filePath) || filePath.startsWith('~') ||
                 !resolvedFilePath.startsWith(claudeRoot + path.sep)) {
               console.log(chalk.red(`❌ Skipped file outside .claude/: ${filePath}`));
@@ -1850,7 +1825,6 @@ async function installIndividualMod(modName, targetDir, options = {}) {
 }
 
 async function installIndividualLoop(loopName, targetDir, options = {}) {
-  validateComponentName(loopName);
   console.log(chalk.blue(`🔁 Installing loop: ${loopName}`));
   const startTime = Date.now();
 
@@ -1875,7 +1849,7 @@ async function installIndividualLoop(loopName, targetDir, options = {}) {
     await fs.ensureDir(loopsDir);
     const fileName = loopName.includes('/') ? loopName.split('/').pop() : loopName;
     const targetFile = path.join(loopsDir, `${fileName}.md`);
-    writeSandboxFile(targetDir, `.claude/loops/${fileName}.md`, loopContent);
+    await fs.writeFile(targetFile, loopContent, 'utf8');
     options.onWrite?.(targetFile);
 
     if (!options.silent) {
@@ -2015,7 +1989,7 @@ async function installMultipleComponents(options, targetDir) {
       ...components.mods.map(name => ({ type: 'mod', name }))
     ];
 
-    ui.header();
+    if (!options.skipHeader) ui.header();
     ui.plan(items);
 
     // Ask for installation locations once for configuration components.
@@ -2080,7 +2054,7 @@ async function installMultipleComponents(options, targetDir) {
       }
     }
     
-    ui.summary(results, items);
+    ui.summary(results, items, { repeatCommand: options.repeatCommand });
     if (successfullyInstalled === 0) return;
 
     if (options.yaml) {
@@ -2674,10 +2648,10 @@ async function handlePromptExecution(prompt, targetDir) {
     const open = require('open');
     
     // First try to execute claude command directly
-    const claudeProcess = spawn('claude', ['--', prompt], {
+    const claudeProcess = spawn('claude', [prompt], {
       cwd: targetDir,
       stdio: ['inherit', 'inherit', 'inherit'],
-      shell: false
+      shell: true
     });
     
     claudeProcess.on('error', async (error) => {
@@ -3407,28 +3381,48 @@ async function executeE2BSandbox(options, targetDir) {
         const envExamplePath = path.join(componentsDir, '.env.example');
         
         if (await fs.pathExists(launcherPath)) {
-          writeSandboxFile(targetDir, '.claude/sandbox/e2b-launcher.py', await fs.readFile(launcherPath), 0o755);
+          await fs.copyFile(launcherPath, path.join(sandboxDir, 'e2b-launcher.py'));
+          await fs.chmod(path.join(sandboxDir, 'e2b-launcher.py'), 0o755);
         } else {
           throw new Error('e2b-launcher.py not found in package');
         }
         
         if (await fs.pathExists(requirementsPath)) {
-          writeSandboxFile(targetDir, '.claude/sandbox/requirements.txt', await fs.readFile(requirementsPath));
+          await fs.copyFile(requirementsPath, path.join(sandboxDir, 'requirements.txt'));
         }
         
         if (await fs.pathExists(envExamplePath)) {
-          writeSandboxFile(targetDir, '.claude/sandbox/.env.example', await fs.readFile(envExamplePath));
+          await fs.copyFile(envExamplePath, path.join(sandboxDir, '.env.example'));
         }
       } else {
         // Fallback to downloading from GitHub if not found locally
         console.log(chalk.gray('📥 Downloading E2B component files from GitHub...'));
         
-        const launcherContent = await downloadE2BComponent('e2b-launcher.py');
-        const requirementsContent = await downloadE2BComponent('requirements.txt');
-        const envExampleContent = await downloadE2BComponent('.env.example');
-        writeSandboxFile(targetDir, '.claude/sandbox/e2b-launcher.py', launcherContent, 0o755);
-        writeSandboxFile(targetDir, '.claude/sandbox/requirements.txt', requirementsContent);
-        writeSandboxFile(targetDir, '.claude/sandbox/.env.example', envExampleContent);
+        const baseUrl = 'https://raw.githubusercontent.com/davila7/claude-code-templates/main/cli-tool/components/sandbox/e2b';
+        
+        // Download launcher script
+        const launcherResponse = await fetch(`${baseUrl}/e2b-launcher.py`);
+        if (!launcherResponse.ok) {
+          throw new Error(`Failed to download e2b-launcher.py: ${launcherResponse.status} ${launcherResponse.statusText}`);
+        }
+        const launcherContent = await launcherResponse.text();
+        await fs.writeFile(path.join(sandboxDir, 'e2b-launcher.py'), launcherContent, { mode: 0o755 });
+        
+        // Download requirements.txt
+        const requirementsResponse = await fetch(`${baseUrl}/requirements.txt`);
+        if (!requirementsResponse.ok) {
+          throw new Error(`Failed to download requirements.txt: ${requirementsResponse.status} ${requirementsResponse.statusText}`);
+        }
+        const requirementsContent = await requirementsResponse.text();
+        await fs.writeFile(path.join(sandboxDir, 'requirements.txt'), requirementsContent);
+        
+        // Download .env.example
+        const envExampleResponse = await fetch(`${baseUrl}/.env.example`);
+        if (!envExampleResponse.ok) {
+          throw new Error(`Failed to download .env.example: ${envExampleResponse.status} ${envExampleResponse.statusText}`);
+        }
+        const envExampleContent = await envExampleResponse.text();
+        await fs.writeFile(path.join(sandboxDir, '.env.example'), envExampleContent);
       }
     } catch (error) {
       spinner.fail(`Failed to install E2B component: ${error.message}`);
@@ -3635,4 +3629,4 @@ async function executeE2BSandbox(options, targetDir) {
   }
 }
 
-module.exports = { createClaudeConfig, showMainMenu };
+module.exports = { createClaudeConfig };
