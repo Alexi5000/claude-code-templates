@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "scanner_version": "2.12.0",
+  "rules": [],
+  "fingerprints": [
+    {
+      "hash": "sha256:9ff5df8a675431052b5dbc90b1b1910b51fc2206d8d87c769ee6d7ff8cff6da8",
+      "rule_id": "AE1",
+      "file": "SKILL.md",
+      "reason": "Coverage exception: the parser span limit stopped partial analysis of scripts/rex-claude.sh. All 238 lines were reviewed by hand: fixed argv calls to the documented rex CLI and jq only, no network, no eval, no file reads beyond its own state dir under TMPDIR, and it refuses to target its own pane."
+    },
+    {
+      "hash": "sha256:49b5530f6b42c64db8506052dabdaa3574714d18222870de2d06c229780e8af6",
+      "rule_id": "AS1",
+      "file": "SKILL.md",
+      "reason": "Documentation states that a launched claude child loads the project and user .claude/settings.json itself. Neither SKILL.md nor the script reads, copies or prints any agent config file; the text steers users to a throwaway project settings file instead of the user's own."
+    },
+    {
+      "hash": "sha256:eba0b763f4bc396dc51c2c6ae3330a6f2c9aebd4bc02686788514c5aa07337e2",
+      "rule_id": "RA2",
+      "file": "SKILL.md",
+      "reason": "Pattern guidance to put a setting under test in a scratch project's .claude/settings.json so the user's own settings stay untouched. No self-modification of the running agent or persistence."
+    }
+  ]
+}

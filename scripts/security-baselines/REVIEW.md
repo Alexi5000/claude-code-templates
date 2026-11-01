@@ -73,3 +73,19 @@ The following exact occurrences were reviewed against current source. The origin
 | `curviate/curviate-inbox` | 1 | HTML comment labels the CLI0.33.0 generated command-surface section. It contains provenance metadata, not hidden behavioral instructions. |
 | `curviate/curviate-jobs` | 1 | HTML comment labels the CLI0.33.0 generated command-surface section. It contains provenance metadata, not hidden behavioral instructions. |
 | `curviate/curviate-premium` | 1 | HTML comment labels the CLI0.33.0 generated command-surface section. It contains provenance metadata, not hidden behavioral instructions. |
+
+## 2026-11-01 upstream-sync review: productivity/rex-claude
+
+New upstream skill (davila7 #1321). Every file in the skill tree was read: `SKILL.md` (84 lines) and `scripts/rex-claude.sh` (238 lines). The script only runs fixed argv calls to the documented `rex` CLI and `jq`, keeps per-pane timestamps under `${TMPDIR:-/tmp}/rex-claude`, makes no network calls, uses no `eval`, never reads `.claude/` or credential files, and refuses to target its own pane. `--trust` (answering the workspace trust dialog) is opt-in, and the Rules section limits it to a directory created for the task or the user's own project and forbids "always allow" or bypass-mode answers to permission prompts.
+
+| Fingerprint rule | File | Review |
+|---|---|---|
+| AE1 | SKILL.md | Parser span limit on `scripts/rex-claude.sh`; reviewed manually in full (coverage exception, not a certification). |
+| AS1 | SKILL.md | Text explains that the child `claude` loads project and user settings itself; nothing in the skill reads them. |
+| RA2 | SKILL.md (MEDIUM) | Advises a scratch project's settings file so the user's own settings stay untouched. |
+
+The baseline is bound to the whole-tree SHA-256 in `manifest.json` and scanner 2.12.0, so any source change re-enables all three findings. With the baseline the skill scores 22 (MEDIUM); a second AS1 occurrence (SKILL.md line 64, same settings-file wording in the Patterns section) is fingerprinted separately by the scanner and stays visible.
+
+## 2026-11-01 changed-skills gate: base comparison
+
+Upstream davila7 #1269 changed only the `name:` frontmatter line in 100 skills. That re-scanned skills whose findings were already on `main` (the catalog records the same scores from the 2026-10-17 and 2026-10-25 full scans) and, because the whole-tree hash changed, also disabled their reviewed baselines. `skill-security-scan.yml` now passes `--compare-base`: a skill over the threshold is rescanned raw at the merge base and blocks only if it is new, its base scan fails, its score rose, or some (rule, file) pair has more HIGH/CRITICAL findings than at base. The threshold (50), fail-closed errors and timeouts, and the exact-fingerprint baseline policy are unchanged. The per-skill timeout is now a flag; the PR gate uses 600 s because `ai-research/fine-tuning-unsloth` (multi-megabyte reference docs) takes about 170 s locally and exceeded 180 s on CI.
