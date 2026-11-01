@@ -269,11 +269,13 @@ def materialize_base_skill(directory: Path, base_commit: str, dest_root: Path) -
     archive = subprocess.run(["git", "archive", "--format=tar", base_commit, "--", rel], capture_output=True, check=True)
     tar_path = dest_root / "base.tar"
     tar_path.write_bytes(archive.stdout)
+    # Always extract with the "data" filter (Python 3.12+, and security
+    # backports): it rejects absolute paths, `..` members, links that point
+    # outside dest_root and special files. No unfiltered fallback.
+    if not hasattr(tarfile, "data_filter"):
+        raise RuntimeError("tarfile extraction filters are required (Python 3.12+)")
     with tarfile.open(tar_path) as tar:
-        if hasattr(tarfile, "data_filter"):
-            tar.extractall(dest_root, filter="data")
-        else:  # Python < 3.12 fallback; archive comes from our own git objects
-            tar.extractall(dest_root)
+        tar.extractall(dest_root, filter="data")
     tar_path.unlink()
     return dest_root / rel
 

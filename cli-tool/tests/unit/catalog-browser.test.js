@@ -5,7 +5,8 @@ const os = require('os');
 const path = require('path');
 const fs = require('fs-extra');
 const {
-  componentOptions, searchOptions, matchesQuery, detectProjectTags, equivalentCommand, printNonInteractiveHelp
+  componentOptions, searchOptions, matchesQuery, detectProjectTags, equivalentCommand, printNonInteractiveHelp,
+  selectionToOptions
 } = require('../../src/catalog-browser');
 
 const component = (name, category, downloads, extra = {}) => ({
@@ -71,5 +72,30 @@ describe('catalog-browser', () => {
     expect(text).toContain('nothing was installed');
     expect(text).toContain('--skill <category/name>');
     expect(text).toContain('/api/v1/catalog.json');
+  });
+
+  test('catalog install args map to component flags, joined per flag', () => {
+    expect(selectionToOptions([
+      ['--agent', 'development-tools/code-reviewer'],
+      ['--skill', 'ai-research/loki-mode'],
+      ['--agent', 'documentation/docs-writer']
+    ])).toEqual({
+      agent: 'development-tools/code-reviewer,documentation/docs-writer',
+      skill: 'ai-research/loki-mode'
+    });
+  });
+
+  test('a fetched catalog cannot set other CLI options or escape paths', () => {
+    expect(selectionToOptions([
+      ['--yaml', 'bmFtZTogeA=='],
+      ['--prompt', 'do something'],
+      ['--directory', '/tmp'],
+      ['--agent', '../../etc/passwd'],
+      ['--agent', '/abs/path'],
+      ['--skill', 'a,b'],
+      ['--hook'],
+      'not-an-array',
+      ['--mcp', 'database/postgres']
+    ])).toEqual({ mcp: 'database/postgres' });
   });
 });

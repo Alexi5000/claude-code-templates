@@ -297,13 +297,14 @@ for (const r of results) {
 }
 console.log(`\n${results.length - failed.length}/${results.length} passed against ${base}`);
 
-// Markdown table cell: escape backslashes before pipes so a detail ending in
-// `\` cannot un-escape the next delimiter, and keep rows on one line.
+// Markdown table cell: escape backslashes before pipes so a value ending in
+// `\` cannot un-escape the next delimiter, and keep rows on one line. Check
+// names carry component names read from the site, so they are escaped too.
 const mdCell = (v) => String(v).slice(0, 160).replace(/\\/g, '\\\\').replace(/\|/g, '\\|').replace(/[\r\n]+/g, ' ');
 
 if (process.env.GITHUB_STEP_SUMMARY) {
   const { appendFileSync } = await import('node:fs');
-  const rows = results.map((r) => `| ${r.ok ? '✅' : '❌'} | ${r.section} | ${r.name} | ${mdCell(r.detail)} |`);
+  const rows = results.map((r) => `| ${r.ok ? '✅' : '❌'} | ${mdCell(r.section)} | ${mdCell(r.name)} | ${mdCell(r.detail)} |`);
   appendFileSync(
     process.env.GITHUB_STEP_SUMMARY,
     `## Production smoke test\n\n${results.length - failed.length}/${results.length} passed against ${base}\n\n| | Area | Check | Detail |\n|---|---|---|---|\n${rows.join('\n')}\n`,

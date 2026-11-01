@@ -297,18 +297,54 @@ async function browseCatalog({ version: cliVersion, targetDir }) {
     if (next === 'install') break;
   }
 
-  // install.args is ['--agent', 'category/name']; join values per flag.
-  const options = {};
-  for (const { args } of picked.values()) {
-    const flag = args[0].replace(/^--/, '');
-    options[flag] = options[flag] ? `${options[flag]},${args[1]}` : args[1];
+  return selectionToOptions([...picked.values()].map(p => p.args));
+}
+
+// Component install flags a catalog entry may set, and the shape of their
+// value (category/name path segments, no `..`).
+const INSTALL_FLAGS = ['agent', 'command', 'mcp', 'setting', 'hook', 'skill', 'loop', 'mod'];
+const COMPONENT_PATH = /^[A-Za-z0-9_.-]+(?:\/[A-Za-z0-9_.-]+)*$/;
+
+/**
+ * Turn catalog install.args (['--agent', 'category/name']) into install
+ * options, joining values per flag. The catalog is fetched over the network,
+ * so only component flags with a plain component path are accepted: a
+ * catalog entry cannot set other CLI options (--yaml, --prompt, --directory).
+ */
+function selectionToOptions(argsList) {
+  const values = new Map();
+  for (const args of argsList) {
+    if (!Array.isArray(args) || args.length !== 2) continue;
+    const flag = String(args[0]).replace(/^--/, '');
+    const value = String(args[1]);
+    if (!INSTALL_FLAGS.includes(flag)) continue;
+    if (!COMPONENT_PATH.test(value) || value.split('/').includes('..')) continue;
+    values.set(flag, [...(values.get(flag) || []), value]);
   }
+  const joined = flag => (values.has(flag) ? values.get(flag).join(',') : undefined);
+  const options = {};
+  const agent = joined('agent');
+  if (agent) options.agent = agent;
+  const command = joined('command');
+  if (command) options.command = command;
+  const mcp = joined('mcp');
+  if (mcp) options.mcp = mcp;
+  const setting = joined('setting');
+  if (setting) options.setting = setting;
+  const hook = joined('hook');
+  if (hook) options.hook = hook;
+  const skill = joined('skill');
+  if (skill) options.skill = skill;
+  const loop = joined('loop');
+  if (loop) options.loop = loop;
+  const mod = joined('mod');
+  if (mod) options.mod = mod;
   return options;
 }
 
 /** The one-line command that repeats an install, for sharing or scripts. */
 function equivalentCommand(options) {
-  const flags = ['agent', 'command', 'mcp', 'setting', 'hook', 'skill', 'loop', 'mod']
+  const flags = INSTALL_FLAGS
     .filter(f => options[f])
     .map(f => `--${f} ${options[f]}`);
   return `npx claude-code-templates@latest ${flags.join(' ')}`;
@@ -339,6 +375,7 @@ function printNonInteractiveHelp(cliVersion) {
 module.exports = {
   browseCatalog,
   equivalentCommand,
+  selectionToOptions,
   printNonInteractiveHelp,
   detectProjectTags,
   componentOptions,
