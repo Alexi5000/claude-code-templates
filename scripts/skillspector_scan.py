@@ -229,9 +229,35 @@ def scan_skill(directory: Path) -> dict:
     return result
 
 
-def _aggregate_sarif(results: list[dict]) -> dict:
-    """Merge per-skill SARIF-equivalent findings into one SARIF 2.1.0 log."""
+_ALWAYS_REPORTED = {"HIGH", "CRITICAL"}
+
+
+def _rule_descriptor(rule_id: str, issue: dict) -> dict:
+    category = (issue.get("category") or "").strip()
+    pattern = (issue.get("pattern") or "").strip()
+    message = (issue.get("message") or "").strip()
+    name = category or rule_id
+    short = f"{category}: {pattern}" if category and pattern else (pattern or message or name)
+    help_text = message or short
+    return {
+        "id": rule_id,
+        "name": name,
+        "shortDescription": {"text": short},
+        "fullDescription": {"text": help_text},
+        "help": {"text": f"SkillSpector rule {rule_id} ({name}). {help_text}"},
+        "helpUri": "https://github.com/NVIDIA/skillspector",
+    }
+
+
+def _aggregate_sarif(results: list[dict], threshold: int | None = None) -> dict:
+    """Merge per-skill SARIF-equivalent findings into one SARIF 2.1.0 log.
+
+    With a threshold, only skills whose score exceeds it contribute findings,
+    plus HIGH/CRITICAL findings from any skill, so code scanning tracks the
+    same set the Markdown summary flags.
+    """
     sarif_results: list[dict] = []
+    rules: dict[str, dict] = {}
     severity_to_level = {
         "CRITICAL": "error",
         "HIGH": "error",
@@ -242,7 +268,11 @@ def _aggregate_sarif(results: list[dict]) -> dict:
         if res.get("status") != "ok":
             continue
         skill_dir = res["path"].rstrip("/")
+        over_threshold = threshold is None or res.get("score", 0) > threshold
         for issue in res.get("issues", []):
+            severity = (issue.get("severity") or "LOW").upper()
+            if not over_threshold and severity not in _ALWAYS_REPORTED:
+                continue
             file_rel = issue.get("file") or ""
             # Prefix the issue's file (relative to the skill dir) with the
             # repo-relative skill dir so code scanning links resolve.
@@ -250,7 +280,6 @@ def _aggregate_sarif(results: list[dict]) -> dict:
                 uri = f"{skill_dir}/{file_rel.lstrip('./')}"
             else:
                 uri = file_rel or skill_dir
-            severity = (issue.get("severity") or "LOW").upper()
             region: dict = {}
             if issue.get("start_line"):
                 region["startLine"] = issue["start_line"]
@@ -259,9 +288,11 @@ def _aggregate_sarif(results: list[dict]) -> dict:
             location = {"physicalLocation": {"artifactLocation": {"uri": uri}}}
             if region:
                 location["physicalLocation"]["region"] = region
+            rule_id = issue.get("rule_id") or "UNKNOWN"
+            rules.setdefault(rule_id, _rule_descriptor(rule_id, issue))
             sarif_results.append(
                 {
-                    "ruleId": issue.get("rule_id") or "UNKNOWN",
+                    "ruleId": rule_id,
                     "level": severity_to_level.get(severity, "note"),
                     "message": {"text": issue.get("message") or ""},
                     "locations": [location],
@@ -276,7 +307,7 @@ def _aggregate_sarif(results: list[dict]) -> dict:
                     "driver": {
                         "name": "skillspector",
                         "informationUri": "https://github.com/NVIDIA/skillspector",
-                        "rules": [],
+                        "rules": [rules[k] for k in sorted(rules)],
                     }
                 },
                 "results": sarif_results,
@@ -449,7 +480,7 @@ def main() -> int:
     markdown = build_markdown(results, args.threshold)
     Path(args.output_md).write_text(markdown, encoding="utf-8")
     Path(args.output_sarif).write_text(
-        json.dumps(_aggregate_sarif(results), indent=2), encoding="utf-8"
+        json.dumps(_aggregate_sarif(results, args.threshold), indent=2), encoding="utf-8"
     )
 
     Path(args.output_md).with_suffix(".json").write_text(json.dumps(results, indent=2), encoding="utf-8")
