@@ -65352,42 +65352,6 @@
       }
     },
     {
-      "name": "brainstorming",
-      "path": "productivity/brainstorming",
-      "category": "productivity",
-      "type": "skill",
-      "description": "You MUST use this before any creative or build work: creating features, building components, adding functionality, modifying behavior, or planning anything new, in software or out of it (a website, a talk, a business). Finds out what the user actually wants and why, one question at a time, compares 2-3 approaches and gets a design doc approved before anything is built. Use it even if they never say brainstorm or design; skip it only for fully specified one-line tasks.",
-      "author": "Jesse Vincent (obra/superpowers), adapted by claude-code-templates",
-      "repo": "",
-      "version": "2.0.0",
-      "license": "MIT",
-      "keywords": [],
-      "downloads": 487,
-      "security": {
-        "validated": false,
-        "valid": null,
-        "score": null,
-        "errorCount": 0,
-        "warningCount": 0,
-        "lastValidated": null
-      },
-      "references": [
-        "LICENSE",
-        "references/builder-check.md"
-      ],
-      "skillspector": {
-        "score": 0,
-        "severity": "LOW",
-        "recommendation": "CAUTION",
-        "issueCount": 0,
-        "analysis": "partial",
-        "findings": [],
-        "hash": "6a6ad1ee295d348a",
-        "version": "2.12.0",
-        "scannedAt": "2026-11-01T02:16:38Z"
-      }
-    },
-    {
       "name": "claude-code-sessions",
       "path": "productivity/claude-code-sessions",
       "category": "productivity",
