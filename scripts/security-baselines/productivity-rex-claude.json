@@ -20,6 +20,12 @@
       "rule_id": "RA2",
       "file": "SKILL.md",
       "reason": "Pattern guidance to put a setting under test in a scratch project's .claude/settings.json so the user's own settings stay untouched. No self-modification of the running agent or persistence."
+    },
+    {
+      "hash": "sha256:c4dfe0e64c82acf88d730e6aabcef383616f1ecf3e1e9f595c9975e1ccb84f2f",
+      "rule_id": "AS1",
+      "file": "SKILL.md",
+      "reason": "Second occurrence (Patterns section, line 64): notes that editing ~/.claude/settings.json would also change the running session and recommends a scratch project file instead. Nothing reads the file."
     }
   ]
 }

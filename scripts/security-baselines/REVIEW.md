@@ -81,10 +81,10 @@ New upstream skill (davila7 #1321). Every file in the skill tree was read: `SKIL
 | Fingerprint rule | File | Review |
 |---|---|---|
 | AE1 | SKILL.md | Parser span limit on `scripts/rex-claude.sh`; reviewed manually in full (coverage exception, not a certification). |
-| AS1 | SKILL.md | Text explains that the child `claude` loads project and user settings itself; nothing in the skill reads them. |
+| AS1 (2 occurrences, lines 21 and 64) | SKILL.md | Text explains that the child `claude` loads project and user settings itself, and recommends a scratch project file over editing the user's; nothing in the skill reads them. |
 | RA2 | SKILL.md (MEDIUM) | Advises a scratch project's settings file so the user's own settings stay untouched. |
 
-The baseline is bound to the whole-tree SHA-256 in `manifest.json` and scanner 2.12.0, so any source change re-enables all three findings. With the baseline the skill scores 22 (MEDIUM); a second AS1 occurrence (SKILL.md line 64, same settings-file wording in the Patterns section) is fingerprinted separately by the scanner and stays visible.
+The baseline is bound to the whole-tree SHA-256 in `manifest.json` and scanner 2.12.0, so any source change re-enables all four fingerprints. The line 64 AS1 only surfaces after the line 21 finding is suppressed (the scanner deduplicates them otherwise), so its fingerprint was taken from a scan with the first three applied.
 
 ## 2026-11-01 changed-skills gate: base comparison
 
