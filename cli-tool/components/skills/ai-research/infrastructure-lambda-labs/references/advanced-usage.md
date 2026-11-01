@@ -606,6 +606,13 @@ export WANDB_API_KEY="..."
 # Or use .env file (add to .gitignore)
 source .env
 
-# On instance, store in ~/.bashrc
-echo 'export HF_TOKEN="..."' >> ~/.bashrc
+# On the instance, store tokens with the tool's own login (not in ~/.bashrc,
+# which is readable by every process and often copied into images)
+huggingface-cli login
+wandb login
+
+# Or keep them in a file only you can read, and load it when needed
+install -m 600 /dev/null ~/.secrets.env
+echo 'HF_TOKEN=...' >> ~/.secrets.env
+set -a; source ~/.secrets.env; set +a
 ```
