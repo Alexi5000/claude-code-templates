@@ -17,6 +17,15 @@ Usage:
     skillspector_scan.py --all
     skillspector_scan.py --changed --base-ref origin/main
     skillspector_scan.py --all --dry-run            # list dirs, no scanning
+    skillspector_scan.py --changed --compare-base   # gate only on regressions
+
+With --compare-base, a changed skill that exceeds the threshold is rescanned
+at the merge base (raw, without reviewed baselines). It blocks only when it is
+new, its base scan fails, its score rose, or it has more HIGH/CRITICAL
+findings for some (rule, file) pair than the base version. Skills whose
+findings already existed on the base branch (for example an upstream sync
+that only edits frontmatter) are reported as pre-existing instead of
+blocking. Scanner errors and timeouts still fail closed.
 
 The CLI exit code of `skillspector scan` is intentionally ignored: it returns
 1 when a skill's risk score is high (a signal, not a failure) and 2 on real
@@ -26,13 +35,17 @@ skill never aborts the whole batch.
 
 from __future__ import annotations
 
+from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
+from functools import partial
 import hashlib
 import argparse
 import json
 import os
 import subprocess
 import sys
+import tarfile
+import tempfile
 from pathlib import Path
 
 # Repo-relative root that holds every skill component.
@@ -43,6 +56,9 @@ MANIFEST_NAMES = {"skill.md"}
 
 # Risk score above which a skill is considered HIGH/CRITICAL.
 DEFAULT_THRESHOLD = 50
+
+# Per-skill scanner timeout in seconds (timeouts are scan errors).
+DEFAULT_SCAN_TIMEOUT = 180
 
 # Keep PR comments under GitHub's ~65k character limit.
 MAX_COMMENT_CHARS = 60000
@@ -161,7 +177,7 @@ def reviewed_baseline_args(directory: Path) -> list[str]:
     return ["--baseline", str(baseline), "--show-suppressed"]
 
 
-def scan_skill(directory: Path) -> dict:
+def scan_skill(directory: Path, timeout: int = DEFAULT_SCAN_TIMEOUT, use_baselines: bool = True) -> dict:
     """Run skillspector on one skill dir; return a normalized result dict."""
     result: dict = {"path": str(directory), "status": "ok"}
     try:
@@ -173,16 +189,16 @@ def scan_skill(directory: Path) -> dict:
                 "--no-llm",
                 "--format",
                 "json",
-                *reviewed_baseline_args(directory),
+                *(reviewed_baseline_args(directory) if use_baselines else []),
             ],
             capture_output=True,
             text=True,
             check=False,
-            timeout=180,
+            timeout=timeout,
         )
     except subprocess.TimeoutExpired:
         result["status"] = "error"
-        result["error"] = "skillspector scan exceeded 180 seconds"
+        result["error"] = f"skillspector scan exceeded {timeout} seconds"
         return result
     except FileNotFoundError:
         result["status"] = "error"
@@ -230,6 +246,75 @@ def scan_skill(directory: Path) -> dict:
 
 
 _ALWAYS_REPORTED = {"HIGH", "CRITICAL"}
+
+
+def merge_base(base_ref: str) -> str:
+    """Commit the changed-skill diff is taken against (three-dot semantics)."""
+    proc = subprocess.run(["git", "merge-base", base_ref, "HEAD"], capture_output=True, text=True, check=False)
+    return proc.stdout.strip() if proc.returncode == 0 and proc.stdout.strip() else base_ref
+
+
+def materialize_base_skill(directory: Path, base_commit: str, dest_root: Path) -> Path | None:
+    """Extract the base-commit copy of a skill dir under dest_root.
+
+    Returns None when the skill does not exist (with a SKILL.md) at the base
+    commit, i.e. it is new in this change.
+    """
+    rel = directory.as_posix().rstrip("/")
+    listed = subprocess.run(
+        ["git", "ls-tree", "--name-only", f"{base_commit}:{rel}"], capture_output=True, text=True, check=False
+    )
+    if listed.returncode != 0 or not any(n.lower() in MANIFEST_NAMES for n in listed.stdout.split()):
+        return None
+    archive = subprocess.run(["git", "archive", "--format=tar", base_commit, "--", rel], capture_output=True, check=True)
+    tar_path = dest_root / "base.tar"
+    tar_path.write_bytes(archive.stdout)
+    # Always extract with the "data" filter (Python 3.12+, and security
+    # backports): it rejects absolute paths, `..` members, links that point
+    # outside dest_root and special files. No unfiltered fallback.
+    if not hasattr(tarfile, "data_filter"):
+        raise RuntimeError("tarfile extraction filters are required (Python 3.12+)")
+    with tarfile.open(tar_path) as tar:
+        tar.extractall(dest_root, filter="data")
+    tar_path.unlink()
+    return dest_root / rel
+
+
+def _high_counts(result: dict) -> Counter:
+    return Counter(
+        (str(i.get("rule_id")), str(i.get("file")))
+        for i in result.get("issues", [])
+        if (i.get("severity") or "").upper() in _ALWAYS_REPORTED
+    )
+
+
+def is_regression(head: dict, base: dict | None) -> bool:
+    """True unless the base version already carried every HIGH/CRITICAL finding."""
+    if base is None or base.get("status") != "ok":
+        return True
+    if head.get("score", 0) > base.get("score", 0):
+        return True
+    head_counts, base_counts = _high_counts(head), _high_counts(base)
+    return any(count > base_counts.get(key, 0) for key, count in head_counts.items())
+
+
+def classify_against_base(flagged: list[dict], base_ref: str, timeout: int) -> None:
+    """Mark flagged results whose findings already existed at the merge base."""
+    if not flagged:
+        return
+    base_commit = merge_base(base_ref)
+    for res in flagged:
+        with tempfile.TemporaryDirectory(prefix="skillspector-base-") as tmp:
+            base_dir = materialize_base_skill(Path(res["path"]), base_commit, Path(tmp))
+            base = None if base_dir is None else scan_skill(base_dir, timeout=timeout, use_baselines=False)
+        res["base_score"] = None if base is None or base.get("status") != "ok" else base["score"]
+        res["base_status"] = "new" if base_dir is None else base.get("status")
+        res["preexisting"] = not is_regression(res, base)
+        print(
+            f"base comparison {res['path']}: head={res['score']} base={res['base_score']} "
+            f"({res['base_status']}) -> {'pre-existing' if res['preexisting'] else 'blocking'}",
+            flush=True,
+        )
 
 
 def _rule_descriptor(rule_id: str, issue: dict) -> dict:
@@ -324,19 +409,21 @@ def build_markdown(results: list[dict], threshold: int) -> str:
     """Produce the PR-comment Markdown summary."""
     scanned = [r for r in results if r.get("status") == "ok"]
     errors = [r for r in results if r.get("status") == "error"]
-    flagged = sorted(
+    over = sorted(
         [r for r in scanned if r["score"] > threshold],
         key=lambda r: r["score"],
         reverse=True,
     )
+    flagged = [r for r in over if not r.get("preexisting")]
+    preexisting = [r for r in over if r.get("preexisting")]
     high_critical = len(flagged)
 
     sev_counts = {"LOW": 0, "MEDIUM": 0, "HIGH": 0, "CRITICAL": 0}
     for r in scanned:
         sev_counts[r["severity"]] = sev_counts.get(r["severity"], 0) + 1
 
-    status = "❌ ISSUES FOUND" if high_critical else "✅ PASSED"
-    emoji = "⚠️" if high_critical else "🎉"
+    status = "❌ ISSUES FOUND" if high_critical or errors else "✅ PASSED"
+    emoji = "⚠️" if high_critical or errors else "🎉"
 
     lines = [COMMENT_MARKER]
     lines.append(f"## {emoji} SkillSpector Security Scan")
@@ -352,6 +439,8 @@ def build_markdown(results: list[dict], threshold: int) -> str:
     lines.append("|--------|-------|")
     lines.append(f"| Skills scanned | {len(scanned)} |")
     lines.append(f"| 🔴 HIGH/CRITICAL (score > {threshold}) | {high_critical} |")
+    if preexisting:
+        lines.append(f"| ⚪ Pre-existing on base (score > {threshold}, not regressed) | {len(preexisting)} |")
     lines.append(f"| 🟡 MEDIUM | {sev_counts['MEDIUM']} |")
     lines.append(f"| 🟢 LOW / clean | {sev_counts['LOW']} |")
     if errors:
@@ -381,6 +470,24 @@ def build_markdown(results: list[dict], threshold: int) -> str:
         if len(flagged) > 30:
             lines.append("")
             lines.append(f"_...and {len(flagged) - 30} more flagged skill(s)._")
+        lines.append("")
+
+    if preexisting:
+        lines.append("### ⚪ Pre-existing findings (not blocking)")
+        lines.append("")
+        lines.append(
+            "These skills already scored above the threshold at the merge base with the same or more "
+            "HIGH/CRITICAL findings. The change did not make them worse; the weekly full scan tracks them."
+        )
+        lines.append("")
+        lines.append("| Skill | Score | Base score | Top findings |")
+        lines.append("|-------|-------|------------|--------------|")
+        for r in preexisting[:30]:
+            top_rules = ", ".join(sorted({str(i.get("rule_id") or "?") for i in r.get("issues", [])})[:5])
+            lines.append(f"| `{r['name']}` | {r['score']}/100 | {r.get('base_score')}/100 | {top_rules} |")
+        if len(preexisting) > 30:
+            lines.append("")
+            lines.append(f"_...and {len(preexisting) - 30} more._")
         lines.append("")
 
     if errors:
@@ -434,12 +541,22 @@ def main() -> int:
         action="store_true",
         help="Set output failed=true (and exit 1) if any skill exceeds threshold.",
     )
+    parser.add_argument(
+        "--compare-base",
+        action="store_true",
+        help="With --changed: block only on skills that are new or regressed versus the merge base.",
+    )
+    parser.add_argument(
+        "--scan-timeout", type=int, default=DEFAULT_SCAN_TIMEOUT, help="Per-skill scanner timeout in seconds."
+    )
     parser.add_argument("--output-md", default="skillspector-report.md")
     parser.add_argument("--output-sarif", default="skillspector.sarif")
     parser.add_argument(
         "--dry-run", action="store_true", help="List discovered skills without scanning."
     )
     args = parser.parse_args()
+    if args.compare_base and not args.changed:
+        parser.error("--compare-base requires --changed")
 
     if args.changed:
         skills = discover_changed_skills(args.base_ref)
@@ -469,13 +586,16 @@ def main() -> int:
 
     results: list[dict] = []
     with ThreadPoolExecutor(max_workers=1) as pool:
-        for idx, result in enumerate(pool.map(scan_skill, skills), 1):
+        for idx, result in enumerate(pool.map(partial(scan_skill, timeout=args.scan_timeout), skills), 1):
             print(f"[{idx}/{len(skills)}] scanned {result['path']}", flush=True)
             results.append(result)
 
     scanned = [r for r in results if r.get("status") == "ok"]
     errors = [r for r in results if r.get("status") == "error"]
     flagged = [r for r in scanned if r["score"] > args.threshold]
+    if args.compare_base:
+        classify_against_base(flagged, args.base_ref, args.scan_timeout)
+        flagged = [r for r in flagged if not r.get("preexisting")]
 
     markdown = build_markdown(results, args.threshold)
     Path(args.output_md).write_text(markdown, encoding="utf-8")

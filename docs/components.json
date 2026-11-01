@@ -27256,6 +27256,27 @@
       }
     },
     {
+      "name": "superlogical",
+      "path": "devtools/superlogical.json",
+      "category": "devtools",
+      "type": "mcp",
+      "description": "Superlogical's Rex community MCP, for Rex beta testers: search the Rex terminal multiplexer docs, the release notes for every version from #changelog, and current and archived discussions from the Rex Beta Discord, including the Superlogical team's commentary on issues and design decisions. Requires membership in the Rex Beta Discord server and uses Discord OAuth: after installing, run /mcp in Claude Code to sign in. Docs: https://www.superlogical.com/rex/docs/beta/community-mcp",
+      "author": "",
+      "repo": "",
+      "version": "",
+      "license": "",
+      "keywords": [],
+      "downloads": 0,
+      "security": {
+        "validated": false,
+        "valid": null,
+        "score": null,
+        "errorCount": 0,
+        "warningCount": 0,
+        "lastValidated": null
+      }
+    },
+    {
       "name": "terraform",
       "path": "devtools/terraform.json",
       "category": "devtools",
@@ -28857,6 +28878,48 @@
         "hash": "0912892b9d4279bc",
         "version": "2.12.0",
         "scannedAt": "2026-10-17T20:36:45Z"
+      }
+    },
+    {
+      "name": "halloween-spinner",
+      "path": "appearance/halloween-spinner.json",
+      "category": "appearance",
+      "type": "setting",
+      "description": "Halloween words for the spinner that animates while Claude works: Conjuring, Brewing, Haunting, Summoning and more replace the built-in verbs. Uses the spinnerVerbs setting (mode replace). Remove the spinnerVerbs key to get the defaults back.",
+      "author": "",
+      "repo": "",
+      "version": "",
+      "license": "",
+      "keywords": [],
+      "downloads": 0,
+      "security": {
+        "validated": false,
+        "valid": null,
+        "score": null,
+        "errorCount": 0,
+        "warningCount": 0,
+        "lastValidated": null
+      }
+    },
+    {
+      "name": "halloween-theme",
+      "path": "appearance/halloween-theme.json",
+      "category": "appearance",
+      "type": "setting",
+      "description": "Halloween color theme for the terminal: pumpkin-orange logo and accents, blood-red prompt border, bone-colored text, ghost-green success and hex-purple plan mode. Writes the theme to ~/.claude/themes/halloween.json (the only folder Claude Code reads custom themes from) and selects it. Terminal only; Claude Desktop keeps its own look. Switch back any time with /theme.",
+      "author": "",
+      "repo": "",
+      "version": "",
+      "license": "",
+      "keywords": [],
+      "downloads": 0,
+      "security": {
+        "validated": false,
+        "valid": null,
+        "score": null,
+        "errorCount": 0,
+        "warningCount": 0,
+        "lastValidated": null
       }
     },
     {
@@ -50410,11 +50473,11 @@
       "path": "development/brainstorming",
       "category": "development",
       "type": "skill",
-      "description": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
-      "author": "",
+      "description": "You MUST use this before any creative or build work: creating features, building components, adding functionality, modifying behavior, or planning anything new, in software or out of it (a website, a talk, a business). Finds out what the user actually wants and why, one question at a time, compares 2-3 approaches and gets a design doc approved before anything is built. Use it even if they never say brainstorm or design; skip it only for fully specified one-line tasks.",
+      "author": "Jesse Vincent (obra/superpowers), adapted by claude-code-templates",
       "repo": "",
-      "version": "",
-      "license": "",
+      "version": "2.0.0",
+      "license": "MIT",
       "keywords": [],
       "downloads": 10772,
       "security": {
@@ -50425,7 +50488,10 @@
         "warningCount": 0,
         "lastValidated": null
       },
-      "references": [],
+      "references": [
+        "LICENSE",
+        "references/builder-check.md"
+      ],
       "skillspector": {
         "score": 0,
         "severity": "LOW",
@@ -65124,39 +65190,6 @@
       }
     },
     {
-      "name": "brainstorming",
-      "path": "productivity/brainstorming",
-      "category": "productivity",
-      "type": "skill",
-      "description": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
-      "author": "",
-      "repo": "",
-      "version": "",
-      "license": "",
-      "keywords": [],
-      "downloads": 480,
-      "security": {
-        "validated": false,
-        "valid": null,
-        "score": null,
-        "errorCount": 0,
-        "warningCount": 0,
-        "lastValidated": null
-      },
-      "references": [],
-      "skillspector": {
-        "score": 0,
-        "severity": "LOW",
-        "recommendation": "SAFE",
-        "issueCount": 0,
-        "analysis": "complete",
-        "findings": [],
-        "hash": "3682bde98145886e",
-        "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
-      }
-    },
-    {
       "name": "claude-code-sessions",
       "path": "productivity/claude-code-sessions",
       "category": "productivity",
@@ -66757,6 +66790,30 @@
         "version": "2.12.0",
         "scannedAt": "2026-10-17T20:36:45Z"
       }
+    },
+    {
+      "name": "rex-claude",
+      "path": "productivity/rex-claude",
+      "category": "productivity",
+      "type": "skill",
+      "description": "Open other Claude Code sessions in Rex terminal panes or tabs and drive them: launch claude in a directory, answer the workspace trust dialog, send prompts, wait for each turn by its reported status (working, done, blocked on a permission prompt), read the screen, press keys and close the pane. Use when running inside the Rex terminal (REX_SESSION is set, TERM_PROGRAM=rex) and the user wants to start, delegate to, test in, watch or control a second Claude Code session side by side, for example to test a setting or permission in a fresh session, run a task in parallel in another pane, or check what another Claude pane is doing.",
+      "author": "",
+      "repo": "",
+      "version": "",
+      "license": "",
+      "keywords": [],
+      "downloads": 0,
+      "security": {
+        "validated": false,
+        "valid": null,
+        "score": null,
+        "errorCount": 0,
+        "warningCount": 0,
+        "lastValidated": null
+      },
+      "references": [
+        "scripts/rex-claude.sh"
+      ]
     },
     {
       "name": "ship-learn-next",
@@ -85835,6 +85892,74 @@
       }
     },
     {
+      "name": "session-chats",
+      "path": "productivity/session-chats",
+      "category": "productivity",
+      "type": "mod",
+      "description": "A side pane that shows your Claude Code sessions as a tree: which session messaged which (SendMessage), who wrote first, and which conversations have no answer yet. The record is kept on disk, so it survives after the sessions close; select a session to see its conversations and last messages, and Open resumes it in a new terminal (claude --resume in its own folder).",
+      "author": "claude-code-templates",
+      "repo": "https://github.com/davila7/claude-code-templates",
+      "version": "0.1.0",
+      "license": "MIT",
+      "keywords": [
+        "mod",
+        "function-hooks",
+        "productivity",
+        "sessions",
+        "sendmessage",
+        "resume",
+        "sidebar",
+        "history"
+      ],
+      "downloads": 0,
+      "security": {
+        "validated": false,
+        "valid": null,
+        "score": null,
+        "errorCount": 0,
+        "warningCount": 0,
+        "lastValidated": null
+      },
+      "modules": [
+        "session-chats.tsx"
+      ],
+      "userConfig": {
+        "terminal": {
+          "type": "string",
+          "title": "Open in",
+          "description": "Where Open resumes a session: auto (a tmux window inside tmux, else macOS Terminal), Terminal, iTerm, tmux, or copy (only copy the command)",
+          "options": [
+            "auto",
+            "Terminal",
+            "iTerm",
+            "tmux",
+            "copy"
+          ],
+          "default": "auto"
+        },
+        "keepDays": {
+          "type": "number",
+          "title": "Keep history (days)",
+          "description": "Forget a session's log once it has not been written for this many days",
+          "default": 90
+        },
+        "columns": {
+          "type": "number",
+          "title": "Pane width",
+          "description": "Columns asked for the docked pane in the fullscreen layout (40-140)",
+          "default": 72
+        }
+      },
+      "references": [
+        ".claude-plugin/plugin.json",
+        "hooks/chats.ts",
+        "hooks/graph.ts",
+        "hooks/hooks.json",
+        "hooks/session-chats.tsx",
+        "tests/session-chats.test.tsx"
+      ]
+    },
+    {
       "name": "session-time-machine",
       "path": "productivity/session-time-machine",
       "category": "productivity",
@@ -87394,6 +87519,43 @@
       }
     },
     {
+      "name": "spooky-season",
+      "path": "ui/spooky-season",
+      "category": "ui",
+      "type": "mod",
+      "description": "Halloween band above the prompt (a row of dripping blood and a pumpkin) and haunted end-of-turn words (Haunted for 4s). /halloween on|off. Pairs with the halloween-theme and halloween-spinner settings.",
+      "author": "claude-code-templates",
+      "repo": "https://github.com/davila7/claude-code-templates",
+      "version": "0.1.0",
+      "license": "MIT",
+      "keywords": [
+        "mod",
+        "function-hooks",
+        "ui",
+        "halloween",
+        "theme"
+      ],
+      "downloads": 0,
+      "security": {
+        "validated": false,
+        "valid": null,
+        "score": null,
+        "errorCount": 0,
+        "warningCount": 0,
+        "lastValidated": null
+      },
+      "modules": [
+        "spooky-season.tsx"
+      ],
+      "userConfig": {},
+      "references": [
+        ".claude-plugin/plugin.json",
+        "hooks/hooks.json",
+        "hooks/spooky-season.tsx",
+        "tests/spooky-season.test.tsx"
+      ]
+    },
+    {
       "name": "stack-viewer",
       "path": "ui/stack-viewer",
       "category": "ui",
@@ -87671,8 +87833,8 @@
       "language": "javascript-typescript",
       "description": "Angular-App with Javascript-Typescript",
       "files": [
-        ".claude/commands/services.md",
-        ".claude/commands/components.md"
+        ".claude/commands/components.md",
+        ".claude/commands/services.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=angular-app --yes",
       "downloads": 0
@@ -87685,11 +87847,10 @@
       "category": "languages",
       "description": "Common project template",
       "files": [
-        ".mcp.json",
-        "README.md",
-        ".claude/commands/project-setup.md",
         ".claude/commands/git-workflow.md",
-        "CLAUDE.md"
+        ".claude/commands/project-setup.md",
+        "CLAUDE.md",
+        "README.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=common --yes",
       "downloads": 0
@@ -87704,8 +87865,8 @@
       "description": "Django-App with Python",
       "files": [
         ".claude/commands/admin.md",
-        ".claude/commands/views.md",
         ".claude/commands/django-model.md",
+        ".claude/commands/views.md",
         "CLAUDE.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=django-app --yes",
@@ -87720,10 +87881,10 @@
       "language": "python",
       "description": "Fastapi-App with Python",
       "files": [
-        ".claude/commands/deployment.md",
+        ".claude/commands/api-endpoints.md",
         ".claude/commands/auth.md",
         ".claude/commands/database.md",
-        ".claude/commands/api-endpoints.md",
+        ".claude/commands/deployment.md",
         ".claude/commands/testing.md",
         "CLAUDE.md"
       ],
@@ -87739,11 +87900,11 @@
       "language": "python",
       "description": "Flask-App with Python",
       "files": [
+        ".claude/commands/app-factory.md",
+        ".claude/commands/blueprint.md",
+        ".claude/commands/database.md",
         ".claude/commands/deployment.md",
         ".claude/commands/flask-route.md",
-        ".claude/commands/blueprint.md",
-        ".claude/commands/app-factory.md",
-        ".claude/commands/database.md",
         ".claude/commands/testing.md",
         "CLAUDE.md"
       ],
@@ -87758,7 +87919,6 @@
       "category": "languages",
       "description": "Go project template",
       "files": [
-        ".mcp.json",
         "README.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=go --yes",
@@ -87772,17 +87932,16 @@
       "category": "languages",
       "description": "Javascript-Typescript project template",
       "files": [
-        ".mcp.json",
-        "README.md",
         ".claude/settings.json",
-        ".claude/commands/refactor.md",
-        ".claude/commands/npm-scripts.md",
-        ".claude/commands/typescript-migrate.md",
-        ".claude/commands/lint.md",
-        ".claude/commands/test.md",
-        ".claude/commands/debug.md",
         ".claude/commands/api-endpoint.md",
-        "CLAUDE.md"
+        ".claude/commands/debug.md",
+        ".claude/commands/lint.md",
+        ".claude/commands/npm-scripts.md",
+        ".claude/commands/refactor.md",
+        ".claude/commands/test.md",
+        ".claude/commands/typescript-migrate.md",
+        "CLAUDE.md",
+        "README.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=javascript-typescript --yes",
       "downloads": 0
@@ -87796,10 +87955,10 @@
       "language": "javascript-typescript",
       "description": "Node-Api with Javascript-Typescript",
       "files": [
+        ".claude/commands/api-endpoint.md",
         ".claude/commands/database.md",
         ".claude/commands/middleware.md",
         ".claude/commands/route.md",
-        ".claude/commands/api-endpoint.md",
         "CLAUDE.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=node-api --yes",
@@ -87813,7 +87972,6 @@
       "category": "languages",
       "description": "Python project template",
       "files": [
-        ".mcp.json",
         ".claude/settings.json",
         ".claude/commands/lint.md",
         ".claude/commands/test.md",
@@ -87846,9 +88004,9 @@
       "language": "javascript-typescript",
       "description": "React-App with Javascript-Typescript",
       "files": [
-        ".claude/commands/state-management.md",
-        ".claude/commands/hooks.md",
         ".claude/commands/component.md",
+        ".claude/commands/hooks.md",
+        ".claude/commands/state-management.md",
         "CLAUDE.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=react-app --yes",
@@ -87862,7 +88020,6 @@
       "category": "languages",
       "description": "Ruby project template",
       "files": [
-        ".mcp.json",
         ".claude/settings.json",
         ".claude/commands/model.md",
         ".claude/commands/test.md",
@@ -87879,7 +88036,6 @@
       "category": "languages",
       "description": "Rust project template",
       "files": [
-        ".mcp.json",
         "README.md"
       ],
       "installCommand": "npx claude-code-templates@latest --template=rust --yes",

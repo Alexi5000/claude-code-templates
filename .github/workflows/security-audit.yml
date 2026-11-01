@@ -7,6 +7,8 @@ on:
       - '**/package.json'
       - '**/package-lock.json'
       - '.github/workflows/security-audit.yml'
+      - '.github/npm-audit-allowlist.json'
+      - 'scripts/npm-audit-gate.mjs'
       - 'dashboard/**'
       - 'cli-tool/components/sandbox/cloudflare/safe-output.cjs'
   pull_request:
@@ -14,6 +16,8 @@ on:
       - '**/package.json'
       - '**/package-lock.json'
       - '.github/workflows/security-audit.yml'
+      - '.github/npm-audit-allowlist.json'
+      - 'scripts/npm-audit-gate.mjs'
       - 'dashboard/**'
       - 'cli-tool/components/sandbox/cloudflare/safe-output.cjs'
   schedule:
@@ -61,8 +65,13 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: 22
+      - name: Gate tests
+        run: node --test scripts/npm-audit-gate.test.mjs
+      # Equivalent to `npm audit --audit-level=low`, except advisories with no
+      # patched release listed in .github/npm-audit-allowlist.json (scoped by
+      # GHSA id, package and unit, with an expiry) are reported as warnings.
       - name: Audit ${{ matrix.unit }}
-        run: npm audit --audit-level=low
+        run: node "$GITHUB_WORKSPACE/scripts/npm-audit-gate.mjs" --unit "${{ matrix.unit }}"
         working-directory: ${{ matrix.dir }}
         continue-on-error: ${{ matrix.blocking == false }}
 
