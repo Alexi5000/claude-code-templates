@@ -50619,11 +50619,11 @@
       "path": "development/brainstorming",
       "category": "development",
       "type": "skill",
-      "description": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
-      "author": "",
+      "description": "You MUST use this before any creative or build work: creating features, building components, adding functionality, modifying behavior, or planning anything new, in software or out of it (a website, a talk, a business). Finds out what the user actually wants and why, one question at a time, compares 2-3 approaches and gets a design doc approved before anything is built. Use it even if they never say brainstorm or design; skip it only for fully specified one-line tasks.",
+      "author": "Jesse Vincent (obra/superpowers), adapted by claude-code-templates",
       "repo": "",
-      "version": "",
-      "license": "",
+      "version": "2.0.0",
+      "license": "MIT",
       "keywords": [],
       "downloads": 10957,
       "security": {
@@ -50634,17 +50634,20 @@
         "warningCount": 0,
         "lastValidated": null
       },
-      "references": [],
+      "references": [
+        "LICENSE",
+        "references/builder-check.md"
+      ],
       "skillspector": {
         "score": 0,
         "severity": "LOW",
-        "recommendation": "SAFE",
+        "recommendation": "CAUTION",
         "issueCount": 0,
-        "analysis": "complete",
+        "analysis": "partial",
         "findings": [],
-        "hash": "3682bde98145886e",
+        "hash": "6a6ad1ee295d348a",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T02:16:38Z"
       }
     },
     {
@@ -65353,11 +65356,11 @@
       "path": "productivity/brainstorming",
       "category": "productivity",
       "type": "skill",
-      "description": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
-      "author": "",
+      "description": "You MUST use this before any creative or build work: creating features, building components, adding functionality, modifying behavior, or planning anything new, in software or out of it (a website, a talk, a business). Finds out what the user actually wants and why, one question at a time, compares 2-3 approaches and gets a design doc approved before anything is built. Use it even if they never say brainstorm or design; skip it only for fully specified one-line tasks.",
+      "author": "Jesse Vincent (obra/superpowers), adapted by claude-code-templates",
       "repo": "",
-      "version": "",
-      "license": "",
+      "version": "2.0.0",
+      "license": "MIT",
       "keywords": [],
       "downloads": 487,
       "security": {
@@ -65368,17 +65371,20 @@
         "warningCount": 0,
         "lastValidated": null
       },
-      "references": [],
+      "references": [
+        "LICENSE",
+        "references/builder-check.md"
+      ],
       "skillspector": {
         "score": 0,
         "severity": "LOW",
-        "recommendation": "SAFE",
+        "recommendation": "CAUTION",
         "issueCount": 0,
-        "analysis": "complete",
+        "analysis": "partial",
         "findings": [],
-        "hash": "3682bde98145886e",
+        "hash": "6a6ad1ee295d348a",
         "version": "2.12.0",
-        "scannedAt": "2026-10-17T20:36:45Z"
+        "scannedAt": "2026-11-01T02:16:38Z"
       }
     },
     {
