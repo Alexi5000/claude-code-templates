@@ -4,7 +4,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![GitHub stars](https://img.shields.io/github/stars/Alexi5000/claude-code-templates.svg?style=social&label=Star)](https://github.com/Alexi5000/claude-code-templates)
 
-> **🛡️ TechTide hardened distribution**: the community catalog plus enforced security: authenticated cron triggers, throttled telemetry, first-party CORS, verified Discord signatures. See [Why this fork exists](#why-this-fork-exists) below and [FORK.md](FORK.md) for the sync policy.
+> **🛡️ TechTide hardened distribution**: the community catalog plus enforced security: authenticated cron triggers, throttled telemetry, first-party CORS. See [Why this fork exists](#why-this-fork-exists) below and [FORK.md](FORK.md) for the sync policy.
 
 # Claude Code Templates ([aitmpl.com](https://www.aitmpl.com))
 
@@ -12,7 +12,7 @@
 
 ## Why this fork exists
 
-**What it does.** This fork redistributes the upstream Claude Code Templates catalog (agents, commands, MCP servers, settings, hooks, skills, and project templates installed with `npx claude-code-templates@latest`) together with a hardened dashboard and API layer: authenticated cron triggers, per-IP throttling on public telemetry, first-party CORS, verified Discord signatures, and redacted webhook logs.
+**What it does.** This fork redistributes the upstream Claude Code Templates catalog (agents, commands, MCP servers, settings, hooks, skills, and project templates installed with `npx claude-code-templates@latest`) together with a hardened dashboard and API layer: authenticated cron triggers, per-IP throttling on public telemetry, first-party CORS, and redacted webhook logs.
 
 **Who it serves.** Developers adopting Claude Code who want a vetted component catalog, and engineering leads who need the catalog's telemetry and automation endpoints to be gated before running them on their own infrastructure.
 
@@ -34,15 +34,20 @@
 
 ```bash
 # Install a complete development stack
-npx claude-code-templates@latest --agent development-team/frontend-developer --command testing/generate-tests --mcp development/github-integration --yes
+npx claude-code-templates@latest --agent development-team/frontend-developer --command testing/generate-tests --mcp integration/github-integration --yes
 
 # Browse and install interactively
 npx claude-code-templates@latest
 
 # Install specific components
+npx claude-code-templates@latest --skill creative-design/frontend-design --yes
 npx claude-code-templates@latest --agent development-tools/code-reviewer --yes
-npx claude-code-templates@latest --setting performance/mcp-timeouts --yes
-npx claude-code-templates@latest --hook git/pre-commit-validation --yes
+npx claude-code-templates@latest --command performance/optimize-bundle-size --yes
+npx claude-code-templates@latest --setting mcp/mcp-timeouts --yes
+npx claude-code-templates@latest --hook git/conventional-commits --yes
+npx claude-code-templates@latest --mcp database/postgresql-integration --yes
+npx claude-code-templates@latest --mod security/secret-redactor --yes
+npx claude-code-templates@latest --loop engineering/docs-sweep-loop --yes  # also installs the components the loop uses
 ```
 
 ## Catalog at a Glance
@@ -81,7 +86,7 @@ Unlike the upstream catalog, every API surface here is gated; each item links to
 - Cron triggers require `CRON_SECRET` (`dashboard/src/pages/api/claude-code-check.ts`)
 - Public telemetry is throttled per IP, 60/min with 429s (`dashboard/src/lib/api/rate-limit.ts`)
 - Authenticated routes echo first-party origins only (`dashboard/src/lib/api/cors.ts`)
-- Discord signatures are verified before parsing (`dashboard/src/pages/api/discord/interactions.ts`)
+- The Discord interactions endpoint (previously signature-verified) was removed upstream in davila7 #1274, so there is no public Discord bot route
 - Webhook URLs are redacted in DB logs; `npm audit` runs weekly in CI (`.github/workflows/security-audit.yml`)
 
 ## Screenshots
