@@ -126,16 +126,20 @@ pipe = DiffusionPipeline.from_pretrained(
 
 **Solutions**:
 ```python
-# Solution 1: Disable safety checker
-pipe.safety_checker = None
-
-# Solution 2: Check VAE scaling
+# Solution 1: Check VAE scaling
 # The issue might be with VAE encoding/decoding
 latents = latents / pipe.vae.config.scaling_factor  # Before decode
 
-# Solution 3: Ensure proper dtype
+# Solution 2: Ensure proper dtype
 pipe = pipe.to(dtype=torch.float16)
 pipe.vae = pipe.vae.to(dtype=torch.float32)  # VAE often needs fp32
+
+# Solution 3: Check whether the safety checker blacked out the image.
+# The pipeline returns nsfw_content_detected; when it is True for an image,
+# that image was replaced with black on purpose. Rephrase the prompt rather
+# than removing the checker, which disables NSFW filtering for every output.
+result = pipe(prompt)
+print(result.nsfw_content_detected)
 
 # Solution 4: Check guidance scale
 # Too high can cause issues

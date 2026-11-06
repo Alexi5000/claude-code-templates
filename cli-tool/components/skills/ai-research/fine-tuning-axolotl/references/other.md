@@ -307,8 +307,8 @@ pip3 install --no-build-isolation axolotl[flash-attn,deepspeed]
 
 Example 2 (bash):
 ```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
-source $HOME/.local/bin/env
+# Install uv from PyPI rather than piping a remote script into the shell
+pip install uv
 ```
 
 Example 3 (bash):
@@ -1601,7 +1601,8 @@ See this repo for an example: https://github.com/axolotl-ai-cloud/diff-transform
 
 Example 1 (bash):
 ```bash
-python scripts/cutcrossentropy_install.py | sh
+# The script prints the pip command for your environment: review it, then run it
+python scripts/cutcrossentropy_install.py
 ```
 
 Example 2 (bash):

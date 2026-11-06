@@ -145,7 +145,10 @@ ssh ubuntu@<IP>
 sudo reboot
 
 # Reinstall NVIDIA drivers (if needed)
-wget -nv -O- https://lambdalabs.com/install-lambda-stack.sh | sh -
+# Download, inspect, then run the installer (do not pipe it straight into sh)
+wget -nv -O install-lambda-stack.sh https://lambdalabs.com/install-lambda-stack.sh
+less install-lambda-stack.sh
+sh install-lambda-stack.sh
 sudo reboot
 
 # Check driver status
@@ -193,7 +196,10 @@ nvcc --version  # Shows toolkit version
 
 # Lambda Stack should have compatible versions
 # If mismatch, reinstall Lambda Stack
-wget -nv -O- https://lambdalabs.com/install-lambda-stack.sh | sh -
+# Download, inspect, then run the installer (do not pipe it straight into sh)
+wget -nv -O install-lambda-stack.sh https://lambdalabs.com/install-lambda-stack.sh
+less install-lambda-stack.sh
+sh install-lambda-stack.sh
 sudo reboot
 
 # Or install specific PyTorch version
