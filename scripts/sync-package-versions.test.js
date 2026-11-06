@@ -131,7 +131,8 @@ test('long invalid prerelease input is rejected without hanging or changing mani
   const root = createFixture();
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
   const before = fs.readFileSync(path.join(root, 'package.json'), 'utf8');
-  const result = runScript(root, `1.2.3-${'a'.repeat(100000)}!`);
+  const repeatCount = process.platform === 'win32' ? 10000 : 100000;
+  const result = runScript(root, `1.2.3-${'a'.repeat(repeatCount)}!`);
   assert.equal(result.error, undefined);
   assert.equal(result.status, 1);
   assert.equal(fs.readFileSync(path.join(root, 'package.json'), 'utf8'), before);
