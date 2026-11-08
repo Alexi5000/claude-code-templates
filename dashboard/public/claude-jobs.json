@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-07T03:17:03.467372+00:00",
+  "lastUpdated": "2026-11-08T03:18:02.551209+00:00",
   "totalJobs": 474,
   "sources": [
     "Anthropic",
@@ -10,6 +10,86 @@
     "RemoteOK"
   ],
   "jobs": [
+    {
+      "id": "gr-hook-8922828002",
+      "company": "Hook",
+      "position": "Principal Engineer  -- Full-Stack TypeScript (Node.js, React, Cloud)",
+      "location": "Remote",
+      "locations": [
+        "Remote"
+      ],
+      "remote": true,
+      "salary": "",
+      "description": "WHO WE ARE We're Hook, an award-winning creative content agency. With a collaborative, maker-centric team, and an emphasis on production-led design, we make ads, campaigns, and experiences that drive growth for the world's most innovative brands. Our mission is to integrate creative and production...",
+      "applyUrl": "https://job-boards.greenhouse.io/hook/jobs/8922828002",
+      "source": "Greenhouse",
+      "sourceUrl": "https://job-boards.greenhouse.io/hook/jobs/8922828002",
+      "postedAt": "2026-11-07T15:53:15-05:00",
+      "tags": [
+        "Claude Code",
+        "React",
+        "Next.js",
+        "TypeScript",
+        "JavaScript",
+        "Python",
+        "Node.js",
+        "PostgreSQL",
+        "AWS",
+        "GCP"
+      ],
+      "companyIcon": ""
+    },
+    {
+      "id": "anth-5444482008",
+      "company": "Anthropic",
+      "position": "Manager, Applied AI Architecture, Enterprise Tech",
+      "location": "San Francisco, CA",
+      "locations": [
+        "San Francisco, CA"
+      ],
+      "remote": false,
+      "salary": "",
+      "description": "As the manager of the Solutions Architect team within Applied AI Enterprise Tech at Anthropic, you will drive the adoption of frontier AI in partnership with the rest of the go to market organization. Our Enterprise Tech customers are some of the world's most sophisticated technology companies,...",
+      "applyUrl": "https://job-boards.greenhouse.io/anthropic/jobs/5444482008",
+      "source": "Anthropic",
+      "sourceUrl": "https://job-boards.greenhouse.io/anthropic/jobs/5444482008",
+      "postedAt": "2026-11-07T12:22:35-05:00",
+      "tags": [
+        "Claude Code",
+        "Anthropic"
+      ],
+      "companyIcon": "https://www.anthropic.com/favicon.ico"
+    },
+    {
+      "id": "le-provectus-92ccf747-e1a2-48b8-b0b5-9f8503480dc5",
+      "company": "Provectus",
+      "position": "Junior AI/ML Engineer (GenAI, AWS)",
+      "location": "Ukraine · Spain · Serbia · Yerevan · Poland",
+      "locations": [
+        "Ukraine",
+        "Spain",
+        "Serbia",
+        "Yerevan",
+        "Poland"
+      ],
+      "remote": true,
+      "salary": "",
+      "description": "Provectus is an AWS Premier Partner and an Anthropic Strategic Partner, working at the frontier of applied AI. We help enterprises turn Claude, agentic systems, and their own data into measurable business outcomes — through bespoke applications, managed services, and advisory engagements. With...",
+      "applyUrl": "https://jobs.lever.co/provectus/92ccf747-e1a2-48b8-b0b5-9f8503480dc5",
+      "source": "Lever",
+      "sourceUrl": "https://jobs.lever.co/provectus/92ccf747-e1a2-48b8-b0b5-9f8503480dc5",
+      "postedAt": "2026-11-07T09:09:12.931000+00:00",
+      "tags": [
+        "Claude Code",
+        "TypeScript",
+        "Python",
+        "Rust",
+        "Go",
+        "AWS",
+        "MCP"
+      ],
+      "companyIcon": ""
+    },
     {
       "id": "gr-mixpanel-8357923",
       "company": "Mixpanel",
@@ -3368,19 +3448,19 @@
       "companyIcon": ""
     },
     {
-      "id": "gr-affirm-7829429003",
+      "id": "gr-affirm-7829427003",
       "company": "Affirm",
       "position": "Staff Software Engineer, Mobile (App Infrastructure)",
-      "location": "Remote Canada",
+      "location": "Remote US",
       "locations": [
-        "Remote Canada"
+        "Remote US"
       ],
       "remote": true,
-      "salary": "$181,000 - $241,000",
+      "salary": "$230,000 - $290,000",
       "description": "At Affirm, we exist for the moments that matter—giving people a clear, predictable way to pay over time, with no hidden fees, no surprises, and no tradeoffs on what matters most. App Infrastructure is the team behind Affirm's shared mobile app infrastructure — the platform every other mobile...",
-      "applyUrl": "https://job-boards.greenhouse.io/affirm/jobs/7829429003",
+      "applyUrl": "https://job-boards.greenhouse.io/affirm/jobs/7829427003",
       "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/affirm/jobs/7829429003",
+      "sourceUrl": "https://job-boards.greenhouse.io/affirm/jobs/7829427003",
       "postedAt": "2026-10-30T17:15:12-04:00",
       "tags": [
         "Claude Code",
@@ -3614,19 +3694,19 @@
       "companyIcon": ""
     },
     {
-      "id": "gr-samsara-7917475",
+      "id": "gr-samsara-8281483",
       "company": "Samsara",
       "position": "Senior AI Data & Analytics Engineer II",
-      "location": "Remote - SF Bay Area",
+      "location": "Remote - CA",
       "locations": [
-        "Remote - SF Bay Area"
+        "Remote - CA"
       ],
       "remote": true,
       "salary": "",
       "description": "Who we are Samsara (NYSE: IOT) is the pioneer of the Connected Operations™ Cloud, which is a platform that enables organizations that depend on physical operations to harness Internet of Things (IoT) data to develop actionable insights and improve their operations. At Samsara, we are helping...",
-      "applyUrl": "https://www.samsara.com/company/careers/roles/7917475?gh_jid=7917475",
+      "applyUrl": "https://www.samsara.com/company/careers/roles/8281483?gh_jid=8281483",
       "source": "Greenhouse",
-      "sourceUrl": "https://www.samsara.com/company/careers/roles/7917475?gh_jid=7917475",
+      "sourceUrl": "https://www.samsara.com/company/careers/roles/8281483?gh_jid=8281483",
       "postedAt": "2026-10-30T11:22:26-04:00",
       "tags": [
         "Claude Code",
@@ -4679,35 +4759,6 @@
         "Cursor",
         "Copilot",
         "Java"
-      ],
-      "companyIcon": ""
-    },
-    {
-      "id": "gr-hook-8922828002",
-      "company": "Hook",
-      "position": "Principal Engineer  -- Full-Stack TypeScript (Node.js, React, Cloud)",
-      "location": "Remote",
-      "locations": [
-        "Remote"
-      ],
-      "remote": true,
-      "salary": "",
-      "description": "WHO WE ARE We're Hook, an award-winning creative content agency. With a collaborative, maker-centric team, and an emphasis on production-led design, we make ads, campaigns, and experiences that drive growth for the world's most innovative brands. Our mission is to integrate creative and production...",
-      "applyUrl": "https://job-boards.greenhouse.io/hook/jobs/8922828002",
-      "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/hook/jobs/8922828002",
-      "postedAt": "2026-10-28T18:58:08-04:00",
-      "tags": [
-        "Claude Code",
-        "React",
-        "Next.js",
-        "TypeScript",
-        "JavaScript",
-        "Python",
-        "Node.js",
-        "PostgreSQL",
-        "AWS",
-        "GCP"
       ],
       "companyIcon": ""
     },
@@ -7729,27 +7780,6 @@
       "companyIcon": ""
     },
     {
-      "id": "anth-5444482008",
-      "company": "Anthropic",
-      "position": "Manager, Applied AI Architecture, Enterprise Tech",
-      "location": "San Francisco, CA",
-      "locations": [
-        "San Francisco, CA"
-      ],
-      "remote": false,
-      "salary": "",
-      "description": "As the manager of the Solutions Architect team within Applied AI Enterprise Tech at Anthropic, you will drive the adoption of frontier AI in partnership with the rest of the go to market organization. Our Enterprise Tech customers are some of the world's most sophisticated technology companies,...",
-      "applyUrl": "https://job-boards.greenhouse.io/anthropic/jobs/5444482008",
-      "source": "Anthropic",
-      "sourceUrl": "https://job-boards.greenhouse.io/anthropic/jobs/5444482008",
-      "postedAt": "2026-10-13T13:11:31-04:00",
-      "tags": [
-        "Claude Code",
-        "Anthropic"
-      ],
-      "companyIcon": "https://www.anthropic.com/favicon.ico"
-    },
-    {
       "id": "gr-asana-7964388",
       "company": "Asana",
       "position": "Staff Software Engineer, AI Developer Experience",
@@ -8134,36 +8164,6 @@
         "Cursor"
       ],
       "companyIcon": "https://notion.so/favicon.ico"
-    },
-    {
-      "id": "le-provectus-ce930027-43a2-4b4c-af03-ea3edb8f7581",
-      "company": "Provectus",
-      "position": "Junior AI/ML Engineer (GenAI, AWS)",
-      "location": "Ukraine · Spain · Serbia · Yerevan · Poland",
-      "locations": [
-        "Ukraine",
-        "Spain",
-        "Serbia",
-        "Yerevan",
-        "Poland"
-      ],
-      "remote": true,
-      "salary": "",
-      "description": "Provectus is an AWS Premier Partner and an Anthropic Strategic Partner, working at the frontier of applied AI. We help enterprises turn Claude, agentic systems, and their own data into measurable business outcomes — through bespoke applications, managed services, and advisory engagements. With...",
-      "applyUrl": "https://jobs.lever.co/provectus/ce930027-43a2-4b4c-af03-ea3edb8f7581",
-      "source": "Lever",
-      "sourceUrl": "https://jobs.lever.co/provectus/ce930027-43a2-4b4c-af03-ea3edb8f7581",
-      "postedAt": "2026-10-09T13:28:30.652000+00:00",
-      "tags": [
-        "Claude Code",
-        "TypeScript",
-        "Python",
-        "Rust",
-        "Go",
-        "AWS",
-        "MCP"
-      ],
-      "companyIcon": ""
     },
     {
       "id": "le-scality-50b3d620-51bd-4a15-93e5-c96d2d47b621",
