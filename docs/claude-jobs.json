@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-08T03:18:02.551209+00:00",
+  "lastUpdated": "2026-11-09T03:19:37.882997+00:00",
   "totalJobs": 474,
   "sources": [
     "Anthropic",
@@ -2430,19 +2430,19 @@
       "companyIcon": ""
     },
     {
-      "id": "gr-fivetran-7865559003",
+      "id": "gr-fivetran-7865591003",
       "company": "Fivetran",
       "position": "Senior Software Engineer, Metadata",
-      "location": "Denver, Colorado, United States, AMER",
+      "location": "Oakland, California, United States",
       "locations": [
-        "Denver, Colorado, United States, AMER"
+        "Oakland, California, United States"
       ],
       "remote": false,
       "salary": "",
       "description": "From Fivetran’s founding until now, our mission has remained the same: to make access to data as simple and reliable as electricity. With Fivetran, customer data arrives in their warehouses, canonical and ready to query, with no engineering or maintenance required. We’re proud that more...",
-      "applyUrl": "https://www.fivetran.com/careers/job?gh_jid=7865559003",
+      "applyUrl": "https://www.fivetran.com/careers/job?gh_jid=7865591003",
       "source": "Greenhouse",
-      "sourceUrl": "https://www.fivetran.com/careers/job?gh_jid=7865559003",
+      "sourceUrl": "https://www.fivetran.com/careers/job?gh_jid=7865591003",
       "postedAt": "2026-11-03T11:35:48-05:00",
       "tags": [
         "Claude Code",
@@ -3379,19 +3379,19 @@
       "companyIcon": ""
     },
     {
-      "id": "gr-affirm-7718808003",
+      "id": "gr-affirm-8036613003",
       "company": "Affirm",
       "position": "Security Risk Management Lead",
-      "location": "Remote US",
+      "location": "Remote Canada",
       "locations": [
-        "Remote US"
+        "Remote Canada"
       ],
       "remote": true,
-      "salary": "$165,000 - $225,000",
-      "description": "At Affirm, we exist for the moments that matter—giving people a clear, predictable way to pay over time, with no hidden fees, no surprises, and no tradeoffs on what matters most. Affirm values security as being critical to the company’s continued success. Our mission is to cultivate a culture of...",
-      "applyUrl": "https://job-boards.greenhouse.io/affirm/jobs/7718808003",
+      "salary": "$128,000 - $188,000",
+      "description": "At Affirm, we exist for the moments that matter—giving people a clear, predictable way to pay over time, with no hidden fees, no surprises, and no tradeoffs on what matters most. At Affirm, we exist for the moments that matter—giving people a clear, predictable way to pay over time, with no hidden...",
+      "applyUrl": "https://job-boards.greenhouse.io/affirm/jobs/8036613003",
       "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/affirm/jobs/7718808003",
+      "sourceUrl": "https://job-boards.greenhouse.io/affirm/jobs/8036613003",
       "postedAt": "2026-10-30T17:15:12-04:00",
       "tags": [
         "Claude Code",
@@ -3448,19 +3448,19 @@
       "companyIcon": ""
     },
     {
-      "id": "gr-affirm-7829427003",
+      "id": "gr-affirm-7829429003",
       "company": "Affirm",
       "position": "Staff Software Engineer, Mobile (App Infrastructure)",
-      "location": "Remote US",
+      "location": "Remote Canada",
       "locations": [
-        "Remote US"
+        "Remote Canada"
       ],
       "remote": true,
-      "salary": "$230,000 - $290,000",
+      "salary": "$181,000 - $241,000",
       "description": "At Affirm, we exist for the moments that matter—giving people a clear, predictable way to pay over time, with no hidden fees, no surprises, and no tradeoffs on what matters most. App Infrastructure is the team behind Affirm's shared mobile app infrastructure — the platform every other mobile...",
-      "applyUrl": "https://job-boards.greenhouse.io/affirm/jobs/7829427003",
+      "applyUrl": "https://job-boards.greenhouse.io/affirm/jobs/7829429003",
       "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/affirm/jobs/7829427003",
+      "sourceUrl": "https://job-boards.greenhouse.io/affirm/jobs/7829429003",
       "postedAt": "2026-10-30T17:15:12-04:00",
       "tags": [
         "Claude Code",
@@ -3694,19 +3694,19 @@
       "companyIcon": ""
     },
     {
-      "id": "gr-samsara-8281483",
+      "id": "gr-samsara-7917475",
       "company": "Samsara",
       "position": "Senior AI Data & Analytics Engineer II",
-      "location": "Remote - CA",
+      "location": "Remote - SF Bay Area",
       "locations": [
-        "Remote - CA"
+        "Remote - SF Bay Area"
       ],
       "remote": true,
       "salary": "",
       "description": "Who we are Samsara (NYSE: IOT) is the pioneer of the Connected Operations™ Cloud, which is a platform that enables organizations that depend on physical operations to harness Internet of Things (IoT) data to develop actionable insights and improve their operations. At Samsara, we are helping...",
-      "applyUrl": "https://www.samsara.com/company/careers/roles/8281483?gh_jid=8281483",
+      "applyUrl": "https://www.samsara.com/company/careers/roles/7917475?gh_jid=7917475",
       "source": "Greenhouse",
-      "sourceUrl": "https://www.samsara.com/company/careers/roles/8281483?gh_jid=8281483",
+      "sourceUrl": "https://www.samsara.com/company/careers/roles/7917475?gh_jid=7917475",
       "postedAt": "2026-10-30T11:22:26-04:00",
       "tags": [
         "Claude Code",
@@ -3716,19 +3716,19 @@
       "companyIcon": ""
     },
     {
-      "id": "gr-samsara-8109358",
+      "id": "gr-samsara-7752678",
       "company": "Samsara",
       "position": "Staff Software Engineer, DevEx",
-      "location": "Remote - Canada",
+      "location": "Remote - US",
       "locations": [
-        "Remote - Canada"
+        "Remote - US"
       ],
       "remote": true,
       "salary": "",
       "description": "Who we are Samsara (NYSE: IOT) is the pioneer of the Connected Operations™ Cloud, which is a platform that enables organizations that depend on physical operations to harness Internet of Things (IoT) data to develop actionable insights and improve their operations. At Samsara, we are helping...",
-      "applyUrl": "https://www.samsara.com/company/careers/roles/8109358?gh_jid=8109358",
+      "applyUrl": "https://www.samsara.com/company/careers/roles/7752678?gh_jid=7752678",
       "source": "Greenhouse",
-      "sourceUrl": "https://www.samsara.com/company/careers/roles/8109358?gh_jid=8109358",
+      "sourceUrl": "https://www.samsara.com/company/careers/roles/7752678?gh_jid=7752678",
       "postedAt": "2026-10-30T11:15:54-04:00",
       "tags": [
         "Claude Code",
@@ -5066,7 +5066,7 @@
         "Burnaby"
       ],
       "remote": false,
-      "salary": "CA$25 – CA$28 per hour",
+      "salary": "CA$20 per hour",
       "description": "🎨 OpusClip https://www.opus.pro is the world's No.1 AI video agent, built for authenticity on social media.\n\nWe envision a world where everyone can authentically share their story through video, with no expertise needed. Within just 18 months of our launch, over 20 million creators and businesses...",
       "applyUrl": "https://jobs.ashbyhq.com/opusclip/6906926b-eb37-4b68-ad17-5383fbda7818",
       "source": "Ashby",
@@ -9042,19 +9042,19 @@
       "companyIcon": "https://intercom.com/favicon.ico"
     },
     {
-      "id": "gr-tailscale-4721714005",
+      "id": "gr-tailscale-4721713005",
       "company": "Tailscale",
       "position": "Software Engineer, Strategic Projects",
-      "location": "Remote (United States)",
+      "location": "Remote (Canada)",
       "locations": [
-        "Remote (United States)"
+        "Remote (Canada)"
       ],
       "remote": true,
       "salary": "",
       "description": "Thank you for considering Tailscale. If this job description resonates with you, please apply. Frequently cited statistics show that people who identify with historically marginalized groups are likely to apply to jobs only if they meet 100% of the qualifications. We encourage you to help us break...",
-      "applyUrl": "https://job-boards.greenhouse.io/tailscale/jobs/4721714005",
+      "applyUrl": "https://job-boards.greenhouse.io/tailscale/jobs/4721713005",
       "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/tailscale/jobs/4721714005",
+      "sourceUrl": "https://job-boards.greenhouse.io/tailscale/jobs/4721713005",
       "postedAt": "2026-09-29T20:38:27-04:00",
       "tags": [
         "Claude Code",
@@ -10329,19 +10329,19 @@
       "companyIcon": "https://baseten.co/favicon.ico"
     },
     {
-      "id": "gr-instacart-8084090",
+      "id": "gr-instacart-8084089",
       "company": "Instacart",
       "position": "Staff Experience Designer",
-      "location": "Canada - Remote (ON, AB, BC, or NS Only)",
+      "location": "United States - Remote",
       "locations": [
-        "Canada - Remote (ON, AB, BC, or NS Only)"
+        "United States - Remote"
       ],
       "remote": true,
       "salary": "",
       "description": "We're transforming the grocery industry At Instacart, we invite the world to share love through food because we believe everyone should have access to the food they love and more time to enjoy it together. Where others see a simple need for grocery delivery, we see exciting complexity and endless...",
-      "applyUrl": "https://instacart.careers/job/?gh_jid=8084090",
+      "applyUrl": "https://instacart.careers/job/?gh_jid=8084089",
       "source": "Greenhouse",
-      "sourceUrl": "https://instacart.careers/job/?gh_jid=8084090",
+      "sourceUrl": "https://instacart.careers/job/?gh_jid=8084089",
       "postedAt": "2026-08-24T13:15:00-04:00",
       "tags": [
         "Claude Code",
@@ -11212,19 +11212,19 @@
       "companyIcon": "https://ramp.com/favicon.ico"
     },
     {
-      "id": "gr-brex-8463703002",
+      "id": "gr-brex-8463702002",
       "company": "Brex",
       "position": "Data Analyst II",
-      "location": "São Paulo, São Paulo, Brazil",
+      "location": "New York, New York, United States",
       "locations": [
-        "São Paulo, São Paulo, Brazil"
+        "New York, New York, United States"
       ],
       "remote": false,
-      "salary": "",
+      "salary": "$93,600 - $117,000",
       "description": "Why join us Brex is the intelligent finance platform that enables companies to spend smarter and move faster in more than 200 markets. By combining global corporate cards and banking with intuitive spend management, bill pay, and travel software, Brex enables founders and finance teams to...",
-      "applyUrl": "https://www.brex.com/careers/8463703002?gh_jid=8463703002",
+      "applyUrl": "https://www.brex.com/careers/8463702002?gh_jid=8463702002",
       "source": "Greenhouse",
-      "sourceUrl": "https://www.brex.com/careers/8463703002?gh_jid=8463703002",
+      "sourceUrl": "https://www.brex.com/careers/8463702002?gh_jid=8463702002",
       "postedAt": "2026-06-10T13:59:16-04:00",
       "tags": [
         "Claude Code",
