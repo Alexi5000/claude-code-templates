@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-11-15T03:17:56.357428+00:00",
-  "totalJobs": 474,
+  "lastUpdated": "2026-11-16T03:19:56.332079+00:00",
+  "totalJobs": 473,
   "sources": [
     "Anthropic",
     "Ashby",
@@ -10,6 +10,222 @@
     "RemoteOK"
   ],
   "jobs": [
+    {
+      "id": "gr-binance-5025783101",
+      "company": "Binance",
+      "position": "Full Stack Engineer - Recommendation Engine (APAC Remote)",
+      "location": "Hong Kong · Japan · Singapore · Taiwan",
+      "locations": [
+        "Hong Kong",
+        "Japan",
+        "Singapore",
+        "Taiwan"
+      ],
+      "remote": false,
+      "salary": "",
+      "description": "Binance is a leading global blockchain ecosystem behind the world’s largest cryptocurrency exchange by trading volume and registered users. We are trusted by 300+ million people in 100+ countries for our industry-leading security, user fund transparency, trading engine speed, deep liquidity, and an...",
+      "applyUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5025783101",
+      "source": "Greenhouse",
+      "sourceUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5025783101",
+      "postedAt": "2026-11-15T21:47:43-05:00",
+      "tags": [
+        "Claude Code",
+        "React",
+        "Go",
+        "Cursor",
+        "Copilot",
+        "Java"
+      ],
+      "companyIcon": ""
+    },
+    {
+      "id": "gr-binance-5028202101",
+      "company": "Binance",
+      "position": "Fullstack Engineer - Square (APAC Remote)",
+      "location": "Hong Kong · Singapore · Taiwan",
+      "locations": [
+        "Hong Kong",
+        "Singapore",
+        "Taiwan"
+      ],
+      "remote": false,
+      "salary": "",
+      "description": "Binance is a leading global blockchain ecosystem behind the world’s largest cryptocurrency exchange by trading volume and registered users. We are trusted by 300+ million people in 100+ countries for our industry-leading security, user fund transparency, trading engine speed, deep liquidity, and an...",
+      "applyUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5028202101",
+      "source": "Greenhouse",
+      "sourceUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5028202101",
+      "postedAt": "2026-11-15T21:47:43-05:00",
+      "tags": [
+        "Claude Code",
+        "React",
+        "Go",
+        "Cursor",
+        "Copilot",
+        "Java",
+        "Vue.js",
+        "Redis",
+        "MySQL"
+      ],
+      "companyIcon": ""
+    },
+    {
+      "id": "gr-binance-5004445101",
+      "company": "Binance",
+      "position": "Data Analyst (12 months contract)",
+      "location": "Hong Kong · Malaysia · Singapore",
+      "locations": [
+        "Hong Kong",
+        "Malaysia",
+        "Singapore"
+      ],
+      "remote": false,
+      "salary": "",
+      "description": "Binance is a leading global blockchain ecosystem behind the world’s largest cryptocurrency exchange by trading volume and registered users. We are trusted by 300+ million people in 100+ countries for our industry-leading security, user fund transparency, trading engine speed, deep liquidity, and an...",
+      "applyUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5004445101",
+      "source": "Greenhouse",
+      "sourceUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5004445101",
+      "postedAt": "2026-11-15T21:47:39-05:00",
+      "tags": [
+        "Claude Code",
+        "Python"
+      ],
+      "companyIcon": ""
+    },
+    {
+      "id": "gr-binance-5005781101",
+      "company": "Binance",
+      "position": "Fullstack Engineer",
+      "location": "Hong Kong",
+      "locations": [
+        "Hong Kong"
+      ],
+      "remote": false,
+      "salary": "",
+      "description": "Binance is a leading global blockchain ecosystem behind the world’s largest cryptocurrency exchange by trading volume and registered users. We are trusted by 300+ million people in 100+ countries for our industry-leading security, user fund transparency, trading engine speed, deep liquidity, and an...",
+      "applyUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5005781101",
+      "source": "Greenhouse",
+      "sourceUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5005781101",
+      "postedAt": "2026-11-15T21:47:39-05:00",
+      "tags": [
+        "Claude Code",
+        "React",
+        "Go",
+        "Node.js",
+        "Cursor",
+        "Copilot",
+        "Java"
+      ],
+      "companyIcon": ""
+    },
+    {
+      "id": "gr-binance-5007086101",
+      "company": "Binance",
+      "position": "Full Stack Engineer (Web,Frontend Oriented) — AI Facial Recognition, Identity & Security",
+      "location": "Australia · Hong Kong · New Zealand · Singapore · Taiwan · United Arab Emirates",
+      "locations": [
+        "Australia",
+        "Hong Kong",
+        "New Zealand",
+        "Singapore",
+        "Taiwan",
+        "United Arab Emirates"
+      ],
+      "remote": false,
+      "salary": "",
+      "description": "Binance is a leading global blockchain ecosystem behind the world’s largest cryptocurrency exchange by trading volume and registered users. We are trusted by 300+ million people in 100+ countries for our industry-leading security, user fund transparency, trading engine speed, deep liquidity, and an...",
+      "applyUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5007086101",
+      "source": "Greenhouse",
+      "sourceUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5007086101",
+      "postedAt": "2026-11-15T21:47:39-05:00",
+      "tags": [
+        "Claude Code",
+        "React",
+        "TypeScript",
+        "JavaScript",
+        "Node.js",
+        "Cursor",
+        "Copilot"
+      ],
+      "companyIcon": ""
+    },
+    {
+      "id": "gr-binance-5002673101",
+      "company": "Binance",
+      "position": "Java Backend Engineer, Global Travel Rule (GTR)",
+      "location": "Hong Kong · Singapore",
+      "locations": [
+        "Hong Kong",
+        "Singapore"
+      ],
+      "remote": false,
+      "salary": "",
+      "description": "Binance is a leading global blockchain ecosystem behind the world’s largest cryptocurrency exchange by trading volume and registered users. We are trusted by 300+ million people in 100+ countries for our industry-leading security, user fund transparency, trading engine speed, deep liquidity, and an...",
+      "applyUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5002673101",
+      "source": "Greenhouse",
+      "sourceUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5002673101",
+      "postedAt": "2026-11-15T21:47:37-05:00",
+      "tags": [
+        "Claude Code",
+        "AWS",
+        "Java"
+      ],
+      "companyIcon": ""
+    },
+    {
+      "id": "gr-binance-5002609101",
+      "company": "Binance",
+      "position": "Pioneer Talent Program - Applied AI Agent/AI Productivity Engineer (Fully Remote) ",
+      "location": "Australia · Hong Kong · Malaysia · New Zealand · Singapore · Taiwan",
+      "locations": [
+        "Australia",
+        "Hong Kong",
+        "Malaysia",
+        "New Zealand",
+        "Singapore",
+        "Taiwan"
+      ],
+      "remote": false,
+      "salary": "",
+      "description": "Binance is a leading global blockchain ecosystem behind the world’s largest cryptocurrency exchange by trading volume and registered users. We are trusted by 300+ million people in 100+ countries for our industry-leading security, user fund transparency, trading engine speed, deep liquidity, and an...",
+      "applyUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5002609101",
+      "source": "Greenhouse",
+      "sourceUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5002609101",
+      "postedAt": "2026-11-15T21:47:36-05:00",
+      "tags": [
+        "TypeScript",
+        "JavaScript",
+        "Python",
+        "Go",
+        "Java",
+        "MCP"
+      ],
+      "companyIcon": ""
+    },
+    {
+      "id": "gr-binance-5002565101",
+      "company": "Binance",
+      "position": "Pioneer Talent Program - Research Data Scientist (APAC Remote)",
+      "location": "Hong Kong · Singapore · Taiwan",
+      "locations": [
+        "Hong Kong",
+        "Singapore",
+        "Taiwan"
+      ],
+      "remote": false,
+      "salary": "",
+      "description": "Binance is a leading global blockchain ecosystem behind the world’s largest cryptocurrency exchange by trading volume and registered users. We are trusted by 300+ million people in 100+ countries for our industry-leading security, user fund transparency, trading engine speed, deep liquidity, and an...",
+      "applyUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5002565101",
+      "source": "Greenhouse",
+      "sourceUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5002565101",
+      "postedAt": "2026-11-15T21:47:36-05:00",
+      "tags": [
+        "Claude Code",
+        "Python",
+        "Cursor",
+        "Copilot"
+      ],
+      "companyIcon": ""
+    },
     {
       "id": "anth-5469291008",
       "company": "Anthropic",
@@ -123,19 +339,19 @@
       "companyIcon": ""
     },
     {
-      "id": "gr-fivetran-7859203003",
+      "id": "gr-fivetran-7823195003",
       "company": "Fivetran",
       "position": "Engineering Manager, Metadata",
-      "location": "Oakland, California, United States",
+      "location": "Denver, Colorado, United States, AMER",
       "locations": [
-        "Oakland, California, United States"
+        "Denver, Colorado, United States, AMER"
       ],
       "remote": false,
       "salary": "",
       "description": "From Fivetran’s founding until now, our mission has remained the same: to make access to data as simple and reliable as electricity. With Fivetran, customer data arrives in their warehouses, canonical and ready to query, with no engineering or maintenance required. We’re proud that more...",
-      "applyUrl": "https://www.fivetran.com/careers/job?gh_jid=7859203003",
+      "applyUrl": "https://www.fivetran.com/careers/job?gh_jid=7823195003",
       "source": "Greenhouse",
-      "sourceUrl": "https://www.fivetran.com/careers/job?gh_jid=7859203003",
+      "sourceUrl": "https://www.fivetran.com/careers/job?gh_jid=7823195003",
       "postedAt": "2026-11-13T15:30:56-05:00",
       "tags": [
         "Claude Code",
@@ -143,28 +359,6 @@
         "GraphQL"
       ],
       "companyIcon": "https://fivetran.com/favicon.ico"
-    },
-    {
-      "id": "anth-5428790008",
-      "company": "Anthropic",
-      "position": "Sales Enablement Trainer, Claude Products",
-      "location": "San Francisco, CA · New York City, NY",
-      "locations": [
-        "San Francisco, CA",
-        "New York City, NY"
-      ],
-      "remote": false,
-      "salary": "",
-      "description": "As a Sales Enablement Trainer, Claude Products, you'll teach Anthropic's global sales team how to use our products, both to do their own work better and to position Claude credibly with customers. Anthropic ships quickly, and the surface area of what we build is growing faster than any individual...",
-      "applyUrl": "https://job-boards.greenhouse.io/anthropic/jobs/5428790008",
-      "source": "Anthropic",
-      "sourceUrl": "https://job-boards.greenhouse.io/anthropic/jobs/5428790008",
-      "postedAt": "2026-11-13T14:22:16-05:00",
-      "tags": [
-        "Claude Code",
-        "Anthropic"
-      ],
-      "companyIcon": "https://www.anthropic.com/favicon.ico"
     },
     {
       "id": "le-provectus-643bfee8-9c9d-4281-b017-61c8a4e41957",
@@ -597,222 +791,6 @@
         "Azure",
         "Docker",
         "Kubernetes"
-      ],
-      "companyIcon": ""
-    },
-    {
-      "id": "gr-binance-5028202101",
-      "company": "Binance",
-      "position": "Fullstack Engineer - Square (APAC Remote)",
-      "location": "Hong Kong · Singapore · Taiwan",
-      "locations": [
-        "Hong Kong",
-        "Singapore",
-        "Taiwan"
-      ],
-      "remote": false,
-      "salary": "",
-      "description": "Binance is a leading global blockchain ecosystem behind the world’s largest cryptocurrency exchange by trading volume and registered users. We are trusted by 300+ million people in 100+ countries for our industry-leading security, user fund transparency, trading engine speed, deep liquidity, and an...",
-      "applyUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5028202101",
-      "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5028202101",
-      "postedAt": "2026-11-13T05:13:04-05:00",
-      "tags": [
-        "Claude Code",
-        "React",
-        "Go",
-        "Cursor",
-        "Copilot",
-        "Java",
-        "Vue.js",
-        "Redis",
-        "MySQL"
-      ],
-      "companyIcon": ""
-    },
-    {
-      "id": "gr-binance-5025783101",
-      "company": "Binance",
-      "position": "Full Stack Engineer - Recommendation Engine (APAC Remote)",
-      "location": "Hong Kong · Japan · Singapore · Taiwan",
-      "locations": [
-        "Hong Kong",
-        "Japan",
-        "Singapore",
-        "Taiwan"
-      ],
-      "remote": false,
-      "salary": "",
-      "description": "Binance is a leading global blockchain ecosystem behind the world’s largest cryptocurrency exchange by trading volume and registered users. We are trusted by 300+ million people in 100+ countries for our industry-leading security, user fund transparency, trading engine speed, deep liquidity, and an...",
-      "applyUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5025783101",
-      "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5025783101",
-      "postedAt": "2026-11-13T05:13:03-05:00",
-      "tags": [
-        "Claude Code",
-        "React",
-        "Go",
-        "Cursor",
-        "Copilot",
-        "Java"
-      ],
-      "companyIcon": ""
-    },
-    {
-      "id": "gr-binance-5005781101",
-      "company": "Binance",
-      "position": "Fullstack Engineer",
-      "location": "Hong Kong",
-      "locations": [
-        "Hong Kong"
-      ],
-      "remote": false,
-      "salary": "",
-      "description": "Binance is a leading global blockchain ecosystem behind the world’s largest cryptocurrency exchange by trading volume and registered users. We are trusted by 300+ million people in 100+ countries for our industry-leading security, user fund transparency, trading engine speed, deep liquidity, and an...",
-      "applyUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5005781101",
-      "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5005781101",
-      "postedAt": "2026-11-13T05:13:00-05:00",
-      "tags": [
-        "Claude Code",
-        "React",
-        "Go",
-        "Node.js",
-        "Cursor",
-        "Copilot",
-        "Java"
-      ],
-      "companyIcon": ""
-    },
-    {
-      "id": "gr-binance-5007086101",
-      "company": "Binance",
-      "position": "Full Stack Engineer (Web,Frontend Oriented) — AI Facial Recognition, Identity & Security",
-      "location": "Australia · Hong Kong · New Zealand · Singapore · Taiwan · United Arab Emirates",
-      "locations": [
-        "Australia",
-        "Hong Kong",
-        "New Zealand",
-        "Singapore",
-        "Taiwan",
-        "United Arab Emirates"
-      ],
-      "remote": false,
-      "salary": "",
-      "description": "Binance is a leading global blockchain ecosystem behind the world’s largest cryptocurrency exchange by trading volume and registered users. We are trusted by 300+ million people in 100+ countries for our industry-leading security, user fund transparency, trading engine speed, deep liquidity, and an...",
-      "applyUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5007086101",
-      "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5007086101",
-      "postedAt": "2026-11-13T05:13:00-05:00",
-      "tags": [
-        "Claude Code",
-        "React",
-        "TypeScript",
-        "JavaScript",
-        "Node.js",
-        "Cursor",
-        "Copilot"
-      ],
-      "companyIcon": ""
-    },
-    {
-      "id": "gr-binance-5004445101",
-      "company": "Binance",
-      "position": "Data Analyst (12 months contract)",
-      "location": "Hong Kong · Malaysia · Singapore",
-      "locations": [
-        "Hong Kong",
-        "Malaysia",
-        "Singapore"
-      ],
-      "remote": false,
-      "salary": "",
-      "description": "Binance is a leading global blockchain ecosystem behind the world’s largest cryptocurrency exchange by trading volume and registered users. We are trusted by 300+ million people in 100+ countries for our industry-leading security, user fund transparency, trading engine speed, deep liquidity, and an...",
-      "applyUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5004445101",
-      "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5004445101",
-      "postedAt": "2026-11-13T05:12:59-05:00",
-      "tags": [
-        "Claude Code",
-        "Python"
-      ],
-      "companyIcon": ""
-    },
-    {
-      "id": "gr-binance-5002673101",
-      "company": "Binance",
-      "position": "Java Backend Engineer, Global Travel Rule (GTR)",
-      "location": "Hong Kong · Singapore",
-      "locations": [
-        "Hong Kong",
-        "Singapore"
-      ],
-      "remote": false,
-      "salary": "",
-      "description": "Binance is a leading global blockchain ecosystem behind the world’s largest cryptocurrency exchange by trading volume and registered users. We are trusted by 300+ million people in 100+ countries for our industry-leading security, user fund transparency, trading engine speed, deep liquidity, and an...",
-      "applyUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5002673101",
-      "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5002673101",
-      "postedAt": "2026-11-13T05:12:58-05:00",
-      "tags": [
-        "Claude Code",
-        "AWS",
-        "Java"
-      ],
-      "companyIcon": ""
-    },
-    {
-      "id": "gr-binance-5002609101",
-      "company": "Binance",
-      "position": "Pioneer Talent Program - Applied AI Agent/AI Productivity Engineer (Fully Remote) ",
-      "location": "Australia · Hong Kong · Malaysia · New Zealand · Singapore · Taiwan",
-      "locations": [
-        "Australia",
-        "Hong Kong",
-        "Malaysia",
-        "New Zealand",
-        "Singapore",
-        "Taiwan"
-      ],
-      "remote": false,
-      "salary": "",
-      "description": "Binance is a leading global blockchain ecosystem behind the world’s largest cryptocurrency exchange by trading volume and registered users. We are trusted by 300+ million people in 100+ countries for our industry-leading security, user fund transparency, trading engine speed, deep liquidity, and an...",
-      "applyUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5002609101",
-      "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5002609101",
-      "postedAt": "2026-11-13T05:12:57-05:00",
-      "tags": [
-        "TypeScript",
-        "JavaScript",
-        "Python",
-        "Go",
-        "Java",
-        "MCP"
-      ],
-      "companyIcon": ""
-    },
-    {
-      "id": "gr-binance-5002565101",
-      "company": "Binance",
-      "position": "Pioneer Talent Program - Research Data Scientist (APAC Remote)",
-      "location": "Hong Kong · Singapore · Taiwan",
-      "locations": [
-        "Hong Kong",
-        "Singapore",
-        "Taiwan"
-      ],
-      "remote": false,
-      "salary": "",
-      "description": "Binance is a leading global blockchain ecosystem behind the world’s largest cryptocurrency exchange by trading volume and registered users. We are trusted by 300+ million people in 100+ countries for our industry-leading security, user fund transparency, trading engine speed, deep liquidity, and an...",
-      "applyUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5002565101",
-      "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5002565101",
-      "postedAt": "2026-11-13T05:12:56-05:00",
-      "tags": [
-        "Claude Code",
-        "Python",
-        "Cursor",
-        "Copilot"
       ],
       "companyIcon": ""
     },
@@ -1916,19 +1894,19 @@
       "companyIcon": ""
     },
     {
-      "id": "gr-samsara-8281479",
+      "id": "gr-samsara-8281489",
       "company": "Samsara",
       "position": "Senior AI Data & Analytics Engineer II",
-      "location": "Remote - NYC",
+      "location": "Remote - Austin",
       "locations": [
-        "Remote - NYC"
+        "Remote - Austin"
       ],
       "remote": true,
       "salary": "",
       "description": "Who we are Samsara (NYSE: IOT) is the pioneer of the Connected Operations™ Cloud, which is a platform that enables organizations that depend on physical operations to harness Internet of Things (IoT) data to develop actionable insights and improve their operations. At Samsara, we are helping...",
-      "applyUrl": "https://www.samsara.com/company/careers/roles/8281479?gh_jid=8281479",
+      "applyUrl": "https://www.samsara.com/company/careers/roles/8281489?gh_jid=8281489",
       "source": "Greenhouse",
-      "sourceUrl": "https://www.samsara.com/company/careers/roles/8281479?gh_jid=8281479",
+      "sourceUrl": "https://www.samsara.com/company/careers/roles/8281489?gh_jid=8281489",
       "postedAt": "2026-11-10T11:47:15-05:00",
       "tags": [
         "Claude Code",
@@ -2210,19 +2188,19 @@
       "companyIcon": "https://www.anthropic.com/favicon.ico"
     },
     {
-      "id": "gr-affirm-8011038003",
+      "id": "gr-affirm-8011040003",
       "company": "Affirm",
       "position": "Staff Product Manager, Consumer Growth Loyalty",
-      "location": "Remote US",
+      "location": "Remote Canada",
       "locations": [
-        "Remote US"
+        "Remote Canada"
       ],
       "remote": true,
-      "salary": "$230,000 - $290,000",
+      "salary": "$181,000 - $241,000",
       "description": "At Affirm, we exist for the moments that matter—giving people a clear, predictable way to pay over time, with no hidden fees, no surprises, and no tradeoffs on what matters most. About the Product team The Product team listens to our customers’ needs and translates those insights into a clear...",
-      "applyUrl": "https://job-boards.greenhouse.io/affirm/jobs/8011038003",
+      "applyUrl": "https://job-boards.greenhouse.io/affirm/jobs/8011040003",
       "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/affirm/jobs/8011038003",
+      "sourceUrl": "https://job-boards.greenhouse.io/affirm/jobs/8011040003",
       "postedAt": "2026-11-09T16:58:19-05:00",
       "tags": [
         "Claude Code",
@@ -4589,19 +4567,19 @@
       "companyIcon": "https://wealthsimple.com/favicon.ico"
     },
     {
-      "id": "gr-affirm-8036613003",
+      "id": "gr-affirm-7718808003",
       "company": "Affirm",
       "position": "Security Risk Management Lead",
-      "location": "Remote Canada",
+      "location": "Remote US",
       "locations": [
-        "Remote Canada"
+        "Remote US"
       ],
       "remote": true,
-      "salary": "$128,000 - $188,000",
-      "description": "At Affirm, we exist for the moments that matter—giving people a clear, predictable way to pay over time, with no hidden fees, no surprises, and no tradeoffs on what matters most. At Affirm, we exist for the moments that matter—giving people a clear, predictable way to pay over time, with no hidden...",
-      "applyUrl": "https://job-boards.greenhouse.io/affirm/jobs/8036613003",
+      "salary": "$165,000 - $225,000",
+      "description": "At Affirm, we exist for the moments that matter—giving people a clear, predictable way to pay over time, with no hidden fees, no surprises, and no tradeoffs on what matters most. Affirm values security as being critical to the company’s continued success. Our mission is to cultivate a culture of...",
+      "applyUrl": "https://job-boards.greenhouse.io/affirm/jobs/7718808003",
       "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/affirm/jobs/8036613003",
+      "sourceUrl": "https://job-boards.greenhouse.io/affirm/jobs/7718808003",
       "postedAt": "2026-10-30T17:15:12-04:00",
       "tags": [
         "Claude Code",
@@ -4637,19 +4615,19 @@
       "companyIcon": ""
     },
     {
-      "id": "gr-affirm-7829429003",
+      "id": "gr-affirm-7829427003",
       "company": "Affirm",
       "position": "Staff Software Engineer, Mobile (App Infrastructure)",
-      "location": "Remote Canada",
+      "location": "Remote US",
       "locations": [
-        "Remote Canada"
+        "Remote US"
       ],
       "remote": true,
-      "salary": "$181,000 - $241,000",
+      "salary": "$230,000 - $290,000",
       "description": "At Affirm, we exist for the moments that matter—giving people a clear, predictable way to pay over time, with no hidden fees, no surprises, and no tradeoffs on what matters most. App Infrastructure is the team behind Affirm's shared mobile app infrastructure — the platform every other mobile...",
-      "applyUrl": "https://job-boards.greenhouse.io/affirm/jobs/7829429003",
+      "applyUrl": "https://job-boards.greenhouse.io/affirm/jobs/7829427003",
       "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/affirm/jobs/7829429003",
+      "sourceUrl": "https://job-boards.greenhouse.io/affirm/jobs/7829427003",
       "postedAt": "2026-10-30T17:15:12-04:00",
       "tags": [
         "Claude Code",
@@ -4832,19 +4810,19 @@
       "companyIcon": ""
     },
     {
-      "id": "gr-samsara-7752678",
+      "id": "gr-samsara-8109358",
       "company": "Samsara",
       "position": "Staff Software Engineer, DevEx",
-      "location": "Remote - US",
+      "location": "Remote - Canada",
       "locations": [
-        "Remote - US"
+        "Remote - Canada"
       ],
       "remote": true,
       "salary": "",
       "description": "Who we are Samsara (NYSE: IOT) is the pioneer of the Connected Operations™ Cloud, which is a platform that enables organizations that depend on physical operations to harness Internet of Things (IoT) data to develop actionable insights and improve their operations. At Samsara, we are helping...",
-      "applyUrl": "https://www.samsara.com/company/careers/roles/7752678?gh_jid=7752678",
+      "applyUrl": "https://www.samsara.com/company/careers/roles/8109358?gh_jid=8109358",
       "source": "Greenhouse",
-      "sourceUrl": "https://www.samsara.com/company/careers/roles/7752678?gh_jid=7752678",
+      "sourceUrl": "https://www.samsara.com/company/careers/roles/8109358?gh_jid=8109358",
       "postedAt": "2026-10-30T11:15:54-04:00",
       "tags": [
         "Claude Code",
@@ -9264,19 +9242,19 @@
       "companyIcon": "https://intercom.com/favicon.ico"
     },
     {
-      "id": "gr-tailscale-4721714005",
+      "id": "gr-tailscale-4721713005",
       "company": "Tailscale",
       "position": "Software Engineer, Strategic Projects",
-      "location": "Remote (United States)",
+      "location": "Remote (Canada)",
       "locations": [
-        "Remote (United States)"
+        "Remote (Canada)"
       ],
       "remote": true,
       "salary": "",
       "description": "Thank you for considering Tailscale. If this job description resonates with you, please apply. Frequently cited statistics show that people who identify with historically marginalized groups are likely to apply to jobs only if they meet 100% of the qualifications. We encourage you to help us break...",
-      "applyUrl": "https://job-boards.greenhouse.io/tailscale/jobs/4721714005",
+      "applyUrl": "https://job-boards.greenhouse.io/tailscale/jobs/4721713005",
       "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/tailscale/jobs/4721714005",
+      "sourceUrl": "https://job-boards.greenhouse.io/tailscale/jobs/4721713005",
       "postedAt": "2026-09-29T20:38:27-04:00",
       "tags": [
         "Claude Code",
