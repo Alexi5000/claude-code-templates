@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-11-18T03:17:53.196704+00:00",
-  "totalJobs": 467,
+  "lastUpdated": "2026-11-19T03:17:48.978076+00:00",
+  "totalJobs": 462,
   "sources": [
     "Anthropic",
     "Ashby",
@@ -10,6 +10,561 @@
     "RemoteOK"
   ],
   "jobs": [
+    {
+      "id": "as-quadric-ef01c952-4c19-43ec-b5bb-850179eb1d7d",
+      "company": "Quadric",
+      "position": "Senior Product Manager, Hardware (NPU IP)",
+      "location": "Burlingame, CA (HQ)",
+      "locations": [
+        "Burlingame, CA (HQ)"
+      ],
+      "remote": false,
+      "salary": "",
+      "description": "Quadric is redefining edge AI with the industry's first General Purpose Neural Processing Unit (GPNPU), enabling developers to run both neural network inference and conventional C++ code on a single programmable architecture. Our technology powers intelligent edge devices across automotive,...",
+      "applyUrl": "https://jobs.ashbyhq.com/quadric/ef01c952-4c19-43ec-b5bb-850179eb1d7d",
+      "source": "Ashby",
+      "sourceUrl": "https://jobs.ashbyhq.com/quadric/ef01c952-4c19-43ec-b5bb-850179eb1d7d",
+      "postedAt": "2026-11-18T17:20:52.408+00:00",
+      "tags": [
+        "Claude Code",
+        "Cursor"
+      ],
+      "companyIcon": ""
+    },
+    {
+      "id": "gr-affirm-7829429003",
+      "company": "Affirm",
+      "position": "Staff Software Engineer, Mobile (App Infrastructure)",
+      "location": "Remote Canada",
+      "locations": [
+        "Remote Canada"
+      ],
+      "remote": true,
+      "salary": "$181,000 - $241,000",
+      "description": "At Affirm, we exist for the moments that matter—giving people a clear, predictable way to pay over time, with no hidden fees, no surprises, and no tradeoffs on what matters most. App Infrastructure is the team behind Affirm's shared mobile app infrastructure — the platform every other mobile...",
+      "applyUrl": "https://job-boards.greenhouse.io/affirm/jobs/7829429003",
+      "source": "Greenhouse",
+      "sourceUrl": "https://job-boards.greenhouse.io/affirm/jobs/7829429003",
+      "postedAt": "2026-11-18T17:10:22-05:00",
+      "tags": [
+        "Claude Code",
+        "React Native",
+        "React",
+        "TypeScript",
+        "JavaScript"
+      ],
+      "companyIcon": ""
+    },
+    {
+      "id": "gr-fusionworldwide-8208759003",
+      "company": "Fusion Worldwide",
+      "position": "Principal Full Stack Engineer, B2B eCommerce",
+      "location": "Boston, MA",
+      "locations": [
+        "Boston, MA"
+      ],
+      "remote": false,
+      "salary": "",
+      "description": "Principal Full Stack Engineer, B2B eCommerce Location: Boston, MA (Hybrid) Reports to: Team Lead, eCommerce Role type: Full-time, individual contributor About Fusion Worldwide Fusion Worldwide is the preeminent open market distributor of electronic components and products. Founded in 2001 and...",
+      "applyUrl": "https://job-boards.greenhouse.io/fusionworldwide/jobs/8208759003",
+      "source": "Greenhouse",
+      "sourceUrl": "https://job-boards.greenhouse.io/fusionworldwide/jobs/8208759003",
+      "postedAt": "2026-11-18T16:39:05-05:00",
+      "tags": [
+        "Claude Code",
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Python",
+        "Azure",
+        "GraphQL",
+        "Redis",
+        "MCP"
+      ],
+      "companyIcon": ""
+    },
+    {
+      "id": "gr-sonyinteractiveentertainmentglobal-6232155004",
+      "company": "PlayStation Global",
+      "position": "Senior Software Engineer AI (Contractor)",
+      "location": "United States, Aliso Viejo, CA",
+      "locations": [
+        "United States, Aliso Viejo, CA"
+      ],
+      "remote": false,
+      "salary": "",
+      "description": "Why Sony Interactive Entertainment? Sony Interactive Entertainment isn’t just the Best Place to Play — it’s also the Best Place to Work. Sony Interactive Entertainment (SIE) is the company behind the PlayStation brand. As a subsidiary of Sony Group Corporation, we’re part of a proud legacy of...",
+      "applyUrl": "https://job-boards.greenhouse.io/sonyinteractiveentertainmentglobal/jobs/6232155004",
+      "source": "Greenhouse",
+      "sourceUrl": "https://job-boards.greenhouse.io/sonyinteractiveentertainmentglobal/jobs/6232155004",
+      "postedAt": "2026-11-18T16:31:52-05:00",
+      "tags": [
+        "Claude Code",
+        "Python",
+        "Rust",
+        "Go",
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "Java",
+        "MCP"
+      ],
+      "companyIcon": ""
+    },
+    {
+      "id": "gr-wizinc-4709330006",
+      "company": "Wiz, Inc.",
+      "position": "Manager, Solutions Support Engineering - São Paulo",
+      "location": "Remote - Brazil",
+      "locations": [
+        "Remote - Brazil"
+      ],
+      "remote": true,
+      "salary": "",
+      "description": "Come join the organization that is redefining security for the AI era. As one of the fastest-growing startups ever, we enable teams to secure cloud and AI applications by connecting code, cloud, and runtime into a single shared context. Trusted by security teams all over the world, we have a proven...",
+      "applyUrl": "https://www.wiz.io/careers/job/4709330006/:title?gh_jid=4709330006",
+      "source": "Greenhouse",
+      "sourceUrl": "https://www.wiz.io/careers/job/4709330006/:title?gh_jid=4709330006",
+      "postedAt": "2026-11-18T16:16:53-05:00",
+      "tags": [
+        "Claude Code",
+        "AWS",
+        "GCP",
+        "Azure",
+        "Kubernetes"
+      ],
+      "companyIcon": ""
+    },
+    {
+      "id": "gr-gusto-7656216",
+      "company": "Gusto",
+      "position": "Data Scientist, Risk ",
+      "location": "San Francisco, CA - Hybrid",
+      "locations": [
+        "San Francisco, CA - Hybrid"
+      ],
+      "remote": false,
+      "salary": "$186,000/yr",
+      "description": "About Gusto At Gusto, we're on a mission to grow the small business economy. We handle the hard stuff — payroll, health insurance, 401(k)s, and HR — so owners can focus on their craft and their customers. With teams in Denver, San Francisco, and New York, we support more than 500,000 small...",
+      "applyUrl": "https://job-boards.greenhouse.io/gusto/jobs/7656216",
+      "source": "Greenhouse",
+      "sourceUrl": "https://job-boards.greenhouse.io/gusto/jobs/7656216",
+      "postedAt": "2026-11-18T13:37:01-05:00",
+      "tags": [
+        "Claude Code",
+        "Python"
+      ],
+      "companyIcon": "https://gusto.com/favicon.ico"
+    },
+    {
+      "id": "gr-gusto-7905578",
+      "company": "Gusto",
+      "position": "IT Internal Controls",
+      "location": "Denver, CO - Hybrid · New York, NY - Hybrid · San Francisco, CA - Hybrid",
+      "locations": [
+        "Denver, CO - Hybrid",
+        "New York, NY - Hybrid",
+        "San Francisco, CA - Hybrid"
+      ],
+      "remote": false,
+      "salary": "$205,000-$220,000",
+      "description": "About Gusto At Gusto, we're on a mission to grow the small business economy. We handle the hard stuff — payroll, health insurance, 401(k)s, and HR — so owners can focus on their craft and their customers. With teams in Denver, San Francisco, and New York, we support more than 500,000 small...",
+      "applyUrl": "https://job-boards.greenhouse.io/gusto/jobs/7905578",
+      "source": "Greenhouse",
+      "sourceUrl": "https://job-boards.greenhouse.io/gusto/jobs/7905578",
+      "postedAt": "2026-11-18T13:37:01-05:00",
+      "tags": [
+        "Claude Code"
+      ],
+      "companyIcon": "https://gusto.com/favicon.ico"
+    },
+    {
+      "id": "gr-gusto-8348189",
+      "company": "Gusto",
+      "position": "Security Operations Analyst",
+      "location": "Denver, CO - Hybrid · New York, NY - Hybrid · San Francisco, CA - Hybrid",
+      "locations": [
+        "Denver, CO - Hybrid",
+        "New York, NY - Hybrid",
+        "San Francisco, CA - Hybrid"
+      ],
+      "remote": false,
+      "salary": "$147,000-164,000",
+      "description": "About Gusto At Gusto, we're on a mission to grow the small business economy. We handle the hard stuff — payroll, health insurance, 401(k)s, and HR — so owners can focus on their craft and their customers. With teams in Denver, San Francisco, and New York, we support more than 500,000 small...",
+      "applyUrl": "https://job-boards.greenhouse.io/gusto/jobs/8348189",
+      "source": "Greenhouse",
+      "sourceUrl": "https://job-boards.greenhouse.io/gusto/jobs/8348189",
+      "postedAt": "2026-11-18T13:37:01-05:00",
+      "tags": [
+        "Claude Code",
+        "Python",
+        "AWS",
+        "GCP",
+        "MCP"
+      ],
+      "companyIcon": "https://gusto.com/favicon.ico"
+    },
+    {
+      "id": "gr-gusto-7942791",
+      "company": "Gusto",
+      "position": "Senior Staff Software Engineer, Pricing and Packaging",
+      "location": "San Francisco, CA - Hybrid",
+      "locations": [
+        "San Francisco, CA - Hybrid"
+      ],
+      "remote": false,
+      "salary": "$189,000/yr",
+      "description": "About Gusto At Gusto, we're on a mission to grow the small business economy. We handle the hard stuff — payroll, health insurance, 401(k)s, and HR — so owners can focus on their craft and their customers. With teams in Denver, San Francisco, and New York, we support more than 500,000 small...",
+      "applyUrl": "https://job-boards.greenhouse.io/gusto/jobs/7942791",
+      "source": "Greenhouse",
+      "sourceUrl": "https://job-boards.greenhouse.io/gusto/jobs/7942791",
+      "postedAt": "2026-11-18T13:37:01-05:00",
+      "tags": [
+        "Claude Code",
+        "Python",
+        "Go",
+        "Copilot",
+        "Java",
+        "Ruby"
+      ],
+      "companyIcon": "https://gusto.com/favicon.ico"
+    },
+    {
+      "id": "gr-gusto-7760341",
+      "company": "Gusto",
+      "position": "Staff Software Engineer, Core AI Platforms",
+      "location": "San Francisco, CA - Hybrid · Denver, CO - Hybrid · New York, NY - Hybrid",
+      "locations": [
+        "San Francisco, CA - Hybrid",
+        "Denver, CO - Hybrid",
+        "New York, NY - Hybrid"
+      ],
+      "remote": false,
+      "salary": "$163,000–$204,000",
+      "description": "About Gusto At Gusto, we're on a mission to grow the small business economy. We handle the hard stuff — payroll, health insurance, 401(k)s, and HR — so owners can focus on their craft and their customers. With teams in Denver, San Francisco, and New York, we support more than 500,000 small...",
+      "applyUrl": "https://job-boards.greenhouse.io/gusto/jobs/7760341",
+      "source": "Greenhouse",
+      "sourceUrl": "https://job-boards.greenhouse.io/gusto/jobs/7760341",
+      "postedAt": "2026-11-18T13:37:01-05:00",
+      "tags": [
+        "Claude Code",
+        "React",
+        "JavaScript",
+        "Ruby",
+        "Rails"
+      ],
+      "companyIcon": "https://gusto.com/favicon.ico"
+    },
+    {
+      "id": "gr-gusto-7441084",
+      "company": "Gusto",
+      "position": "Staff Software Engineer, Payroll Platform",
+      "location": "San Francisco, CA - Hybrid",
+      "locations": [
+        "San Francisco, CA - Hybrid"
+      ],
+      "remote": false,
+      "salary": "$163,000/yr",
+      "description": "About Gusto At Gusto, we're on a mission to grow the small business economy. We handle the hard stuff — payroll, health insurance, 401(k)s, and HR — so owners can focus on their craft and their customers. With teams in Denver, San Francisco, and New York, we support more than 500,000 small...",
+      "applyUrl": "https://job-boards.greenhouse.io/gusto/jobs/7441084",
+      "source": "Greenhouse",
+      "sourceUrl": "https://job-boards.greenhouse.io/gusto/jobs/7441084",
+      "postedAt": "2026-11-18T13:37:01-05:00",
+      "tags": [
+        "Claude Code",
+        "Cursor",
+        "Ruby"
+      ],
+      "companyIcon": "https://gusto.com/favicon.ico"
+    },
+    {
+      "id": "gr-gusto-8144140",
+      "company": "Gusto",
+      "position": "Staff Software Engineer, Unified Services Platform",
+      "location": "Denver, CO - Hybrid · New York, NY - Hybrid · San Francisco, CA - Hybrid",
+      "locations": [
+        "Denver, CO - Hybrid",
+        "New York, NY - Hybrid",
+        "San Francisco, CA - Hybrid"
+      ],
+      "remote": false,
+      "salary": "$163,000–$204,000",
+      "description": "About Gusto At Gusto, we're on a mission to grow the small business economy. We handle the hard stuff — payroll, health insurance, 401(k)s, and HR — so owners can focus on their craft and their customers. With teams in Denver, San Francisco, and New York, we support more than 500,000 small...",
+      "applyUrl": "https://job-boards.greenhouse.io/gusto/jobs/8144140",
+      "source": "Greenhouse",
+      "sourceUrl": "https://job-boards.greenhouse.io/gusto/jobs/8144140",
+      "postedAt": "2026-11-18T13:37:01-05:00",
+      "tags": [
+        "Claude Code",
+        "Ruby",
+        "Rails"
+      ],
+      "companyIcon": "https://gusto.com/favicon.ico"
+    },
+    {
+      "id": "anth-5471361008",
+      "company": "Anthropic",
+      "position": "Applied AI Architect, Beneficial Deployments (Global & Public Health)",
+      "location": "San Francisco, CA · New York City, NY",
+      "locations": [
+        "San Francisco, CA",
+        "New York City, NY"
+      ],
+      "remote": false,
+      "salary": "",
+      "description": "We're looking for an Applied AI Architect to join Beneficial Deployments, focused on helping public health, global health and humanitarian organizations get real value from Claude. You'll be the technical lead for partners such as public health agencies and ministries of health, the institutes and...",
+      "applyUrl": "https://job-boards.greenhouse.io/anthropic/jobs/5471361008",
+      "source": "Anthropic",
+      "sourceUrl": "https://job-boards.greenhouse.io/anthropic/jobs/5471361008",
+      "postedAt": "2026-11-18T13:18:03-05:00",
+      "tags": [
+        "Claude Code",
+        "Anthropic"
+      ],
+      "companyIcon": "https://www.anthropic.com/favicon.ico"
+    },
+    {
+      "id": "gr-samsara-8261007",
+      "company": "Samsara",
+      "position": "Director, GTM AI Engineering",
+      "location": "Remote - US",
+      "locations": [
+        "Remote - US"
+      ],
+      "remote": true,
+      "salary": "",
+      "description": "Who we are Samsara (NYSE: IOT) is the pioneer of the Connected Operations™ Cloud, which is a platform that enables organizations that depend on physical operations to harness Internet of Things (IoT) data to develop actionable insights and improve their operations. At Samsara, we are helping...",
+      "applyUrl": "https://www.samsara.com/company/careers/roles/8261007?gh_jid=8261007",
+      "source": "Greenhouse",
+      "sourceUrl": "https://www.samsara.com/company/careers/roles/8261007?gh_jid=8261007",
+      "postedAt": "2026-11-18T12:26:03-05:00",
+      "tags": [
+        "Claude Code",
+        "TypeScript",
+        "Python",
+        "AWS",
+        "MCP"
+      ],
+      "companyIcon": ""
+    },
+    {
+      "id": "anth-5483945008",
+      "company": "Anthropic",
+      "position": "Applied AI Engineer, Commercial",
+      "location": "San Francisco, CA",
+      "locations": [
+        "San Francisco, CA"
+      ],
+      "remote": false,
+      "salary": "",
+      "description": "As an Applied AI Engineer on the Commercial team at Anthropic, you will be a trusted technical advisor to the companies that run the real economy, across software, financial services, healthcare, retail, manufacturing, and professional services, as they go from using Claude to building on it....",
+      "applyUrl": "https://job-boards.greenhouse.io/anthropic/jobs/5483945008",
+      "source": "Anthropic",
+      "sourceUrl": "https://job-boards.greenhouse.io/anthropic/jobs/5483945008",
+      "postedAt": "2026-11-18T11:26:55-05:00",
+      "tags": [
+        "Claude Code",
+        "TypeScript",
+        "Python",
+        "MCP",
+        "Anthropic"
+      ],
+      "companyIcon": "https://www.anthropic.com/favicon.ico"
+    },
+    {
+      "id": "gr-prospectus-4455089009",
+      "company": "PRO-spectus",
+      "position": "Technical Product Owner – Salesforce Health Cloud & AI-Enabled Agile Delivery",
+      "location": "US - Remote",
+      "locations": [
+        "US - Remote"
+      ],
+      "remote": true,
+      "salary": "$115,000 - 140,000,",
+      "description": "We are looking for a Product Owner who wants to shape a product, not administer a backlog. In this role you will own what our development team builds and why, for the Salesforce Health Cloud solutions that power a fast-growing patient services business. You will help shape the roadmap alongside our...",
+      "applyUrl": "https://job-boards.greenhouse.io/prospectus/jobs/4455089009",
+      "source": "Greenhouse",
+      "sourceUrl": "https://job-boards.greenhouse.io/prospectus/jobs/4455089009",
+      "postedAt": "2026-11-18T11:06:51-05:00",
+      "tags": [
+        "Claude Code"
+      ],
+      "companyIcon": ""
+    },
+    {
+      "id": "gr-twilio-8385593",
+      "company": "Twilio",
+      "position": "Software Engineer - Platform Engineering",
+      "location": "Remote - US",
+      "locations": [
+        "Remote - US"
+      ],
+      "remote": true,
+      "salary": "",
+      "description": "Who we are At Twilio, we’re shaping the future of communications, all from the comfort of our homes. We deliver innovative solutions to hundreds of thousands of businesses and empower millions of developers worldwide to craft personalized customer experiences. Our dedication to remote-first work ,...",
+      "applyUrl": "https://job-boards.greenhouse.io/twilio/jobs/8385593",
+      "source": "Greenhouse",
+      "sourceUrl": "https://job-boards.greenhouse.io/twilio/jobs/8385593",
+      "postedAt": "2026-11-18T09:48:12-05:00",
+      "tags": [
+        "Claude Code",
+        "Go",
+        "AWS",
+        "Docker",
+        "Kubernetes"
+      ],
+      "companyIcon": "https://twilio.com/favicon.ico"
+    },
+    {
+      "id": "gr-bitwarden-7872037003",
+      "company": "Bitwarden",
+      "position": "Lead Software Engineer (Secrets Manager & AI Identity)",
+      "location": "Noida",
+      "locations": [
+        "Noida"
+      ],
+      "remote": false,
+      "salary": "",
+      "description": "Bitwarden is the trusted identity security leader for millions of users worldwide, empowering enterprises, developers, and individuals to securely manage and share sensitive information anywhere. Bitwarden makes it easy for all users to extend robust security across their devices with password...",
+      "applyUrl": "https://bitwarden.com/careers/7872037003/?gh_jid=7872037003",
+      "source": "Greenhouse",
+      "sourceUrl": "https://bitwarden.com/careers/7872037003/?gh_jid=7872037003",
+      "postedAt": "2026-11-18T07:34:39-05:00",
+      "tags": [
+        "Claude Code",
+        "TypeScript",
+        "Python",
+        "Rust",
+        "Go",
+        "PostgreSQL",
+        "Docker",
+        "Kubernetes",
+        "Java",
+        "Angular"
+      ],
+      "companyIcon": "https://bitwarden.com/favicon.ico"
+    },
+    {
+      "id": "gr-wizinc-4720879006",
+      "company": "Wiz, Inc.",
+      "position": "CTO Data Analyst",
+      "location": "Tel Aviv",
+      "locations": [
+        "Tel Aviv"
+      ],
+      "remote": false,
+      "salary": "",
+      "description": "Come join the organization that is redefining security for the AI era. As one of the fastest-growing startups ever, we enable teams to secure cloud and AI applications by connecting code, cloud, and runtime into a single shared context. Trusted by security teams all over the world, we have a proven...",
+      "applyUrl": "https://www.wiz.io/careers/job/4720879006/:title?gh_jid=4720879006",
+      "source": "Greenhouse",
+      "sourceUrl": "https://www.wiz.io/careers/job/4720879006/:title?gh_jid=4720879006",
+      "postedAt": "2026-11-18T06:11:31-05:00",
+      "tags": [
+        "Claude Code",
+        "Python",
+        "Cursor"
+      ],
+      "companyIcon": ""
+    },
+    {
+      "id": "gr-bitwarden-7886272003",
+      "company": "Bitwarden",
+      "position": "Senior Software Development Engineer in Test (SDET) - Autofill Coverage",
+      "location": "Noida",
+      "locations": [
+        "Noida"
+      ],
+      "remote": false,
+      "salary": "",
+      "description": "Bitwarden promotes better internet security and safety with the leading open source password management solution for individuals, teams, and business organizations. Our philosophy on security is that “we are all in this together” – we continue to offer a full-featured free version of Bitwarden so...",
+      "applyUrl": "https://bitwarden.com/careers/7886272003/?gh_jid=7886272003",
+      "source": "Greenhouse",
+      "sourceUrl": "https://bitwarden.com/careers/7886272003/?gh_jid=7886272003",
+      "postedAt": "2026-11-18T06:10:59-05:00",
+      "tags": [
+        "Claude Code",
+        "TypeScript",
+        "JavaScript",
+        "Node.js",
+        "Docker"
+      ],
+      "companyIcon": "https://bitwarden.com/favicon.ico"
+    },
+    {
+      "id": "gr-fivetran-8041168003",
+      "company": "Fivetran",
+      "position": "Senior Software Engineer, Developer Experience",
+      "location": "Novi Sad, South Bačka, Serbia, EMEA",
+      "locations": [
+        "Novi Sad, South Bačka, Serbia, EMEA"
+      ],
+      "remote": false,
+      "salary": "",
+      "description": "From Fivetran’s founding until now, our mission has remained the same: to make access to data as simple and reliable as electricity. With Fivetran, customer data arrives in their warehouses, canonical and ready to query, with no engineering or maintenance required. We’re proud that more...",
+      "applyUrl": "https://www.fivetran.com/careers/job?gh_jid=8041168003",
+      "source": "Greenhouse",
+      "sourceUrl": "https://www.fivetran.com/careers/job?gh_jid=8041168003",
+      "postedAt": "2026-11-18T04:14:28-05:00",
+      "tags": [
+        "Claude Code",
+        "PostgreSQL",
+        "AWS",
+        "GCP",
+        "Docker",
+        "Kubernetes",
+        "Cursor",
+        "Copilot",
+        "Java",
+        "MCP"
+      ],
+      "companyIcon": "https://fivetran.com/favicon.ico"
+    },
+    {
+      "id": "gr-nuvolar-5040903101",
+      "company": "Nuvolar",
+      "position": "Senior Salesforce Developer",
+      "location": "Spain",
+      "locations": [
+        "Spain"
+      ],
+      "remote": false,
+      "salary": "",
+      "description": "We are a global technology consulting company specializing in IT solutions, cloud-based platforms, mobile and web applications, and training and support services. With over 14 years of experience and a multicultural team of more than 100 professionals , we deliver projects for highly complex...",
+      "applyUrl": "https://job-boards.eu.greenhouse.io/nuvolar/jobs/5040903101",
+      "source": "Greenhouse",
+      "sourceUrl": "https://job-boards.eu.greenhouse.io/nuvolar/jobs/5040903101",
+      "postedAt": "2026-11-18T03:09:08-05:00",
+      "tags": [
+        "Claude Code",
+        "Copilot"
+      ],
+      "companyIcon": ""
+    },
+    {
+      "id": "gr-binance-5002565101",
+      "company": "Binance",
+      "position": "Pioneer Talent Program - Research Data Scientist (APAC Remote)",
+      "location": "Hong Kong · Singapore · Taiwan",
+      "locations": [
+        "Hong Kong",
+        "Singapore",
+        "Taiwan"
+      ],
+      "remote": false,
+      "salary": "",
+      "description": "Binance is a leading global blockchain ecosystem behind the world’s largest cryptocurrency exchange by trading volume and registered users. We are trusted by 300+ million people in 100+ countries for our industry-leading security, user fund transparency, trading engine speed, deep liquidity, and an...",
+      "applyUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5002565101",
+      "source": "Greenhouse",
+      "sourceUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5002565101",
+      "postedAt": "2026-11-18T01:03:27-05:00",
+      "tags": [
+        "Claude Code",
+        "Python",
+        "Cursor",
+        "Copilot"
+      ],
+      "companyIcon": ""
+    },
     {
       "id": "le-provectus-3f73e36f-2a48-4705-8723-b9dee345282c",
       "company": "Provectus",
@@ -62,60 +617,6 @@
         "Cursor"
       ],
       "companyIcon": ""
-    },
-    {
-      "id": "gr-twilio-8026199",
-      "company": "Twilio",
-      "position": "Software Engineer (L3) Email",
-      "location": "Remote - US",
-      "locations": [
-        "Remote - US"
-      ],
-      "remote": true,
-      "salary": "",
-      "description": "Who we are At Twilio, we’re shaping the future of communications, all from the comfort of our homes. We deliver innovative solutions to hundreds of thousands of businesses and empower millions of developers worldwide to craft personalized customer experiences. Our dedication to remote-first work ,...",
-      "applyUrl": "https://job-boards.greenhouse.io/twilio/jobs/8026199",
-      "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/twilio/jobs/8026199",
-      "postedAt": "2026-11-17T17:32:32-05:00",
-      "tags": [
-        "Claude Code",
-        "Python",
-        "Go",
-        "AWS",
-        "Azure",
-        "Docker",
-        "Kubernetes",
-        "Java"
-      ],
-      "companyIcon": "https://twilio.com/favicon.ico"
-    },
-    {
-      "id": "gr-twilio-8026211",
-      "company": "Twilio",
-      "position": "Software Engineer, Platform Access (L2)",
-      "location": "Remote - US",
-      "locations": [
-        "Remote - US"
-      ],
-      "remote": true,
-      "salary": "",
-      "description": "Who we are At Twilio, we’re shaping the future of communications, all from the comfort of our homes. We deliver innovative solutions to hundreds of thousands of businesses and empower millions of developers worldwide to craft personalized customer experiences. Our dedication to remote-first work ,...",
-      "applyUrl": "https://job-boards.greenhouse.io/twilio/jobs/8026211",
-      "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/twilio/jobs/8026211",
-      "postedAt": "2026-11-17T16:23:24-05:00",
-      "tags": [
-        "Claude Code",
-        "Go",
-        "AWS",
-        "GCP",
-        "Azure",
-        "Docker",
-        "Kubernetes",
-        "Copilot"
-      ],
-      "companyIcon": "https://twilio.com/favicon.ico"
     },
     {
       "id": "anth-5441896008",
@@ -195,19 +696,19 @@
       "companyIcon": "https://fivetran.com/favicon.ico"
     },
     {
-      "id": "gr-fivetran-8017186003",
+      "id": "gr-fivetran-8003720003",
       "company": "Fivetran",
       "position": "Senior Software Engineer - Orchestration",
-      "location": "USA - Austin (dbt)",
+      "location": "Denver, Colorado, United States, AMER",
       "locations": [
-        "USA - Austin (dbt)"
+        "Denver, Colorado, United States, AMER"
       ],
       "remote": false,
       "salary": "",
       "description": "From Fivetran’s founding until now, our mission has remained the same: to make access to data as simple and reliable as electricity. With Fivetran, customer data arrives in their warehouses, canonical and ready to query, with no engineering or maintenance required. We’re proud that more...",
-      "applyUrl": "https://www.fivetran.com/careers/job?gh_jid=8017186003",
+      "applyUrl": "https://www.fivetran.com/careers/job?gh_jid=8003720003",
       "source": "Greenhouse",
-      "sourceUrl": "https://www.fivetran.com/careers/job?gh_jid=8017186003",
+      "sourceUrl": "https://www.fivetran.com/careers/job?gh_jid=8003720003",
       "postedAt": "2026-11-17T14:17:14-05:00",
       "tags": [
         "Claude Code",
@@ -305,35 +806,6 @@
         "GCP",
         "Azure",
         "Docker"
-      ],
-      "companyIcon": "https://fivetran.com/favicon.ico"
-    },
-    {
-      "id": "gr-fivetran-8041168003",
-      "company": "Fivetran",
-      "position": "Senior Software Engineer - Developer Experience",
-      "location": "Novi Sad, South Bačka, Serbia, EMEA",
-      "locations": [
-        "Novi Sad, South Bačka, Serbia, EMEA"
-      ],
-      "remote": false,
-      "salary": "",
-      "description": "From Fivetran’s founding until now, our mission has remained the same: to make access to data as simple and reliable as electricity. With Fivetran, customer data arrives in their warehouses, canonical and ready to query, with no engineering or maintenance required. We’re proud that more...",
-      "applyUrl": "https://www.fivetran.com/careers/job?gh_jid=8041168003",
-      "source": "Greenhouse",
-      "sourceUrl": "https://www.fivetran.com/careers/job?gh_jid=8041168003",
-      "postedAt": "2026-11-17T11:47:10-05:00",
-      "tags": [
-        "Claude Code",
-        "PostgreSQL",
-        "AWS",
-        "GCP",
-        "Docker",
-        "Kubernetes",
-        "Cursor",
-        "Copilot",
-        "Java",
-        "MCP"
       ],
       "companyIcon": "https://fivetran.com/favicon.ico"
     },
@@ -463,26 +935,6 @@
         "Copilot"
       ],
       "companyIcon": "https://fivetran.com/favicon.ico"
-    },
-    {
-      "id": "gr-stripe-8395851",
-      "company": "Stripe",
-      "position": "Forward Deployed AI Accelerator, Marketing",
-      "location": "Seattle, San Francisco, New York, Chicago, Atlanta, Remote in the US, Canada",
-      "locations": [
-        "Seattle, San Francisco, New York, Chicago, Atlanta, Remote in the US, Canada"
-      ],
-      "remote": true,
-      "salary": "",
-      "description": "Who we are About Stripe Stripe is a financial infrastructure platform for businesses. Millions of companies — from the world's largest enterprises to the most ambitious startups — use Stripe to accept payments, grow their revenue, and accelerate new business opportunities. Our mission is to...",
-      "applyUrl": "https://stripe.com/jobs/search?gh_jid=8395851",
-      "source": "Greenhouse",
-      "sourceUrl": "https://stripe.com/jobs/search?gh_jid=8395851",
-      "postedAt": "2026-11-17T11:05:34-05:00",
-      "tags": [
-        "Claude Code"
-      ],
-      "companyIcon": "https://stripe.com/favicon.ico"
     },
     {
       "id": "gr-greenhouse-8214722",
@@ -778,31 +1230,6 @@
       "companyIcon": ""
     },
     {
-      "id": "gr-binance-5002565101",
-      "company": "Binance",
-      "position": "Pioneer Talent Program - Research Data Scientist (APAC Remote)",
-      "location": "Hong Kong · Singapore · Taiwan",
-      "locations": [
-        "Hong Kong",
-        "Singapore",
-        "Taiwan"
-      ],
-      "remote": false,
-      "salary": "",
-      "description": "Binance is a leading global blockchain ecosystem behind the world’s largest cryptocurrency exchange by trading volume and registered users. We are trusted by 300+ million people in 100+ countries for our industry-leading security, user fund transparency, trading engine speed, deep liquidity, and an...",
-      "applyUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5002565101",
-      "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.eu.greenhouse.io/binance/jobs/5002565101",
-      "postedAt": "2026-11-17T05:42:17-05:00",
-      "tags": [
-        "Claude Code",
-        "Python",
-        "Cursor",
-        "Copilot"
-      ],
-      "companyIcon": ""
-    },
-    {
       "id": "gr-pinterest-8328868",
       "company": "Pinterest",
       "position": "Staff Software Engineer, Ads Agent Infra",
@@ -843,28 +1270,6 @@
         "Anthropic"
       ],
       "companyIcon": "https://www.anthropic.com/favicon.ico"
-    },
-    {
-      "id": "gr-gusto-7441084",
-      "company": "Gusto",
-      "position": "Staff Software Engineer, Payroll Platform",
-      "location": "San Francisco, CA - Hybrid",
-      "locations": [
-        "San Francisco, CA - Hybrid"
-      ],
-      "remote": false,
-      "salary": "$163,000/yr",
-      "description": "About Gusto At Gusto, we're on a mission to grow the small business economy. We handle the hard stuff — payroll, health insurance, 401(k)s, and HR — so owners can focus on their craft and their customers. With teams in Denver, San Francisco, and New York, we support more than 500,000 small...",
-      "applyUrl": "https://job-boards.greenhouse.io/gusto/jobs/7441084",
-      "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/gusto/jobs/7441084",
-      "postedAt": "2026-11-16T18:31:49-05:00",
-      "tags": [
-        "Claude Code",
-        "Cursor",
-        "Ruby"
-      ],
-      "companyIcon": "https://gusto.com/favicon.ico"
     },
     {
       "id": "anth-5484035008",
@@ -961,9 +1366,10 @@
       "id": "as-temporal-4ee99986-77ad-4113-8058-891d5cc7284a",
       "company": "Temporal",
       "position": "Staff Software Engineer, AI Foundations (Agent Optimization) ",
-      "location": "San Francisco, California · New York, New York",
+      "location": "San Francisco, California · United States (Remote) · New York, New York",
       "locations": [
         "San Francisco, California",
+        "United States (Remote)",
         "New York, New York"
       ],
       "remote": true,
@@ -1028,30 +1434,6 @@
         "AWS",
         "GCP",
         "Kubernetes"
-      ],
-      "companyIcon": "https://mixpanel.com/favicon.ico"
-    },
-    {
-      "id": "gr-mixpanel-8357923",
-      "company": "Mixpanel",
-      "position": "Staff Security Engineer",
-      "location": "San Francisco",
-      "locations": [
-        "San Francisco"
-      ],
-      "remote": false,
-      "salary": "",
-      "description": "About Mixpanel Mixpanel is the leading product intelligence and analytics platform, trusted by more than 29,000 companies to help understand how people use the products they build. By combining powerful analytics with AI that knows your business, Mixpanel helps teams see what’s working, diagnose...",
-      "applyUrl": "https://job-boards.greenhouse.io/mixpanel/jobs/8357923",
-      "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/mixpanel/jobs/8357923",
-      "postedAt": "2026-11-16T14:21:49-05:00",
-      "tags": [
-        "Claude Code",
-        "AWS",
-        "GCP",
-        "Kubernetes",
-        "MCP"
       ],
       "companyIcon": "https://mixpanel.com/favicon.ico"
     },
@@ -1428,32 +1810,6 @@
       "companyIcon": ""
     },
     {
-      "id": "gr-gusto-8348189",
-      "company": "Gusto",
-      "position": "Security Operations Analyst",
-      "location": "Denver, CO - Hybrid · New York, NY - Hybrid · San Francisco, CA - Hybrid",
-      "locations": [
-        "Denver, CO - Hybrid",
-        "New York, NY - Hybrid",
-        "San Francisco, CA - Hybrid"
-      ],
-      "remote": false,
-      "salary": "$147,000-164,000",
-      "description": "About Gusto At Gusto, we're on a mission to grow the small business economy. We handle the hard stuff — payroll, health insurance, 401(k)s, and HR — so owners can focus on their craft and their customers. With teams in Denver, San Francisco, and New York, we support more than 500,000 small...",
-      "applyUrl": "https://job-boards.greenhouse.io/gusto/jobs/8348189",
-      "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/gusto/jobs/8348189",
-      "postedAt": "2026-11-16T03:02:14-05:00",
-      "tags": [
-        "Claude Code",
-        "Python",
-        "AWS",
-        "GCP",
-        "MCP"
-      ],
-      "companyIcon": "https://gusto.com/favicon.ico"
-    },
-    {
       "id": "anth-5469291008",
       "company": "Anthropic",
       "position": "Engineering Manager, Billing Platform",
@@ -1559,34 +1915,6 @@
       "companyIcon": "https://vercel.com/favicon.ico"
     },
     {
-      "id": "gr-fusionworldwide-8045051003",
-      "company": "Fusion Worldwide",
-      "position": "Principal Full Stack Engineer, B2B eCommerce",
-      "location": "Boston, MA",
-      "locations": [
-        "Boston, MA"
-      ],
-      "remote": false,
-      "salary": "",
-      "description": "Principal Full Stack Engineer, B2B eCommerce Location: Boston, MA (Hybrid) Reports to: Team Lead, eCommerce Role type: Full-time, individual contributor About Fusion Worldwide Fusion Worldwide is the preeminent open market distributor of electronic components and products. Founded in 2001 and...",
-      "applyUrl": "https://job-boards.greenhouse.io/fusionworldwide/jobs/8045051003",
-      "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/fusionworldwide/jobs/8045051003",
-      "postedAt": "2026-11-13T11:29:41-05:00",
-      "tags": [
-        "Claude Code",
-        "React",
-        "Next.js",
-        "TypeScript",
-        "Python",
-        "Azure",
-        "GraphQL",
-        "Redis",
-        "MCP"
-      ],
-      "companyIcon": ""
-    },
-    {
       "id": "as-ruby-labs-fbd0a088-0104-4802-a693-2690be572181",
       "company": "Ruby Labs",
       "position": "AI Engineer",
@@ -1671,59 +1999,6 @@
         "Kubernetes",
         "Angular",
         "MySQL"
-      ],
-      "companyIcon": "https://bitwarden.com/favicon.ico"
-    },
-    {
-      "id": "gr-bitwarden-7872037003",
-      "company": "Bitwarden",
-      "position": "Lead Software Engineer (Secrets Manager & AI Identity)",
-      "location": "Noida",
-      "locations": [
-        "Noida"
-      ],
-      "remote": false,
-      "salary": "",
-      "description": "Bitwarden is the trusted identity security leader for millions of users worldwide, empowering enterprises, developers, and individuals to securely manage and share sensitive information anywhere. Bitwarden makes it easy for all users to extend robust security across their devices with password...",
-      "applyUrl": "https://bitwarden.com/careers/7872037003/?gh_jid=7872037003",
-      "source": "Greenhouse",
-      "sourceUrl": "https://bitwarden.com/careers/7872037003/?gh_jid=7872037003",
-      "postedAt": "2026-11-13T07:37:33-05:00",
-      "tags": [
-        "Claude Code",
-        "TypeScript",
-        "Python",
-        "Rust",
-        "Go",
-        "PostgreSQL",
-        "Docker",
-        "Kubernetes",
-        "Java",
-        "Angular"
-      ],
-      "companyIcon": "https://bitwarden.com/favicon.ico"
-    },
-    {
-      "id": "gr-bitwarden-7886272003",
-      "company": "Bitwarden",
-      "position": "Senior Software Development Engineer in Test (SDET) - Autofill Coverage",
-      "location": "Noida",
-      "locations": [
-        "Noida"
-      ],
-      "remote": false,
-      "salary": "",
-      "description": "Bitwarden promotes better internet security and safety with the leading open source password management solution for individuals, teams, and business organizations. Our philosophy on security is that “we are all in this together” – we continue to offer a full-featured free version of Bitwarden so...",
-      "applyUrl": "https://bitwarden.com/careers/7886272003/?gh_jid=7886272003",
-      "source": "Greenhouse",
-      "sourceUrl": "https://bitwarden.com/careers/7886272003/?gh_jid=7886272003",
-      "postedAt": "2026-11-13T07:37:33-05:00",
-      "tags": [
-        "Claude Code",
-        "TypeScript",
-        "JavaScript",
-        "Node.js",
-        "Docker"
       ],
       "companyIcon": "https://bitwarden.com/favicon.ico"
     },
@@ -2143,27 +2418,6 @@
       "companyIcon": ""
     },
     {
-      "id": "gr-nuvolar-5034163101",
-      "company": "Nuvolar",
-      "position": "Senior Salesforce Developer",
-      "location": "Spain",
-      "locations": [
-        "Spain"
-      ],
-      "remote": false,
-      "salary": "",
-      "description": "We are a global technology consulting company specializing in IT solutions, cloud-based platforms, mobile and web applications, and training and support services. With over 14 years of experience and a multicultural team of more than 100 professionals , we deliver projects for highly complex...",
-      "applyUrl": "https://job-boards.eu.greenhouse.io/nuvolar/jobs/5034163101",
-      "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.eu.greenhouse.io/nuvolar/jobs/5034163101",
-      "postedAt": "2026-11-11T13:30:18-05:00",
-      "tags": [
-        "Claude Code",
-        "Copilot"
-      ],
-      "companyIcon": ""
-    },
-    {
       "id": "as-hud-86ddc141-6c56-4c81-a708-290a1ecbbef9",
       "company": "Hud",
       "position": "GTM Associate - San Francisco",
@@ -2429,31 +2683,6 @@
       "companyIcon": "https://docker.com/favicon.ico"
     },
     {
-      "id": "gr-gusto-7942791",
-      "company": "Gusto",
-      "position": "Senior Staff Software Engineer, Pricing and Packaging",
-      "location": "San Francisco, CA - Hybrid",
-      "locations": [
-        "San Francisco, CA - Hybrid"
-      ],
-      "remote": false,
-      "salary": "$189,000/yr",
-      "description": "About Gusto At Gusto, we're on a mission to grow the small business economy. We handle the hard stuff — payroll, health insurance, 401(k)s, and HR — so owners can focus on their craft and their customers. With teams in Denver, San Francisco, and New York, we support more than 500,000 small...",
-      "applyUrl": "https://job-boards.greenhouse.io/gusto/jobs/7942791",
-      "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/gusto/jobs/7942791",
-      "postedAt": "2026-11-10T18:31:20-05:00",
-      "tags": [
-        "Claude Code",
-        "Python",
-        "Go",
-        "Copilot",
-        "Java",
-        "Ruby"
-      ],
-      "companyIcon": "https://gusto.com/favicon.ico"
-    },
-    {
       "id": "gr-life360-8659252002",
       "company": "Life360",
       "position": "Staff Data Engineer, Data Platform Core (AI Native)",
@@ -2531,26 +2760,6 @@
       "companyIcon": ""
     },
     {
-      "id": "gr-discord-8865033002",
-      "company": "Discord",
-      "position": "Strategic Finance Analyst",
-      "location": "San Francisco Bay Area",
-      "locations": [
-        "San Francisco Bay Area"
-      ],
-      "remote": false,
-      "salary": "",
-      "description": "Discord has a highly engaged community of millions of daily active users who use the platform for many different reasons, but there’s one thing that nearly everyone does: play video games. Discord plays a uniquely important role in the future of gaming, and we are focused on making it easier and...",
-      "applyUrl": "https://job-boards.greenhouse.io/discord/jobs/8865033002",
-      "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/discord/jobs/8865033002",
-      "postedAt": "2026-11-10T15:23:17-05:00",
-      "tags": [
-        "Claude Code"
-      ],
-      "companyIcon": "https://discord.com/favicon.ico"
-    },
-    {
       "id": "le-xsolla-13a1be7c-67ff-4e3c-a578-3187c35980aa",
       "company": "Xsolla",
       "position": "Tech Lead (Parental Control)",
@@ -2606,19 +2815,19 @@
       "companyIcon": ""
     },
     {
-      "id": "gr-samsara-8281483",
+      "id": "gr-samsara-8302004",
       "company": "Samsara",
       "position": "Senior AI Data & Analytics Engineer II",
-      "location": "Remote - CA",
+      "location": "Remote - Seattle",
       "locations": [
-        "Remote - CA"
+        "Remote - Seattle"
       ],
       "remote": true,
       "salary": "",
       "description": "Who we are Samsara (NYSE: IOT) is the pioneer of the Connected Operations™ Cloud, which is a platform that enables organizations that depend on physical operations to harness Internet of Things (IoT) data to develop actionable insights and improve their operations. At Samsara, we are helping...",
-      "applyUrl": "https://www.samsara.com/company/careers/roles/8281483?gh_jid=8281483",
+      "applyUrl": "https://www.samsara.com/company/careers/roles/8302004?gh_jid=8302004",
       "source": "Greenhouse",
-      "sourceUrl": "https://www.samsara.com/company/careers/roles/8281483?gh_jid=8281483",
+      "sourceUrl": "https://www.samsara.com/company/careers/roles/8302004?gh_jid=8302004",
       "postedAt": "2026-11-10T11:47:15-05:00",
       "tags": [
         "Claude Code",
@@ -2832,28 +3041,6 @@
       "companyIcon": ""
     },
     {
-      "id": "as-GovEagle-53e0a13a-8a9e-4eb9-9136-2222b09f26ae",
-      "company": "Goveagle",
-      "position": "Founding Support Engineer",
-      "location": "New York City",
-      "locations": [
-        "New York City"
-      ],
-      "remote": false,
-      "salary": "$130K – $165K • 0.05% – 0.15%",
-      "description": "WHY WE NEED YOU\n\nDefense primes and top federal integrators run their RFP lifecycle on GovEagle inside FedRAMP and AWS GovCloud, from our web app, Word, and SharePoint. As we've grown (5x revenue, 10x DAU), so has our support inbox: SSO logins, SharePoint connections, Office add-in issues, bugs,...",
-      "applyUrl": "https://jobs.ashbyhq.com/GovEagle/53e0a13a-8a9e-4eb9-9136-2222b09f26ae",
-      "source": "Ashby",
-      "sourceUrl": "https://jobs.ashbyhq.com/GovEagle/53e0a13a-8a9e-4eb9-9136-2222b09f26ae",
-      "postedAt": "2026-11-09T23:17:30.107+00:00",
-      "tags": [
-        "Claude Code",
-        "AWS",
-        "Cursor"
-      ],
-      "companyIcon": ""
-    },
-    {
       "id": "le-cscgeneration-2-61ba3ce6-b92b-45b4-932d-0c66e5e19185",
       "company": "Cscgeneration 2",
       "position": "Junior Software Engineer",
@@ -2922,19 +3109,19 @@
       "companyIcon": "https://www.anthropic.com/favicon.ico"
     },
     {
-      "id": "gr-affirm-8011038003",
+      "id": "gr-affirm-8011040003",
       "company": "Affirm",
       "position": "Staff Product Manager, Consumer Growth Loyalty",
-      "location": "Remote US",
+      "location": "Remote Canada",
       "locations": [
-        "Remote US"
+        "Remote Canada"
       ],
       "remote": true,
-      "salary": "$230,000 - $290,000",
+      "salary": "$181,000 - $241,000",
       "description": "At Affirm, we exist for the moments that matter—giving people a clear, predictable way to pay over time, with no hidden fees, no surprises, and no tradeoffs on what matters most. About the Product team The Product team listens to our customers’ needs and translates those insights into a clear...",
-      "applyUrl": "https://job-boards.greenhouse.io/affirm/jobs/8011038003",
+      "applyUrl": "https://job-boards.greenhouse.io/affirm/jobs/8011040003",
       "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/affirm/jobs/8011038003",
+      "sourceUrl": "https://job-boards.greenhouse.io/affirm/jobs/8011040003",
       "postedAt": "2026-11-09T16:58:19-05:00",
       "tags": [
         "Claude Code",
@@ -3287,34 +3474,6 @@
         "Anthropic"
       ],
       "companyIcon": "https://www.anthropic.com/favicon.ico"
-    },
-    {
-      "id": "gr-sonyinteractiveentertainmentglobal-6232155004",
-      "company": "PlayStation Global",
-      "position": "Senior Software Engineer AI (Contractor)",
-      "location": "United States, Aliso Viejo, CA",
-      "locations": [
-        "United States, Aliso Viejo, CA"
-      ],
-      "remote": false,
-      "salary": "",
-      "description": "Why Sony Interactive Entertainment? Sony Interactive Entertainment isn’t just the Best Place to Play — it’s also the Best Place to Work. Sony Interactive Entertainment (SIE) is the company behind the PlayStation brand. As a subsidiary of Sony Group Corporation, we’re part of a proud legacy of...",
-      "applyUrl": "https://job-boards.greenhouse.io/sonyinteractiveentertainmentglobal/jobs/6232155004",
-      "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/sonyinteractiveentertainmentglobal/jobs/6232155004",
-      "postedAt": "2026-11-06T11:25:50-05:00",
-      "tags": [
-        "Claude Code",
-        "Python",
-        "Rust",
-        "Go",
-        "AWS",
-        "Docker",
-        "Kubernetes",
-        "Java",
-        "MCP"
-      ],
-      "companyIcon": ""
     },
     {
       "id": "gr-sonyinteractiveentertainmentglobal-6251398004",
@@ -3963,71 +4122,6 @@
       "companyIcon": ""
     },
     {
-      "id": "anth-5471361008",
-      "company": "Anthropic",
-      "position": "Applied AI Architect, Beneficial Deployments (Global & Public Health)",
-      "location": "San Francisco, CA · New York City, NY",
-      "locations": [
-        "San Francisco, CA",
-        "New York City, NY"
-      ],
-      "remote": false,
-      "salary": "",
-      "description": "We're looking for an Applied AI Architect to join Beneficial Deployments, focused on helping public health, global health and humanitarian organizations get real value from Claude. You'll be the technical lead for partners such as public health agencies and ministries of health, the institutes and...",
-      "applyUrl": "https://job-boards.greenhouse.io/anthropic/jobs/5471361008",
-      "source": "Anthropic",
-      "sourceUrl": "https://job-boards.greenhouse.io/anthropic/jobs/5471361008",
-      "postedAt": "2026-11-03T15:54:35-05:00",
-      "tags": [
-        "Claude Code",
-        "Anthropic"
-      ],
-      "companyIcon": "https://www.anthropic.com/favicon.ico"
-    },
-    {
-      "id": "as-ffg-c8c2e7cb-1a9e-4248-9582-64c142427637",
-      "company": "Ffg",
-      "position": "Senior Paid Search Specialist",
-      "location": "Remote - US Preferred",
-      "locations": [
-        "Remote - US Preferred"
-      ],
-      "remote": true,
-      "salary": "",
-      "description": "Contract  •  Part-Time  •  Fully Remote  •  AI-Native Required\n\nAbout the role\n\nFull Funnel Growth is a remote performance marketing agency. We run paid search for medical aesthetics device manufacturers, DTC eCommerce brands, regulated retail (cannabis), lead generation for service businesses, and...",
-      "applyUrl": "https://jobs.ashbyhq.com/ffg/c8c2e7cb-1a9e-4248-9582-64c142427637",
-      "source": "Ashby",
-      "sourceUrl": "https://jobs.ashbyhq.com/ffg/c8c2e7cb-1a9e-4248-9582-64c142427637",
-      "postedAt": "2026-11-03T15:09:03.629+00:00",
-      "tags": [
-        "Claude Code",
-        "Python",
-        "Cursor"
-      ],
-      "companyIcon": ""
-    },
-    {
-      "id": "as-ffg-4009e0ba-92d6-4c4d-9ced-85a9178a72de",
-      "company": "Ffg",
-      "position": "Account Manager, Paid Social & Creative",
-      "location": "Remote - US Preferred",
-      "locations": [
-        "Remote - US Preferred"
-      ],
-      "remote": true,
-      "salary": "",
-      "description": "Fully remote · AI-native required\n\nAbout the role\nFull Funnel Growth is a remote performance marketing agency running integrated growth programs for DTC eCommerce brands, experiential entertainment, regulated retail and B2B.\n\nWe're hiring an Account Manager to be the day-to-day lead for a portfolio...",
-      "applyUrl": "https://jobs.ashbyhq.com/ffg/4009e0ba-92d6-4c4d-9ced-85a9178a72de",
-      "source": "Ashby",
-      "sourceUrl": "https://jobs.ashbyhq.com/ffg/4009e0ba-92d6-4c4d-9ced-85a9178a72de",
-      "postedAt": "2026-11-03T15:08:22.491+00:00",
-      "tags": [
-        "Claude Code",
-        "Cursor"
-      ],
-      "companyIcon": ""
-    },
-    {
       "id": "le-ciandt-9c4e6df9-df26-4a7b-afb5-cfe8114d3b5a",
       "company": "Ciandt",
       "position": "[Job - 32496] AI Engineer/Software Architect",
@@ -4159,9 +4253,9 @@
       "companyIcon": ""
     },
     {
-      "id": "gr-stripe-8055930",
+      "id": "gr-stripe-7747640",
       "company": "Stripe",
-      "position": "Forward Deployed AI Accelerator, Sales Development",
+      "position": "Forward Deployed AI Accelerator, Marketing",
       "location": "Seattle, San Francisco, New York, Chicago, Atlanta, Remote in the US, Canada",
       "locations": [
         "Seattle, San Francisco, New York, Chicago, Atlanta, Remote in the US, Canada"
@@ -4169,10 +4263,10 @@
       "remote": true,
       "salary": "",
       "description": "Who we are About Stripe Stripe is a financial infrastructure platform for businesses. Millions of companies — from the world's largest enterprises to the most ambitious startups — use Stripe to accept payments, grow their revenue, and accelerate new business opportunities. Our mission is to...",
-      "applyUrl": "https://stripe.com/jobs/search?gh_jid=8055930",
+      "applyUrl": "https://stripe.com/jobs/search?gh_jid=7747640",
       "source": "Greenhouse",
-      "sourceUrl": "https://stripe.com/jobs/search?gh_jid=8055930",
-      "postedAt": "2026-11-03T10:58:24-05:00",
+      "sourceUrl": "https://stripe.com/jobs/search?gh_jid=7747640",
+      "postedAt": "2026-11-03T10:58:52-05:00",
       "tags": [
         "Claude Code"
       ],
@@ -4506,30 +4600,6 @@
       "companyIcon": ""
     },
     {
-      "id": "gr-samsara-8261007",
-      "company": "Samsara",
-      "position": "Director, GTM AI Engineering",
-      "location": "Remote - US",
-      "locations": [
-        "Remote - US"
-      ],
-      "remote": true,
-      "salary": "",
-      "description": "Who we are Samsara (NYSE: IOT) is the pioneer of the Connected Operations™ Cloud, which is a platform that enables organizations that depend on physical operations to harness Internet of Things (IoT) data to develop actionable insights and improve their operations. At Samsara, we are helping...",
-      "applyUrl": "https://www.samsara.com/company/careers/roles/8261007?gh_jid=8261007",
-      "source": "Greenhouse",
-      "sourceUrl": "https://www.samsara.com/company/careers/roles/8261007?gh_jid=8261007",
-      "postedAt": "2026-11-02T13:21:05-05:00",
-      "tags": [
-        "Claude Code",
-        "TypeScript",
-        "Python",
-        "AWS",
-        "MCP"
-      ],
-      "companyIcon": ""
-    },
-    {
       "id": "gr-dscout-4472803009",
       "company": "Dscout",
       "position": "Senior Forward Deployed Engineer (Full-Stack)",
@@ -4712,30 +4782,6 @@
       "companyIcon": ""
     },
     {
-      "id": "as-wealthsimple-0d2fc16a-b098-4d25-ac86-351465e8d466",
-      "company": "Wealthsimple",
-      "position": "Security Incident Response Developer",
-      "location": "Remote (Canada)",
-      "locations": [
-        "Remote (Canada)"
-      ],
-      "remote": true,
-      "salary": "CA$123.2K – CA$154K • Offers Equity",
-      "description": "BUILD SOMETHING PEOPLE LOVE\n\nWealthsimple is Canada’s leading financial innovator. The company offers a full suite of simple, sophisticated financial products across managed investing, do-it-yourself trading, cryptocurrency, tax filing, spending and saving. Wealthsimple currently serves more than 4...",
-      "applyUrl": "https://jobs.ashbyhq.com/wealthsimple/0d2fc16a-b098-4d25-ac86-351465e8d466",
-      "source": "Ashby",
-      "sourceUrl": "https://jobs.ashbyhq.com/wealthsimple/0d2fc16a-b098-4d25-ac86-351465e8d466",
-      "postedAt": "2026-10-30T17:41:06.690+00:00",
-      "tags": [
-        "Claude Code",
-        "AWS",
-        "GCP",
-        "Azure",
-        "Cursor"
-      ],
-      "companyIcon": "https://wealthsimple.com/favicon.ico"
-    },
-    {
       "id": "as-wealthsimple-1c468e02-4abf-452a-8952-aa5082b7157a",
       "company": "Wealthsimple",
       "position": "Senior Security Incident Response Developer",
@@ -4757,19 +4803,19 @@
       "companyIcon": "https://wealthsimple.com/favicon.ico"
     },
     {
-      "id": "gr-affirm-7718808003",
+      "id": "gr-affirm-8036613003",
       "company": "Affirm",
       "position": "Security Risk Management Lead",
-      "location": "Remote US",
+      "location": "Remote Canada",
       "locations": [
-        "Remote US"
+        "Remote Canada"
       ],
       "remote": true,
-      "salary": "$165,000 - $225,000",
-      "description": "At Affirm, we exist for the moments that matter—giving people a clear, predictable way to pay over time, with no hidden fees, no surprises, and no tradeoffs on what matters most. Affirm values security as being critical to the company’s continued success. Our mission is to cultivate a culture of...",
-      "applyUrl": "https://job-boards.greenhouse.io/affirm/jobs/7718808003",
+      "salary": "$128,000 - $188,000",
+      "description": "At Affirm, we exist for the moments that matter—giving people a clear, predictable way to pay over time, with no hidden fees, no surprises, and no tradeoffs on what matters most. At Affirm, we exist for the moments that matter—giving people a clear, predictable way to pay over time, with no hidden...",
+      "applyUrl": "https://job-boards.greenhouse.io/affirm/jobs/8036613003",
       "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/affirm/jobs/7718808003",
+      "sourceUrl": "https://job-boards.greenhouse.io/affirm/jobs/8036613003",
       "postedAt": "2026-10-30T17:15:12-04:00",
       "tags": [
         "Claude Code",
@@ -5022,43 +5068,19 @@
       "companyIcon": "https://sierra.ai/favicon.ico"
     },
     {
-      "id": "gr-gusto-8144140",
-      "company": "Gusto",
-      "position": "Staff Software Engineer, Unified Services Platform",
-      "location": "Denver, CO - Hybrid · New York, NY - Hybrid · San Francisco, CA - Hybrid",
-      "locations": [
-        "Denver, CO - Hybrid",
-        "New York, NY - Hybrid",
-        "San Francisco, CA - Hybrid"
-      ],
-      "remote": false,
-      "salary": "$163,000–$204,000",
-      "description": "About Gusto At Gusto, we're on a mission to grow the small business economy. We handle the hard stuff — payroll, health insurance, 401(k)s, and HR — so owners can focus on their craft and their customers. With teams in Denver, San Francisco, and New York, we support more than 500,000 small...",
-      "applyUrl": "https://job-boards.greenhouse.io/gusto/jobs/8144140",
-      "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/gusto/jobs/8144140",
-      "postedAt": "2026-10-30T10:00:26-04:00",
-      "tags": [
-        "Claude Code",
-        "Ruby",
-        "Rails"
-      ],
-      "companyIcon": "https://gusto.com/favicon.ico"
-    },
-    {
-      "id": "gr-alphasense-8860806002",
+      "id": "gr-alphasense-8887127002",
       "company": "AlphaSense",
       "position": "Product Manager, New Content Initiatives and Analysis",
-      "location": "Remote - United States",
+      "location": "Remote - United Kingdom",
       "locations": [
-        "Remote - United States"
+        "Remote - United Kingdom"
       ],
       "remote": true,
       "salary": "",
       "description": "About AlphaSense: AlphaSense is the AI platform redefining market intelligence and workflow orchestration, trusted by thousands of leading organizations to drive faster, more confident decisions in business and finance. The platform combines domain-specific AI with a vast content universe of over...",
-      "applyUrl": "https://job-boards.greenhouse.io/alphasense/jobs/8860806002",
+      "applyUrl": "https://job-boards.greenhouse.io/alphasense/jobs/8887127002",
       "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/alphasense/jobs/8860806002",
+      "sourceUrl": "https://job-boards.greenhouse.io/alphasense/jobs/8887127002",
       "postedAt": "2026-10-30T09:54:20-04:00",
       "tags": [
         "Claude Code"
@@ -5085,49 +5107,6 @@
         "MCP"
       ],
       "companyIcon": ""
-    },
-    {
-      "id": "gr-gusto-7905578",
-      "company": "Gusto",
-      "position": "IT Internal Controls",
-      "location": "Denver, CO - Hybrid · New York, NY - Hybrid · San Francisco, CA - Hybrid",
-      "locations": [
-        "Denver, CO - Hybrid",
-        "New York, NY - Hybrid",
-        "San Francisco, CA - Hybrid"
-      ],
-      "remote": false,
-      "salary": "$205,000-$220,000",
-      "description": "About Gusto At Gusto, we're on a mission to grow the small business economy. We handle the hard stuff — payroll, health insurance, 401(k)s, and HR — so owners can focus on their craft and their customers. With teams in Denver, San Francisco, and New York, we support more than 500,000 small...",
-      "applyUrl": "https://job-boards.greenhouse.io/gusto/jobs/7905578",
-      "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/gusto/jobs/7905578",
-      "postedAt": "2026-10-30T09:44:51-04:00",
-      "tags": [
-        "Claude Code"
-      ],
-      "companyIcon": "https://gusto.com/favicon.ico"
-    },
-    {
-      "id": "gr-gusto-7656216",
-      "company": "Gusto",
-      "position": "Data Scientist, Risk ",
-      "location": "San Francisco, CA - Hybrid",
-      "locations": [
-        "San Francisco, CA - Hybrid"
-      ],
-      "remote": false,
-      "salary": "$186,000/yr",
-      "description": "About Gusto At Gusto, we're on a mission to grow the small business economy. We handle the hard stuff — payroll, health insurance, 401(k)s, and HR — so owners can focus on their craft and their customers. With teams in Denver, San Francisco, and New York, we support more than 500,000 small...",
-      "applyUrl": "https://job-boards.greenhouse.io/gusto/jobs/7656216",
-      "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/gusto/jobs/7656216",
-      "postedAt": "2026-10-30T09:41:54-04:00",
-      "tags": [
-        "Claude Code",
-        "Python"
-      ],
-      "companyIcon": "https://gusto.com/favicon.ico"
     },
     {
       "id": "as-statisfy-2706b69d-b145-479b-b59d-b6dae59e5ae7",
@@ -5730,27 +5709,6 @@
         "Claude Code",
         "AWS",
         "Cursor"
-      ],
-      "companyIcon": ""
-    },
-    {
-      "id": "gr-assemblyai-4728788005",
-      "company": "AssemblyAI",
-      "position": "Senior GTM AI Engineer",
-      "location": "San Francisco, California",
-      "locations": [
-        "San Francisco, California"
-      ],
-      "remote": false,
-      "salary": "",
-      "description": "Why AssemblyAI AssemblyAI builds the best-in-class Voice AI models powering the next generation of voice applications. We have a lab, and we also power our own models in our own proprietary inference environment. Our models serve 500M+ inference calls monthly, and process nearly 2 million hours of...",
-      "applyUrl": "https://job-boards.greenhouse.io/assemblyai/jobs/4728788005",
-      "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/assemblyai/jobs/4728788005",
-      "postedAt": "2026-10-28T16:44:22-04:00",
-      "tags": [
-        "Claude Code",
-        "Python"
       ],
       "companyIcon": ""
     },
@@ -6821,7 +6779,7 @@
       ],
       "remote": false,
       "salary": "",
-      "description": "Who we are Schonfeld is a global multi-manager hedge fund that strives to deliver industry-leading risk-adjusted returns for our investors. We leverage both internal and external portfolio manager teams around the world, seeking to capitalize on inefficiencies and opportunities within the markets....",
+      "description": "The Role We’re hiring multiple Forward Deployed Engineers to join our AI Solutions team across our global offices. You’ll be embedded with the business – working alongside portfolio managers, researchers and corporate teams – to identify, build and productionize AI solutions that take real work off...",
       "applyUrl": "https://job-boards.greenhouse.io/schonfeld/jobs/8303538",
       "source": "Greenhouse",
       "sourceUrl": "https://job-boards.greenhouse.io/schonfeld/jobs/8303538",
@@ -7005,27 +6963,6 @@
       "companyIcon": ""
     },
     {
-      "id": "gr-abnormalsecurity-8011780003",
-      "company": "Abnormal",
-      "position": "Senior ServiceNow Platform Engineer",
-      "location": "Remote - USA",
-      "locations": [
-        "Remote - USA"
-      ],
-      "remote": true,
-      "salary": "",
-      "description": "About the Role We are seeking an experienced Senior ServiceNow Platform Engineer to design, build, and operate enterprise-grade ServiceNow capabilities that support critical business operations. You will own platform stability, configuration, and optimization while driving strategic initiatives in...",
-      "applyUrl": "https://abnormal.ai/careers/jobs/8011780003?gh_jid=8011780003",
-      "source": "Greenhouse",
-      "sourceUrl": "https://abnormal.ai/careers/jobs/8011780003?gh_jid=8011780003",
-      "postedAt": "2026-10-20T17:21:02-04:00",
-      "tags": [
-        "Claude Code",
-        "MCP"
-      ],
-      "companyIcon": ""
-    },
-    {
       "id": "gr-gruns-5458666008",
       "company": "Grüns",
       "position": "Senior Ecommerce Manager, Emerging Brands",
@@ -7093,29 +7030,6 @@
         "Kubernetes",
         "Cursor",
         "Redis"
-      ],
-      "companyIcon": ""
-    },
-    {
-      "id": "gr-accenturefederalservices-4723246006",
-      "company": "Accenture Federal Services",
-      "position": "DevOps Engineer - Cloud Automation ",
-      "location": "Columbia, MD",
-      "locations": [
-        "Columbia, MD"
-      ],
-      "remote": false,
-      "salary": "",
-      "description": "At Accenture Federal Services, nothing matters more than helping the US federal government make the nation stronger and safer and life better for people. Our 13,000+ people are united in a shared purpose to pursue the limitless potential of technology and ingenuity for clients across defense,...",
-      "applyUrl": "https://boards.greenhouse.io/accenturefederalservices/jobs/4723246006?gh_jid=4723246006",
-      "source": "Greenhouse",
-      "sourceUrl": "https://boards.greenhouse.io/accenturefederalservices/jobs/4723246006?gh_jid=4723246006",
-      "postedAt": "2026-10-20T12:10:46-04:00",
-      "tags": [
-        "Claude Code",
-        "Python",
-        "AWS",
-        "Kubernetes"
       ],
       "companyIcon": ""
     },
@@ -7800,29 +7714,6 @@
       "postedAt": "2026-10-14T16:31:59-04:00",
       "tags": [
         "Claude Code"
-      ],
-      "companyIcon": ""
-    },
-    {
-      "id": "gr-securityscorecard-8191356",
-      "company": "SecurityScorecard",
-      "position": "Principal GTM Systems Architect",
-      "location": "Hybrid (NYC)",
-      "locations": [
-        "Hybrid (NYC)"
-      ],
-      "remote": false,
-      "salary": "$200,000 - $220,00",
-      "description": "About SecurityScorecard: SecurityScorecard is the global leader in cybersecurity ratings, with over 12 million companies continuously rated, operating in 64 countries. Founded in 2013 by security and risk experts Dr. Alex Yampolskiy and Sam Kassoumeh and funded by world-class investors,...",
-      "applyUrl": "https://job-boards.greenhouse.io/securityscorecard/jobs/8191356",
-      "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/securityscorecard/jobs/8191356",
-      "postedAt": "2026-10-14T14:34:40-04:00",
-      "tags": [
-        "Claude Code",
-        "JavaScript",
-        "Python",
-        "MCP"
       ],
       "companyIcon": ""
     },
@@ -8574,32 +8465,6 @@
       "companyIcon": "https://perplexity.ai/favicon.ico"
     },
     {
-      "id": "gr-gusto-7760341",
-      "company": "Gusto",
-      "position": "Staff Software Engineer, Core AI Platforms",
-      "location": "San Francisco, CA - Hybrid · Denver, CO - Hybrid · New York, NY - Hybrid",
-      "locations": [
-        "San Francisco, CA - Hybrid",
-        "Denver, CO - Hybrid",
-        "New York, NY - Hybrid"
-      ],
-      "remote": false,
-      "salary": "$163,000–$204,000",
-      "description": "About Gusto At Gusto, we're on a mission to grow the small business economy. We handle the hard stuff — payroll, health insurance, 401(k)s, and HR — so owners can focus on their craft and their customers. With teams in Denver, San Francisco, and New York, we support more than 500,000 small...",
-      "applyUrl": "https://job-boards.greenhouse.io/gusto/jobs/7760341",
-      "source": "Greenhouse",
-      "sourceUrl": "https://job-boards.greenhouse.io/gusto/jobs/7760341",
-      "postedAt": "2026-10-05T13:22:28-04:00",
-      "tags": [
-        "Claude Code",
-        "React",
-        "JavaScript",
-        "Ruby",
-        "Rails"
-      ],
-      "companyIcon": "https://gusto.com/favicon.ico"
-    },
-    {
       "id": "hn-49962075",
       "company": "Revieve Oy",
       "position": "Senior Product Engineer",
@@ -9078,7 +8943,7 @@
       ],
       "remote": false,
       "salary": "",
-      "description": "Who we are Schonfeld is a global multi-manager hedge fund that strives to deliver industry-leading risk-adjusted returns for our investors. We leverage both internal and external portfolio manager teams around the world, seeking to capitalize on inefficiencies and opportunities within the markets....",
+      "description": "The Role We are looking for a technically-minded individual with a deep personal interest in AI/ML to join the DMFI COO Office as a dedicated AI Strategy Analyst. This is not a traditional quant or engineering role — it sits at the intersection of investment workflows, data strategy, and applied...",
       "applyUrl": "https://job-boards.greenhouse.io/schonfeld/jobs/8031499",
       "source": "Greenhouse",
       "sourceUrl": "https://job-boards.greenhouse.io/schonfeld/jobs/8031499",
@@ -9633,6 +9498,30 @@
         "Copilot"
       ],
       "companyIcon": ""
+    },
+    {
+      "id": "as-sierra-3f6911c0-b49b-4d8e-a434-4064df2cde44",
+      "company": "Sierra",
+      "position": "Software Engineer, Web Platform",
+      "location": "San Francisco, CA",
+      "locations": [
+        "San Francisco, CA"
+      ],
+      "remote": false,
+      "salary": "",
+      "description": "ABOUT US\n\nSierra is the leading platform for customer-facing AI agents, working with many of the world's biggest brands — including The GAP, Rocket Mortgage, SoFi, Sutter Health, and SoftBank — to transform how they serve customers and grow their businesses. We are primarily an in-person company...",
+      "applyUrl": "https://jobs.ashbyhq.com/Sierra/3f6911c0-b49b-4d8e-a434-4064df2cde44",
+      "source": "Ashby",
+      "sourceUrl": "https://jobs.ashbyhq.com/Sierra/3f6911c0-b49b-4d8e-a434-4064df2cde44",
+      "postedAt": "2026-09-16T21:15:34.318+00:00",
+      "tags": [
+        "Claude Code",
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Cursor"
+      ],
+      "companyIcon": "https://sierra.ai/favicon.ico"
     },
     {
       "id": "gr-intercom-7372016",
@@ -10880,7 +10769,7 @@
     {
       "id": "le-sonarsource-12886fbe-a42c-4402-a92f-2c64ee73cfc8",
       "company": "Sonarsource",
-      "position": "Director of Product Marketing, AI",
+      "position": "Director of AI Technical Marketing and Developer Engagement",
       "location": "San Mateo, CA",
       "locations": [
         "San Mateo, CA"
